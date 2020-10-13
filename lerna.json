@@ -1,0 +1,15 @@
+{
+  "packages": ["packages/*"],
+  "version": "independent",
+  "useWorkspaces": true,
+  "npmClient": "yarn",
+  "command": {
+    "publish": {
+      "allowBranch": "main",
+      "bump": "patch",
+      "conventionalCommits": true,
+      "message": "chore(release): Publish"
+    }
+  },
+  "loglevel": "success"
+}

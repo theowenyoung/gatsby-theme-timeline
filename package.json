@@ -1,0 +1,64 @@
+{
+  "private": true,
+  "name": "gatsby-theme-timeline",
+  "version": "0.0.1",
+  "scripts": {
+    "lerna": "lerna",
+    "lint": "prettier \"**/*.{md,yaml,yml}\" --write",
+    "start": "yarn workspace gatsby-starter-timeline start",
+    "update:dependencies": "lerna exec -- yarn upgrade && npm run bootstrap",
+    "cy:open": "cypress open",
+    "cy:run": "cross-env CYPRESS_baseUrl=http://localhost:9000 cypress run",
+    "gatsby-starter-timeline:cy:dev": "yarn workspace gatsby-starter-timeline develop:cypress",
+    "gatsby-starter-timeline:cy:build": "yarn workspace gatsby-starter-timeline build:cypress",
+    "gatsby-starter-timeline:serve": "yarn workspace gatsby-starter-timeline serve",
+    "ssat:gatsby-starter-timeline:dev": "start-server-and-test gatsby-starter-timeline:cy:dev http://localhost:8000 cy:open",
+    "ssat:gatsby-starter-timeline:serve": "start-server-and-test gatsby-starter-timeline:serve http://localhost:9000 cy:run",
+    "e2e:dev": "concurrently --kill-others 'yarn ssat:gatsby-starter-timeline:dev'",
+    "e2e:ci": "yarn gatsby-starter-timeline:cy:build && yarn ssat:gatsby-starter-timeline:serve",
+    "test": "npm run e2e:ci"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,jsx}": [
+      "prettier --write",
+      "eslint --fix"
+    ],
+    "*.{html,css,less,ejs,json}": [
+      "prettier --write"
+    ],
+    "*.{md,yaml,yml}": [
+      "prettier --write"
+    ]
+  },
+  "workspaces": [
+    "packages/*",
+    "starters/*"
+  ],
+  "devDependencies": {
+    "babel-eslint": "^10.1.0",
+    "cypress": "^5.3.0",
+    "eslint-config-google": "^0.14.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-cypress": "^2.11.1",
+    "eslint-plugin-filenames": "^1.3.2",
+    "eslint-plugin-flowtype": "^5.1.3",
+    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-react": "^7.20.0",
+    "release-it": "^14.1.0",
+    "start-server-and-test": "^1.11.0",
+    "@release-it/conventional-changelog": "^2.0.0",
+    "@testing-library/cypress": "^6.0.0",
+    "concurrently": "^5.2.0",
+    "cross-env": "^7.0.2",
+    "gatsby-cypress": "^0.4.12",
+    "husky": "^4.2.5",
+    "lerna": "^3.22.1",
+    "lint-staged": "^10.2.11",
+    "prettier": "^2.0.5"
+  }
+}

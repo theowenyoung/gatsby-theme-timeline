@@ -1,0 +1,23 @@
+{
+  "name": "gatsby-starter-timeline",
+  "private": true,
+  "version": "0.1.0",
+  "scripts": {
+    "develop": "gatsby develop",
+    "start": "gatsby develop",
+    "build": "gatsby build",
+    "clean": "gatsby clean",
+    "serve": "gatsby serve",
+    "develop:cypress": "cross-env CYPRESS_SUPPORT=y yarn develop",
+    "build:cypress": "cross-env CYPRESS_SUPPORT=y yarn build"
+  },
+  "dependencies": {
+    "gatsby": "^2.24.10",
+    "gatsby-theme-timeline": "^0.1.0",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.2"
+  }
+}

@@ -1,0 +1,43 @@
+{
+  extends: [
+    ":separateMajorReleases",
+    ":combinePatchMinorReleases",
+    ":ignoreUnstable",
+    ":prImmediately",
+    ":semanticPrefixFixDepsChoreOthers",
+    ":updateNotScheduled",
+    ":automergeDisabled",
+    ":disablePeerDependencies",
+    ":maintainLockFilesDisabled",
+    ":disableRateLimiting",
+  ],
+  includePaths: ["packages/**", "starters/**"],
+  ignorePaths: ["**/node_modules/**"],
+  major: {
+    masterIssueApproval: true,
+  },
+  masterIssue: true,
+  ignoreDeps: ["react", "react-dom"],
+  rangeStrategy: "bump",
+  bumpVersion: null,
+  semanticCommitScope: null,
+  prHourlyLimit: 0,
+  packageRules: [
+    // these rules define group names
+    {
+      groupName: "packages",
+      paths: ["packages/**"],
+    },
+    {
+      groupName: "starters for testing",
+      paths: ["starters/**"],
+    },
+
+    {
+      depTypeList: ["engines"],
+      enabled: false,
+    },
+  ],
+  timezone: "GMT",
+  schedule: "after 10am on Monday",
+}
