@@ -1,5 +1,9 @@
 # Gatsby Theme Timeline
 
+> WIP
+
+> This theme has not finished now
+
 This is a repo for Gatsby's timeline theme.
 
 - `gatsby-theme-timeline`
