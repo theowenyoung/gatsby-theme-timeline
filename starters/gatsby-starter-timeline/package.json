@@ -13,7 +13,10 @@
   },
   "dependencies": {
     "gatsby": "^2.24.10",
+    "theme-ui": "^0.4.0-rc.5",
+    "gatsby-theme-timeline-core": "^0.1.0",
     "gatsby-theme-timeline": "^0.1.0",
+    "gatsby-theme-timeline-twitter": "^0.1.0",
     "react": "^16.12.0",
     "react-dom": "^16.12.0"
   },

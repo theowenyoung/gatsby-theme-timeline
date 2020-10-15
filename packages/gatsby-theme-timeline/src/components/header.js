@@ -2,7 +2,6 @@
 import { Link } from "gatsby"
 import { jsx, css, Styled } from "theme-ui"
 import Bio from "./bio"
-import { SkipNavLink } from "@reach/skip-nav"
 
 const rootPath = `${__PATH_PREFIX__}/`
 
@@ -54,7 +53,6 @@ const Title = ({ children, location }) => {
 
 const Header = ({ children, title, ...props }) => (
   <header>
-    <SkipNavLink sx={{ variant: `styles.a` }} />
     <div
       css={css({
         maxWidth: `container`,

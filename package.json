@@ -1,11 +1,15 @@
 {
   "private": true,
   "name": "gatsby-theme-timeline",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "scripts": {
     "lerna": "lerna",
+    "prebs": "yarn",
+    "bs": "lerna bootstrap",
     "lint": "prettier \"**/*.{md,yaml,yml}\" --write",
     "start": "yarn workspace gatsby-starter-timeline start",
+    "build": "yarn workspace gatsby-starter-timeline build",
+    "clean": "yarn workspace gatsby-starter-timeline clean",
     "update:dependencies": "lerna exec -- yarn upgrade && npm run bootstrap",
     "cy:open": "cypress open",
     "cy:run": "cross-env CYPRESS_baseUrl=http://localhost:9000 cypress run",

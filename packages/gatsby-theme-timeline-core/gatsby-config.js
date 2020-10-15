@@ -2,6 +2,7 @@ const withDefaults = require(`./utils/default-options`)
 
 module.exports = (themeOptions) => {
   const options = withDefaults(themeOptions)
+  const { preset = `gatsby-theme-ui-preset` } = options
   const {
     mdxOtherwiseConfigured = false,
     mdx: legacyConfigureMdxFlag = true,
@@ -52,6 +53,17 @@ module.exports = (themeOptions) => {
         },
       },
       {
+        resolve: `gatsby-transformer-json`,
+        options: options.jsonTransformerOptions,
+      },
+      {
+        resolve: `gatsby-source-filesystem`,
+        options: {
+          path: options.dataPath || `data`,
+          name: options.dataPath || `data`,
+        },
+      },
+      {
         resolve: `gatsby-source-filesystem`,
         options: {
           path: options.assetPath || `content/assets`,
@@ -60,6 +72,14 @@ module.exports = (themeOptions) => {
       },
       `gatsby-transformer-sharp`,
       `gatsby-plugin-sharp`,
+      `gatsby-plugin-emotion`,
+      {
+        resolve: `gatsby-plugin-theme-ui`,
+        options: {
+          preset: preset === false ? {} : preset, // Allow a user to use only local shadowing with no preset
+          prismPreset: options.prismPreset,
+        },
+      },
     ].filter(Boolean),
   }
 }

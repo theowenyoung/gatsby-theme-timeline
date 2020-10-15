@@ -32,11 +32,6 @@ module.exports = {
     __ASSET_PREFIX__: true,
   },
   rules: {
-    "arrow-body-style": [
-      "error",
-      "as-needed",
-      { requireReturnForObjectLiteral: true },
-    ],
     "no-unused-expressions": [
       "error",
       {

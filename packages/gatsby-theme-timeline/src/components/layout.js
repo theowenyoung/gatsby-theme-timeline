@@ -3,7 +3,6 @@ import { css, Styled } from "theme-ui"
 import Header from "./header"
 import useTimelineThemeConfig from "../hooks/configOptions"
 import Helmet from "react-helmet"
-import { SkipNavContent } from "@reach/skip-nav"
 
 const Layout = ({ children, ...props }) => {
   const timelineThemeConfig = useTimelineThemeConfig()
@@ -15,7 +14,6 @@ const Layout = ({ children, ...props }) => {
         <link rel="stylesheet" href={webfontURL} />
       </Helmet>
       <Header {...props} />
-      <SkipNavContent />
       <div>
         <div
           css={css({
