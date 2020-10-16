@@ -14,8 +14,10 @@
     "url": "https://github.com/theowenyoung/gatsby-theme-timeline.git",
     "directory": "packages/gatsby-theme-ui-timeline-preset"
   },
-  "homepage": "https://github.com/theowenyoung/gatsby-theme-timeline/tree/master/packages/gatsby-theme-ui-timeline-preset#readme",
-
+  "homepage": "https://github.com/theowenyoung/gatsby-theme-timeline/tree/main/packages/gatsby-theme-ui-timeline-preset#readme",
+  "dependencies": {
+    "@theme-ui/preset-tailwind": "^0.4.0-rc.5"
+  },
   "devDependencies": {
     "prettier": "2.0.5",
     "react": "^16.12.0",

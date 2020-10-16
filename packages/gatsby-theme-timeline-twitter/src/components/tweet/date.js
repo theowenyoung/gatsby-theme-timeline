@@ -1,15 +1,10 @@
 /** @jsx jsx */
-import { Styled, jsx } from "theme-ui"
-
-const PostDate = (props) => (
-  <Styled.p
-    sx={{
-      fontSize: 1,
-      mt: -3,
-      mb: 3,
-    }}
-    {...props}
-  />
+import { Link as LinkUI, jsx } from "theme-ui"
+import { Link } from "gatsby"
+const Date = ({ slug, date }) => (
+  <LinkUI as={Link} sx={{ color: `textMuted` }} to={slug}>
+    {date}
+  </LinkUI>
 )
 
-export default PostDate
+export default Date

@@ -20,11 +20,12 @@ const { truncate } = require(`./utils/truncate`)
 // Ensure that content directories exist at site-level
 exports.onPreBootstrap = ({ store }, themeOptions) => {
   const { program } = store.getState()
-  const { contentPath, assetPath } = withDefaults(themeOptions)
+  const { contentPath, dataPath, assetPath } = withDefaults(themeOptions)
 
   const dirs = [
     path.join(program.directory, contentPath),
     path.join(program.directory, assetPath),
+    path.join(program.directory, dataPath),
   ]
 
   dirs.forEach((dir) => {
@@ -66,6 +67,9 @@ exports.createSchemaCustomization = ({ actions, schema }, themeOptions) => {
       image: File
       imageAlt: String
       socialImage: File
+      authorName: String
+      authorId: String
+      authorAvatar: File
   }`)
   createTypes(`type ${TWEET_TYPE_NAME} implements Item & Node {
     id: ID!
@@ -78,6 +82,10 @@ exports.createSchemaCustomization = ({ actions, schema }, themeOptions) => {
     image: File
     imageAlt: String
     socialImage: File
+    authorName: String!
+    authorId: String!
+    authorAvatar: File
+    idStr: String!
   }`)
   createTypes(
     schema.buildObjectType({
@@ -134,6 +142,15 @@ exports.createSchemaCustomization = ({ actions, schema }, themeOptions) => {
           type: `String!`,
           resolve: mdxResolverPassthrough(`body`),
         },
+        authorName: {
+          type: `String`,
+        },
+        authorId: {
+          type: `String`,
+        },
+        authorAvatar: {
+          type: `File`,
+        },
       },
       interfaces: [`Node`, `Item`],
       extensions: {
@@ -141,6 +158,22 @@ exports.createSchemaCustomization = ({ actions, schema }, themeOptions) => {
       },
     })
   )
+}
+exports.createResolvers = ({ createResolvers }) => {
+  const resolvers = {
+    [TWEET_TYPE_NAME]: {
+      authorAvatar: {
+        resolve: (source, args, context, info) => {
+          if (source.authorAvatar___NODE) {
+            return context.nodeModel.getNodeById({
+              id: source.authorAvatar___NODE,
+            })
+          }
+        },
+      },
+    },
+  }
+  createResolvers(resolvers)
 }
 
 function processRelativeImage(source, context, type) {
@@ -263,6 +296,7 @@ exports.onCreateNode = async (
     }
 
     const MdxPostId = createNodeId(`${node.id} >>> ${POST_TYPE_NAME}`)
+
     await createNode({
       ...fieldData,
       // Required fields.
@@ -287,23 +321,43 @@ exports.onCreateNode = async (
       node.created_at,
       `dd MMM DD HH:mm:ss ZZ YYYY`,
       `en`
-    ).toISOString()
+    ).toDate()
+
     const fieldData = {
-      type: `tweet`,
       title: `Tweet: "${truncate(node.full_text, TITLE_LENGTH)}"`,
-      excerpt: node.full_text.slice(
-        node.display_text_range[0],
-        node.display_text_range[1]
-      ),
+      excerpt: node.full_text,
       body: node.full_text,
       tags: node.entities.hashtags.map((tag) => tag.text) || [],
       slug: `/tweet/${node.id_str}`,
       date: date,
+      authorName: node.user.name,
+      authorId: node.user.screen_name,
+      idStr: node.id_str,
     }
+    // add tag
+    fieldData.tags.push(`tweet`)
+
+    // get author avatar
+    if (validURL(node.user.profile_image_url_https)) {
+      // create a file node for image URLs
+      const remoteFileNode = await createRemoteFileNode({
+        url: node.user.profile_image_url_https,
+        parentNodeId: node.id,
+        createNode,
+        createNodeId,
+        cache,
+        store,
+      })
+      // if the file was created, attach the new node to the parent node
+      if (remoteFileNode) {
+        fieldData.authorAvatar___NODE = remoteFileNode.id
+      }
+    }
+
     await createNode({
       ...fieldData,
       // Required fields.
-      id: `item-tweet-${node.id}`,
+      id: `${TWEET_TYPE_NAME}-${node.id}`,
       parent: node.id,
       children: [],
       internal: {

@@ -14,7 +14,7 @@ export const query = graphql`
         }
       }
     }
-    allItem(sort: { fields: [date, title], order: DESC }, limit: 1000) {
+    allItem(sort: { fields: [date, slug], order: DESC }, limit: 1000) {
       nodes {
         id
         excerpt
@@ -22,6 +22,18 @@ export const query = graphql`
         title
         date(formatString: "MMMM DD, YYYY")
         tags
+        authorName
+        authorId
+        authorAvatar {
+          childImageSharp {
+            fixed(width: 48, height: 48) {
+              ...GatsbyImageSharpFixed
+            }
+          }
+        }
+        ... on TweetPost {
+          idStr
+        }
       }
     }
   }

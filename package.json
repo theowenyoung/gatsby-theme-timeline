@@ -5,7 +5,7 @@
   "scripts": {
     "lerna": "lerna",
     "prebs": "yarn",
-    "bs": "lerna bootstrap",
+    "bs": "lerna link",
     "lint": "prettier \"**/*.{md,yaml,yml}\" --write",
     "start": "yarn workspace gatsby-starter-timeline start",
     "build": "yarn workspace gatsby-starter-timeline build",
@@ -46,13 +46,6 @@
   "devDependencies": {
     "babel-eslint": "^10.1.0",
     "cypress": "^5.3.0",
-    "eslint-config-google": "^0.14.0",
-    "eslint-config-prettier": "^6.11.0",
-    "eslint-plugin-cypress": "^2.11.1",
-    "eslint-plugin-filenames": "^1.3.2",
-    "eslint-plugin-flowtype": "^5.1.3",
-    "eslint-plugin-prettier": "^3.1.4",
-    "eslint-plugin-react": "^7.20.0",
     "release-it": "^14.1.0",
     "start-server-and-test": "^1.11.0",
     "@release-it/conventional-changelog": "^2.0.0",
@@ -63,6 +56,13 @@
     "husky": "^4.2.5",
     "lerna": "^3.22.1",
     "lint-staged": "^10.2.11",
-    "prettier": "^2.0.5"
+    "prettier": "^2.0.5",
+    "eslint-config-google": "^0.14.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-cypress": "^2.11.1",
+    "eslint-plugin-filenames": "^1.3.2",
+    "eslint-plugin-flowtype": "^5.1.3",
+    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-react": "^7.20.0"
   }
 }

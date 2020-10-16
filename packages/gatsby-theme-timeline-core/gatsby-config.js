@@ -2,7 +2,8 @@ const withDefaults = require(`./utils/default-options`)
 
 module.exports = (themeOptions) => {
   const options = withDefaults(themeOptions)
-  const { preset = `gatsby-theme-ui-preset` } = options
+  const { preset = `gatsby-theme-ui-timeline-preset` } = options
+
   const {
     mdxOtherwiseConfigured = false,
     mdx: legacyConfigureMdxFlag = true,

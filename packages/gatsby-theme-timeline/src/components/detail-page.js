@@ -3,7 +3,8 @@ import Layout from "./layout"
 import SEO from "./seo"
 import CoreDetail from "gatsby-theme-timeline-core/src/components/detail"
 import DetailFooter from "./detail-footer"
-
+import { Grid } from "theme-ui"
+import Bio from "./bio"
 const Detail = ({
   data: {
     item,
@@ -26,10 +27,16 @@ const Detail = ({
       }
       imageAlt={item.imageAlt}
     />
-    <main>
-      <CoreDetail {...item}></CoreDetail>
-    </main>
-    <DetailFooter {...{ previous, next }} />
+
+    <Grid gap={4} columns={[1, 1, `2fr 1fr`]}>
+      <main>
+        <CoreDetail {...item}></CoreDetail>
+        <DetailFooter {...{ previous, next }} />
+      </main>
+      <aside>
+        <Bio></Bio>
+      </aside>
+    </Grid>
   </Layout>
 )
 

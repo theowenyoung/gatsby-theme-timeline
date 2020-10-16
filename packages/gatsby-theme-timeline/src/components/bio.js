@@ -29,9 +29,9 @@ const Bio = () => {
           css={css({
             mr: 2,
             mb: 0,
-            width: 48,
-            minWidth: 48,
-            borderRadius: 99999,
+            width: `48px`,
+            minWidth: `48px`,
+            borderRadius: `full`,
           })}
         />
       ) : (
@@ -39,9 +39,9 @@ const Bio = () => {
           css={css({
             mr: 2,
             mb: 0,
-            width: 48,
-            minWidth: 48,
-            borderRadius: 99999,
+            width: `48px`,
+            minWidth: `48px`,
+            borderRadius: `full`,
           })}
           role="presentation"
         />
@@ -54,7 +54,7 @@ const Bio = () => {
 }
 
 const bioQuery = graphql`
-  query PostBioQuery {
+  query BioQuery {
     site {
       siteMetadata {
         author

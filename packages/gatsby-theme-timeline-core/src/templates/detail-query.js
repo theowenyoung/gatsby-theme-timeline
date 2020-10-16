@@ -44,6 +44,18 @@ export const query = graphql`
           }
         }
       }
+      authorName
+      authorId
+      authorAvatar {
+        childImageSharp {
+          fixed(width: 48, height: 48) {
+            ...GatsbyImageSharpFixed
+          }
+        }
+      }
+      ... on TweetPost {
+        idStr
+      }
     }
     previous: item(id: { eq: $previousId }) {
       id

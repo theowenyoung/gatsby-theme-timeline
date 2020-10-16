@@ -1,5 +1,1 @@
-export default {
-  colors: {
-    primary: `tomato`,
-  },
-}
+export default {}

@@ -1,9 +1,8 @@
-/** @jsx jsx */
-import { Link } from "gatsby"
-import { jsx, css, Styled } from "theme-ui"
-import Bio from "./bio"
+import React from "react"
+import { Link, withPrefix } from "gatsby"
+import { css, Styled } from "theme-ui"
 
-const rootPath = `${__PATH_PREFIX__}/`
+const rootPath = withPrefix(`/`)
 
 const Title = ({ children, location }) => {
   if (location.pathname === rootPath) {
@@ -55,7 +54,7 @@ const Header = ({ children, title, ...props }) => (
   <header>
     <div
       css={css({
-        maxWidth: `container`,
+        maxWidth: `6xl`,
         mx: `auto`,
         px: 3,
         pt: 4,
@@ -72,7 +71,6 @@ const Header = ({ children, title, ...props }) => (
         <Title {...props}>{title}</Title>
         {children}
       </div>
-      {props.location.pathname === rootPath && <Bio />}
     </div>
   </header>
 )
