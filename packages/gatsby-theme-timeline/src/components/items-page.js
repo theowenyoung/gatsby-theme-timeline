@@ -1,28 +1,47 @@
 import React from "react"
-
+import { withPrefix } from "gatsby"
 import Layout from "./layout"
 import SEO from "./seo"
 import Footer from "./home-footer"
 import Bio from "./bio"
+import Tags from "./tags"
 import ItemBox from "./item-box"
 import { Grid } from "theme-ui"
-
-const Items = ({ location, items, siteTitle, socialLinks }) => (
-  <Layout location={location} title={siteTitle}>
-    <SEO title="Home" />
-    <Grid gap={4} columns={[1, 1, `2fr 1fr`]}>
-      <main>
-        {items.map((item, index) => {
-          return <ItemBox key={`item-box-${index}`} {...item}></ItemBox>
-        })}
-      </main>
-      <aside>
-        <Bio></Bio>
-      </aside>
-    </Grid>
-
-    <Footer socialLinks={socialLinks} />
-  </Layout>
-)
-
+import Pagination from "./pagination"
+import kebabCase from "lodash/kebabCase"
+import ItemsTitle from "./items-title"
+const Items = ({
+  location,
+  items,
+  siteTitle,
+  socialLinks,
+  pageContext: { type, tag, currentPage, totalPages },
+}) => {
+  return (
+    <Layout location={location} title={siteTitle}>
+      <SEO title="Home" />
+      <ItemsTitle type={type} tag={tag}></ItemsTitle>
+      <Grid gap={4} columns={[1, 1, `2fr 1fr`]}>
+        <main>
+          {items.map((item, index) => {
+            return <ItemBox key={`item-box-${index}`} {...item}></ItemBox>
+          })}
+          <Pagination
+            currentPage={currentPage}
+            totalPages={totalPages}
+            hideFirstAndLastPageLinks
+            prefix={withPrefix(
+              type === `tag` ? `/tags/${kebabCase(tag)}/` : `/`
+            )}
+          ></Pagination>
+        </main>
+        <aside>
+          <Bio></Bio>
+          <Tags></Tags>
+        </aside>
+      </Grid>
+      <Footer socialLinks={socialLinks} />
+    </Layout>
+  )
+}
 export default Items

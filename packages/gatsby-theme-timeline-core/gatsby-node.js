@@ -3,6 +3,7 @@ const path = require(`path`)
 const mkdirp = require(`mkdirp`)
 const debug = require(`debug`)
 const moment = require(`moment`)
+const kebabCase = require(`lodash/kebabCase`)
 const {
   createFilePath,
   createRemoteFileNode,
@@ -56,6 +57,7 @@ const mdxResolverPassthrough = (fieldName) => async (
 exports.createSchemaCustomization = ({ actions, schema }, themeOptions) => {
   const { excerptLength } = withDefaults(themeOptions)
   const { createTypes } = actions
+  // create general item type
   createTypes(`interface Item @nodeInterface {
       id: ID!
       title: String!
@@ -71,6 +73,7 @@ exports.createSchemaCustomization = ({ actions, schema }, themeOptions) => {
       authorId: String
       authorAvatar: File
   }`)
+  // create tweet type
   createTypes(`type ${TWEET_TYPE_NAME} implements Item & Node {
     id: ID!
     title: String!
@@ -87,6 +90,7 @@ exports.createSchemaCustomization = ({ actions, schema }, themeOptions) => {
     authorAvatar: File
     idStr: String!
   }`)
+  // create mdx post type
   createTypes(
     schema.buildObjectType({
       name: POST_TYPE_NAME,
@@ -373,17 +377,26 @@ exports.onCreateNode = async (
 // These templates are simply data-fetching wrappers that import components
 const ItemTemplate = require.resolve(`./src/templates/detail-query`)
 const ItemsTemplate = require.resolve(`./src/templates/items-query`)
-
+const TagItemsTemplate = require.resolve(`./src/templates/tag-items-query`)
 exports.createPages = async ({ graphql, actions, reporter }, themeOptions) => {
   const { createPage } = actions
-  const { basePath, imageMaxWidth } = withDefaults(themeOptions)
+  const { basePath, imageMaxWidth, postsPerPage } = withDefaults(themeOptions)
 
   const result = await graphql(`
     {
-      allItem(sort: { fields: [date, slug], order: DESC }, limit: 1000) {
+      allItem(sort: { fields: [date, slug], order: DESC }) {
         nodes {
           id
           slug
+        }
+      }
+      tagsGroup: allItem(sort: { fields: [date, slug], order: DESC }) {
+        group(field: tags) {
+          fieldValue
+          nodes {
+            id
+            slug
+          }
         }
       }
     }
@@ -396,6 +409,54 @@ exports.createPages = async ({ graphql, actions, reporter }, themeOptions) => {
   // Create Posts and Post pages.
   const { allItem } = result.data
   const posts = allItem.nodes
+  const totalPages = Math.ceil(posts.length / postsPerPage)
+  const total = posts.length
+  // create posts pages
+  Array.from({ length: totalPages }).forEach((_, i) => {
+    createPage({
+      path: i === 0 ? `${basePath}` : `${basePath}page/${i + 1}`,
+      component: ItemsTemplate,
+      context: {
+        type: `Latest`,
+        limit: postsPerPage,
+        skip: i * postsPerPage,
+        totalPages,
+        total: total,
+        currentPage: i + 1,
+      },
+    })
+  })
+
+  // Create tag Posts
+  const {
+    tagsGroup: { group },
+  } = result.data
+  // Make tag pages
+  group.forEach((tag) => {
+    const tagPosts = tag.nodes
+    const tagTotalPages = Math.ceil(tagPosts.length / postsPerPage)
+    const tagTotal = tagPosts.length
+
+    // create posts pages
+    Array.from({ length: tagTotalPages }).forEach((_, i) => {
+      createPage({
+        path:
+          i === 0
+            ? `${basePath}tags/${kebabCase(tag.fieldValue)}/`
+            : `${basePath}tags/${kebabCase(tag.fieldValue)}/page/${i + 1}`,
+        component: TagItemsTemplate,
+        context: {
+          type: `Tag`,
+          tag: tag.fieldValue,
+          limit: postsPerPage,
+          skip: i * postsPerPage,
+          total: tagTotal,
+          totalPages: tagTotalPages,
+          currentPage: i + 1,
+        },
+      })
+    })
+  })
 
   // Create a page for each Post
   posts.forEach((post, index) => {
@@ -412,12 +473,5 @@ exports.createPages = async ({ graphql, actions, reporter }, themeOptions) => {
         maxWidth: imageMaxWidth,
       },
     })
-  })
-
-  // // Create the Posts page
-  createPage({
-    path: basePath,
-    component: ItemsTemplate,
-    context: {},
   })
 }

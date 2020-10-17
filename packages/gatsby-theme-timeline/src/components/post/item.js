@@ -2,6 +2,8 @@
 import { Link, withPrefix } from "gatsby"
 import { Box, Link as LinkUI, jsx, Styled } from "theme-ui"
 import Tag from "./tag"
+import kebabCase from "lodash/kebabCase"
+
 const Item = ({ title, slug, date, excerpt, tags }) => {
   return (
     <Box
@@ -13,26 +15,26 @@ const Item = ({ title, slug, date, excerpt, tags }) => {
         borderStyle: `solid`,
         borderColor: `muted`,
         px: [3, 4],
-        pt: 3,
+        pt: 4,
         pb: 4,
       }}
     >
       {title && (
         <header>
           <LinkUI sx={{ color: `text` }} as={Link} to={slug}>
-            <h1>{title}</h1>
+            <Styled.h3>{title}</Styled.h3>
           </LinkUI>
         </header>
       )}
 
-      <Styled.p>{excerpt}</Styled.p>
+      <Styled.p sx={{ pt: 3 }}>{excerpt}</Styled.p>
       <footer>
         {tags && tags.length > 0 && (
           <Styled.div
             sx={{
               display: `flex`,
               flexWrap: `wrap`,
-              pb: 2,
+              pb: 3,
               gap: 2,
             }}
           >
@@ -40,7 +42,7 @@ const Item = ({ title, slug, date, excerpt, tags }) => {
               tags.map((tag) => {
                 return (
                   <Tag
-                    to={withPrefix(`/tags/${encodeURIComponent(tag)}`)}
+                    to={withPrefix(`/tags/${kebabCase(tag)}`)}
                     key={`tag-${tag}`}
                   >
                     {tag}

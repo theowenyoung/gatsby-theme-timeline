@@ -4,7 +4,7 @@ import ItemsPage from "../components/items-page"
 export default ItemsPage
 
 export const query = graphql`
-  query ItemsQuery($skip: Int!, $limit: Int!) {
+  query TagItemsQuery($tag: String!, $skip: Int!, $limit: Int!) {
     site {
       siteMetadata {
         title
@@ -18,6 +18,7 @@ export const query = graphql`
       sort: { fields: [date, slug], order: DESC }
       limit: $limit
       skip: $skip
+      filter: { tags: { in: [$tag] } }
     ) {
       nodes {
         id

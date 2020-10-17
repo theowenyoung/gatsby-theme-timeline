@@ -19,7 +19,8 @@ const Layout = ({ children, ...props }) => {
           maxWidth: `6xl`,
           mx: `auto`,
           px: 3,
-          py: 4,
+          pt: 2,
+          pb: 4,
         })}
       >
         {children}
