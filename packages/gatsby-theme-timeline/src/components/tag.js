@@ -8,7 +8,7 @@ export default function ({ children, to }) {
       sx={{
         bg: `gray.1`,
         mr: 3,
-        mb: 3,
+        mb: 2,
         color: `textMuted`,
         px: 2,
         py: 1,

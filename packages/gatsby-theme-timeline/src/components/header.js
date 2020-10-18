@@ -1,11 +1,20 @@
 /** @jsx jsx */
-import { Link } from "gatsby"
+import { Link, withPrefix } from "gatsby"
 import { css, Styled, jsx } from "theme-ui"
 
-const Title = ({ children }) => {
+const Title = ({ children, type }) => {
+  if (type === `detail`) {
+    return (
+      <Styled.h4 sx={{ pb: 4 }}>
+        <Styled.a sx={{ color: `text` }} as={Link} to={withPrefix(`/`)}>
+          {children}
+        </Styled.a>
+      </Styled.h4>
+    )
+  }
   return (
     <Styled.h2>
-      <Styled.a sx={{ color: `text` }} as={Link} to={`/`}>
+      <Styled.a sx={{ color: `text` }} as={Link} to={withPrefix(`/`)}>
         {children}
       </Styled.a>
     </Styled.h2>
@@ -16,7 +25,7 @@ const Header = ({ children, title, ...props }) => (
   <header>
     <Styled.div
       css={css({
-        maxWidth: `6xl`,
+        maxWidth: `5xl`,
         mx: `auto`,
         px: 3,
         pt: 4,

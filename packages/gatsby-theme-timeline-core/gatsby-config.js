@@ -2,7 +2,10 @@ const withDefaults = require(`./utils/default-options`)
 
 module.exports = (themeOptions) => {
   const options = withDefaults(themeOptions)
-  const { preset = `gatsby-theme-ui-timeline-preset` } = options
+  const {
+    preset = `gatsby-theme-ui-timeline-preset`,
+    prismPreset = `github`,
+  } = options
 
   const {
     mdxOtherwiseConfigured = false,
@@ -78,7 +81,7 @@ module.exports = (themeOptions) => {
         resolve: `gatsby-plugin-theme-ui`,
         options: {
           preset: preset === false ? {} : preset, // Allow a user to use only local shadowing with no preset
-          prismPreset: options.prismPreset,
+          prismPreset: prismPreset,
         },
       },
     ].filter(Boolean),

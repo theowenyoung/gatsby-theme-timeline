@@ -15,7 +15,7 @@ const Item = ({ title, slug, date, excerpt, tags }) => {
         borderStyle: `solid`,
         borderColor: `muted`,
         px: [3, 4],
-        pt: 4,
+        pt: 3,
         pb: 4,
       }}
     >
@@ -27,7 +27,7 @@ const Item = ({ title, slug, date, excerpt, tags }) => {
         </header>
       )}
 
-      <Styled.p sx={{ pt: 3 }}>{excerpt}</Styled.p>
+      <Styled.p>{excerpt}</Styled.p>
       <footer>
         {tags && tags.length > 0 && (
           <Styled.div

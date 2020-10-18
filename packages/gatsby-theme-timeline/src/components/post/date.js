@@ -6,6 +6,7 @@ const PostDate = (props) => (
     sx={{
       mt: -3,
       mb: 3,
+      color: `textMuted`,
     }}
     {...props}
   />

@@ -1,23 +1,24 @@
-import React from "react"
+/** @jsx jsx */
 import { Link } from "gatsby"
-import { css, Styled, Flex } from "theme-ui"
+import { css, Styled, Flex, jsx } from "theme-ui"
 
 const PostFooter = ({ previous, next }) => (
   <footer
     css={css({
-      mt: 4,
       pt: 3,
+      pb: 4,
     })}
   >
     {(previous || next) && (
       <Flex
         as="ul"
-        css={css({
+        sx={{
           flexWrap: `wrap`,
           justifyContent: `space-between`,
           listStyle: `none`,
           padding: 0,
-        })}
+          fontSize: 2,
+        }}
       >
         <li>
           {previous && (

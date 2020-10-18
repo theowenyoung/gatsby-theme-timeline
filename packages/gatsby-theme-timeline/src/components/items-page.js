@@ -5,12 +5,13 @@ import SEO from "./seo"
 import Footer from "./home-footer"
 import Bio from "./bio"
 import Tags from "./tags"
+import Links from "./links"
 import ItemBox from "./item-box"
 import { Grid } from "theme-ui"
 import Pagination from "./pagination"
 import kebabCase from "lodash/kebabCase"
 import ItemsTitle from "./items-title"
-import Links from "./links"
+
 const Items = ({
   location,
   items,
@@ -21,7 +22,7 @@ const Items = ({
     <Layout location={location} title={siteTitle}>
       <SEO title="Home" />
       <ItemsTitle type={type} tag={tag}></ItemsTitle>
-      <Grid gap={4} columns={[1, 1, `2fr 1fr`]}>
+      <Grid gap={5} columns={[1, 1, `2fr 1fr`]}>
         <main>
           {items.map((item, index) => {
             return <ItemBox key={`item-box-${index}`} {...item}></ItemBox>

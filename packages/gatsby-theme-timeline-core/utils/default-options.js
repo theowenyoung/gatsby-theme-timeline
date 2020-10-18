@@ -8,7 +8,7 @@ module.exports = (themeOptions) => {
   const imageMaxWidth = 1380
   const shouldTransformMdx = true
   const shouldTransformTweet = true
-  const postsPerPage = 2
+  const postsPerPage = 15
   const jsonTransformerOptions = {
     typeName: ({ node }) => {
       const rootDirectoryName = node.relativeDirectory.split(`/`)[0]

@@ -100,7 +100,7 @@ const Item = ({
 
       <div>
         {typeof body !== `undefined` && body !== `` && (
-          <Box sx={{ pb: 3 }}>{body}</Box>
+          <Styled.p>{body}</Styled.p>
         )}
         {typeof image !== `undefined` && image !== `` && (
           <div className="image-container">

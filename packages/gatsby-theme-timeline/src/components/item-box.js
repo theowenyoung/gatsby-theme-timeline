@@ -7,7 +7,7 @@ const ItemBox = (props) => {
     <Styled.div
       as="article"
       sx={{
-        paddingBottom: 4,
+        paddingBottom: 5,
       }}
     >
       <Item {...props}></Item>
