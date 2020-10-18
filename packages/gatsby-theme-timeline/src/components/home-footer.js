@@ -1,7 +1,7 @@
-import React, { Fragment } from "react"
+import React from "react"
 import { Styled, css } from "theme-ui"
 
-const Footer = ({ socialLinks }) => (
+const Footer = () => (
   <footer
     css={css({
       mt: 4,
@@ -11,25 +11,6 @@ const Footer = ({ socialLinks }) => (
     © {new Date().getFullYear()}, Powered by
     {` `}
     <Styled.a href="https://www.gatsbyjs.org">Gatsby</Styled.a>
-    {` `}&bull;{` `}
-    {socialLinks
-      ? socialLinks.map((platform, i, arr) => (
-          <Fragment key={platform.url}>
-            <Styled.a
-              href={platform.url}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {platform.name}
-            </Styled.a>
-            {arr.length - 1 !== i && (
-              <Fragment>
-                {` `}&bull;{` `}
-              </Fragment>
-            )}
-          </Fragment>
-        ))
-      : null}
   </footer>
 )
 export default Footer

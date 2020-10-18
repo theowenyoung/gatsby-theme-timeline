@@ -13,10 +13,6 @@ export const query = graphql`
     site {
       siteMetadata {
         title
-        social {
-          name
-          url
-        }
       }
     }
     item(id: { eq: $id }) {

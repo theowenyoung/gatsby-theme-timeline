@@ -12,6 +12,7 @@ export default function ({ to, children }) {
         "::before": {
           content: `"#"`,
         },
+        mr: 2,
       }}
     >
       <span>{children}</span>

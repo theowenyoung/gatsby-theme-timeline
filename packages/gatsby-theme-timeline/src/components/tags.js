@@ -1,8 +1,8 @@
 /** @jsx jsx */
 import { useStaticQuery, graphql, withPrefix } from "gatsby"
-import { Flex, jsx } from "theme-ui"
+import { Flex, Box, jsx, Styled } from "theme-ui"
 import kebabCase from "lodash/kebabCase"
-import Tag from "./post/tag"
+import Tag from "./tag"
 const Tags = () => {
   const data = useStaticQuery(tagsQuery)
   const {
@@ -10,18 +10,21 @@ const Tags = () => {
   } = data
 
   return (
-    <Flex sx={{ mb: 4, gap: 2, flexWrap: `wrap` }}>
-      {group.map(({ fieldValue, totalCount }, index) => {
-        return (
-          <Tag
-            key={`tag-list-${index}`}
-            to={withPrefix(`/tags/${kebabCase(fieldValue)}`)}
-          >
-            {fieldValue}
-          </Tag>
-        )
-      })}
-    </Flex>
+    <Box>
+      <Styled.h5 sx={{ pb: 3, color: `text` }}>Tags</Styled.h5>
+      <Flex sx={{ mb: 4, flexWrap: `wrap` }}>
+        {group.map(({ fieldValue, totalCount }, index) => {
+          return (
+            <Tag
+              key={`tag-list-${index}`}
+              to={withPrefix(`/tags/${kebabCase(fieldValue)}`)}
+            >
+              {`${fieldValue}(${totalCount})`}
+            </Tag>
+          )
+        })}
+      </Flex>
+    </Box>
   )
 }
 

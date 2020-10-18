@@ -107,8 +107,8 @@ module.exports = {
     description: `My site description...`,
     // Used for resolving images in social cards
     siteUrl: `https://example.com`,
-    // Used for social links in the root footer
-    social: [
+    // Used for links in the sides
+    links: [
       {
         name: `Twitter`,
         url: `https://twitter.com/gatsbyjs`,

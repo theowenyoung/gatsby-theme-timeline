@@ -10,11 +10,11 @@ import { Grid } from "theme-ui"
 import Pagination from "./pagination"
 import kebabCase from "lodash/kebabCase"
 import ItemsTitle from "./items-title"
+import Links from "./links"
 const Items = ({
   location,
   items,
   siteTitle,
-  socialLinks,
   pageContext: { type, tag, currentPage, totalPages },
 }) => {
   return (
@@ -38,9 +38,10 @@ const Items = ({
         <aside>
           <Bio></Bio>
           <Tags></Tags>
+          <Links></Links>
         </aside>
       </Grid>
-      <Footer socialLinks={socialLinks} />
+      <Footer />
     </Layout>
   )
 }

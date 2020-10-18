@@ -15,7 +15,7 @@ module.exports = (themeOptions) => {
       author: `Name Placeholder`,
       description: `Description placeholder`,
       siteUrl: `https://example.com`,
-      social: [
+      links: [
         {
           name: `Twitter`,
           url: `https://twitter.com/gatsbyjs`,

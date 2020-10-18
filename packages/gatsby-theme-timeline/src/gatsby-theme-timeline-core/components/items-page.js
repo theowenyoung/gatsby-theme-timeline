@@ -8,7 +8,6 @@ const ItemsWrapper = ({ location, data, pageContext }) => {
       location={location}
       items={allItem.nodes}
       siteTitle={site.siteMetadata.title}
-      socialLinks={site.siteMetadata.social}
       pageContext={pageContext}
     />
   )

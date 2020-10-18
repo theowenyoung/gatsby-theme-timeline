@@ -35,7 +35,6 @@ const Item = ({ title, slug, date, excerpt, tags }) => {
               display: `flex`,
               flexWrap: `wrap`,
               pb: 3,
-              gap: 2,
             }}
           >
             {tags &&
