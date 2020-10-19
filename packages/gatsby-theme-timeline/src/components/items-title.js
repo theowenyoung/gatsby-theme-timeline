@@ -8,16 +8,16 @@ import { Link, withPrefix } from "gatsby"
 const ItemsTitle = ({ type, tag }) => {
   if (type === `Tag`) {
     return (
-      <Styled.h4 sx={{ py: 4 }}>
+      <Styled.h3>
         <LinkUI sx={{ color: `textMuted` }} as={Link} to={withPrefix(`/`)}>
           All posts
         </LinkUI>
         <span> / </span>
         <span>{tag}</span>
-      </Styled.h4>
+      </Styled.h3>
     )
   } else {
-    return <Styled.h4 sx={{ py: 4 }}>{type}</Styled.h4>
+    return <Styled.h4>{type}</Styled.h4>
   }
 }
 

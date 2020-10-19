@@ -4,7 +4,12 @@ import ItemsPage from "../components/items-page"
 export default ItemsPage
 
 export const query = graphql`
-  query TagItemsQuery($tag: String!, $skip: Int!, $limit: Int!) {
+  query TagItemsQuery(
+    $tag: String!
+    $skip: Int!
+    $limit: Int!
+    $maxWidth: Int!
+  ) {
     site {
       siteMetadata {
         title
@@ -32,6 +37,15 @@ export const query = graphql`
             }
           }
         }
+        image {
+          childImageSharp {
+            fluid(maxWidth: $maxWidth) {
+              ...GatsbyImageSharpFluid
+              src
+            }
+          }
+        }
+        imageAlt
         ... on TweetPost {
           idStr
         }

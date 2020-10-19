@@ -167,10 +167,19 @@ exports.createResolvers = ({ createResolvers }) => {
   const resolvers = {
     [TWEET_TYPE_NAME]: {
       authorAvatar: {
-        resolve: (source, args, context, info) => {
+        resolve: (source, _, context, __) => {
           if (source.authorAvatar___NODE) {
             return context.nodeModel.getNodeById({
               id: source.authorAvatar___NODE,
+            })
+          }
+        },
+      },
+      image: {
+        resolve: (source, _, context, __) => {
+          if (source.image___NODE) {
+            return context.nodeModel.getNodeById({
+              id: source.image___NODE,
             })
           }
         },
@@ -338,6 +347,27 @@ exports.onCreateNode = async (
       authorId: node.user.screen_name,
       idStr: node.id_str,
     }
+    if (
+      node.entities &&
+      node.entities.media &&
+      node.entities.media[0] &&
+      node.entities.media[0].media_url_https
+    ) {
+      fieldData.imageAlt = `Tweet Image`
+      // create a file node for image URLs
+      const remoteFileNode = await createRemoteFileNode({
+        url: node.entities.media[0].media_url_https,
+        parentNodeId: node.id,
+        createNode,
+        createNodeId,
+        cache,
+        store,
+      })
+      // if the file was created, attach the new node to the parent node
+      if (remoteFileNode) {
+        fieldData.image___NODE = remoteFileNode.id
+      }
+    }
     // add tag
     fieldData.tags.push(`tweet`)
 
@@ -423,6 +453,7 @@ exports.createPages = async ({ graphql, actions, reporter }, themeOptions) => {
         totalPages,
         total: total,
         currentPage: i + 1,
+        maxWidth: imageMaxWidth,
       },
     })
   })
@@ -453,6 +484,7 @@ exports.createPages = async ({ graphql, actions, reporter }, themeOptions) => {
           total: tagTotal,
           totalPages: tagTotalPages,
           currentPage: i + 1,
+          maxWidth: imageMaxWidth,
         },
       })
     })

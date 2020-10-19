@@ -1,65 +1,90 @@
 {
-  "created_at": "Sun Oct 11 09:10:52 +0000 2020",
-  "id": 1315580687861,
-  "id_str": "1315580687861182222",
-  "full_text": "Sunsets don't get much better than this one over @GrandTetonNPS. #nature #sunset http://t.co/YuKy2rcjyU",
+  "created_at": "Mon Oct 19 01:20:02 +0000 2020",
+  "id": 1317998913648025600,
+  "id_str": "1317998913648025601",
+  "full_text": "Maggie Shannon, a photographer in L.A., captured the work of midwives, as demand for their services rose during the pandemic. “I’ve never documented anything with so much emotion in it,” she said. https://t.co/GFu7s281GD",
   "truncated": false,
-  "display_text_range": [0, 91],
+  "display_text_range": [0, 220],
   "entities": {
     "hashtags": [],
     "symbols": [],
     "user_mentions": [],
-    "urls": []
+    "urls": [
+      {
+        "url": "https://t.co/GFu7s281GD",
+        "expanded_url": "https://nyti.ms/355krmD",
+        "display_url": "nyti.ms/355krmD",
+        "indices": [197, 220]
+      }
+    ]
   },
-  "source": "<a href=\"https://mobile.twitter.com\" rel=\"nofollow\">Twitter Web App</a>",
+  "source": "<a href=\"http://www.socialflow.com\" rel=\"nofollow\">SocialFlow</a>",
   "in_reply_to_status_id": null,
   "in_reply_to_status_id_str": null,
   "in_reply_to_user_id": null,
   "in_reply_to_user_id_str": null,
   "in_reply_to_screen_name": null,
   "user": {
-    "id": 1241294513575878700,
-    "id_str": "1241294513575878656",
-    "name": "Owen Young",
-    "screen_name": "TheOwenYoung",
-    "location": "",
-    "description": "Freelancer / perfectionism / workflow lover",
-    "url": null,
+    "id": 807095,
+    "id_str": "807095",
+    "name": "The New York Times",
+    "screen_name": "nytimes",
+    "location": "New York City",
+    "description": "News tips? Share them here: https://t.co/ghL9OoYKMM",
+    "url": "http://t.co/ahvuWqicF9",
     "entities": {
+      "url": {
+        "urls": [
+          {
+            "url": "http://t.co/ahvuWqicF9",
+            "expanded_url": "http://www.nytimes.com/",
+            "display_url": "nytimes.com",
+            "indices": [0, 22]
+          }
+        ]
+      },
       "description": {
-        "urls": []
+        "urls": [
+          {
+            "url": "https://t.co/ghL9OoYKMM",
+            "expanded_url": "http://nyti.ms/2FVHq9v",
+            "display_url": "nyti.ms/2FVHq9v",
+            "indices": [28, 51]
+          }
+        ]
       }
     },
     "protected": false,
-    "followers_count": 10,
-    "friends_count": 69,
-    "listed_count": 1,
-    "created_at": "Sat Mar 21 09:24:27 +0000 2020",
-    "favourites_count": 12,
+    "followers_count": 47573342,
+    "friends_count": 899,
+    "listed_count": 202699,
+    "created_at": "Fri Mar 02 20:41:42 +0000 2007",
+    "favourites_count": 18400,
     "utc_offset": null,
     "time_zone": null,
     "geo_enabled": false,
-    "verified": false,
-    "statuses_count": 11,
+    "verified": true,
+    "statuses_count": 410559,
     "lang": null,
     "contributors_enabled": false,
     "is_translator": false,
-    "is_translation_enabled": false,
-    "profile_background_color": "F5F8FA",
-    "profile_background_image_url": null,
-    "profile_background_image_url_https": null,
-    "profile_background_tile": false,
-    "profile_image_url": "http://pbs.twimg.com/profile_images/1241298955742273536/E26HEH2o_normal.jpg",
-    "profile_image_url_https": "https://pbs.twimg.com/profile_images/1241298955742273536/E26HEH2o_normal.jpg",
-    "profile_link_color": "1DA1F2",
-    "profile_sidebar_border_color": "C0DEED",
-    "profile_sidebar_fill_color": "DDEEF6",
+    "is_translation_enabled": true,
+    "profile_background_color": "131516",
+    "profile_background_image_url": "http://abs.twimg.com/images/themes/theme14/bg.gif",
+    "profile_background_image_url_https": "https://abs.twimg.com/images/themes/theme14/bg.gif",
+    "profile_background_tile": true,
+    "profile_image_url": "http://pbs.twimg.com/profile_images/1098244578472280064/gjkVMelR_normal.png",
+    "profile_image_url_https": "https://pbs.twimg.com/profile_images/1098244578472280064/gjkVMelR_normal.png",
+    "profile_banner_url": "https://pbs.twimg.com/profile_banners/807095/1584666392",
+    "profile_link_color": "607696",
+    "profile_sidebar_border_color": "FFFFFF",
+    "profile_sidebar_fill_color": "EFEFEF",
     "profile_text_color": "333333",
     "profile_use_background_image": true,
-    "has_extended_profile": true,
-    "default_profile": true,
+    "has_extended_profile": false,
+    "default_profile": false,
     "default_profile_image": false,
-    "following": false,
+    "following": true,
     "follow_request_sent": false,
     "notifications": false,
     "translator_type": "none"
@@ -69,9 +94,11 @@
   "place": null,
   "contributors": null,
   "is_quote_status": false,
-  "retweet_count": 0,
-  "favorite_count": 0,
+  "retweet_count": 40,
+  "favorite_count": 195,
   "favorited": false,
   "retweeted": false,
+  "possibly_sensitive": false,
+  "possibly_sensitive_appealable": false,
   "lang": "en"
 }

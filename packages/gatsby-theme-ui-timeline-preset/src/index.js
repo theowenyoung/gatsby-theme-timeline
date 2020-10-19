@@ -15,6 +15,12 @@ const final = {
     `16rem`,
     `32rem`,
   ],
+  alerts: {
+    primary: {
+      color: `background`,
+      bg: `red.6`,
+    },
+  },
   styles: {
     ...tailwindPreset.styles,
 
@@ -22,6 +28,7 @@ const final = {
       ...tailwindPreset.styles.pre,
       variant: `prism`,
       fontFamily: `monospace`,
+      fontSize: 1,
       tabSize: 4,
       hyphens: `none`,
       marginBottom: 2,
@@ -30,9 +37,6 @@ const final = {
       overflow: `auto`,
       borderRadius: `lg`,
       p: 3,
-      ".highlight": {
-        background: `hsla(0, 0%, 40%, .5)`,
-      },
     },
     code: {
       ...tailwindPreset.styles.code,
@@ -47,9 +51,17 @@ const final = {
       bg: `gray.2`,
       p: 2,
     },
-    p: {
-      ...tailwindPreset.styles.p,
-      fontSize: 2,
+    blockquote: {
+      ...tailwindPreset.styles.blockquote,
+      borderLeftWidth: 4,
+      borderLeftStyle: `solid`,
+      borderLeftColor: `muted`,
+      color: `textMuted`,
+      m: 0,
+      p: 0,
+      fontStyle: `italic`,
+      my: 4,
+      pl: 3,
     },
     h1: {
       ...tailwindPreset.styles.h1,
@@ -65,15 +77,15 @@ const final = {
     },
     h4: {
       ...tailwindPreset.styles.h4,
-      mb: 4,
+      mb: 3,
     },
     h5: {
       ...tailwindPreset.styles.h5,
-      mb: 4,
+      mb: 3,
     },
     h6: {
       ...tailwindPreset.styles.h5,
-      mb: 4,
+      mb: 3,
     },
   },
 }

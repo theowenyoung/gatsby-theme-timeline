@@ -13,9 +13,13 @@ const Detail = (post) => {
       <header>
         <PostDate>{post.date}</PostDate>
         <Hero post={post} />
-        <Title>{post.title}</Title>
+        <Title sx={{ mb: 4 }}>{post.title}</Title>
       </header>
-      <section>
+      <section
+        sx={{
+          fontSize: 2,
+        }}
+      >
         <MDXRenderer>{post.body}</MDXRenderer>
       </section>
       {post.tags && post.tags.length > 0 && (

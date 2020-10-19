@@ -3,8 +3,8 @@ import { Link, withPrefix } from "gatsby"
 import { Box, Link as LinkUI, jsx, Styled } from "theme-ui"
 import Tag from "./tag"
 import kebabCase from "lodash/kebabCase"
-
-const Item = ({ title, slug, date, excerpt, tags }) => {
+import Hero from "./hero"
+const Item = ({ title, slug, date, excerpt, tags, image, imageAlt }) => {
   return (
     <Box
       sx={{
@@ -19,6 +19,7 @@ const Item = ({ title, slug, date, excerpt, tags }) => {
         pb: 4,
       }}
     >
+      <Hero post={{ image: image, imageAlt: imageAlt, excerpt }}></Hero>
       {title && (
         <header>
           <LinkUI sx={{ color: `text` }} as={Link} to={slug}>
@@ -26,8 +27,7 @@ const Item = ({ title, slug, date, excerpt, tags }) => {
           </LinkUI>
         </header>
       )}
-
-      <Styled.p>{excerpt}</Styled.p>
+      <Styled.p sx={{ fontSize: 2 }}>{excerpt}</Styled.p>
       <footer>
         {tags && tags.length > 0 && (
           <Styled.div

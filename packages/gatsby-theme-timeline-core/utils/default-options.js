@@ -5,7 +5,7 @@ module.exports = (themeOptions) => {
   const dataPath = `data`
   const tweetTypeName = `TweetsJson`
   const excerptLength = 140
-  const imageMaxWidth = 1380
+  const imageMaxWidth = 1024
   const shouldTransformMdx = true
   const shouldTransformTweet = true
   const postsPerPage = 15

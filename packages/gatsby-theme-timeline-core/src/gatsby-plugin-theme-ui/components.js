@@ -58,7 +58,9 @@ const headings = {
 }
 
 export default {
-  pre: (props) => props.children,
+  pre: (props) => {
+    return props.children
+  },
   code: Prism,
   ...headings,
 }

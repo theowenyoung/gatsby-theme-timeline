@@ -11,7 +11,7 @@ const Tags = () => {
 
   return (
     <Box>
-      <Styled.h5 sx={{ pb: 3, color: `text` }}>Tags</Styled.h5>
+      <Styled.h5 sx={{ color: `text` }}>Tags</Styled.h5>
       <Flex sx={{ mb: 4, flexWrap: `wrap` }}>
         {group.map(({ fieldValue, totalCount }, index) => {
           return (

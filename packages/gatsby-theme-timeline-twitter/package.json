@@ -25,7 +25,8 @@
     "mdx-utils": "0.2.0",
     "react-helmet": "^5.2.1",
     "react-process-string": "^1.2.0",
-    "react-twemoji": "^0.3.0"
+    "react-twemoji": "^0.3.0",
+    "react-twitter-widgets": "^1.9.5"
   },
   "devDependencies": {
     "gatsby": "^2.24.10",
