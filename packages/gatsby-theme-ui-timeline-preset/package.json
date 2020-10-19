@@ -1,6 +1,6 @@
 {
   "name": "gatsby-theme-ui-timeline-preset",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "A preset for theme-ui styles",
   "main": "src/index.js",
   "keywords": [
