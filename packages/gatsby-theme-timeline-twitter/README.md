@@ -5,10 +5,10 @@
 </p>
 
 <h1 align="center">
-  Gatsby timeline theme
+  Gatsby Timeline Theme for Tweet Item
 </h1>
 
-A Gatsby theme for creating a blog.
+A [Gatsby timeline theme](https://github.com/theowenyoung/gatsby-theme-timeline) for tweet item.
 
 ## Installation
 

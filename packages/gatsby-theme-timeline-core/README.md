@@ -5,7 +5,7 @@
 </p>
 
 <h1 align="center">
-  Gatsby timeline core theme
+  Gatsby Timeline Core Theme
 </h1>
 
 A Gatsby theme for creating a blog child theme. It includes all of the data structures you need to get up and running building a blog and includes no additional theming or style opinions.

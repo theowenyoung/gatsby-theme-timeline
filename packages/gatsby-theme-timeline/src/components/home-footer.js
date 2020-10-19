@@ -10,7 +10,13 @@ const Footer = () => (
   >
     © {new Date().getFullYear()}, Powered by
     {` `}
-    <Styled.a href="https://www.gatsbyjs.org">Gatsby</Styled.a>
+    <Styled.a href="https://www.gatsbyjs.com">Gatsby</Styled.a>
+    {` `}
+    Theme by
+    {` `}
+    <Styled.a href="https://github.com/theowenyoung/gatsby-theme-timeline">
+      Timeline
+    </Styled.a>
   </footer>
 )
 export default Footer

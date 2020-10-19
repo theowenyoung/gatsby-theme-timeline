@@ -1,13 +1,13 @@
 <p align="center">
-  <a href="https://www.gatsbyjs.org">
-    <img alt="Gatsby" src="https://www.gatsbyjs.org/monogram.svg" width="60" />
+  <a href="https://www.gatsbyjs.com">
+    <img alt="Gatsby" src="https://www.gatsbyjs.com/Gatsby-Monogram.svg" width="60" />
   </a>
 </p>
 <h1 align="center">
-  The Gatsby Theme UI Preset 
+  The Gatsby Theme UI Timeline Preset 
 </h1>
 
-A Theme UI preset that contains the configuration used in other official Gatsby themes, e.g. `gatsby-theme-blog`.
+A Theme UI preset that contains the configuration used in other Gatsby themes, e.g. `gatsby-theme-timeline`.
 
 ## Installation
 
@@ -18,7 +18,7 @@ If you already have a site you'd like to add the theme-ui theme to, you can manu
 1. Install the theme
 
 ```shell
-npm install gatsby-theme-ui-preset
+npm install gatsby-theme-ui-timeline-preset
 ```
 
 2. Add the configuration to your `gatsby-config.js` file
@@ -29,7 +29,7 @@ module.exports = {
   plugins: [{
         resolve: `gatsby-plugin-theme-ui`
         options: {
-          preset: `gatsby-theme-ui-preset`
+          preset: `gatsby-theme-ui-timeline-preset`
         }}],
 }
 ```

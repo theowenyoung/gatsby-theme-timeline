@@ -21,11 +21,11 @@ module.exports = (themeOptions) => {
       links: [
         {
           name: `Twitter`,
-          url: `https://twitter.com/gatsbyjs`,
+          url: `https://twitter.com/TheOwenYoung`,
         },
         {
           name: `GitHub`,
-          url: `https://github.com/gatsbyjs`,
+          url: `https://github.com/theowenyoung`,
         },
       ],
     },

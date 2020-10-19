@@ -7,7 +7,7 @@ import { Styled } from "theme-ui"
 
 const BioContent = () => (
   <Fragment>
-    Words by <Styled.a href="http://example.com/">Jane Doe</Styled.a>.
+    Words by <Styled.a href="https://blog.owenyoung.com/">Owen Young</Styled.a>.
     <br />
     Change me. This is all quite default.
   </Fragment>

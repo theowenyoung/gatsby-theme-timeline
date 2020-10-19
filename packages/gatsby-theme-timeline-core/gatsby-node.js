@@ -74,7 +74,7 @@ exports.createSchemaCustomization = ({ actions, schema }, themeOptions) => {
       authorAvatar: File
   }`)
   // create tweet type
-  createTypes(`type ${TWEET_TYPE_NAME} implements Item & Node {
+  createTypes(`type ${TWEET_TYPE_NAME} implements Item & Node @dontInfer {
     id: ID!
     title: String!
     body: String!

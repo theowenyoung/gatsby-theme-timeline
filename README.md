@@ -6,16 +6,18 @@
 
 This is a repo for Gatsby's timeline theme.
 
-- `gatsby-theme-timeline`
-- `gatsby-theme-timeline-core`
+- [`gatsby-theme-timeline-core`](https://github.com/theowenyoung/gatsby-theme-timeline/tree/main/packages/gatsby-theme-timeline-core)
+- [`gatsby-theme-timeline`](https://github.com/theowenyoung/gatsby-theme-timeline/tree/main/packages/gatsby-theme-timeline)
+- [`gatsby-theme-timeline-twitter`](https://github.com/theowenyoung/gatsby-theme-timeline/tree/main/packages/gatsby-theme-timeline-twitter)
+- [`gatsby-theme-ui-timeline-preset`](https://github.com/theowenyoung/gatsby-theme-timeline/tree/main/packages/gatsby-theme-ui-timeline-preset)
 
 ## Installation
 
 Clone the repository and `cd` into it
 
 ```sh
-git clone https://github.com/gatsbyjs/themes
-cd themes
+git clone https://github.com/theowenyoung/gatsby-theme-timeline
+cd gatsby-theme-timeline
 ```
 
 Install dependencies

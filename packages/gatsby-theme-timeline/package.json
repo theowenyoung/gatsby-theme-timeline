@@ -25,7 +25,6 @@
     "gatsby-plugin-react-helmet": "^3.3.10",
     "gatsby-plugin-twitter": "^2.3.10",
     "mdx-utils": "0.2.0",
-    "rc-pagination": "^3.1.0",
     "react-helmet": "^5.2.1",
     "react-ultimate-pagination": "^1.2.0"
   },

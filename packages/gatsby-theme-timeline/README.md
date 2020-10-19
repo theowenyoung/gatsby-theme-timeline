@@ -5,7 +5,7 @@
 </p>
 
 <h1 align="center">
-  Gatsby timeline theme
+  Gatsby Timeline Theme
 </h1>
 
 A Gatsby theme for creating a blog.
@@ -27,7 +27,7 @@ If you already have a site you'd like to add the timeline theme to, you can manu
 1. Install the timeline theme
 
 ```shell
-npm install gatsby-theme-timeline
+npm install gatsby-theme-timeline gatsby-theme-timeline-core theme-ui
 ```
 
 2. Add the configuration to your `gatsby-config.js` file
@@ -36,6 +36,11 @@ npm install gatsby-theme-timeline
 // gatsby-config.js
 module.exports = {
   plugins: [
+    {
+      resolve: `gatsby-theme-timeline-core`,
+      options: {},
+    },
+
     {
       resolve: `gatsby-theme-timeline`,
       options: {
@@ -71,7 +76,7 @@ module.exports = {
 | `prismPreset`            | `null`                   | Theme UI compatible package name that will act as the prism syntax highlighting for your project. Be sure to install the package you're referencing. For themes in `@theme-ui/prism` the name will suffice, e.g. `prism-okaidia`. |
 | `excerptLength`          | `140`                    | Length of the auto-generated excerpt of a blog post                                                                                                                                                                               |
 | `webfontURL`             | `''`                     | URL for the webfont you'd like to include. Be sure that your local theme does not override it.                                                                                                                                    |
-| `imageMaxWidth`          | `1380`                   | Set the max width of images in your blog posts. This applies to your featured image in frontmatter as well.                                                                                                                       |
+| `imageMaxWidth`          | `1024`                   | Set the max width of images in your blog posts. This applies to your featured image in frontmatter as well.                                                                                                                       |
 
 #### Example configuration
 
@@ -107,15 +112,15 @@ module.exports = {
     description: `My site description...`,
     // Used for resolving images in social cards
     siteUrl: `https://example.com`,
-    // Used for social links in the root footer
-    social: [
+    // Used for links in the root aside
+    links: [
       {
         name: `Twitter`,
-        url: `https://twitter.com/gatsbyjs`,
+        url: `https://twitter.com/TheOwenYoung`,
       },
       {
         name: `GitHub`,
-        url: `https://github.com/gatsbyjs`,
+        url: `https://github.com/theowenyoung`,
       },
     ],
   },
@@ -161,7 +166,7 @@ You may want to use a different image for social sharing than the one that appea
 
 This theme enables `gatsby-plugin-theme-ui` which allows you to leverage [Theme UI](https://theme-ui.com/) to style your project.
 
-By default, `gatsby-theme-ui-preset` operates as your base theme styles. Any local shadowed styles deep merge with that preset.
+By default, `gatsby-theme-ui-timeline-preset` operates as your base theme styles. Any local shadowed styles deep merge with that preset.
 
 Alternatively, you can pass a preset of your own choosing by installing the package and passing the package name as the `preset` in `gatsby-config.js`. Again, local shadowed styles will deep merge with this preset if they exist.
 
@@ -185,7 +190,7 @@ If you'd rather use only local shadowed styles with no underlying preset, pass t
 
 You can also configure your prism theme for syntax highlighting in code snippets by passing the `prismPreset` option.
 
-`@theme-ui/prism` is included by default, so any [available presets](https://theme-ui.com/packages/prism#syntax-themes) can be passed using only their name, e.g. `dracula`.
+`@theme-ui/prism` is included by default, so any [available presets](https://theme-ui.com/packages/prism#syntax-themes) can be passed using only their name, e.g. `dracula`. The default value is `github`
 
 ```js
 // gatsby-config.js
@@ -194,7 +199,7 @@ module.exports = {
     {
       resolve: `gatsby-theme-timeline`,
       options: {
-        prismPreset: `dracula`,
+        prismPreset: `github`,
       },
     },
   ],
@@ -210,89 +215,3 @@ This option is null by default, and in all cases local shadowed styles take prec
 You can highlight code snippets using `// highlight line` or a combination of `// highlight-start` and `// highlight-end`.
 
 To update the styling for these highlights override the `.highlight` styles inside your prism theme.
-
-### Accessibility and Skip-nav
-
-This theme comes equipt with [skip-nav](https://reacttraining.com/reach-ui/skip-nav/). Note that if you override `header.js` you'll need to add the `SkipNavLink` component yourself. Additionally, if you override `layout.js` you'll need to include `SkipNavContent` manually.
-
-## Migration to 2.0
-
-The 2.0 release includes breaking changes. Note that many of the changes are related to the default styling in the blog theme. If you have no interest in additional flexibility with styles the 1.6 release may be sufficient as it includes new features without the breaking changes.
-
-Before upgrading to 2.0 you'll want to update your core `gatsby` version as well.
-
-**Change in data structure** - Instead of querying for the `node` object inside the `edges` array, all queries now look for `nodes`. If you're shadowing files and accessing data directly you may need to account for this.
-
-**Removal of darkmode toggle** - This theme no longer comes with a darkmode toggle. If you'd like to use the old one it is now available as a parallel theme you can install, [`gatsby-theme-timeline-darkmode`](https://www.gatsbyjs.org/packages/gatsby-theme-timeline-darkmode/). Please see the README for further instructions.
-
-### Style specific migration notes
-
-With the new version of `gatsby-plugin-theme-ui` there are a number of changes to the way styles are passed and how they compose.
-
-**Change in shadow structure** - When shadowing files in `gatsby-plugin-theme-ui` the directory can no longer be nested inside the `gatsby-theme-timeline` directory. It needs to be at the root level. Additionally, all content needs to be shadowed via `index.js`. You can make use of files like `colors.js` but they will not shadow unless explicitly exported from `index.js`.
-
-**Default deepmerge** - Any shadowed styles will deepmerge with the `gatsby-theme-timeline` built-in styles automatically.
-
-If your previous code look like this:
-
-```javascript
-import merge from "deepmerge"
-import defaultThemeColors from "gatsby-theme-timeline/src/gatsby-plugin-theme-ui/colors"
-
-const darkBlue = `#007acc`
-const lightBlue = `#66E0FF`
-const blueGray = `#282c35`
-
-export default merge(defaultThemeColors, {
-  text: blueGray,
-  primary: darkBlue,
-  heading: blueGray,
-})
-```
-
-It should now look like this. Noting that the merge still occurs by default.
-
-```javascript
-const darkBlue = `#007acc`
-const lightBlue = `#66E0FF`
-const blueGray = `#282c35`
-
-export default {
-  text: blueGray,
-  primary: darkBlue,
-  heading: blueGray,
-}
-```
-
-If you did not merge in the official theme styles and instead overrode them you can still do so. You'll want to remove the preset by passing the option in `gatsby-config.js`
-
-```javascript
-module.exports = {
-  plugins: [
-    {
-      resolve: `gatsby-theme-timeline`,
-      options: {
-        preset: false,
-      },
-    },
-  ],
-}
-```
-
-**No built in Typography.js** - Typography.js is no longer part of the default styling. If you'd like to add it locally follow the [Theme UI docs](https://theme-ui.com/packages/typography/#extending-the-typographyjs-theme) or note the code snippet below. The original theme used `typography-theme-wordpress-2016` and also imported `typeface-montserrat` and `typeface-merriweather`.
-
-Another thing to keep in mind if you're pulling in typography for local shadowing is that the order of merging is different. The most common issue is that the spacing underneath code blocks is off. To fix that, include the following code in `src/gatsby-plugin-theme-ui/index.js`.
-
-```javascript
-import { toTheme } from "@theme-ui/typography"
-import wp2016 from "typography-theme-wordpress-2016"
-import { merge } from "theme-ui"
-
-export default merge(toTheme(wp2016), {
-  styles: {
-    pre: {
-      margin: `0 0 2 0`,
-    },
-  },
-})
-```
