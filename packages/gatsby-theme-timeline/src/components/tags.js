@@ -30,7 +30,7 @@ const Tags = () => {
 
 const tagsQuery = graphql`
   query TagsQuery {
-    tagsGroup: allItem(sort: { fields: [date, slug], order: DESC }) {
+    tagsGroup: allBlogPost(sort: { fields: [date, slug], order: DESC }) {
       group(field: tags) {
         fieldValue
         totalCount

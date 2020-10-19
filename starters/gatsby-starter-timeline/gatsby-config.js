@@ -6,16 +6,16 @@ module.exports = {
   plugins: [
     // with gatsby-plugin-theme-ui, the last theme in the config
     // will override the theme-ui context from other themes
-    {
-      resolve: `gatsby-theme-timeline-core`,
-      options: {},
-    },
+
     {
       resolve: `gatsby-theme-timeline`,
+      options: {
+        postsPerPage: 2,
+      },
     },
-    {
-      resolve: `gatsby-theme-timeline-twitter`,
-    },
+    // {
+    //   resolve: `gatsby-theme-timeline-twitter`,
+    // },
     {
       resolve: `gatsby-plugin-sitemap`,
     },

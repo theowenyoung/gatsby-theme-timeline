@@ -1610,7 +1610,7 @@
     core-js-pure "^3.0.0"
     regenerator-runtime "^0.13.4"
 
-"@babel/runtime@^7.0.0", "@babel/runtime@^7.10.1", "@babel/runtime@^7.11.2":
+"@babel/runtime@^7.0.0", "@babel/runtime@^7.11.2":
   version "7.12.1"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.12.1.tgz#b4116a6b6711d010b2dad3b7b6e43bf1b9954740"
   integrity sha512-J5AIf3vPj3UwXaAzb5j1xM4WAQDX3EMgemF8rjCP3SoW09LfRKAXQKt6CoVYl230P6iWdRcBbnLDDdnqWxZSCA==
@@ -3117,7 +3117,7 @@
     unist-builder "2.0.3"
     unist-util-visit "2.0.3"
 
-"@mdx-js/react@1.6.14", "@mdx-js/react@^1.0.0", "@mdx-js/react@^1.6.14", "@mdx-js/react@^1.6.6":
+"@mdx-js/react@1.6.14", "@mdx-js/react@^1.0.0", "@mdx-js/react@^1.6.6":
   version "1.6.14"
   resolved "https://registry.yarnpkg.com/@mdx-js/react/-/react-1.6.14.tgz#20c64d6691a894227cd04006b620e5fff85f79b1"
   integrity sha512-WN4OWXiSTN5x1Ee0ZeYQ9bjjSSgH3Mfx/ezcSV3T691C/PcHTNWwJa5qhcuq8V/NrVAeMc26aXuSdOAq6sRb1g==
@@ -6098,11 +6098,6 @@ class-utils@^0.3.5:
     define-property "^0.2.5"
     isobject "^3.0.0"
     static-extend "^0.1.1"
-
-classnames@^2.2.1:
-  version "2.2.6"
-  resolved "https://registry.yarnpkg.com/classnames/-/classnames-2.2.6.tgz#43935bffdd291f326dad0a205309b38d00f650ce"
-  integrity sha512-JR/iSQOSt+LQIWwrwEzJ9uk0xfN3mTVYMwt1Ir5mUcSN6pU+V4zQFFaJsclJbPuAUQH+yfWef6tm7l1quW3C8Q==
 
 clean-stack@^2.0.0:
   version "2.2.0"
@@ -9655,15 +9650,6 @@ gatsby-image@^2.4.13:
     object-fit-images "^3.2.4"
     prop-types "^15.7.2"
 
-gatsby-image@^2.4.21:
-  version "2.4.21"
-  resolved "https://registry.yarnpkg.com/gatsby-image/-/gatsby-image-2.4.21.tgz#14032912242eca6a21929eb972d12fefebb355d5"
-  integrity sha512-OrXJkCR7z5SYkBumjPyoZbV9RqQQZsIvO1JM4WyzIMKcOCKhpOFChCahLXdi0Ggnw0yVk58CAFYGWUjNeVdUpQ==
-  dependencies:
-    "@babel/runtime" "^7.11.2"
-    object-fit-images "^3.2.4"
-    prop-types "^15.7.2"
-
 gatsby-interface@^0.0.193:
   version "0.0.193"
   resolved "https://registry.yarnpkg.com/gatsby-interface/-/gatsby-interface-0.0.193.tgz#132bb3edb847bfddbf66073279526afda7687490"
@@ -10175,6 +10161,22 @@ gatsby-telemetry@^1.3.28, gatsby-telemetry@^1.3.38:
     lodash "^4.17.20"
     node-fetch "^2.6.1"
     uuid "3.4.0"
+
+gatsby-theme-blog-core@^2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/gatsby-theme-blog-core/-/gatsby-theme-blog-core-2.0.2.tgz#8d5d26e4217ead08983284485b84258898abec66"
+  integrity sha512-h14F6fdXLZMalivT7HmCCBbBIu0iS0oCxmvMPfWkJIb7wqllIram/FHhYNhcQYNzSPlDa09S2c5cAJUIQ/XG7w==
+  dependencies:
+    "@mdx-js/mdx" "^1.6.14"
+    gatsby-core-utils "^1.3.13"
+    gatsby-plugin-mdx "^1.2.28"
+    gatsby-plugin-sharp "^2.6.21"
+    gatsby-remark-copy-linked-files "^2.3.11"
+    gatsby-remark-images "^3.3.20"
+    gatsby-remark-smartypants "^2.3.10"
+    gatsby-source-filesystem "^2.3.22"
+    gatsby-transformer-sharp "^2.5.11"
+    remark-slug "^5.1.2"
 
 gatsby-transformer-json@^2.4.14:
   version "2.4.14"
@@ -14143,11 +14145,6 @@ moment@^2.27.0:
   resolved "https://registry.yarnpkg.com/moment/-/moment-2.27.0.tgz#8bff4e3e26a236220dfe3e36de756b6ebaa0105d"
   integrity sha512-al0MUK7cpIcglMv3YF13qSgdAIqxHTO7brRtaz3DlSULbqfazqkc5kEjNrLDOM7fsjshoFIihnU8snrP7zUvhQ==
 
-moment@^2.29.1:
-  version "2.29.1"
-  resolved "https://registry.yarnpkg.com/moment/-/moment-2.29.1.tgz#b2be769fa31940be9eeea6469c075e35006fa3d3"
-  integrity sha512-kHmoybcPV8Sqy59DwNDY3Jefr64lK/by/da0ViFcuA4DH0vQg5Q6Ze5VimxkfQNSC+Mls/Kx53s7TjP1RhFEDQ==
-
 moniker@0.1.2:
   version "0.1.2"
   resolved "https://registry.yarnpkg.com/moniker/-/moniker-0.1.2.tgz#872dfba575dcea8fa04a5135b13d5f24beccc97e"
@@ -16404,14 +16401,6 @@ raw-loader@^0.5.1:
   version "0.5.1"
   resolved "https://registry.yarnpkg.com/raw-loader/-/raw-loader-0.5.1.tgz#0c3d0beaed8a01c966d9787bf778281252a979aa"
   integrity sha1-DD0L6u2KAclm2Xh793goElKpeao=
-
-rc-pagination@^3.1.0:
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/rc-pagination/-/rc-pagination-3.1.0.tgz#d5f53ba3c2fefe8b28658d8f57710bfe01ec3aad"
-  integrity sha512-Q4AYECQbI1xK1o/wTWZRNibjgmHNg1gRO2Mo2G3Yn2fxa0Sg+yKFg/kDduJCceNML6TJNiWy8E8+cdt859insQ==
-  dependencies:
-    "@babel/runtime" "^7.10.1"
-    classnames "^2.2.1"
 
 rc@^1.2.7, rc@^1.2.8:
   version "1.2.8"

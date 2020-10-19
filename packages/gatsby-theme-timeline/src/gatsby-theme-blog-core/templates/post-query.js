@@ -1,10 +1,10 @@
 import { graphql } from "gatsby"
-import DetailPage from "../components/detail-page"
+import PostPage from "../../components/detail-page"
 
-export default DetailPage
+export default PostPage
 
 export const query = graphql`
-  query ItemPageQuery(
+  query DetailPageQuery(
     $id: String!
     $previousId: String
     $nextId: String
@@ -13,9 +13,13 @@ export const query = graphql`
     site {
       siteMetadata {
         title
+        social {
+          name
+          url
+        }
       }
     }
-    item(id: { eq: $id }) {
+    blogPost(id: { eq: $id }) {
       id
       excerpt
       body
@@ -40,27 +44,18 @@ export const query = graphql`
           }
         }
       }
-      authorName
-      authorId
-      authorAvatar {
-        childImageSharp {
-          fixed(width: 48, height: 48) {
-            ...GatsbyImageSharpFixed
-          }
-        }
-      }
       ... on TweetPost {
         idStr
       }
     }
-    previous: item(id: { eq: $previousId }) {
+    previous: blogPost(id: { eq: $previousId }) {
       id
       excerpt
       slug
       title
       date(formatString: "MMMM DD, YYYY")
     }
-    next: item(id: { eq: $nextId }) {
+    next: blogPost(id: { eq: $nextId }) {
       id
       excerpt
       slug

@@ -16,8 +16,6 @@
     "gatsby-plugin-robots-txt": "^1.5.3",
     "gatsby-plugin-sitemap": "^2.4.17",
     "gatsby-theme-timeline": "^0.1.0",
-    "gatsby-theme-timeline-core": "^0.1.0",
-    "gatsby-theme-timeline-twitter": "^0.1.0",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "theme-ui": "^0.4.0-rc.5"

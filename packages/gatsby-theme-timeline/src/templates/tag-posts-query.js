@@ -4,7 +4,7 @@ import ItemsPage from "../components/items-page"
 export default ItemsPage
 
 export const query = graphql`
-  query TagItemsQuery(
+  query TagPostsQuery(
     $tag: String!
     $skip: Int!
     $limit: Int!
@@ -13,9 +13,13 @@ export const query = graphql`
     site {
       siteMetadata {
         title
+        social {
+          name
+          url
+        }
       }
     }
-    allItem(
+    allBlogPost(
       sort: { fields: [date, slug], order: DESC }
       limit: $limit
       skip: $skip
@@ -28,15 +32,6 @@ export const query = graphql`
         title
         date(formatString: "MMMM DD, YYYY")
         tags
-        authorName
-        authorId
-        authorAvatar {
-          childImageSharp {
-            fixed(width: 48, height: 48) {
-              ...GatsbyImageSharpFixed
-            }
-          }
-        }
         image {
           childImageSharp {
             fluid(maxWidth: $maxWidth) {
@@ -48,6 +43,15 @@ export const query = graphql`
         imageAlt
         ... on TweetPost {
           idStr
+          authorName
+          authorId
+          authorAvatar {
+            childImageSharp {
+              fixed(width: 48, height: 48) {
+                ...GatsbyImageSharpFixed
+              }
+            }
+          }
         }
       }
     }

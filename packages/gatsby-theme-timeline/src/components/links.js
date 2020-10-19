@@ -1,14 +1,6 @@
 /** @jsx jsx */
-import { useStaticQuery, graphql } from "gatsby"
 import { Box, jsx, Styled } from "theme-ui"
-const Links = () => {
-  const data = useStaticQuery(linksQuery)
-  const {
-    site: {
-      siteMetadata: { links },
-    },
-  } = data
-
+const Links = ({ links }) => {
   return (
     <Box>
       <Styled.h4 sx={{ color: `text` }}>Links</Styled.h4>
@@ -30,18 +22,5 @@ const Links = () => {
     </Box>
   )
 }
-
-const linksQuery = graphql`
-  query LinksQuery {
-    site {
-      siteMetadata {
-        links {
-          name
-          url
-        }
-      }
-    }
-  }
-`
 
 export default Links

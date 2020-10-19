@@ -14,15 +14,20 @@ import ItemsTitle from "./items-title"
 
 const Items = ({
   location,
-  items,
-  siteTitle,
+  data,
   pageContext: { type, tag, currentPage, totalPages },
 }) => {
+  const items = data.allBlogPost.nodes
+  const {
+    site: {
+      siteMetadata: { social, title },
+    },
+  } = data
   return (
-    <Layout location={location} title={siteTitle}>
+    <Layout location={location} title={title}>
       <SEO title="Home" />
       <ItemsTitle type={type} tag={tag}></ItemsTitle>
-      <Grid gap={5} columns={[1, 1, `2fr 1fr`]}>
+      <Grid gap={[null, null, 4, 5]} columns={[1, 1, `2fr 1fr`]}>
         <main>
           {items.map((item, index) => {
             return <ItemBox key={`item-box-${index}`} {...item}></ItemBox>
@@ -39,7 +44,7 @@ const Items = ({
         <aside>
           <Bio></Bio>
           <Tags></Tags>
-          <Links></Links>
+          <Links links={social}></Links>
         </aside>
       </Grid>
       <Footer />

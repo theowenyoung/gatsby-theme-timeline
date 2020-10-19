@@ -1,19 +1,23 @@
 import { graphql } from "gatsby"
-import ItemsPage from "../components/items-page"
+import PostsPage from "../components/items-page"
 
-export default ItemsPage
+export default PostsPage
 
 export const query = graphql`
-  query ItemsQuery($skip: Int!, $limit: Int!, $maxWidth: Int!) {
+  query ItemsPostsQuery($maxWidth: Int!, $skip: Int!, $limit: Int!) {
     site {
       siteMetadata {
         title
+        social {
+          name
+          url
+        }
       }
     }
-    allItem(
-      sort: { fields: [date, slug], order: DESC }
+    allBlogPost(
       limit: $limit
       skip: $skip
+      sort: { fields: [date, title], order: DESC }
     ) {
       nodes {
         id
@@ -22,15 +26,6 @@ export const query = graphql`
         title
         date(formatString: "MMMM DD, YYYY")
         tags
-        authorName
-        authorId
-        authorAvatar {
-          childImageSharp {
-            fixed(width: 48, height: 48) {
-              ...GatsbyImageSharpFixed
-            }
-          }
-        }
         image {
           childImageSharp {
             fluid(maxWidth: $maxWidth) {
@@ -42,6 +37,15 @@ export const query = graphql`
         imageAlt
         ... on TweetPost {
           idStr
+          authorName
+          authorId
+          authorAvatar {
+            childImageSharp {
+              fixed(width: 48, height: 48) {
+                ...GatsbyImageSharpFixed
+              }
+            }
+          }
         }
       }
     }

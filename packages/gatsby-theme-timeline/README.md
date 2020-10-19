@@ -37,11 +37,6 @@ npm install gatsby-theme-timeline gatsby-theme-timeline-core theme-ui
 module.exports = {
   plugins: [
     {
-      resolve: `gatsby-theme-timeline-core`,
-      options: {},
-    },
-
-    {
       resolve: `gatsby-theme-timeline`,
       options: {
         // basePath defaults to `/`
@@ -56,11 +51,15 @@ module.exports = {
 
    > Note that if you've changed the default `contentPath` in the configuration, you'll want to add your markdown files in the directory specified by that path.
 
-4. Add an image with the file name `avatar` (can be jpg or png) inside the `/assets` directory to include a small image next to the footer on every post page.
+4. Add tweets to your site by creating `.json` files inside `/data/tweets`.
+
+   > Note that if you've changed the default `dataPath` in the configuration, you'll want to add your json files in the directory specified by that path.
+
+5. Add an image with the file name `avatar` (can be jpg or png) inside the `/assets` directory to include a small image next to the footer on every post page.
 
 > Note that if you've changed the default `assetPath` in the configuration, you'll want to add your asset files in the directory specified by that path.
 
-5. Run your site using `gatsby develop` and navigate to your blog posts. If you used the above configuration, your URL will be `http://localhost:8000/blog`
+6. Run your site using `gatsby develop` and navigate to your blog posts. If you used the above configuration, your URL will be `http://localhost:8000/blog`
 
 ## Usage
 
@@ -70,6 +69,7 @@ module.exports = {
 | ------------------------ | ------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `basePath`               | `/`                      | Root url for all blog posts                                                                                                                                                                                                       |
 | `contentPath`            | `content/posts`          | Location of blog posts                                                                                                                                                                                                            |
+| `dataPath`               | `data/tweets`            | Location of tweets                                                                                                                                                                                                                |
 | `assetPath`              | `content/assets`         | Location of assets                                                                                                                                                                                                                |
 | `mdxOtherwiseConfigured` | `false`                  | Set this flag `true` if `gatsby-plugin-mdx` is already configured for your site.                                                                                                                                                  |
 | `preset`                 | `gatsby-theme-ui-preset` | Theme UI compatible package name that will act as the base styles for your project. Be sure to install the package you're referencing. Set to `false` to ignore all presets and only use local styles.                            |
@@ -113,7 +113,7 @@ module.exports = {
     // Used for resolving images in social cards
     siteUrl: `https://example.com`,
     // Used for links in the root aside
-    links: [
+    social: [
       {
         name: `Twitter`,
         url: `https://twitter.com/TheOwenYoung`,
