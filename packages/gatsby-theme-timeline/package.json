@@ -34,23 +34,22 @@
     "react-process-string": "^1.2.0",
     "react-twemoji": "^0.3.0",
     "react-twitter-widgets": "^1.9.5",
-    "react-ultimate-pagination": "^1.2.0"
+    "react-ultimate-pagination": "^1.2.0",
+    "theme-ui": "^0.4.0-rc.5"
   },
   "devDependencies": {
     "gatsby": "^2.24.10",
     "prettier": "2.0.5",
     "react": "^16.12.0",
-    "react-dom": "^16.12.0",
-    "theme-ui": "^0.4.0-rc.5"
+    "react-dom": "^16.12.0"
   },
   "peerDependencies": {
     "gatsby": "^2.23.22",
     "react": "^16.8.6",
-    "react-dom": "^16.8.6",
-    "theme-ui": "^0.4.0-rc.5"
+    "react-dom": "^16.8.6"
   },
   "engines": {
     "node": ">=10.13.0"
   },
-  "gitHead": "3444e3c82a9549dad0875450c843821d4fb10cd4"
+  "gitHead": "50e32304c066b4428e8a58b4aec4ac2716e891d3"
 }
