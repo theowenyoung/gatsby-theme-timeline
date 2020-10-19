@@ -32,6 +32,6 @@ describe(`blog landing page`, () => {
     cy.findAllByText(`GitHub`).focus()
     cy.focused()
       .should(`have.text`, `GitHub`)
-      .should(`have.attr`, `href`, `https://github.com/theowenyoung`)
+      .should(`have.attr`, `href`, `https://github.com/gatsbyjs`)
   })
 })
