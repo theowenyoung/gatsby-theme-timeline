@@ -11,7 +11,7 @@ const Links = () => {
 
   return (
     <Box>
-      <Styled.h5 sx={{ color: `text` }}>Links</Styled.h5>
+      <Styled.h4 sx={{ color: `text` }}>Links</Styled.h4>
       <Styled.ul>
         {links
           ? links.map((link, i, arr) => (
