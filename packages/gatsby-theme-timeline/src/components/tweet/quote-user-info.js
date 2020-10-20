@@ -7,7 +7,7 @@ const UserInfo = ({ name, screenName, avatar }) => {
     return null
   }
   return (
-    <Flex>
+    <Flex sx={{ alignItems: `center` }}>
       <Link href={`https://twitter.com/${screenName}`}>
         {avatar?.childImageSharp && (
           <Image
@@ -15,17 +15,20 @@ const UserInfo = ({ name, screenName, avatar }) => {
             alt={`${name} avatar`}
             css={css({
               mr: 2,
-              mb: 0,
-              width: `48px`,
-              minWidth: `48px`,
+              mb: -2,
+              width: `20px`,
+              minWidth: `20px`,
               borderRadius: `full`,
             })}
           />
         )}
       </Link>
-      <Link href={`https://twitter.com/${screenName}`}>
+      <Link
+        sx={{ display: `flex`, alignItems: `center` }}
+        href={`https://twitter.com/${screenName}`}
+      >
         <Box sx={{ fontWeight: `bold` }}>
-          <Text sx={{ color: `text` }}>{name}</Text>
+          <Text sx={{ color: `text`, mr: 1 }}>{name}</Text>
         </Box>
         <Text
           sx={{

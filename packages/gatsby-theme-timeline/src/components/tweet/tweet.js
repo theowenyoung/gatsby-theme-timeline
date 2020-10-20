@@ -1,91 +1,96 @@
 /** @jsx jsx */
-import Twemoji from "react-twemoji"
-import { jsx, Box, Flex, Link } from "theme-ui"
-import processString from "react-process-string"
+import { jsx, Box, Flex, Text } from "theme-ui"
+import processTweetString from "./process-tweet-string"
 import UserInfo from "./user-info"
 import TwitterButton from "./twitter-button"
-import { TWEET_LINK_COLOR } from "./constans"
 import { Fragment } from "react"
 import Hero from "./hero"
-const TweetLinkColor = TWEET_LINK_COLOR
+import RetweetedIcon from "./retweeted-icon"
+import QuoteUserInfo from "./quote-user-info"
 const Tweet = ({
   excerpt,
   authorName,
-  authorId,
+  authorScreenName,
   authorAvatar,
   image,
   idStr,
   imageAlt,
+  retweeted,
+  isQuoteStatus,
+  quoteBody,
+  quoteAuthorName,
+  quoteAuthorScreenName,
+  quoteAuthorAvatar,
+  quoteImage,
 }) => {
-  const body = processString([
-    {
-      regex: /(?:^|[^a-zA-Z0-9_＠!@#$%&*])(?:(?:@|＠)(?!\/))([a-zA-Z0-9/_]{1,15})(?:\b(?!@|＠)|$)/,
-      fn: (key, result) => {
-        return (
-          <Link
-            sx={{ color: TweetLinkColor }}
-            href={`https://twitter.com/${result[1]}`}
-            key={key}
-          >
-            <span> @{result[1]}</span>
-          </Link>
-        )
-      },
-    },
-    {
-      regex: /(?:^|[^a-zA-Z0-9_＠!@#$%&*])(?:#(?!\/))([a-zA-Z0-9/_]{1,280})(?:\b(?!#)|$)/,
-      fn: (key, result) => {
-        return (
-          <Link
-            sx={{ color: TweetLinkColor }}
-            key={key}
-            href={`https://twitter.com/hashtag/${result[1]}`}
-          >
-            <span> #{result[1]}</span>
-          </Link>
-        )
-      },
-    },
-    {
-      regex: /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&//=]*)/,
-      fn: (key, result) => {
-        return (
-          <Link sx={{ color: TweetLinkColor }} key={key} href={`${result[0]}`}>
-            <span> {result[0]}</span>
-          </Link>
-        )
-      },
-    },
-    {
-      regex: /(\u00a9|\u00ae|[\u2000-\u3300]|\ud83c[\ud000-\udfff]|\ud83d[\ud000-\udfff]|\ud83e[\ud000-\udfff])/,
-      fn: (key, result) => {
-        return (
-          <Twemoji key={key} style={{ display: `inline` }}>
-            {result[1]}
-          </Twemoji>
-        )
-      },
-    },
-  ])(excerpt)
-
+  const body = processTweetString(excerpt)
+  let finalQuoteBody = ``
+  if (isQuoteStatus) {
+    finalQuoteBody = processTweetString(quoteBody)
+  }
   return (
     <Fragment>
+      {retweeted && (
+        <Flex
+          sx={{ color: `textMuted`, mb: 1, fontSize: 0, alignItems: `center` }}
+        >
+          <Flex
+            sx={{
+              mr: 2,
+              mb: -1,
+              width: `48px`,
+              justifyContent: `flex-end`,
+            }}
+          >
+            <RetweetedIcon></RetweetedIcon>
+          </Flex>
+          <Text>Retweeted</Text>
+        </Flex>
+      )}
       <Flex>
         <UserInfo
           name={authorName}
-          screenName={authorId}
+          screenName={authorScreenName}
           avatar={authorAvatar}
         ></UserInfo>
         <TwitterButton
-          to={`https://twitter.com/${authorId}/status/${idStr}`}
+          to={`https://twitter.com/${authorScreenName}/status/${idStr}`}
         ></TwitterButton>
       </Flex>
 
       <div>
-        {typeof body !== `undefined` && body !== `` && (
-          <Box sx={{ fontSize: 2, py: 2 }}>{body}</Box>
-        )}
+        <Box sx={{ fontSize: 2, py: 2 }}>{body}</Box>
         <Hero post={{ image: image, imageAlt: imageAlt, excerpt }}></Hero>
+        {isQuoteStatus && (
+          <div
+            sx={{
+              borderRadius: `default`,
+              overflow: `hidden`,
+              wordWrap: `break-word`,
+              borderWidth: 1,
+              borderStyle: `solid`,
+              borderColor: `muted`,
+              mb: 2,
+            }}
+          >
+            <div sx={{ p: 3 }}>
+              <QuoteUserInfo
+                name={quoteAuthorName}
+                screenName={quoteAuthorScreenName}
+                avatar={quoteAuthorAvatar}
+              ></QuoteUserInfo>
+              <Box sx={{ fontSize: 1, pt: 2 }}>{finalQuoteBody}</Box>
+            </div>
+
+            <Hero
+              post={{
+                image: quoteImage,
+                imageAlt: `quote image`,
+                excerpt: quoteBody,
+              }}
+            ></Hero>
+          </div>
+        )}
       </div>
     </Fragment>
   )

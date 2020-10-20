@@ -37,8 +37,28 @@ export const query = graphql`
         imageAlt
         ... on TweetPost {
           idStr
+          retweeted
+          isQuoteStatus
+          quoteBody
+          quoteAuthorName
+          quoteAuthorScreenName
+          quoteAuthorAvatar {
+            childImageSharp {
+              fixed(width: 24, height: 24) {
+                ...GatsbyImageSharpFixed
+              }
+            }
+          }
+          quoteImage {
+            childImageSharp {
+              fluid(maxWidth: $maxWidth) {
+                ...GatsbyImageSharpFluid
+                src
+              }
+            }
+          }
           authorName
-          authorId
+          authorScreenName
           authorAvatar {
             childImageSharp {
               fixed(width: 48, height: 48) {

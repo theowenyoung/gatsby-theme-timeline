@@ -10,7 +10,7 @@ module.exports = {
     {
       resolve: `gatsby-theme-timeline`,
       options: {
-        postsPerPage: 2,
+        postsPerPage: 5,
       },
     },
     // {

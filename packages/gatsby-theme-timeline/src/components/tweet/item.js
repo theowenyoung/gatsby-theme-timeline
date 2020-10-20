@@ -9,24 +9,38 @@ import Tweet from "./tweet"
 const Item = ({
   excerpt,
   authorName,
-  authorId,
+  authorScreenName,
   authorAvatar,
   image,
   slug,
   date,
   idStr,
   tags,
+  retweeted,
+  isQuoteStatus,
+  quoteBody,
+  quoteAuthorName,
+  quoteAuthorScreenName,
+  quoteAuthorAvatar,
+  quoteImage,
 }) => {
   const item = {
     excerpt,
     authorName,
-    authorId,
+    authorScreenName,
     authorAvatar,
     image,
     slug,
     date,
     idStr,
     tags,
+    retweeted,
+    isQuoteStatus,
+    quoteBody,
+    quoteAuthorName,
+    quoteAuthorScreenName,
+    quoteAuthorAvatar,
+    quoteImage,
   }
   return (
     <Box
@@ -68,7 +82,7 @@ const Item = ({
           <TweetDate slug={slug} date={date}></TweetDate>
           <span sx={{ color: `textMuted` }}> · </span>
           <ViewOnTwitter
-            href={`https://twitter.com/${authorId}/status/${idStr}`}
+            href={`https://twitter.com/${authorScreenName}/status/${idStr}`}
           ></ViewOnTwitter>
         </section>
       </footer>

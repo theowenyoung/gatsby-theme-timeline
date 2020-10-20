@@ -45,9 +45,16 @@ exports.createSchemaCustomization = ({ actions }) => {
       imageAlt: String
       socialImage: File
       idStr: String!
+      retweeted: Boolean!
       authorName: String!
-      authorId: String!
+      authorScreenName: String!
       authorAvatar: File
+      isQuoteStatus: Boolean!
+      quoteBody: String
+      quoteAuthorName: String
+      quoteAuthorScreenName: String
+      quoteAuthorAvatar: File
+      quoteImage: File
     }`)
 }
 exports.createResolvers = ({ createResolvers }) => {
@@ -62,11 +69,29 @@ exports.createResolvers = ({ createResolvers }) => {
           }
         },
       },
+      quoteAuthorAvatar: {
+        resolve: (source, _, context, __) => {
+          if (source.quoteAuthorAvatar___NODE) {
+            return context.nodeModel.getNodeById({
+              id: source.quoteAuthorAvatar___NODE,
+            })
+          }
+        },
+      },
       image: {
         resolve: (source, _, context, __) => {
           if (source.image___NODE) {
             return context.nodeModel.getNodeById({
               id: source.image___NODE,
+            })
+          }
+        },
+      },
+      quoteImage: {
+        resolve: (source, _, context, __) => {
+          if (source.quoteImage___NODE) {
+            return context.nodeModel.getNodeById({
+              id: source.quoteImage___NODE,
             })
           }
         },
@@ -201,17 +226,69 @@ exports.onCreateNode = async (
       `dd MMM DD HH:mm:ss ZZ YYYY`,
       `en`
     ).toDate()
+    let tweetText = node.full_text
+    let authorName = node.user.name
+    let authorScreenName = node.user.screen_name
+    let authorAvatarUrl = node.user.profile_image_url_https
+    const retweeted = node.retweeted
+    const isQuoteStatus = node.is_quote_status
+    if (retweeted) {
+      tweetText = node.retweeted_status.full_text
+      authorName = node.retweeted_status.user.name
+      authorScreenName = node.retweeted_status.user.screen_name
+      authorAvatarUrl = node.retweeted_status.user.profile_image_url_https
+    }
 
     const fieldData = {
-      title: `Tweet: "${truncate(node.full_text, TITLE_LENGTH)}"`,
-      excerpt: node.full_text,
-      body: node.full_text,
+      title: `Tweet: "${truncate(tweetText, TITLE_LENGTH)}"`,
+      excerpt: tweetText,
+      body: tweetText,
       tags: node.entities.hashtags.map((tag) => tag.text) || [],
       slug: `/tweet/${node.id_str}`,
       date: date,
-      authorName: node.user.name,
-      authorId: node.user.screen_name,
+      authorName,
+      authorScreenName,
       idStr: node.id_str,
+      retweeted,
+      isQuoteStatus,
+    }
+    if (isQuoteStatus) {
+      fieldData.quoteBody = node.quoted_status.full_text
+      fieldData.quoteAuthorName = node.quoted_status.user.name
+      fieldData.quoteAuthorScreenName = node.quoted_status.user.screen_name
+      // create a file node for image URLs
+      const remoteFileNode = await createRemoteFileNode({
+        url: node.quoted_status.user.profile_image_url_https,
+        parentNodeId: node.id,
+        createNode,
+        createNodeId,
+        cache,
+        store,
+      })
+      // if the file was created, attach the new node to the parent node
+      if (remoteFileNode) {
+        fieldData.quoteAuthorAvatar___NODE = remoteFileNode.id
+      }
+      if (
+        node.quoted_status.entities &&
+        node.quoted_status.entities.media &&
+        node.quoted_status.entities.media[0] &&
+        node.quoted_status.entities.media[0].media_url_https
+      ) {
+        // create a file node for image URLs
+        const remoteFileNode = await createRemoteFileNode({
+          url: node.quoted_status.entities.media[0].media_url_https,
+          parentNodeId: node.id,
+          createNode,
+          createNodeId,
+          cache,
+          store,
+        })
+        // if the file was created, attach the new node to the parent node
+        if (remoteFileNode) {
+          fieldData.quoteImage___NODE = remoteFileNode.id
+        }
+      }
     }
     // add tweet tag
     fieldData.tags.push(`tweet`)
@@ -239,7 +316,7 @@ exports.onCreateNode = async (
 
     // create a file node for image URLs
     const remoteFileNode = await createRemoteFileNode({
-      url: node.user.profile_image_url_https,
+      url: authorAvatarUrl,
       parentNodeId: node.id,
       createNode,
       createNodeId,
