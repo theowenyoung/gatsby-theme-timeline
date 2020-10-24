@@ -2,6 +2,10 @@
   "private": true,
   "name": "gatsby-theme-timeline",
   "version": "0.1.0",
+  "author": {
+    "name": "Owen Young",
+    "email": "theowenyoung@gmail.com"
+  },
   "scripts": {
     "lerna": "lerna",
     "prebs": "yarn",

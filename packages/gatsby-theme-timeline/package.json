@@ -3,6 +3,10 @@
   "version": "0.1.5",
   "description": "A Gatsby theme for showing timeline of posts, twitter, instagram",
   "main": "index.js",
+  "author": {
+    "name": "Owen Young",
+    "email": "theowenyoung@gmail.com"
+  },
   "keywords": [
     "gatsby",
     "gatsby-theme",
@@ -51,5 +55,5 @@
   "engines": {
     "node": ">=10.13.0"
   },
-  "gitHead": "29026f0ce2f4df7b3c91ae821415c6fab7f18b99"
+  "gitHead": "ca44014df11a88edfd191175e63b341a892208e8"
 }
