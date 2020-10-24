@@ -4,18 +4,12 @@ module.exports = {
     siteUrl: `https://gatsby-starter-timeline.surge.sh`,
   },
   plugins: [
-    // with gatsby-plugin-theme-ui, the last theme in the config
-    // will override the theme-ui context from other themes
-
     {
       resolve: `gatsby-theme-timeline`,
       options: {
         postsPerPage: 5,
       },
     },
-    // {
-    //   resolve: `gatsby-theme-timeline-twitter`,
-    // },
     {
       resolve: `gatsby-plugin-sitemap`,
     },

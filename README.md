@@ -6,9 +6,7 @@
 
 This is a repo for Gatsby's timeline theme.
 
-- [`gatsby-theme-timeline-core`](https://github.com/theowenyoung/gatsby-theme-timeline/tree/main/packages/gatsby-theme-timeline-core)
 - [`gatsby-theme-timeline`](https://github.com/theowenyoung/gatsby-theme-timeline/tree/main/packages/gatsby-theme-timeline)
-- [`gatsby-theme-timeline-twitter`](https://github.com/theowenyoung/gatsby-theme-timeline/tree/main/packages/gatsby-theme-timeline-twitter)
 - [`gatsby-theme-ui-timeline-preset`](https://github.com/theowenyoung/gatsby-theme-timeline/tree/main/packages/gatsby-theme-ui-timeline-preset)
 
 ## Installation
