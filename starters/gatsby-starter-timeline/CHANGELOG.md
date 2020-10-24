@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.4](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-starter-timeline@0.1.3...gatsby-starter-timeline@0.1.4) (2020-10-24)
+
+### Features
+
+- support retweet, quote tweet type ([67f5c24](https://github.com/theowenyoung/gatsby-theme-timeline/commit/67f5c24ab9439236eb119d05e64624a98d9e409d))
+
 ## [0.1.3](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-starter-timeline@0.1.2...gatsby-starter-timeline@0.1.3) (2020-10-19)
 
 **Note:** Version bump only for package gatsby-starter-timeline
