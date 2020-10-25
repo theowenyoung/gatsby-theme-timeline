@@ -38,13 +38,6 @@ const final = {
       borderRadius: `lg`,
       p: 3,
     },
-    code: {
-      ...tailwindPreset.styles.code,
-      fontFamily: `monospace`,
-      // from typography overrideThemeStyles
-      // "h1 code, h2 code, h3 code, h4 code, h5 code, h6 code"
-      fontSize: `inherit`,
-    },
     inlineCode: {
       borderRadius: `default`,
       color: `secondary`,

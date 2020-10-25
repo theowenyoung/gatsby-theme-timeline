@@ -2,7 +2,7 @@
 import Image from "gatsby-image"
 import { jsx, Box } from "theme-ui"
 const PostHero = ({ post }) => (
-  <Box sx={{ py: 2 }}>
+  <Box sx={{ py: post?.image?.childImageSharp ? 2 : 0 }}>
     {post?.image?.childImageSharp && (
       <Image
         fluid={post.image.childImageSharp.fluid}

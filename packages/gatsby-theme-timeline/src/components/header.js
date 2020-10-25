@@ -5,7 +5,7 @@ import { css, Styled, jsx } from "theme-ui"
 const Title = ({ children, type }) => {
   if (type === `detail`) {
     return (
-      <Styled.h3 sx={{ mb: 4 }}>
+      <Styled.h3 sx={{ mb: 3 }}>
         <Styled.a sx={{ color: `text` }} as={Link} to={withPrefix(`/`)}>
           {children}
         </Styled.a>
