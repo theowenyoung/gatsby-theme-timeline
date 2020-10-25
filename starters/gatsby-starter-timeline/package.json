@@ -1,7 +1,7 @@
 {
   "name": "gatsby-starter-timeline",
   "private": true,
-  "version": "0.1.4",
+  "version": "0.1.5",
   "scripts": {
     "develop": "gatsby develop",
     "start": "gatsby develop",
@@ -15,7 +15,7 @@
     "gatsby": "2.24.50",
     "gatsby-plugin-robots-txt": "^1.5.3",
     "gatsby-plugin-sitemap": "^2.4.17",
-    "gatsby-theme-timeline": "^0.1.4",
+    "gatsby-theme-timeline": "^0.1.6",
     "react": "^16.12.0",
     "react-dom": "^16.12.0"
   },
