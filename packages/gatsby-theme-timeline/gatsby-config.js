@@ -22,6 +22,9 @@ module.exports = (themeOptions) => {
           ...themeOptions,
         },
       },
+      `gatsby-plugin-react-helmet`,
+      `gatsby-plugin-twitter`,
+      `gatsby-plugin-emotion`,
       {
         resolve: `gatsby-plugin-theme-ui`,
         options: {
@@ -29,9 +32,6 @@ module.exports = (themeOptions) => {
           prismPreset: options.prismPreset,
         },
       },
-      `gatsby-plugin-react-helmet`,
-      `gatsby-plugin-twitter`,
-      `gatsby-plugin-emotion`,
     ],
   }
 }
