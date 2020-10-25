@@ -28,6 +28,7 @@ const Detail = (post) => {
             display: `flex`,
             flexWrap: `wrap`,
             pb: 3,
+            pt: 3,
             fontSize: 2,
           }}
         >

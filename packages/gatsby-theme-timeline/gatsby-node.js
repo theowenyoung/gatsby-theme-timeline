@@ -59,6 +59,13 @@ exports.createSchemaCustomization = ({ actions }) => {
 }
 exports.createResolvers = ({ createResolvers }) => {
   const resolvers = {
+    MdxBlogPost: {
+      tags: {
+        resolve: (source) => {
+          return source.tags.concat(`post`)
+        },
+      },
+    },
     [TWEET_TYPE_NAME]: {
       authorAvatar: {
         resolve: (source, _, context, __) => {
