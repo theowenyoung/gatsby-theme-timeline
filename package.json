@@ -26,7 +26,7 @@
     "e2e:dev": "concurrently --kill-others 'yarn ssat:gatsby-starter-timeline:dev'",
     "e2e:ci": "yarn gatsby-starter-timeline:cy:build && yarn ssat:gatsby-starter-timeline:serve",
     "test": "npm run e2e:ci",
-    "release": "npm run lerna publish from-package"
+    "release": "npm run lerna publish"
   },
   "husky": {
     "hooks": {

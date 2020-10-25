@@ -19,7 +19,6 @@ module.exports = (themeOptions) => {
         resolve: `gatsby-theme-blog-core`,
         options: {
           imageMaxWidth: 1024,
-          preset: `gatsby-theme-ui-timeline-preset`,
           ...themeOptions,
         },
       },
