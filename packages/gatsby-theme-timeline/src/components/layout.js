@@ -7,8 +7,6 @@ import Helmet from "react-helmet"
 const Layout = ({ children, ...props }) => {
   const timelineThemeConfig = useTimelineThemeConfig()
   const { webfontURL, basePath } = timelineThemeConfig
-  console.log(`basePath`, basePath)
-
   return (
     <Styled.root>
       <Helmet>

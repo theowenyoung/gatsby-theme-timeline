@@ -9,6 +9,11 @@ module.exports = {
       options: {
         postsPerPage: 5,
         basePath: "/test",
+        postsFilter: {
+          tags: {
+            in: ["tweet"],
+          },
+        },
       },
     },
     {

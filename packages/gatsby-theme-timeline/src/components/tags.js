@@ -1,16 +1,11 @@
 /** @jsx jsx */
-import { useStaticQuery, graphql, withPrefix } from "gatsby"
+import { withPrefix } from "gatsby"
 import { Flex, Box, jsx, Styled } from "theme-ui"
 import kebabCase from "lodash/kebabCase"
 import Tag from "./tag"
 import * as urlJoin from "url-join"
 
-const Tags = ({ basePath }) => {
-  const data = useStaticQuery(tagsQuery)
-  const {
-    tagsGroup: { group },
-  } = data
-
+const Tags = ({ basePath, group }) => {
   return (
     <Box>
       <Styled.h4 sx={{ color: `text` }}>Tags</Styled.h4>
@@ -31,16 +26,5 @@ const Tags = ({ basePath }) => {
     </Box>
   )
 }
-
-const tagsQuery = graphql`
-  query TagsQuery {
-    tagsGroup: allBlogPost(sort: { fields: [date, slug], order: DESC }) {
-      group(field: tags) {
-        fieldValue
-        totalCount
-      }
-    }
-  }
-`
 
 export default Tags

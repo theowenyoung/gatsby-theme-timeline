@@ -135,30 +135,43 @@ exports.sourceNodes = (
 
 exports.createPages = async ({ graphql, actions, reporter }, themeOptions) => {
   const { createPage } = actions
-  const { basePath, imageMaxWidth, postsPerPage } = withDefaults(themeOptions)
+  const { basePath, imageMaxWidth, postsPerPage, postsFilter } = withDefaults(
+    themeOptions
+  )
+
   // These templates are simply data-fetching wrappers that import components
   // const ItemTemplate = require.resolve(`./src/templates/post-query`)
   const ItemsTemplate = require.resolve(`./src/templates/posts-query`)
-  const TagItemsTemplate = require.resolve(`./src/templates/tag-posts-query`)
-  const result = await graphql(`
-    {
-      allBlogPost(sort: { fields: [date, slug], order: DESC }) {
-        nodes {
-          id
-          slug
-        }
-      }
-      tagsGroup: allBlogPost(sort: { fields: [date, slug], order: DESC }) {
-        group(field: tags) {
-          fieldValue
+  const result = await graphql(
+    `
+      query ItemsCreatePageQuery($filter: BlogPostFilterInput) {
+        allBlogPost(
+          sort: { fields: [date, slug], order: DESC }
+          filter: $filter
+        ) {
           nodes {
             id
             slug
           }
         }
+        tagsGroup: allBlogPost(
+          sort: { fields: [date, slug], order: DESC }
+          filter: $filter
+        ) {
+          group(field: tags) {
+            fieldValue
+            nodes {
+              id
+              slug
+            }
+          }
+        }
       }
+    `,
+    {
+      filter: postsFilter,
     }
-  `)
+  )
 
   if (result.errors) {
     reporter.panic(result.errors)
@@ -175,7 +188,8 @@ exports.createPages = async ({ graphql, actions, reporter }, themeOptions) => {
       path: i === 0 ? `${basePath}` : urlResolve(basePath, `page/${i + 1}`),
       component: ItemsTemplate,
       context: {
-        type: `Latest`,
+        pageType: `home`,
+        filter: postsFilter,
         limit: postsPerPage,
         skip: i * postsPerPage,
         totalPages,
@@ -194,7 +208,15 @@ exports.createPages = async ({ graphql, actions, reporter }, themeOptions) => {
     const tagPosts = tag.nodes
     const tagTotalPages = Math.ceil(tagPosts.length / postsPerPage)
     const tagTotal = tagPosts.length
-
+    const tagPostsFilter = Object.assign({}, postsFilter)
+    if (postsFilter && postsFilter.tags) {
+      tagPostsFilter.tags = {
+        ...postsFilter.tags,
+        eq: tag.fieldValue,
+      }
+    } else {
+      tagPostsFilter.tags = { eq: tag.fieldValue }
+    }
     // create posts pages
     Array.from({ length: tagTotalPages }).forEach((_, i) => {
       createPage({
@@ -205,10 +227,11 @@ exports.createPages = async ({ graphql, actions, reporter }, themeOptions) => {
                 `${basePath}`,
                 `tags/${kebabCase(tag.fieldValue)}/page/${i + 1}`
               ),
-        component: TagItemsTemplate,
+        component: ItemsTemplate,
         context: {
-          type: `Tag`,
+          pageType: `tag`,
           tag: tag.fieldValue,
+          filter: tagPostsFilter,
           limit: postsPerPage,
           skip: i * postsPerPage,
           total: tagTotal,

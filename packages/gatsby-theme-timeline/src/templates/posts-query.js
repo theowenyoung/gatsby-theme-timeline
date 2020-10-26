@@ -4,7 +4,12 @@ import PostsPage from "../components/items-page"
 export default PostsPage
 
 export const query = graphql`
-  query ItemsPostsQuery($maxWidth: Int!, $skip: Int!, $limit: Int!) {
+  query ItemsPostsQuery(
+    $maxWidth: Int!
+    $skip: Int!
+    $limit: Int!
+    $filter: BlogPostFilterInput
+  ) {
     site {
       siteMetadata {
         title
@@ -17,10 +22,20 @@ export const query = graphql`
     timelineThemeConfig(id: { eq: "gatsby-theme-timeline-config" }) {
       basePath
     }
+    tagsGroup: allBlogPost(
+      sort: { fields: [date, slug], order: DESC }
+      filter: $filter
+    ) {
+      group(field: tags) {
+        fieldValue
+        totalCount
+      }
+    }
     allBlogPost(
       limit: $limit
       skip: $skip
       sort: { fields: [date, title], order: DESC }
+      filter: $filter
     ) {
       nodes {
         id

@@ -10,6 +10,7 @@ module.exports = (themeOptions) => {
   const dataPath = themeOptions.dataPath || `data`
   const timelineMdxOtherwiseConfigured = themeOptions.dataPath || false
   const imageMaxWidth = themeOptions.imageMaxWidth || 1024
+  const postsFilter = themeOptions.postsFilter || {}
   const jsonTransformerOptions = {
     typeName: ({ node }) => {
       const rootDirectoryName = node.relativeDirectory.split(`/`)[0]
@@ -22,6 +23,7 @@ module.exports = (themeOptions) => {
     preset,
     prismPreset,
     dataPath,
+    postsFilter,
     shouldTransformTweet,
     timelineMdxOtherwiseConfigured,
     imageMaxWidth,

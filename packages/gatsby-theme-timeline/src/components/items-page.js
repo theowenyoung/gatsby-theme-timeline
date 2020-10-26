@@ -16,7 +16,7 @@ import kebabCase from "lodash/kebabCase"
 const Items = ({
   location,
   data,
-  pageContext: { type, tag, currentPage, totalPages },
+  pageContext: { pageType, tag, currentPage, totalPages },
 }) => {
   const items = data.allBlogPost.nodes
   const {
@@ -24,12 +24,17 @@ const Items = ({
       siteMetadata: { social, title },
     },
     timelineThemeConfig: { basePath },
+    tagsGroup: { group },
   } = data
 
   return (
     <Layout location={location} title={title}>
       <SEO title="Home" />
-      <ItemsTitle type={type} tag={tag} basePath={basePath}></ItemsTitle>
+      <ItemsTitle
+        pageType={pageType}
+        tag={tag}
+        basePath={basePath}
+      ></ItemsTitle>
       <Grid gap={[null, null, 4, 5]} columns={[1, 1, `2fr 1fr`]}>
         <main>
           {items.map((item, index) => {
@@ -40,13 +45,16 @@ const Items = ({
             totalPages={totalPages}
             hideFirstAndLastPageLinks
             prefix={withPrefix(
-              urlJoin(basePath, type === `tag` ? `tags/${kebabCase(tag)}` : ``)
+              urlJoin(
+                basePath,
+                pageType === `tag` ? `tags/${kebabCase(tag)}` : ``
+              )
             )}
           ></Pagination>
         </main>
         <aside>
           <Bio></Bio>
-          <Tags basePath={basePath}></Tags>
+          <Tags basePath={basePath} group={group}></Tags>
           <Links links={social}></Links>
         </aside>
       </Grid>
