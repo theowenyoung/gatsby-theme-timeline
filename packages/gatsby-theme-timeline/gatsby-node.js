@@ -8,7 +8,7 @@ const fs = require(`fs`)
 const debugTheme = debug(`gatsby-theme-timeline-core`)
 const { truncate } = require(`./utils/truncate`)
 const { createRemoteFileNode } = require(`gatsby-source-filesystem`)
-const { createContentDigest } = require(`gatsby-core-utils`)
+const { createContentDigest, urlResolve } = require(`gatsby-core-utils`)
 const { TWEET_TYPE_NAME, TITLE_LENGTH } = require(`./utils/constans`)
 // Ensure that content directories exist at site-level
 exports.onPreBootstrap = ({ store }, themeOptions) => {
@@ -30,6 +30,7 @@ exports.createSchemaCustomization = ({ actions }) => {
   createTypes(`
     type TimelineThemeConfig implements Node {
       webfontURL: String,
+      basePath: String
     }
   `)
   // create tweet type
@@ -109,12 +110,13 @@ exports.createResolvers = ({ createResolvers }) => {
 }
 exports.sourceNodes = (
   { actions, createContentDigest },
-  { webfontURL = `` }
+  { webfontURL = ``, basePath = `/` }
 ) => {
   const { createNode } = actions
 
   const timelineThemeConfig = {
     webfontURL,
+    basePath,
   }
 
   createNode({
@@ -170,7 +172,7 @@ exports.createPages = async ({ graphql, actions, reporter }, themeOptions) => {
   // create posts pages
   Array.from({ length: totalPages }).forEach((_, i) => {
     createPage({
-      path: i === 0 ? `${basePath}` : `${basePath}page/${i + 1}`,
+      path: i === 0 ? `${basePath}` : urlResolve(basePath, `page/${i + 1}`),
       component: ItemsTemplate,
       context: {
         type: `Latest`,
@@ -198,8 +200,11 @@ exports.createPages = async ({ graphql, actions, reporter }, themeOptions) => {
       createPage({
         path:
           i === 0
-            ? `${basePath}tags/${kebabCase(tag.fieldValue)}/`
-            : `${basePath}tags/${kebabCase(tag.fieldValue)}/page/${i + 1}`,
+            ? urlResolve(`${basePath}`, `tags/${kebabCase(tag.fieldValue)}/`)
+            : urlResolve(
+                `${basePath}`,
+                `tags/${kebabCase(tag.fieldValue)}/page/${i + 1}`
+              ),
         component: TagItemsTemplate,
         context: {
           type: `Tag`,
@@ -223,7 +228,9 @@ exports.onCreateNode = async (
   themeOptions
 ) => {
   const { createNode } = actions
-  const { tweetTypeName, shouldTransformTweet } = withDefaults(themeOptions)
+  const { tweetTypeName, shouldTransformTweet, basePath } = withDefaults(
+    themeOptions
+  )
   if (node.internal.type !== tweetTypeName) {
     return
   }
@@ -251,7 +258,7 @@ exports.onCreateNode = async (
       excerpt: tweetText,
       body: tweetText,
       tags: node.entities.hashtags.map((tag) => tag.text) || [],
-      slug: `/tweet/${node.id_str}`,
+      slug: urlResolve(basePath, `tweet/${node.id_str}`),
       date: date,
       authorName,
       authorScreenName,

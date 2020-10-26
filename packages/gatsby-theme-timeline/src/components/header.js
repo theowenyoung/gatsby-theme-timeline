@@ -2,11 +2,11 @@
 import { Link, withPrefix } from "gatsby"
 import { css, Styled, jsx } from "theme-ui"
 
-const Title = ({ children, type }) => {
+const Title = ({ children, type, basePath }) => {
   if (type === `detail`) {
     return (
       <Styled.h3 sx={{ mb: 3 }}>
-        <Styled.a sx={{ color: `text` }} as={Link} to={withPrefix(`/`)}>
+        <Styled.a sx={{ color: `text` }} as={Link} to={withPrefix(basePath)}>
           {children}
         </Styled.a>
       </Styled.h3>
@@ -14,7 +14,7 @@ const Title = ({ children, type }) => {
   }
   return (
     <Styled.h1>
-      <Styled.a sx={{ color: `text` }} as={Link} to={withPrefix(`/`)}>
+      <Styled.a sx={{ color: `text` }} as={Link} to={withPrefix(basePath)}>
         {children}
       </Styled.a>
     </Styled.h1>
@@ -27,7 +27,7 @@ const Header = ({ children, title, ...props }) => (
       css={css({
         maxWidth: `5xl`,
         mx: `auto`,
-        px: 3,
+        px: [3, 4],
         pt: 3,
       })}
     >

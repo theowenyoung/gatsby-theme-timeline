@@ -14,6 +14,9 @@ export const query = graphql`
         }
       }
     }
+    timelineThemeConfig(id: { eq: "gatsby-theme-timeline-config" }) {
+      basePath
+    }
     allBlogPost(
       limit: $limit
       skip: $skip

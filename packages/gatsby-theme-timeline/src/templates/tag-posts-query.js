@@ -19,6 +19,9 @@ export const query = graphql`
         }
       }
     }
+    timelineThemeConfig(id: { eq: "gatsby-theme-timeline-config" }) {
+      basePath
+    }
     allBlogPost(
       sort: { fields: [date, slug], order: DESC }
       limit: $limit

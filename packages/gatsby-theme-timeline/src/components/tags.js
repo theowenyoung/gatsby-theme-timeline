@@ -3,7 +3,9 @@ import { useStaticQuery, graphql, withPrefix } from "gatsby"
 import { Flex, Box, jsx, Styled } from "theme-ui"
 import kebabCase from "lodash/kebabCase"
 import Tag from "./tag"
-const Tags = () => {
+import * as urlJoin from "url-join"
+
+const Tags = ({ basePath }) => {
   const data = useStaticQuery(tagsQuery)
   const {
     tagsGroup: { group },
@@ -17,7 +19,9 @@ const Tags = () => {
           return (
             <Tag
               key={`tag-list-${index}`}
-              to={withPrefix(`/tags/${kebabCase(fieldValue)}`)}
+              to={withPrefix(
+                urlJoin(basePath, `/tags/${kebabCase(fieldValue)}`)
+              )}
             >
               {`${fieldValue}(${totalCount})`}
             </Tag>

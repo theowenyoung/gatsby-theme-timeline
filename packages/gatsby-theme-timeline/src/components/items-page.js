@@ -9,8 +9,9 @@ import Links from "./links"
 import ItemBox from "./item-box"
 import { Grid } from "theme-ui"
 import Pagination from "./pagination"
-import kebabCase from "lodash/kebabCase"
 import ItemsTitle from "./items-title"
+import * as urlJoin from "url-join"
+import kebabCase from "lodash/kebabCase"
 
 const Items = ({
   location,
@@ -22,11 +23,13 @@ const Items = ({
     site: {
       siteMetadata: { social, title },
     },
+    timelineThemeConfig: { basePath },
   } = data
+
   return (
     <Layout location={location} title={title}>
       <SEO title="Home" />
-      <ItemsTitle type={type} tag={tag}></ItemsTitle>
+      <ItemsTitle type={type} tag={tag} basePath={basePath}></ItemsTitle>
       <Grid gap={[null, null, 4, 5]} columns={[1, 1, `2fr 1fr`]}>
         <main>
           {items.map((item, index) => {
@@ -37,13 +40,13 @@ const Items = ({
             totalPages={totalPages}
             hideFirstAndLastPageLinks
             prefix={withPrefix(
-              type === `tag` ? `/tags/${kebabCase(tag)}/` : `/`
+              urlJoin(basePath, type === `tag` ? `tags/${kebabCase(tag)}` : ``)
             )}
           ></Pagination>
         </main>
         <aside>
           <Bio></Bio>
-          <Tags></Tags>
+          <Tags basePath={basePath}></Tags>
           <Links links={social}></Links>
         </aside>
       </Grid>

@@ -8,6 +8,7 @@ module.exports = {
       resolve: `gatsby-theme-timeline`,
       options: {
         postsPerPage: 5,
+        basePath: "/test",
       },
     },
     {

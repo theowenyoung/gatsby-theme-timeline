@@ -1,12 +1,12 @@
 import React from "react"
-import { Link, withPrefix } from "gatsby"
+import { Link } from "gatsby"
 import { Link as LinkUI } from "theme-ui"
-export default function PreviousPageLink(_, props) {
+export default function PreviousPageLink({ prefix }, props) {
   return (
     <LinkUI
       disabled={props.disabled}
       as={Link}
-      to={withPrefix(`/`)}
+      to={prefix}
       sx={{
         color: `textMuted`,
       }}

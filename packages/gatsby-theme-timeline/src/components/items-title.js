@@ -5,11 +5,11 @@ import { Link, withPrefix } from "gatsby"
  * Shadow me to add your own bio content
  */
 
-const ItemsTitle = ({ type, tag }) => {
+const ItemsTitle = ({ type, tag, basePath }) => {
   if (type === `Tag`) {
     return (
       <Styled.h3>
-        <LinkUI sx={{ color: `textMuted` }} as={Link} to={withPrefix(`/`)}>
+        <LinkUI sx={{ color: `textMuted` }} as={Link} to={withPrefix(basePath)}>
           All posts
         </LinkUI>
         <span> / </span>
