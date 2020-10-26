@@ -7,9 +7,9 @@ const debug = require(`debug`)
 const fs = require(`fs`)
 const debugTheme = debug(`gatsby-theme-timeline-core`)
 const { truncate } = require(`./utils/truncate`)
+const { TWEET_TYPE_NAME, TITLE_LENGTH } = require(`./utils/constans`)
 const { createRemoteFileNode } = require(`gatsby-source-filesystem`)
 const { createContentDigest, urlResolve } = require(`gatsby-core-utils`)
-const { TWEET_TYPE_NAME, TITLE_LENGTH } = require(`./utils/constans`)
 // Ensure that content directories exist at site-level
 exports.onPreBootstrap = ({ store }, themeOptions) => {
   const { program } = store.getState()
@@ -62,7 +62,11 @@ exports.createResolvers = ({ createResolvers }) => {
     MdxBlogPost: {
       tags: {
         resolve: (source) => {
-          return source.tags.concat(`post`)
+          if (source.tags.includes("post")) {
+            return source.tags
+          } else {
+            return source.tags.concat(`post`)
+          }
         },
       },
     },
@@ -250,13 +254,11 @@ exports.onCreateNode = async (
   themeOptions
 ) => {
   const { createNode } = actions
-  const { tweetTypeName, shouldTransformTweet, basePath } = withDefaults(
-    themeOptions
-  )
+  const { tweetTypeName, basePath } = withDefaults(themeOptions)
   if (node.internal.type !== tweetTypeName) {
     return
   }
-  if (shouldTransformTweet && node.internal.type === tweetTypeName) {
+  if (node.internal.type === tweetTypeName) {
     const date = moment(
       node.created_at,
       `dd MMM DD HH:mm:ss ZZ YYYY`,
@@ -327,7 +329,9 @@ exports.onCreateNode = async (
       }
     }
     // add tweet tag
-    fieldData.tags.push(`tweet`)
+    if (!fieldData.tags.includes("tweet")) {
+      fieldData.tags.push(`tweet`)
+    }
     if (
       node.entities &&
       node.entities.media &&
