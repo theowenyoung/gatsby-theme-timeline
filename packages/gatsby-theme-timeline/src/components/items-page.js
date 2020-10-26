@@ -38,7 +38,7 @@ const Items = ({ location, data, pageContext }) => {
             return (
               <ItemBox
                 key={`item-box-${index}`}
-                pageContext={pageContext}
+                basePath={basePath}
                 {...item}
               ></ItemBox>
             )

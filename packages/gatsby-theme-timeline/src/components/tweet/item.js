@@ -25,7 +25,7 @@ const Item = ({
   quoteAuthorScreenName,
   quoteAuthorAvatar,
   quoteImage,
-  pageContext,
+  basePath,
 }) => {
   const item = {
     excerpt,
@@ -45,7 +45,6 @@ const Item = ({
     quoteAuthorAvatar,
     quoteImage,
   }
-  const basePath = pageContext.basePath
   return (
     <Box
       sx={{

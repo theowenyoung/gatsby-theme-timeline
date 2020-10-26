@@ -14,10 +14,8 @@ const Item = ({
   tags,
   image,
   imageAlt,
-  pageContext,
+  basePath,
 }) => {
-  const basePath = pageContext.basePath
-
   return (
     <Box
       sx={{
