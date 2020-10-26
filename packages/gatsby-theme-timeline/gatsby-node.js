@@ -253,7 +253,7 @@ exports.onCreateNode = async (
   { node, actions, createNodeId, store, cache },
   themeOptions
 ) => {
-  const { createNode } = actions
+  const { createNode, createParentChildLink } = actions
   const { tweetTypeName, basePath } = withDefaults(themeOptions)
   if (node.internal.type !== tweetTypeName) {
     return
@@ -367,11 +367,11 @@ exports.onCreateNode = async (
     if (remoteFileNode) {
       fieldData.authorAvatar___NODE = remoteFileNode.id
     }
-
+    const tweetNodeId = `${TWEET_TYPE_NAME}-${node.id}`
     await createNode({
       ...fieldData,
       // Required fields.
-      id: `${TWEET_TYPE_NAME}-${node.id}`,
+      id: tweetNodeId,
       parent: node.id,
       children: [],
       internal: {
@@ -381,5 +381,6 @@ exports.onCreateNode = async (
         description: `${TWEET_TYPE_NAME} of the Item interface`,
       },
     })
+    createParentChildLink({ parent: node, child: getNode(tweetNodeId) })
   }
 }
