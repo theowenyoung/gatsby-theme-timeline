@@ -250,7 +250,7 @@ exports.createPages = async ({ graphql, actions, reporter }, themeOptions) => {
 // Create fields for post slugs and source
 // This will change with schema customization with work
 exports.onCreateNode = async (
-  { node, actions, createNodeId, store, cache },
+  { node, actions, createNodeId, getNode, store, cache },
   themeOptions
 ) => {
   const { createNode, createParentChildLink } = actions
