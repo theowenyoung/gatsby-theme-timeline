@@ -6,6 +6,8 @@ import { withPrefix } from "gatsby"
 import Tag from "./tag"
 import kebabCase from "lodash/kebabCase"
 import Tweet from "./tweet"
+import * as urlJoin from "url-join"
+
 const Item = ({
   excerpt,
   authorName,
@@ -23,6 +25,7 @@ const Item = ({
   quoteAuthorScreenName,
   quoteAuthorAvatar,
   quoteImage,
+  pageContext,
 }) => {
   const item = {
     excerpt,
@@ -42,6 +45,7 @@ const Item = ({
     quoteAuthorAvatar,
     quoteImage,
   }
+  const basePath = pageContext.basePath
   return (
     <Box
       sx={{
@@ -69,7 +73,7 @@ const Item = ({
               tags.map((tag) => {
                 return (
                   <Tag
-                    to={withPrefix(`/tags/${kebabCase(tag)}`)}
+                    to={withPrefix(urlJoin(basePath, `tags/${kebabCase(tag)}`))}
                     key={`tag-${tag}`}
                   >
                     {tag}

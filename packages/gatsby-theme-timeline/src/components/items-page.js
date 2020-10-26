@@ -13,11 +13,8 @@ import ItemsTitle from "./items-title"
 import * as urlJoin from "url-join"
 import kebabCase from "lodash/kebabCase"
 
-const Items = ({
-  location,
-  data,
-  pageContext: { pageType, tag, currentPage, totalPages },
-}) => {
+const Items = ({ location, data, pageContext }) => {
+  const { pageType, tag, currentPage, totalPages } = pageContext
   const items = data.allBlogPost.nodes
   const {
     site: {
@@ -38,7 +35,13 @@ const Items = ({
       <Grid gap={[null, null, 4, 5]} columns={[1, 1, `2fr 1fr`]}>
         <main>
           {items.map((item, index) => {
-            return <ItemBox key={`item-box-${index}`} {...item}></ItemBox>
+            return (
+              <ItemBox
+                key={`item-box-${index}`}
+                pageContext={pageContext}
+                {...item}
+              ></ItemBox>
+            )
           })}
           <Pagination
             currentPage={currentPage}

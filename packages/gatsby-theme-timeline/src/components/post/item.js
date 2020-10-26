@@ -4,7 +4,20 @@ import { Box, Link as LinkUI, jsx, Styled } from "theme-ui"
 import Tag from "./tag"
 import kebabCase from "lodash/kebabCase"
 import Hero from "./hero"
-const Item = ({ title, slug, date, excerpt, tags, image, imageAlt }) => {
+import * as urlJoin from "url-join"
+
+const Item = ({
+  title,
+  slug,
+  date,
+  excerpt,
+  tags,
+  image,
+  imageAlt,
+  pageContext,
+}) => {
+  const basePath = pageContext.basePath
+
   return (
     <Box
       sx={{
@@ -41,7 +54,7 @@ const Item = ({ title, slug, date, excerpt, tags, image, imageAlt }) => {
               tags.map((tag) => {
                 return (
                   <Tag
-                    to={withPrefix(`/tags/${kebabCase(tag)}`)}
+                    to={withPrefix(urlJoin(basePath, `tags/${kebabCase(tag)}`))}
                     key={`tag-${tag}`}
                   >
                     {tag}
