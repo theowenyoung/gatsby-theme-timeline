@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.18](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-theme-timeline@0.1.17...gatsby-theme-timeline@0.1.18) (2020-10-26)
+
+
+### Bug Fixes
+
+* basePath ([e334646](https://github.com/theowenyoung/gatsby-theme-timeline/commit/e33464694615b2ea3ef6f5c48be45086f7a92c2f))
+
+
+
+
+
 ## [0.1.17](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-theme-timeline@0.1.16...gatsby-theme-timeline@0.1.17) (2020-10-26)
 
 
