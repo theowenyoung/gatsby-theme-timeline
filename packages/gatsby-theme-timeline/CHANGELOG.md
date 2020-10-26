@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.10](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-theme-timeline@0.1.9...gatsby-theme-timeline@0.1.10) (2020-10-26)
+
+
+### Features
+
+* support table style ([666cede](https://github.com/theowenyoung/gatsby-theme-timeline/commit/666cedef1d161c2646d2c1759cd2fd44fd26f8d0))
+
+
+
+
+
 ## [0.1.9](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-theme-timeline@0.1.8...gatsby-theme-timeline@0.1.9) (2020-10-25)
 
 **Note:** Version bump only for package gatsby-theme-timeline
