@@ -4,7 +4,7 @@ module.exports = (themeOptions) => {
 
   return {
     plugins: [
-      {
+      options.shouldTransformJson && {
         resolve: `gatsby-transformer-json`,
         options: options.jsonTransformerOptions,
       },

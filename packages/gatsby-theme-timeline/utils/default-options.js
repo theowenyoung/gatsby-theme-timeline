@@ -6,6 +6,7 @@ module.exports = (themeOptions) => {
   const postsPerPage = themeOptions.postsPerPage || 15
   const preset = themeOptions.preset || `gatsby-theme-ui-timeline-preset`
   const prismPreset = themeOptions.prismPreset || `github`
+  const shouldTransformJson = themeOptions.shouldTransformJson || true
   const shouldTransformTweet = themeOptions.shouldTransformTweet || true
   const dataPath = themeOptions.dataPath || `data`
   const timelineMdxOtherwiseConfigured = themeOptions.dataPath || false
@@ -24,6 +25,7 @@ module.exports = (themeOptions) => {
     prismPreset,
     dataPath,
     postsFilter,
+    shouldTransformJson,
     shouldTransformTweet,
     timelineMdxOtherwiseConfigured,
     imageMaxWidth,

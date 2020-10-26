@@ -26,7 +26,6 @@ exports.onPreBootstrap = ({ store }, themeOptions) => {
 }
 exports.createSchemaCustomization = ({ actions }) => {
   const { createTypes } = actions
-
   createTypes(`
     type TimelineThemeConfig implements Node {
       webfontURL: String,
