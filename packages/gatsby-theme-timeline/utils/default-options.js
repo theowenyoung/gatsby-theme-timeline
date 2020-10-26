@@ -1,4 +1,5 @@
 const withDefaults = require(`gatsby-theme-blog-core/utils/default-options`)
+const _ = require(`lodash`)
 module.exports = (themeOptions) => {
   const baseOptions = withDefaults(themeOptions)
   const tweetTypeName = themeOptions.tweetTypeName || `TweetsJson`
@@ -7,12 +8,12 @@ module.exports = (themeOptions) => {
   const prismPreset = themeOptions.prismPreset || `github`
   const shouldTransformTweet = themeOptions.shouldTransformTweet || true
   const dataPath = themeOptions.dataPath || `data`
+  const timelineMdxOtherwiseConfigured = themeOptions.dataPath || false
+  const imageMaxWidth = themeOptions.imageMaxWidth || 1024
   const jsonTransformerOptions = {
     typeName: ({ node }) => {
       const rootDirectoryName = node.relativeDirectory.split(`/`)[0]
-      const rootDirectoryNameCapitalized =
-        rootDirectoryName.charAt(0).toUpperCase() + rootDirectoryName.slice(1)
-      return `${rootDirectoryNameCapitalized}Json`
+      return _.upperFirst(_.camelCase(`${rootDirectoryName} Json`))
     },
   }
   return {
@@ -22,6 +23,8 @@ module.exports = (themeOptions) => {
     prismPreset,
     dataPath,
     shouldTransformTweet,
+    timelineMdxOtherwiseConfigured,
+    imageMaxWidth,
     ...baseOptions,
     jsonTransformerOptions: {
       ...jsonTransformerOptions,

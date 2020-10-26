@@ -18,7 +18,7 @@ module.exports = (themeOptions) => {
       {
         resolve: `gatsby-theme-blog-core`,
         options: {
-          imageMaxWidth: 1024,
+          imageMaxWidth: options.imageMaxWidth,
           ...themeOptions,
         },
       },

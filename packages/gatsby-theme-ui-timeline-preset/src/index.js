@@ -21,9 +21,17 @@ const final = {
       bg: `red.6`,
     },
   },
+
   styles: {
     ...tailwindPreset.styles,
-
+    p: {
+      ...tailwindPreset.styles.p,
+      mb: 3,
+      lineHeight: `body`,
+    },
+    li: {
+      lineHeight: `2`,
+    },
     pre: {
       ...tailwindPreset.styles.pre,
       variant: `prism`,
@@ -79,6 +87,35 @@ const final = {
     h6: {
       ...tailwindPreset.styles.h5,
       mb: 3,
+    },
+    table: {
+      width: `100%`,
+      marginBottom: 4,
+      color: `gray.9`,
+      captionSide: `bottom`,
+      borderCollapse: `separate`,
+      borderSpacing: 0,
+      "> tbody > tr:nth-of-type(odd)": {
+        bg: `gray.1`,
+      },
+    },
+    th: {
+      verticalAlign: `bottom`,
+      borderTopWidth: 2,
+      borderTopStyle: `solid`,
+      borderTopColor: `gray.3`,
+      borderBottomWidth: 2,
+      borderBottomStyle: `solid`,
+      borderBottomColor: `gray.3`,
+      padding: `.75rem`,
+      textAlign: `inherit`,
+    },
+    td: {
+      borderBottomWidth: 2,
+      borderBottomStyle: `solid`,
+      borderBottomColor: `gray.3`,
+      verticalAlign: `top`,
+      padding: `.75rem`,
     },
   },
 }
