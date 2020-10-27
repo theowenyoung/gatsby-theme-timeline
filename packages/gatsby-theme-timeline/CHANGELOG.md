@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.23](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-theme-timeline@0.1.22...gatsby-theme-timeline@0.1.23) (2020-10-27)
+
+
+### Bug Fixes
+
+* tagsFilter ([6b8de0c](https://github.com/theowenyoung/gatsby-theme-timeline/commit/6b8de0c6695a7d627a0a50024907c040b6e81dc6))
+
+
+
+
+
 ## [0.1.22](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-theme-timeline@0.1.21...gatsby-theme-timeline@0.1.22) (2020-10-27)
 
 
