@@ -19,9 +19,6 @@ export const query = graphql`
         }
       }
     }
-    timelineThemeConfig(id: { eq: "gatsby-theme-timeline-config" }) {
-      basePath
-    }
     tagsGroup: allBlogPost(
       sort: { fields: [date, slug], order: DESC }
       filter: $filter

@@ -1,7 +1,8 @@
 /** @jsx jsx */
 import { Tweet } from "react-twitter-widgets"
 import { jsx, Alert } from "theme-ui"
-const Detail = ({ idStr }) => {
+
+const Detail = ({ idStr, ...post }) => {
   return (
     <Tweet
       tweetId={idStr}

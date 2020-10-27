@@ -46,6 +46,11 @@ export const query = graphql`
       }
       ... on TweetPost {
         idStr
+        basePath
+      }
+      ... on MdxBlogPost {
+        id
+        basePath
       }
     }
     previous: blogPost(id: { eq: $previousId }) {

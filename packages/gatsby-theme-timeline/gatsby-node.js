@@ -28,8 +28,7 @@ exports.createSchemaCustomization = ({ actions }) => {
   const { createTypes } = actions
   createTypes(`
     type TimelineThemeConfig implements Node {
-      webfontURL: String,
-      basePath: String
+      webfontURL: String
     }
   `)
   // create tweet type
@@ -57,7 +56,8 @@ exports.createSchemaCustomization = ({ actions }) => {
       quoteImage: File
     }`)
 }
-exports.createResolvers = ({ createResolvers }) => {
+exports.createResolvers = ({ createResolvers }, themeOptions) => {
+  const { basePath } = withDefaults(themeOptions)
   const resolvers = {
     MdxBlogPost: {
       tags: {
@@ -69,8 +69,20 @@ exports.createResolvers = ({ createResolvers }) => {
           }
         },
       },
+      basePath: {
+        type: "String",
+        resolve: () => {
+          return basePath
+        },
+      },
     },
     [TWEET_TYPE_NAME]: {
+      basePath: {
+        type: "String",
+        resolve: () => {
+          return basePath
+        },
+      },
       authorAvatar: {
         resolve: (source, _, context, __) => {
           if (source.authorAvatar___NODE) {
@@ -113,13 +125,12 @@ exports.createResolvers = ({ createResolvers }) => {
 }
 exports.sourceNodes = (
   { actions, createContentDigest },
-  { webfontURL = ``, basePath = `/` }
+  { webfontURL = `` }
 ) => {
   const { createNode } = actions
 
   const timelineThemeConfig = {
     webfontURL,
-    basePath,
   }
 
   createNode({
@@ -191,6 +202,7 @@ exports.createPages = async ({ graphql, actions, reporter }, themeOptions) => {
       path: i === 0 ? `${basePath}` : urlResolve(basePath, `page/${i + 1}`),
       component: ItemsTemplate,
       context: {
+        basePath,
         pageType: `home`,
         filter: postsFilter,
         limit: postsPerPage,
@@ -232,6 +244,7 @@ exports.createPages = async ({ graphql, actions, reporter }, themeOptions) => {
               ),
         component: ItemsTemplate,
         context: {
+          basePath,
           pageType: `tag`,
           tag: tag.fieldValue,
           filter: tagPostsFilter,

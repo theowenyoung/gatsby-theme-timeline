@@ -5,7 +5,6 @@ const useTimelineThemeConfig = () => {
     query {
       timelineThemeConfig(id: { eq: "gatsby-theme-timeline-config" }) {
         webfontURL
-        basePath
       }
     }
   `)

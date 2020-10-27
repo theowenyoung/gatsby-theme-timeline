@@ -6,13 +6,13 @@ import Helmet from "react-helmet"
 
 const Layout = ({ children, ...props }) => {
   const timelineThemeConfig = useTimelineThemeConfig()
-  const { webfontURL, basePath } = timelineThemeConfig
+  const { webfontURL } = timelineThemeConfig
   return (
     <Styled.root>
       <Helmet>
         <link rel="stylesheet" href={webfontURL} />
       </Helmet>
-      <Header basePath={basePath} {...props} />
+      <Header {...props} />
       <Box
         css={css({
           maxWidth: `5xl`,

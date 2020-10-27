@@ -14,18 +14,17 @@ import * as urlJoin from "url-join"
 import kebabCase from "lodash/kebabCase"
 
 const Items = ({ location, data, pageContext }) => {
-  const { pageType, tag, currentPage, totalPages } = pageContext
+  const { pageType, tag, currentPage, totalPages, basePath } = pageContext
   const items = data.allBlogPost.nodes
   const {
     site: {
       siteMetadata: { social, title },
     },
-    timelineThemeConfig: { basePath },
     tagsGroup: { group },
   } = data
 
   return (
-    <Layout location={location} title={title}>
+    <Layout basePath={basePath} location={location} title={title}>
       <SEO title="Home" />
       <ItemsTitle
         pageType={pageType}
