@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.21](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-theme-timeline@0.1.20...gatsby-theme-timeline@0.1.21) (2020-10-27)
+
+
+### Bug Fixes
+
+* mdxBlogPost basePath ([7ba1b38](https://github.com/theowenyoung/gatsby-theme-timeline/commit/7ba1b38ea662bced29e62bca81698140b35fc8cd))
+
+
+
+
+
 ## [0.1.20](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-theme-timeline@0.1.19...gatsby-theme-timeline@0.1.20) (2020-10-27)
 
 
