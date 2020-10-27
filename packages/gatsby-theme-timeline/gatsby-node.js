@@ -27,12 +27,13 @@ exports.onPreBootstrap = ({ store }, themeOptions) => {
 exports.createSchemaCustomization = ({ actions }) => {
   const { createTypes } = actions
   createTypes(`
+    type Fields {
+      basePath: String
+    }
     type TimelineThemeConfig implements Node {
       webfontURL: String
     }
-  `)
-  // create tweet type
-  createTypes(`type ${TWEET_TYPE_NAME} implements BlogPost & Node @dontInfer {
+    type ${TWEET_TYPE_NAME} implements BlogPost & Node @dontInfer {
       id: ID!
       title: String!
       body: String!
@@ -54,12 +55,15 @@ exports.createSchemaCustomization = ({ actions }) => {
       quoteAuthorScreenName: String
       quoteAuthorAvatar: File
       quoteImage: File
-    }`)
+    }
+  `)
 }
 exports.createResolvers = ({ createResolvers }, themeOptions) => {
-  const { basePath } = withDefaults(themeOptions)
   const resolvers = {
     MdxBlogPost: {
+      fields: {
+        type: `Fields`,
+      },
       tags: {
         resolve: (source) => {
           if (source.tags.includes("post")) {
@@ -69,19 +73,10 @@ exports.createResolvers = ({ createResolvers }, themeOptions) => {
           }
         },
       },
-      basePath: {
-        type: "String",
-        resolve: () => {
-          return basePath
-        },
-      },
     },
     [TWEET_TYPE_NAME]: {
-      basePath: {
-        type: "String",
-        resolve: () => {
-          return basePath
-        },
+      fields: {
+        type: `Fields`,
       },
       authorAvatar: {
         resolve: (source, _, context, __) => {
@@ -266,11 +261,8 @@ exports.onCreateNode = async (
   { node, actions, createNodeId, getNode, store, cache },
   themeOptions
 ) => {
-  const { createNode, createParentChildLink } = actions
+  const { createNode, createParentChildLink, createNodeField } = actions
   const { tweetTypeName, basePath } = withDefaults(themeOptions)
-  if (node.internal.type !== tweetTypeName) {
-    return
-  }
   if (node.internal.type === tweetTypeName) {
     const date = moment(
       node.created_at,
@@ -395,5 +387,19 @@ exports.onCreateNode = async (
       },
     })
     createParentChildLink({ parent: node, child: getNode(tweetNodeId) })
+    // createNodeField
+    createNodeField({
+      node: getNode(tweetNodeId),
+      name: `basePath`,
+      value: basePath,
+    })
+  }
+
+  if (node.internal.type === "MdxBlogPost") {
+    createNodeField({
+      node: node,
+      name: `basePath`,
+      value: basePath,
+    })
   }
 }
