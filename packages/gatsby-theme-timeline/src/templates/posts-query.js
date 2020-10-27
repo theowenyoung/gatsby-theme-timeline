@@ -9,6 +9,7 @@ export const query = graphql`
     $skip: Int!
     $limit: Int!
     $filter: BlogPostFilterInput
+    $tagsFilter: BlogPostFilterInput
   ) {
     site {
       siteMetadata {
@@ -21,7 +22,7 @@ export const query = graphql`
     }
     tagsGroup: allBlogPost(
       sort: { fields: [date, slug], order: DESC }
-      filter: $filter
+      filter: $tagsFilter
     ) {
       group(field: tags) {
         fieldValue
