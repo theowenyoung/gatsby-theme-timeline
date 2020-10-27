@@ -200,7 +200,7 @@ exports.createPages = async ({ graphql, actions, reporter }, themeOptions) => {
       context: {
         basePath,
         pageType: `home`,
-        tagFilter: postsFilter,
+        tagsFilter: postsFilter,
         filter: postsFilter,
         limit: postsPerPage,
         skip: i * postsPerPage,
@@ -244,7 +244,7 @@ exports.createPages = async ({ graphql, actions, reporter }, themeOptions) => {
           basePath,
           pageType: `tag`,
           tag: tag.fieldValue,
-          tagFilter: postsFilter,
+          tagsFilter: postsFilter,
           filter: tagPostsFilter,
           limit: postsPerPage,
           skip: i * postsPerPage,
