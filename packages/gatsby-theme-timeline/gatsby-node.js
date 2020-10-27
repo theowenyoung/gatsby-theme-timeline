@@ -1,4 +1,5 @@
 const withDefaults = require(`./utils/default-options`)
+const withCoreDefaults = require(`gatsby-theme-blog-core/utils/default-options`)
 const kebabCase = require(`lodash/kebabCase`)
 const path = require(`path`)
 const mkdirp = require(`mkdirp`)
@@ -58,7 +59,7 @@ exports.createSchemaCustomization = ({ actions }) => {
     }
   `)
 }
-exports.createResolvers = ({ createResolvers }, themeOptions) => {
+exports.createResolvers = ({ createResolvers }) => {
   const resolvers = {
     MdxBlogPost: {
       fields: {
@@ -263,6 +264,7 @@ exports.onCreateNode = async (
 ) => {
   const { createNode, createParentChildLink, createNodeField } = actions
   const { tweetTypeName, basePath } = withDefaults(themeOptions)
+  const { contentPath } = withCoreDefaults(themeOptions)
   if (node.internal.type === tweetTypeName) {
     const date = moment(
       node.created_at,
@@ -396,10 +398,16 @@ exports.onCreateNode = async (
   }
 
   if (node.internal.type === "MdxBlogPost") {
-    createNodeField({
-      node: node,
-      name: `basePath`,
-      value: basePath,
-    })
+    // Create source field (according to contentPath)
+    const mdxNode = getNode(node.parent)
+    const fileNode = getNode(mdxNode.parent)
+    const sourceInstanceName = fileNode.sourceInstanceName
+    if (sourceInstanceName === contentPath) {
+      createNodeField({
+        node: node,
+        name: `basePath`,
+        value: basePath,
+      })
+    }
   }
 }
