@@ -304,6 +304,7 @@ exports.onCreateNode = async (
       fieldData.quoteAuthorName = node.quoted_status.user.name
       fieldData.quoteAuthorScreenName = node.quoted_status.user.screen_name
       // create a file node for image URLs
+
       const remoteFileNode = await createRemoteFileNode({
         url: node.quoted_status.user.profile_image_url_https,
         parentNodeId: node.id,
@@ -364,6 +365,10 @@ exports.onCreateNode = async (
     }
 
     // create a file node for image URLs
+    // try to use origin avatar res
+    if (authorAvatarUrl) {
+      authorAvatarUrl = authorAvatarUrl.replace("_normal.jpg", ".jpg")
+    }
     const remoteFileNode = await createRemoteFileNode({
       url: authorAvatarUrl,
       parentNodeId: node.id,
