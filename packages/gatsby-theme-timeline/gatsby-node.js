@@ -67,7 +67,7 @@ exports.createResolvers = ({ createResolvers }) => {
       },
       tags: {
         resolve: (source) => {
-          if (source.tags.includes("post")) {
+          if (source.tags.includes(`post`)) {
             return source.tags
           } else {
             return source.tags.concat(`post`)
@@ -272,7 +272,7 @@ exports.onCreateNode = async (
       node.created_at,
       `dd MMM DD HH:mm:ss ZZ YYYY`,
       `en`
-    ).toDate()
+    ).toISOString()
     let tweetText = node.full_text
     let authorName = node.user.name
     let authorScreenName = node.user.screen_name
@@ -339,7 +339,7 @@ exports.onCreateNode = async (
       }
     }
     // add tweet tag
-    if (!fieldData.tags.includes("tweet")) {
+    if (!fieldData.tags.includes(`tweet`)) {
       fieldData.tags.push(`tweet`)
     }
     if (
@@ -367,7 +367,7 @@ exports.onCreateNode = async (
     // create a file node for image URLs
     // try to use origin avatar res
     if (authorAvatarUrl) {
-      authorAvatarUrl = authorAvatarUrl.replace("_normal.jpg", ".jpg")
+      authorAvatarUrl = authorAvatarUrl.replace(`_normal.jpg`, `.jpg`)
     }
     const remoteFileNode = await createRemoteFileNode({
       url: authorAvatarUrl,
@@ -404,7 +404,7 @@ exports.onCreateNode = async (
     })
   }
 
-  if (node.internal.type === "MdxBlogPost") {
+  if (node.internal.type === `MdxBlogPost`) {
     // Create source field (according to contentPath)
     const mdxNode = getNode(node.parent)
     const fileNode = getNode(mdxNode.parent)

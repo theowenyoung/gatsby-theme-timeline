@@ -32,7 +32,7 @@ export const query = graphql`
     allBlogPost(
       limit: $limit
       skip: $skip
-      sort: { fields: [date, title], order: DESC }
+      sort: { fields: [date, slug], order: DESC }
       filter: $filter
     ) {
       nodes {
