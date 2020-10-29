@@ -211,6 +211,7 @@ exports.createPages = async ({ graphql, actions, reporter }, themeOptions) => {
       },
     })
   })
+
   // Create tag Posts
   const {
     tagsGroup: { group },
@@ -272,7 +273,7 @@ exports.onCreateNode = async (
       node.created_at,
       `dd MMM DD HH:mm:ss ZZ YYYY`,
       `en`
-    ).toISOString()
+    ).toDate()
     let tweetText = node.full_text
     let authorName = node.user.name
     let authorScreenName = node.user.screen_name

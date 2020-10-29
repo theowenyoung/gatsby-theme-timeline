@@ -22,9 +22,7 @@
   "dependencies": {
     "@theme-ui/preset-tailwind": "^0.4.0-rc.5"
   },
-  "devDependencies": {
-    "prettier": "2.0.5"
-  },
+  "devDependencies": {},
   "engines": {
     "node": ">=10.13.0"
   },
