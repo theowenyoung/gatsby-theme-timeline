@@ -3,145 +3,83 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [0.1.24](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-starter-timeline@0.1.23...gatsby-starter-timeline@0.1.24) (2020-10-29)
+## [0.1.25](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-starter-timeline@0.1.24...gatsby-starter-timeline@0.1.25) (2020-10-29)
 
+### Features
+
+- fix version ([8f73a53](https://github.com/theowenyoung/gatsby-theme-timeline/commit/8f73a537ca827b5e6fd0911445c14fbae8491da0))
+
+## [0.1.24](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-starter-timeline@0.1.23...gatsby-starter-timeline@0.1.24) (2020-10-29)
 
 ### Bug Fixes
 
-* sort type ([7bc5af3](https://github.com/theowenyoung/gatsby-theme-timeline/commit/7bc5af3c7d6f201015c545378123a43c1681a264))
-
-
-
-
+- sort type ([7bc5af3](https://github.com/theowenyoung/gatsby-theme-timeline/commit/7bc5af3c7d6f201015c545378123a43c1681a264))
 
 ## [0.1.23](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-starter-timeline@0.1.22...gatsby-starter-timeline@0.1.23) (2020-10-28)
 
 **Note:** Version bump only for package gatsby-starter-timeline
 
-
-
-
-
 ## [0.1.22](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-starter-timeline@0.1.21...gatsby-starter-timeline@0.1.22) (2020-10-27)
 
 **Note:** Version bump only for package gatsby-starter-timeline
-
-
-
-
 
 ## [0.1.21](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-starter-timeline@0.1.20...gatsby-starter-timeline@0.1.21) (2020-10-27)
 
 **Note:** Version bump only for package gatsby-starter-timeline
 
-
-
-
-
 ## [0.1.20](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-starter-timeline@0.1.19...gatsby-starter-timeline@0.1.20) (2020-10-27)
 
 **Note:** Version bump only for package gatsby-starter-timeline
-
-
-
-
 
 ## [0.1.19](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-starter-timeline@0.1.18...gatsby-starter-timeline@0.1.19) (2020-10-27)
 
 **Note:** Version bump only for package gatsby-starter-timeline
 
-
-
-
-
 ## [0.1.18](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-starter-timeline@0.1.17...gatsby-starter-timeline@0.1.18) (2020-10-27)
-
 
 ### Bug Fixes
 
-* tag link for basePath ([bea8d69](https://github.com/theowenyoung/gatsby-theme-timeline/commit/bea8d6954153545be5774f638615231eb633cba5))
-
-
-
-
+- tag link for basePath ([bea8d69](https://github.com/theowenyoung/gatsby-theme-timeline/commit/bea8d6954153545be5774f638615231eb633cba5))
 
 ## [0.1.17](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-starter-timeline@0.1.16...gatsby-starter-timeline@0.1.17) (2020-10-26)
 
 **Note:** Version bump only for package gatsby-starter-timeline
 
-
-
-
-
 ## [0.1.16](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-starter-timeline@0.1.15...gatsby-starter-timeline@0.1.16) (2020-10-26)
 
 **Note:** Version bump only for package gatsby-starter-timeline
-
-
-
-
 
 ## [0.1.15](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-starter-timeline@0.1.14...gatsby-starter-timeline@0.1.15) (2020-10-26)
 
 **Note:** Version bump only for package gatsby-starter-timeline
 
-
-
-
-
 ## [0.1.14](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-starter-timeline@0.1.13...gatsby-starter-timeline@0.1.14) (2020-10-26)
 
 **Note:** Version bump only for package gatsby-starter-timeline
-
-
-
-
 
 ## [0.1.13](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-starter-timeline@0.1.12...gatsby-starter-timeline@0.1.13) (2020-10-26)
 
 **Note:** Version bump only for package gatsby-starter-timeline
 
-
-
-
-
 ## [0.1.12](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-starter-timeline@0.1.11...gatsby-starter-timeline@0.1.12) (2020-10-26)
 
 **Note:** Version bump only for package gatsby-starter-timeline
 
-
-
-
-
 ## [0.1.11](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-starter-timeline@0.1.10...gatsby-starter-timeline@0.1.11) (2020-10-26)
-
 
 ### Features
 
-* support filter ([959fc07](https://github.com/theowenyoung/gatsby-theme-timeline/commit/959fc0723aa2d75e3286806cffd0528aefcf87b6))
-
-
-
-
+- support filter ([959fc07](https://github.com/theowenyoung/gatsby-theme-timeline/commit/959fc0723aa2d75e3286806cffd0528aefcf87b6))
 
 ## [0.1.10](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-starter-timeline@0.1.9...gatsby-starter-timeline@0.1.10) (2020-10-26)
 
-
 ### Bug Fixes
 
-* basePath ([3912021](https://github.com/theowenyoung/gatsby-theme-timeline/commit/3912021a711275e7d49b3afd0695cd5cd8c875d2))
-
-
-
-
+- basePath ([3912021](https://github.com/theowenyoung/gatsby-theme-timeline/commit/3912021a711275e7d49b3afd0695cd5cd8c875d2))
 
 ## [0.1.9](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-starter-timeline@0.1.8...gatsby-starter-timeline@0.1.9) (2020-10-26)
 
 **Note:** Version bump only for package gatsby-starter-timeline
-
-
-
-
 
 ## [0.1.8](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-starter-timeline@0.1.7...gatsby-starter-timeline@0.1.8) (2020-10-25)
 

@@ -3,16 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [0.1.8](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-theme-ui-timeline-preset@0.1.7...gatsby-theme-ui-timeline-preset@0.1.8) (2020-10-26)
-
+## [0.1.9](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-theme-ui-timeline-preset@0.1.8...gatsby-theme-ui-timeline-preset@0.1.9) (2020-10-29)
 
 ### Features
 
-* support table style ([666cede](https://github.com/theowenyoung/gatsby-theme-timeline/commit/666cedef1d161c2646d2c1759cd2fd44fd26f8d0))
+- fix version ([8f73a53](https://github.com/theowenyoung/gatsby-theme-timeline/commit/8f73a537ca827b5e6fd0911445c14fbae8491da0))
 
+## [0.1.8](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-theme-ui-timeline-preset@0.1.7...gatsby-theme-ui-timeline-preset@0.1.8) (2020-10-26)
 
+### Features
 
-
+- support table style ([666cede](https://github.com/theowenyoung/gatsby-theme-timeline/commit/666cedef1d161c2646d2c1759cd2fd44fd26f8d0))
 
 ## [0.1.7](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-theme-ui-timeline-preset@0.1.6...gatsby-theme-ui-timeline-preset@0.1.7) (2020-10-25)
 
