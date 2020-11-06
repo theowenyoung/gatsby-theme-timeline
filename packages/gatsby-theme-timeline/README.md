@@ -29,7 +29,7 @@ If you already have a site you'd like to add the timeline theme to, you can manu
 1. Install the timeline theme
 
 ```shell
-npm install gatsby-theme-timeline gatsby-theme-timeline-core theme-ui
+npm install gatsby-theme-timeline theme-ui
 ```
 
 2. Add the configuration to your `gatsby-config.js` file

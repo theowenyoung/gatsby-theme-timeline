@@ -12,7 +12,7 @@ This is a repo for Gatsby's timeline theme, with the theme, you can show all you
 
     ```shell
     # create a new Gatsby site using the timeline blog theme starter
-    gatsby new my-themed-blog https://github.com/gatsbyjs/gatsby-starter-timeline
+    gatsby new my-themed-blog https://github.com/theowenyoung/gatsby-starter-timeline
     ```
 
 1.  **Create twitter credentials**
