@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.27](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-starter-timeline@0.1.26...gatsby-starter-timeline@0.1.27) (2020-11-06)
+
+### Features
+
+- add gatsby-source-twitter support ([34a3310](https://github.com/theowenyoung/gatsby-theme-timeline/commit/34a331042fc4033e810c8e3649736cd95f354dce))
+
 ## [0.1.26](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-starter-timeline@0.1.25...gatsby-starter-timeline@0.1.26) (2020-10-29)
 
 **Note:** Version bump only for package gatsby-starter-timeline

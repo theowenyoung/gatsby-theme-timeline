@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.28](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-theme-timeline@0.1.27...gatsby-theme-timeline@0.1.28) (2020-11-06)
+
+### Features
+
+- add gatsby-source-twitter support ([34a3310](https://github.com/theowenyoung/gatsby-theme-timeline/commit/34a331042fc4033e810c8e3649736cd95f354dce))
+
 ## [0.1.27](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-theme-timeline@0.1.26...gatsby-theme-timeline@0.1.27) (2020-10-29)
 
 ### Bug Fixes
