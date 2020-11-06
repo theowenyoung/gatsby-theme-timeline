@@ -43,6 +43,8 @@ This is a repo for Gatsby's timeline theme, with the theme, you can show all you
 
     To get started, check out the guide to [using the Gatsby blog theme starter](https://gatsbyjs.com/docs/themes/using-a-gatsby-theme), or the longer, [more detailed tutorial](https://gatsbyjs.com/tutorial/using-a-theme).
 
+For exist site, see [here](https://github.com/theowenyoung/gatsby-theme-timeline/tree/main/packages/gatsby-theme-timeline#readme)
+
 ## 🧐 What's inside?
 
 Here are the top-level files and directories you'll see in a site created using the timeline blog theme starter:
