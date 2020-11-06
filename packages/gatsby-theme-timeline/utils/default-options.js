@@ -2,7 +2,7 @@ const withDefaults = require(`gatsby-theme-blog-core/utils/default-options`)
 const _ = require(`lodash`)
 module.exports = (themeOptions) => {
   const baseOptions = withDefaults(themeOptions)
-  const tweetTypeName = themeOptions.tweetTypeName || `TweetsJson`
+  const tweetTypeName = themeOptions.tweetTypeName || [`TweetsJson`]
   const postsPerPage = themeOptions.postsPerPage || 15
   const preset = themeOptions.preset || `gatsby-theme-ui-timeline-preset`
   const prismPreset = themeOptions.prismPreset || `github`

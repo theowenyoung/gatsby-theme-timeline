@@ -268,7 +268,14 @@ exports.onCreateNode = async (
   const { createNode, createParentChildLink, createNodeField } = actions
   const { tweetTypeName, basePath } = withDefaults(themeOptions)
   const { contentPath } = withCoreDefaults(themeOptions)
-  if (node.internal.type === tweetTypeName) {
+  let allWweetsTypeName = []
+  if (typeof tweetTypeName === `string`) {
+    allWweetsTypeName.push(tweetTypeName)
+  } else if (Array.isArray(tweetTypeName)) {
+    allWweetsTypeName = tweetTypeName
+  }
+
+  if (allWweetsTypeName.includes(node.internal.type)) {
     const date = moment(
       node.created_at,
       `dd MMM DD HH:mm:ss ZZ YYYY`,

@@ -6517,6 +6517,11 @@ deep-equal@^1.0.1, deep-equal@^1.1.0:
     object-keys "^1.1.1"
     regexp.prototype.flags "^1.2.0"
 
+deep-extend@^0.5.0:
+  version "0.5.1"
+  resolved "https://registry.npmjs.org/deep-extend/-/deep-extend-0.5.1.tgz#b894a9dd90d3023fbf1c55a394fb858eb2066f1f"
+  integrity sha512-N8vBdOa+DF7zkRrDCsaOXoCs/E2fJfx9B9MrKnnSiHNh4ws7eSys6YQE4KvT1cecKmOASYQBhbKjeuDD9lT81w==
+
 deep-extend@^0.6.0:
   version "0.6.0"
   resolved "https://registry.npmjs.org/deep-extend/-/deep-extend-0.6.0.tgz#c4fa7c95404a17a9c3e8ca7e1537312b736330ac"
@@ -8755,6 +8760,13 @@ gatsby-source-filesystem@^2.3.22:
     read-chunk "^3.2.0"
     valid-url "^1.0.9"
     xstate "^4.13.0"
+
+gatsby-source-twitter@^3.2.2:
+  version "3.2.2"
+  resolved "https://registry.npmjs.org/gatsby-source-twitter/-/gatsby-source-twitter-3.2.2.tgz#e31da9f6ba4ca5e069bb3cc20fe7e37599a5a1ca"
+  integrity sha512-fuv8yL/KDlHFb+eb+y+1Mfm4lPEw8rjKfQ1UojSSD6H3xTQpx7CQINd1sVrpJH1n6OUYLkUQcwRwL3pIKBKifg==
+  dependencies:
+    twitter "^1.7.1"
 
 gatsby-telemetry@^1.3.38:
   version "1.3.38"
@@ -15423,7 +15435,7 @@ request-progress@^3.0.0:
   dependencies:
     throttleit "^1.0.0"
 
-request@^2.83.0, request@^2.88.0:
+request@^2.72.0, request@^2.83.0, request@^2.88.0:
   version "2.88.2"
   resolved "https://registry.npmjs.org/request/-/request-2.88.2.tgz#d73c918731cb5a87da047e207234146f664d12b3"
   integrity sha512-MsvtOrfG9ZcrOwAW+Qi+F6HbD0CWXEh9ou77uOb7FM2WPhwT7smM833PzanhJLsgXjN89Ir6V2PczXNnMpwKhw==
@@ -17495,6 +17507,14 @@ twemoji@^13.0.1:
     jsonfile "^5.0.0"
     twemoji-parser "13.0.0"
     universalify "^0.1.2"
+
+twitter@^1.7.1:
+  version "1.7.1"
+  resolved "https://registry.npmjs.org/twitter/-/twitter-1.7.1.tgz#0762378f1dc1c050e48f666aca904e24b1a962f4"
+  integrity sha1-B2I3jx3BwFDkj2ZqypBOJLGpYvQ=
+  dependencies:
+    deep-extend "^0.5.0"
+    request "^2.72.0"
 
 type-check@~0.3.2:
   version "0.3.2"
