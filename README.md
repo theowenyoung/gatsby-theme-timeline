@@ -1,53 +1,109 @@
 # Gatsby Theme Timeline
 
-> WIP
+This is a repo for Gatsby's timeline theme, with the theme, you can show all your posts, tweets at one timeline.
 
-> This theme has not finished now
+![Screen](https://i.imgur.com/qtXnwLQ.png)
 
-This is a repo for Gatsby's timeline theme.
+## 🚀 Quick start
 
-- [`gatsby-theme-timeline`](https://github.com/theowenyoung/gatsby-theme-timeline/tree/main/packages/gatsby-theme-timeline)
-- [`gatsby-theme-ui-timeline-preset`](https://github.com/theowenyoung/gatsby-theme-timeline/tree/main/packages/gatsby-theme-ui-timeline-preset)
+1.  **Create a Gatsby site.**
 
-## Installation
+    Use the Gatsby CLI to create a new site, specifying the timeline blog theme starter.
 
-Clone the repository and `cd` into it
+    ```shell
+    # create a new Gatsby site using the timeline blog theme starter
+    gatsby new my-themed-blog https://github.com/gatsbyjs/gatsby-starter-timeline
+    ```
 
-```sh
-git clone https://github.com/theowenyoung/gatsby-theme-timeline
-cd gatsby-theme-timeline
+1.  **Create twitter credentials**
+
+    Optional, if you want to add your tweets to blog, create `.env` with the following content:
+
+    ```ini
+    TWITTER_CONSUMER_KEY=xx
+    TWITTER_CONSUMER_SECRET=xx
+    TWITTER_ACCESS_TOKEN=xx
+    TWITTER_ACCESS_SECRET=xx
+    ```
+
+    Then, uncomment `gatsby-config.js` plugin `gatsby-source-twitter`
+
+1.  **Start developing.**
+
+    Navigate into your new site’s directory and start it up.
+
+    ```shell
+    cd my-themed-blog/
+    gatsby develop
+    ```
+
+1.  **Open the code and start customizing!**
+
+    Your site is now running at `http://localhost:8000`!
+
+    To get started, check out the guide to [using the Gatsby blog theme starter](https://gatsbyjs.com/docs/themes/using-a-gatsby-theme), or the longer, [more detailed tutorial](https://gatsbyjs.com/tutorial/using-a-theme).
+
+## 🧐 What's inside?
+
+Here are the top-level files and directories you'll see in a site created using the timeline blog theme starter:
+
+```text
+gatsby-starter-timeline
+├── content
+│   ├── assets
+│   │   └── avatar.png
+│   └── posts
+│       ├── hello-world.mdx
+│       └── my-second-post.mdx
+├── src
+│   └── gatsby-theme-timeline
+│       ├── components
+│       │   └── bio-content.js
+│       └── gatsby-theme-ui
+│           └── colors.js
+├── .gitignore
+├── .prettierrc
+├── gatsby-config.js
+├── LICENSE
+├── package-lock.json
+├── package.json
+└── README.md
 ```
 
-Install dependencies
+1.  **`/content`**: A content folder holding assets that the theme expects to exist. This will vary from theme to theme -- this starter is set up to get you started with the timeline blog theme, which expects an image asset for your avatar, and blog post content. Replace the avatar image file, delete the demo posts, and add your own!
 
-```sh
-yarn
-```
+2.  **`/src`**: You will probably want to customize your site to personalize it. The files under `/src/gatsby-theme-blog` _shadow_, or override, the files of the same name in the `gatsby-theme-blog` package. To learn more about this, check out the [guide to getting started with using the timeline blog theme starter](https://gatsbyjs.com/docs/themes/using-a-gatsby-theme).
 
-## Development
+3.  **`.gitignore`**: This file tells git which files it should not track / not maintain a version history for.
 
-Run the `gatsby-starter-theme` workspace
+4.  **`.prettierrc`**: This file tells [Prettier](https://prettier.io/) which configuration it should use to lint files.
 
-```sh
-yarn start
-```
+5.  **`gatsby-config.js`**: This is the main configuration file for a Gatsby site. This is where you can specify information about your site (metadata) like the site title and description, which Gatsby plugins you’d like to include, etc. When using themes, it's where you'll include the theme plugin, and any customization options the theme provides.
 
-## Testing
+6.  **`LICENSE`**: This Gatsby starter is licensed under the 0BSD license. This means that you can see this file as a placeholder and replace it with your own license.
 
-This repository is set up with Cypress tests that run automatically in GitHub. If you'd like to run them locally you can do so in develop mode or build mode.
+7.  **`package-lock.json`** (See `package.json` below, first). This is an automatically generated file based on the exact versions of your npm dependencies that were installed for your project. **(You won’t change this file directly).**
 
-For develop mode:
+8.  **`package.json`**: A manifest file for Node.js projects, which includes things like metadata (the project’s name, author, etc). This manifest is how npm knows which packages to install for your project.
 
-```sh
-yarn e2e:dev
-```
+9.  **`README.md`**: A text file containing useful reference information about your project.
 
-For build mode:
+## Full Screen
 
-```sh
-yarn e2e:ci
-```
+![Full](https://i.imgur.com/XfXuCRJ.png)
 
-## License
+## 🎓 Learning Gatsby
 
-MIT
+Looking for more guidance? Full documentation for Gatsby lives [on the website](https://www.gatsbyjs.com/).
+
+Here are some places to start:
+
+### Themes
+
+- To learn more about Gatsby themes specifically, we recommend checking out the [theme docs](https://www.gatsbyjs.com/docs/themes/).
+
+### General
+
+- **For most developers, we recommend starting with our [in-depth tutorial for creating a site with Gatsby](https://www.gatsbyjs.com/tutorial/).** It starts with zero assumptions about your level of ability and walks through every step of the process.
+
+- **To dive straight into code samples, head [to our documentation](https://www.gatsbyjs.com/docs/).** In particular, check out the _Reference Guides_ and _Gatsby API_ sections in the sidebar.

@@ -3,12 +3,11 @@ const _ = require(`lodash`)
 module.exports = (themeOptions) => {
   const baseOptions = withDefaults(themeOptions)
   const tweetTypeName = themeOptions.tweetTypeName || [`TweetsJson`]
-  const postsPerPage = themeOptions.postsPerPage || 15
+  const postsPerPage = themeOptions.postsPerPage || 25
   const preset = themeOptions.preset || `gatsby-theme-ui-timeline-preset`
   const prismPreset = themeOptions.prismPreset || `github`
   const shouldTransformJson = themeOptions.shouldTransformJson || true
   const dataPath = themeOptions.dataPath || `data`
-  const timelineMdxOtherwiseConfigured = themeOptions.dataPath || false
   const imageMaxWidth = themeOptions.imageMaxWidth || 1024
   const postsFilter = themeOptions.postsFilter || {}
   const jsonTransformerOptions = {
@@ -25,7 +24,6 @@ module.exports = (themeOptions) => {
     dataPath,
     postsFilter,
     shouldTransformJson,
-    timelineMdxOtherwiseConfigured,
     imageMaxWidth,
     ...baseOptions,
     jsonTransformerOptions: {

@@ -10,6 +10,8 @@
 
 A Gatsby theme for creating a blog.
 
+![Screen](https://i.imgur.com/qtXnwLQ.png)
+
 ## Installation
 
 ### For a new site
@@ -51,9 +53,45 @@ module.exports = {
 
    > Note that if you've changed the default `contentPath` in the configuration, you'll want to add your markdown files in the directory specified by that path.
 
-4. Add tweets to your site by creating `.json` files inside `/data/tweets`.
+4. Add tweets to your site, there are 2 ways for adding tweets:
 
-   > Note that if you've changed the default `dataPath` in the configuration, you'll want to add your json files in the directory specified by that path.
+   1. by creating `.json` files inside `/data/tweets`.
+
+   1. use [`gatsby-source-twitter`](https://www.gatsbyjs.com/plugins/gatsby-source-twitter/), for example:
+
+   ```javascript
+   {
+     plugins: [
+       {
+         resolve: `gatsby-source-twitter`,
+         options: {
+           credentials: {
+             consumer_key: process.env.TWITTER_CONSUMER_KEY,
+             consumer_secret: process.env.TWITTER_CONSUMER_SECRET,
+             access_token_key: process.env.TWITTER_ACCESS_TOKEN,
+             access_token_secret: process.env.TWITTER_ACCESS_SECRET,
+           },
+           queries: {
+             MyTweet: {
+               endpoint: "statuses/user_timeline",
+               params: {
+                 screen_name: "TheOwenYoung",
+                 include_rts: true,
+                 tweet_mode: "extended",
+               },
+             },
+           },
+         },
+       },
+       {
+         resolve: `gatsby-theme-timeline`,
+         options: {
+           tweetTypeName: ["TweetsJson", "twitterStatusesUserTimelineMyTweet"],
+         },
+       },
+     ]
+   }
+   ```
 
 5. Add an image with the file name `avatar` (can be jpg or png) inside the `/assets` directory to include a small image next to the footer on every post page.
 
@@ -71,12 +109,16 @@ module.exports = {
 | `contentPath`            | `content/posts`          | Location of blog posts                                                                                                                                                                                                            |
 | `dataPath`               | `data/tweets`            | Location of tweets                                                                                                                                                                                                                |
 | `assetPath`              | `content/assets`         | Location of assets                                                                                                                                                                                                                |
+| `tweetTypeName`          | `['TweetsJson']`         | Tweet type name ,`string[]` or `string`                                                                                                                                                                                           |
+| `postsPerPage`           | `25`                     | size per page                                                                                                                                                                                                                     |
 | `mdxOtherwiseConfigured` | `false`                  | Set this flag `true` if `gatsby-plugin-mdx` is already configured for your site.                                                                                                                                                  |
 | `preset`                 | `gatsby-theme-ui-preset` | Theme UI compatible package name that will act as the base styles for your project. Be sure to install the package you're referencing. Set to `false` to ignore all presets and only use local styles.                            |
 | `prismPreset`            | `null`                   | Theme UI compatible package name that will act as the prism syntax highlighting for your project. Be sure to install the package you're referencing. For themes in `@theme-ui/prism` the name will suffice, e.g. `prism-okaidia`. |
 | `excerptLength`          | `140`                    | Length of the auto-generated excerpt of a blog post                                                                                                                                                                               |
 | `webfontURL`             | `''`                     | URL for the webfont you'd like to include. Be sure that your local theme does not override it.                                                                                                                                    |
 | `imageMaxWidth`          | `1024`                   | Set the max width of images in your blog posts. This applies to your featured image in frontmatter as well.                                                                                                                       |
+
+More options see [`utils/default-options.js`](utils/default-options.js)
 
 #### Example configuration
 
