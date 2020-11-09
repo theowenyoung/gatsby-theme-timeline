@@ -24,6 +24,7 @@ module.exports = (themeOptions) => {
       },
       `gatsby-plugin-react-helmet`,
       `gatsby-plugin-twitter`,
+      `gatsby-plugin-reddit`,
       `gatsby-plugin-emotion`,
       {
         resolve: `gatsby-plugin-theme-ui`,

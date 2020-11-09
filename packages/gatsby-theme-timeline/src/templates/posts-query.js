@@ -5,7 +5,7 @@ export default PostsPage
 
 export const query = graphql`
   query ItemsPostsQuery(
-    $maxWidth: Int!
+    $maxHeight: Int!
     $skip: Int!
     $limit: Int!
     $filter: BlogPostFilterInput
@@ -41,16 +41,30 @@ export const query = graphql`
         slug
         title
         date(formatString: "MMMM DD, YYYY")
+        dateISO: date
+        datetime: date(formatString: "YYYY-MM-DD HH:mm")
         tags
         image {
           childImageSharp {
-            fluid(maxWidth: $maxWidth) {
+            fluid(maxHeight: $maxHeight) {
               ...GatsbyImageSharpFluid
               src
             }
           }
         }
         imageAlt
+        ... on RedditPost {
+          video
+          videoWidth
+          videoHeight
+          permalink
+          isSelf
+          postHint
+          isVideo
+          subreddit
+          authorName
+          url
+        }
         ... on TweetPost {
           idStr
           retweeted
@@ -67,7 +81,7 @@ export const query = graphql`
           }
           quoteImage {
             childImageSharp {
-              fluid(maxWidth: $maxWidth) {
+              fluid(maxHeight: $maxHeight) {
                 ...GatsbyImageSharpFluid
                 src
               }

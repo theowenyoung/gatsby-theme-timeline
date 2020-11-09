@@ -27,6 +27,8 @@ export const query = graphql`
       title
       tags
       date(formatString: "MMMM DD, YYYY")
+      dateISO: date
+      datetime: date(formatString: "YYYY-MM-DD HH:mm")
       image {
         childImageSharp {
           fluid(maxWidth: $maxWidth) {
@@ -44,8 +46,49 @@ export const query = graphql`
           }
         }
       }
+      ... on RedditPost {
+        video
+        videoWidth
+        videoHeight
+        permalink
+        isSelf
+        postHint
+        isVideo
+        subreddit
+        authorName
+        url
+      }
       ... on TweetPost {
         idStr
+        retweeted
+        isQuoteStatus
+        quoteBody
+        quoteAuthorName
+        quoteAuthorScreenName
+        quoteAuthorAvatar {
+          childImageSharp {
+            fixed(width: 24, height: 24) {
+              ...GatsbyImageSharpFixed
+            }
+          }
+        }
+        quoteImage {
+          childImageSharp {
+            fluid(maxWidth: $maxWidth) {
+              ...GatsbyImageSharpFluid
+              src
+            }
+          }
+        }
+        authorName
+        authorScreenName
+        authorAvatar {
+          childImageSharp {
+            fixed(width: 48, height: 48) {
+              ...GatsbyImageSharpFixed
+            }
+          }
+        }
         fields {
           basePath
         }

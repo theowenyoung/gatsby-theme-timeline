@@ -59,7 +59,7 @@ const Tweet = ({
       </Flex>
 
       <div>
-        <Box sx={{ fontSize: 2, py: 2 }}>{body}</Box>
+        <Box sx={{ fontSize: 1, py: 2, whiteSpace: `pre-line` }}>{body}</Box>
         <Hero post={{ image: image, imageAlt: imageAlt, excerpt }}></Hero>
         {isQuoteStatus && (
           <div

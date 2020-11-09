@@ -29,7 +29,7 @@ module.exports = {
     {
       resolve: `gatsby-theme-timeline`,
       options: {
-        postsPerPage: 5,
+        // postsPerPage: 5,
         tweetTypeName: ["TweetsJson", "twitterStatusesUserTimelineMyTweet"],
         // basePath: "/test",
         // postsFilter: {

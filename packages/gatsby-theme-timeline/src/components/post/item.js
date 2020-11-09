@@ -5,17 +5,10 @@ import Tag from "./tag"
 import kebabCase from "lodash/kebabCase"
 import Hero from "./hero"
 import * as urlJoin from "url-join"
+import ItemExcerpt from "./item-excerpt"
 
-const Item = ({
-  title,
-  slug,
-  date,
-  excerpt,
-  tags,
-  image,
-  imageAlt,
-  basePath,
-}) => {
+const Item = (post) => {
+  const { title, slug, date, excerpt, tags, image, imageAlt, basePath } = post
   return (
     <Box
       sx={{
@@ -34,11 +27,11 @@ const Item = ({
       {title && (
         <header>
           <LinkUI sx={{ color: `text` }} as={Link} to={slug}>
-            <Styled.h3>{title}</Styled.h3>
+            <Styled.h3 sx={{ fontWeight: `normal` }}>{title}</Styled.h3>
           </LinkUI>
         </header>
       )}
-      <Styled.p sx={{ fontSize: 2 }}>{excerpt}</Styled.p>
+      <ItemExcerpt {...post}></ItemExcerpt>
       <footer>
         {tags && tags.length > 0 && (
           <Styled.div

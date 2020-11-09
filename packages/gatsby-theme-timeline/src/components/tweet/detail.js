@@ -1,18 +1,23 @@
 /** @jsx jsx */
-import { Tweet } from "react-twitter-widgets"
-import { jsx, Alert } from "theme-ui"
-
-const Detail = ({ idStr, ...post }) => {
+import { jsx, Styled } from "theme-ui"
+import processTweetString from "./process-tweet-string"
+import Hero from "./hero"
+const Detail = (post) => {
+  const { idStr, datetime, authorName, authorScreenName } = post
+  const body = processTweetString(post.body)
   return (
-    <Tweet
-      tweetId={idStr}
-      renderError={(_err) => {
-        return <Alert>{`${_err}`}</Alert>
-      }}
-      options={{
-        dnt: true,
-      }}
-    />
+    <Styled.div sx={{ maxWidth: `550px`, fontSize: 2 }}>
+      <Styled.blockquote className="twitter-tweet">
+        <Styled.p>{body}</Styled.p>
+        <Hero post={post}></Hero>
+        &mdash; {authorName} (@{authorScreenName}){` `}
+        <Styled.a
+          href={`https://twitter.com/${authorScreenName}/status/${idStr}`}
+        >
+          {datetime}
+        </Styled.a>
+      </Styled.blockquote>
+    </Styled.div>
   )
 }
 export default Detail

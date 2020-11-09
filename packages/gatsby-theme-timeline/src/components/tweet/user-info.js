@@ -8,7 +8,11 @@ const UserInfo = ({ name, screenName, avatar }) => {
   }
   return (
     <Flex>
-      <Link href={`https://twitter.com/${screenName}`}>
+      <Link
+        target="_blank"
+        rel="noopener noreferrer"
+        href={`https://twitter.com/${screenName}`}
+      >
         {avatar?.childImageSharp && (
           <Image
             fixed={avatar.childImageSharp.fixed}
@@ -23,7 +27,11 @@ const UserInfo = ({ name, screenName, avatar }) => {
           />
         )}
       </Link>
-      <Link href={`https://twitter.com/${screenName}`}>
+      <Link
+        target="_blank"
+        rel="noopener noreferrer"
+        href={`https://twitter.com/${screenName}`}
+      >
         <Box sx={{ fontWeight: `bold` }}>
           <Text sx={{ color: `text` }}>{name}</Text>
         </Box>

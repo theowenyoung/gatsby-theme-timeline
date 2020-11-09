@@ -12,7 +12,7 @@ import Pagination from "./pagination"
 import ItemsTitle from "./items-title"
 import * as urlJoin from "url-join"
 import kebabCase from "lodash/kebabCase"
-
+import itemFormat from "./item-format"
 const Items = ({ location, data, pageContext }) => {
   const { pageType, tag, currentPage, totalPages, basePath } = pageContext
   const items = data.allBlogPost.nodes
@@ -38,7 +38,7 @@ const Items = ({ location, data, pageContext }) => {
               <ItemBox
                 key={`item-box-${index}`}
                 basePath={basePath}
-                {...item}
+                {...itemFormat(item)}
               ></ItemBox>
             )
           })}

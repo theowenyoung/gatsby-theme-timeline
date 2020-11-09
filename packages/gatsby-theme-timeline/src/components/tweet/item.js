@@ -15,7 +15,7 @@ const Item = ({
   authorAvatar,
   image,
   slug,
-  date,
+  datetime,
   idStr,
   tags,
   retweeted,
@@ -34,7 +34,7 @@ const Item = ({
     authorAvatar,
     image,
     slug,
-    date,
+    datetime,
     idStr,
     tags,
     retweeted,
@@ -82,7 +82,7 @@ const Item = ({
           </Styled.div>
         )}
         <section>
-          <TweetDate slug={slug} date={date}></TweetDate>
+          <TweetDate slug={slug} date={datetime}></TweetDate>
           <span sx={{ color: `textMuted` }}> · </span>
           <ViewOnTwitter
             href={`https://twitter.com/${authorScreenName}/status/${idStr}`}

@@ -12,6 +12,7 @@
     "bs": "lerna link",
     "lint": "prettier \"**/*.{md,yaml,yml}\" --write",
     "start": "yarn workspace gatsby-starter-timeline start",
+    "serve": "yarn workspace gatsby-starter-timeline serve",
     "build": "yarn workspace gatsby-starter-timeline build",
     "clean": "yarn workspace gatsby-starter-timeline clean",
     "deploy": "npm run build && surge starters/gatsby-starter-timeline/public",

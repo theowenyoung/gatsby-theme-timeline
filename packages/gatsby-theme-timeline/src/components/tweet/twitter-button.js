@@ -5,7 +5,12 @@ import { TWEET_LINK_COLOR } from "./constans"
 const TweetButton = ({ to }) => {
   return (
     <div sx={{ flex: 1, position: `relative` }}>
-      <Link href={to} sx={{ position: `absolute`, right: 0, top: 0 }}>
+      <Link
+        target="_blank"
+        rel="noopener noreferrer"
+        href={to}
+        sx={{ position: `absolute`, right: 0, top: 0 }}
+      >
         <svg
           sx={{
             width: `25px`,

@@ -7,8 +7,14 @@ const moment = require(`moment`)
 const debug = require(`debug`)
 const fs = require(`fs`)
 const debugTheme = debug(`gatsby-theme-timeline-core`)
+const { htmlToText } = require(`html-to-text`)
 const { truncate } = require(`./utils/truncate`)
-const { TWEET_TYPE_NAME, TITLE_LENGTH } = require(`./utils/constans`)
+const {
+  TWEET_TYPE_NAME,
+  REDDIT_TYPE_NAME,
+  TITLE_LENGTH,
+  EXCERPT_LENGTH,
+} = require(`./utils/constans`)
 const { createRemoteFileNode } = require(`gatsby-source-filesystem`)
 const { createContentDigest, urlResolve } = require(`gatsby-core-utils`)
 // Ensure that content directories exist at site-level
@@ -56,6 +62,28 @@ exports.createSchemaCustomization = ({ actions }) => {
       quoteAuthorScreenName: String
       quoteAuthorAvatar: File
       quoteImage: File
+    }
+    type ${REDDIT_TYPE_NAME} implements BlogPost & Node @dontInfer {
+      id: ID!
+      title: String!
+      body: String!
+      slug: String!
+      date: Date! @dateformat
+      tags: [String]!
+      excerpt: String!
+      image: File
+      imageAlt: String
+      socialImage: File
+      permalink: String!
+      authorName: String!
+      video: String
+      videoWidth: Int
+      videoHeight: Int
+      subreddit: String!
+      isSelf: Boolean!
+      isVideo: Boolean!
+      postHint: String
+      url: String
     }
   `)
 }
@@ -116,6 +144,20 @@ exports.createResolvers = ({ createResolvers }) => {
         },
       },
     },
+    [REDDIT_TYPE_NAME]: {
+      fields: {
+        type: `Fields`,
+      },
+      image: {
+        resolve: (source, _, context, __) => {
+          if (source.image___NODE) {
+            return context.nodeModel.getNodeById({
+              id: source.image___NODE,
+            })
+          }
+        },
+      },
+    },
   }
   createResolvers(resolvers)
 }
@@ -145,9 +187,13 @@ exports.sourceNodes = (
 
 exports.createPages = async ({ graphql, actions, reporter }, themeOptions) => {
   const { createPage } = actions
-  const { basePath, imageMaxWidth, postsPerPage, postsFilter } = withDefaults(
-    themeOptions
-  )
+  const {
+    basePath,
+    imageMaxWidth,
+    imageMaxHeight,
+    postsPerPage,
+    postsFilter,
+  } = withDefaults(themeOptions)
 
   // These templates are simply data-fetching wrappers that import components
   // const ItemTemplate = require.resolve(`./src/templates/post-query`)
@@ -208,6 +254,7 @@ exports.createPages = async ({ graphql, actions, reporter }, themeOptions) => {
         total: total,
         currentPage: i + 1,
         maxWidth: imageMaxWidth,
+        maxHeight: imageMaxHeight,
       },
     })
   })
@@ -253,6 +300,7 @@ exports.createPages = async ({ graphql, actions, reporter }, themeOptions) => {
           totalPages: tagTotalPages,
           currentPage: i + 1,
           maxWidth: imageMaxWidth,
+          maxHeight: imageMaxHeight,
         },
       })
     })
@@ -266,16 +314,21 @@ exports.onCreateNode = async (
   themeOptions
 ) => {
   const { createNode, createParentChildLink, createNodeField } = actions
-  const { tweetTypeName, basePath } = withDefaults(themeOptions)
+  const { tweetTypeName, redditTypeName, basePath } = withDefaults(themeOptions)
   const { contentPath } = withCoreDefaults(themeOptions)
-  let allWweetsTypeName = []
+  let allTweetsTypeName = []
   if (typeof tweetTypeName === `string`) {
-    allWweetsTypeName.push(tweetTypeName)
+    allTweetsTypeName.push(tweetTypeName)
   } else if (Array.isArray(tweetTypeName)) {
-    allWweetsTypeName = tweetTypeName
+    allTweetsTypeName = tweetTypeName
   }
-
-  if (allWweetsTypeName.includes(node.internal.type)) {
+  let allRedditTypeName = []
+  if (typeof tweetTypeName === `string`) {
+    allRedditTypeName.push(redditTypeName)
+  } else if (Array.isArray(redditTypeName)) {
+    allRedditTypeName = redditTypeName
+  }
+  if (allTweetsTypeName.includes(node.internal.type)) {
     const date = moment(
       node.created_at,
       `dd MMM DD HH:mm:ss ZZ YYYY`,
@@ -407,6 +460,111 @@ exports.onCreateNode = async (
     // createNodeField
     createNodeField({
       node: getNode(tweetNodeId),
+      name: `basePath`,
+      value: basePath,
+    })
+  }
+  if (allRedditTypeName.includes(node.internal.type)) {
+    const date = new Date(node.created_utc * 1000).toISOString()
+    const authorName = node.author
+    let text = ``
+    if (node.selftext_html) {
+      text = htmlToText(node.selftext_html, {
+        tags: {
+          a: {
+            options: {
+              hideLinkHrefIfSameAsText: true,
+            },
+          },
+        },
+      })
+    }
+    const tags = [node.subreddit]
+    if (node.link_flair_text) {
+      tags.push(node.link_flair_text)
+    }
+    const excerpt = truncate(text, EXCERPT_LENGTH)
+    const fieldData = {
+      title: node.title,
+      excerpt: excerpt,
+      body: node.selftext_html || ``,
+      tags: tags,
+      slug: urlResolve(basePath, `reddit${node.permalink}`),
+      date: date,
+      authorName,
+      subreddit: node.subreddit,
+      permalink: node.permalink,
+      isSelf: node.is_self,
+      isVideo: node.is_video,
+      url: node.url_overridden_by_dest,
+      postHint: node.post_hint,
+    }
+    // add tweet tag
+    if (!fieldData.tags.includes(`reddit`)) {
+      fieldData.tags.push(`reddit`)
+    }
+    if (
+      node.media &&
+      node.media.reddit_video &&
+      node.media.reddit_video.hls_url
+    ) {
+      fieldData.video = node.media.reddit_video.fallback_url
+      fieldData.videoWidth = node.media.reddit_video.width
+      fieldData.videoHeight = node.media.reddit_video.height
+    } else if (
+      node.preview &&
+      node.preview.images &&
+      node.preview.images[0] &&
+      node.preview.images[0].variants &&
+      node.preview.images[0].variants.mp4 &&
+      node.preview.images[0].variants.mp4.source &&
+      node.preview.images[0].variants.mp4.source.url
+    ) {
+      // gif
+      fieldData.video = node.preview.images[0].variants.mp4.source.url
+      fieldData.videoWidth = node.preview.images[0].variants.mp4.source.width
+      fieldData.videoHeight = node.preview.images[0].variants.mp4.source.height
+    } else if (
+      node.preview &&
+      node.preview.images &&
+      node.preview.images[0] &&
+      node.preview.images[0].source &&
+      node.preview.images[0].source.url
+    ) {
+      fieldData.imageAlt = `Reddit Image`
+      // create a file node for image URLs
+      const remoteFileNode = await createRemoteFileNode({
+        url: node.preview.images[0].source.url,
+        parentNodeId: node.id,
+        createNode,
+        createNodeId,
+        cache,
+        store,
+      })
+      // if the file was created, attach the new node to the parent node
+      if (remoteFileNode) {
+        fieldData.image___NODE = remoteFileNode.id
+      }
+    }
+
+    const redditNodeId = `${REDDIT_TYPE_NAME}-${node.id}`
+    await createNode({
+      ...fieldData,
+      // Required fields.
+      id: redditNodeId,
+      parent: node.id,
+      children: [],
+      internal: {
+        type: REDDIT_TYPE_NAME,
+        contentDigest: createContentDigest(fieldData),
+        content: JSON.stringify(fieldData),
+        description: `${REDDIT_TYPE_NAME} of the Item interface`,
+      },
+    })
+    createParentChildLink({ parent: node, child: getNode(redditNodeId) })
+    // createNodeField
+    createNodeField({
+      node: getNode(redditNodeId),
       name: `basePath`,
       value: basePath,
     })
