@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.31](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-theme-timeline@0.1.30...gatsby-theme-timeline@0.1.31) (2020-11-09)
+
+### Bug Fixes
+
+- delete index page created by core ([5ea1dfd](https://github.com/theowenyoung/gatsby-theme-timeline/commit/5ea1dfd7701278f8d77f8cb249d063c1061d3847))
+
 ## [0.1.30](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-theme-timeline@0.1.29...gatsby-theme-timeline@0.1.30) (2020-11-09)
 
 ### Bug Fixes
