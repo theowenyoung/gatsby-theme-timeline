@@ -17,6 +17,7 @@ const {
 } = require(`./utils/constans`)
 const { createRemoteFileNode } = require(`gatsby-source-filesystem`)
 const { createContentDigest, urlResolve } = require(`gatsby-core-utils`)
+let indexPage = null
 // Ensure that content directories exist at site-level
 exports.onPreBootstrap = ({ store }, themeOptions) => {
   const { program } = store.getState()
@@ -240,7 +241,7 @@ exports.createPages = async ({ graphql, actions, reporter }, themeOptions) => {
   const total = posts.length
   // create posts pages
   Array.from({ length: totalPages }).forEach((_, i) => {
-    createPage({
+    const pageInfo = {
       path: i === 0 ? `${basePath}` : urlResolve(basePath, `page/${i + 1}`),
       component: ItemsTemplate,
       context: {
@@ -256,7 +257,11 @@ exports.createPages = async ({ graphql, actions, reporter }, themeOptions) => {
         maxWidth: imageMaxWidth,
         maxHeight: imageMaxHeight,
       },
-    })
+    }
+    if (i === 0) {
+      indexPage = pageInfo
+    }
+    createPage(pageInfo)
   })
 
   // Create tag Posts
@@ -582,5 +587,14 @@ exports.onCreateNode = async (
         value: basePath,
       })
     }
+  }
+}
+exports.onCreatePage = function ({ page, actions }, themeOptions) {
+  const { basePath } = withDefaults(themeOptions)
+  const { createPage, deletePage } = actions
+
+  if (page.path === basePath && indexPage) {
+    deletePage(page)
+    createPage(indexPage)
   }
 }
