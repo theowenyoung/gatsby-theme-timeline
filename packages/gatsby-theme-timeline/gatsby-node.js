@@ -593,8 +593,7 @@ exports.onCreateNode = async (
 exports.onCreatePage = function ({ page, actions }, themeOptions) {
   const { basePath } = withDefaults(themeOptions)
   const { createPage, deletePage } = actions
-
-  if (page.path === basePath && indexPage) {
+  if (!page.context.pageType && page.path === basePath && indexPage) {
     deletePage(page)
     createPage(indexPage)
   }
