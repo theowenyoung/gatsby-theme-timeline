@@ -260,6 +260,7 @@ exports.createPages = async ({ graphql, actions, reporter }, themeOptions) => {
     }
     if (i === 0) {
       indexPage = pageInfo
+      return
     }
     createPage(pageInfo)
   })
