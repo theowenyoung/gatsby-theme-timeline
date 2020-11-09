@@ -27,6 +27,7 @@ const Pagination = (props) => {
     itemTypeToComponent: itemTypeToComponent,
     WrapperComponent: Wrapper,
   })
+
   return <UltimatePagination {...props}></UltimatePagination>
 }
 export default Pagination

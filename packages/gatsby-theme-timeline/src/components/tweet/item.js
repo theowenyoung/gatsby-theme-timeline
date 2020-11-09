@@ -6,7 +6,7 @@ import { withPrefix } from "gatsby"
 import Tag from "./tag"
 import kebabCase from "lodash/kebabCase"
 import Tweet from "./tweet"
-import * as urlJoin from "url-join"
+import { join as urlJoin } from "path"
 
 const Item = ({
   excerpt,

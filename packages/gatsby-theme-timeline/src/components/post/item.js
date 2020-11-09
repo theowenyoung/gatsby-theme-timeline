@@ -4,7 +4,7 @@ import { Box, Link as LinkUI, jsx, Styled } from "theme-ui"
 import Tag from "./tag"
 import kebabCase from "lodash/kebabCase"
 import Hero from "./hero"
-import * as urlJoin from "url-join"
+import { join as urlJoin } from "path"
 import ItemExcerpt from "./item-excerpt"
 
 const Item = (post) => {

@@ -1,7 +1,7 @@
 import React from "react"
 import { Link, withPrefix } from "gatsby"
 import { Link as LinkUI, Text } from "theme-ui"
-import * as urlJoin from "url-join"
+import { join as urlJoin } from "path"
 export default function Page({ prefix }, props) {
   const isDisabled = props.disabled || props.isActive
   if (isDisabled) {

@@ -4,7 +4,7 @@ import { jsx, Box } from "theme-ui"
 export default function Video({ src, width, height, isVideo }) {
   if (isVideo) {
     return (
-      <Box>
+      <Box sx={{ maxWidth: `full` }}>
         <video
           preload="auto"
           controls
@@ -18,7 +18,7 @@ export default function Video({ src, width, height, isVideo }) {
     )
   }
   return (
-    <Box sx={{ display: `flex`, justifyContent: `center` }}>
+    <Box sx={{ display: `flex`, justifyContent: `center`, maxWidth: `full` }}>
       <video
         preload="auto"
         loop={true}
@@ -26,6 +26,7 @@ export default function Video({ src, width, height, isVideo }) {
         muted={true}
         width={width}
         height={height}
+        sx={{ maxWidth: `full` }}
       >
         <source src={src} />
       </video>

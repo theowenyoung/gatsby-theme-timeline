@@ -10,7 +10,7 @@ import ItemBox from "./item-box"
 import { Grid } from "theme-ui"
 import Pagination from "./pagination"
 import ItemsTitle from "./items-title"
-import * as urlJoin from "url-join"
+import path from "path"
 import kebabCase from "lodash/kebabCase"
 import itemFormat from "./item-format"
 const Items = ({ location, data, pageContext }) => {
@@ -47,7 +47,7 @@ const Items = ({ location, data, pageContext }) => {
             totalPages={totalPages}
             hideFirstAndLastPageLinks
             prefix={withPrefix(
-              urlJoin(
+              path.join(
                 basePath,
                 pageType === `tag` ? `tags/${kebabCase(tag)}` : ``
               )

@@ -35,12 +35,12 @@
     "gatsby-theme-ui-timeline-preset": "^0.1.9",
     "gatsby-transformer-json": "^2.4.14",
     "html-to-text": "^6.0.0",
+    "path": "^0.12.7",
     "react-helmet": "^5.2.1",
     "react-process-string": "^1.2.0",
     "react-twemoji": "^0.3.0",
     "react-ultimate-pagination": "^1.2.0",
-    "theme-ui": "^0.4.0-rc.5",
-    "url-join": "^4.0.1"
+    "theme-ui": "^0.4.0-rc.5"
   },
   "peerDependencies": {
     "gatsby": "^2.24.22",

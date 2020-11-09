@@ -1,7 +1,7 @@
 import React from "react"
 import { Link, withPrefix } from "gatsby"
 import { Link as LinkUI } from "theme-ui"
-import * as urlJoin from "url-join"
+import { join as urlJoin } from "path"
 
 export default function PreviousPageLink({ prefix }, props) {
   return (

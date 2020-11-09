@@ -4,7 +4,7 @@ import { css, Styled, Flex, jsx } from "theme-ui"
 import { withPrefix } from "gatsby"
 import kebabCase from "lodash/kebabCase"
 import Tag from "./tag"
-import * as urlJoin from "url-join"
+import { join as urlJoin } from "path"
 const PostFooter = ({ previous, next, tags, basePath }) => (
   <footer
     css={css({
@@ -26,7 +26,7 @@ const PostFooter = ({ previous, next, tags, basePath }) => (
             return (
               <Tag
                 to={withPrefix(
-                  urlJoin(basePath || "/", `tags/${kebabCase(tag)}`)
+                  urlJoin(basePath || `/`, `tags/${kebabCase(tag)}`)
                 )}
                 key={`tag-${tag}`}
               >
