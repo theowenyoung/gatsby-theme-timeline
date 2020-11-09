@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.28](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-starter-timeline@0.1.27...gatsby-starter-timeline@0.1.28) (2020-11-09)
+
+### Features
+
+- support reddit post ([291934b](https://github.com/theowenyoung/gatsby-theme-timeline/commit/291934b1d516daee712be36aaa422c0bfaeb1144))
+
 ## [0.1.27](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-starter-timeline@0.1.26...gatsby-starter-timeline@0.1.27) (2020-11-06)
 
 ### Features
