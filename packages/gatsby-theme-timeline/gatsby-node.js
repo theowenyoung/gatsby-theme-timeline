@@ -17,7 +17,7 @@ const {
 } = require(`./utils/constans`)
 const { createRemoteFileNode } = require(`gatsby-source-filesystem`)
 const { createContentDigest, urlResolve } = require(`gatsby-core-utils`)
-let indexPage = null
+const indexPages = {}
 // Ensure that content directories exist at site-level
 exports.onPreBootstrap = ({ store }, themeOptions) => {
   const { program } = store.getState()
@@ -259,7 +259,7 @@ exports.createPages = async ({ graphql, actions, reporter }, themeOptions) => {
       },
     }
     if (i === 0) {
-      indexPage = pageInfo
+      indexPages[basePath] = pageInfo
       return
     }
     createPage(pageInfo)
@@ -593,8 +593,12 @@ exports.onCreateNode = async (
 exports.onCreatePage = function ({ page, actions }, themeOptions) {
   const { basePath } = withDefaults(themeOptions)
   const { createPage, deletePage } = actions
-  if (!page.context.pageType && page.path === basePath && indexPage) {
+  if (
+    !page.context.pageType &&
+    page.path === basePath &&
+    indexPages[basePath]
+  ) {
     deletePage(page)
-    createPage(indexPage)
+    createPage(indexPages[basePath])
   }
 }
