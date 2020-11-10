@@ -24,18 +24,18 @@ const heading = (Tag) => (props) => (
   <Tag
     {...props}
     css={css({
-      a: {
-        visibility: `hidden`,
-      },
-      ":hover a": {
+      [`a`]: {},
+      [`:hover a#link-${props.id}`]: {
         visibility: `visible`,
       },
       pointerEvents: `painted`,
     })}
   >
     <a
+      id={`link-${props.id}`}
       href={`#${props.id}`}
       css={css({
+        visibility: `hidden`,
         ml: `-20px`,
         pr: `4px`,
         color: `primary`,
