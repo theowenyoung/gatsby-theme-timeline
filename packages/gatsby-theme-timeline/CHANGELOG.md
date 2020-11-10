@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.35](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-theme-timeline@0.1.34...gatsby-theme-timeline@0.1.35) (2020-11-10)
+
+### Bug Fixes
+
+- create index page basePath ([62b0d40](https://github.com/theowenyoung/gatsby-theme-timeline/commit/62b0d40e1a726ebebcfb5d5f2d7b576b94ac1046))
+
 ## [0.1.34](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-theme-timeline@0.1.33...gatsby-theme-timeline@0.1.34) (2020-11-10)
 
 **Note:** Version bump only for package gatsby-theme-timeline
