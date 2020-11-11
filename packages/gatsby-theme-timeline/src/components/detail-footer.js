@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { LocalizedLink as Link } from "gatsby-theme-i18n"
-import { css, Styled, Flex, jsx } from "theme-ui"
+import { css, Styled, Flex, jsx, Link as LinkUI } from "theme-ui"
 import { withPrefix } from "gatsby"
 import kebabCase from "lodash/kebabCase"
 import Tag from "./tag"
@@ -50,16 +50,16 @@ const PostFooter = ({ previous, next, tags, basePath }) => (
       >
         <li>
           {previous && (
-            <Styled.a as={Link} to={previous.slug} rel="prev">
+            <LinkUI as={Link} to={previous.slug} rel="prev">
               ← {previous.title}
-            </Styled.a>
+            </LinkUI>
           )}
         </li>
         <li>
           {next && (
-            <Styled.a as={Link} to={next.slug} rel="next">
+            <LinkUI as={Link} to={next.slug} rel="next">
               {next.title} →
-            </Styled.a>
+            </LinkUI>
           )}
         </li>
       </Flex>

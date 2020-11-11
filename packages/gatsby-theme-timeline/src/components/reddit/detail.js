@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx, Styled } from "theme-ui"
+import { jsx, Styled, Link as LinkUI } from "theme-ui"
 
 const Detail = (post) => {
   const { permalink, title, subreddit } = post
@@ -15,14 +15,12 @@ const Detail = (post) => {
         }}
       >
         <blockquote className="reddit-card">
-          <Styled.a href={`https://www.reddit.com${permalink}`}>
-            {title}
-          </Styled.a>
+          <LinkUI href={`https://www.reddit.com${permalink}`}>{title}</LinkUI>
           <br />
           from
-          <Styled.a
+          <LinkUI
             href={`http://www.reddit.com/r/${subreddit}`}
-          >{` /r/${subreddit}`}</Styled.a>
+          >{` /r/${subreddit}`}</LinkUI>
         </blockquote>
       </Styled.div>
     </article>

@@ -1,23 +1,23 @@
 /** @jsx jsx */
 import { withPrefix } from "gatsby"
 import { LocalizedLink as Link } from "gatsby-theme-i18n"
-import { css, Styled, jsx } from "theme-ui"
+import { css, Styled, jsx, Link as LinkUI } from "theme-ui"
 
 const Title = ({ children, type, basePath }) => {
   if (type === `detail`) {
     return (
       <Styled.h3 sx={{ mb: 3 }}>
-        <Styled.a sx={{ color: `text` }} as={Link} to={withPrefix(basePath)}>
+        <LinkUI sx={{ color: `text` }} as={Link} to={withPrefix(basePath)}>
           {children}
-        </Styled.a>
+        </LinkUI>
       </Styled.h3>
     )
   }
   return (
     <Styled.h1>
-      <Styled.a sx={{ color: `text` }} as={Link} to={withPrefix(basePath)}>
+      <LinkUI sx={{ color: `text` }} as={Link} to={withPrefix(basePath)}>
         {children}
-      </Styled.a>
+      </LinkUI>
     </Styled.h1>
   )
 }

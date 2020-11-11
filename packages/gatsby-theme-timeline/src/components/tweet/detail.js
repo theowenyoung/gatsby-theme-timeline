@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { jsx, Styled } from "theme-ui"
+import { jsx, Styled, Link as LinkUI } from "theme-ui"
 import processTweetString from "./process-tweet-string"
 import Hero from "./hero"
 const Detail = (post) => {
@@ -11,11 +11,11 @@ const Detail = (post) => {
         <Styled.p>{body}</Styled.p>
         <Hero post={post}></Hero>
         &mdash; {authorName} (@{authorScreenName}){` `}
-        <Styled.a
+        <LinkUI
           href={`https://twitter.com/${authorScreenName}/status/${idStr}`}
         >
           {datetime}
-        </Styled.a>
+        </LinkUI>
       </Styled.blockquote>
     </Styled.div>
   )

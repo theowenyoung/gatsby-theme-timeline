@@ -1,9 +1,9 @@
 /** @jsx jsx */
-import { Styled, jsx } from "theme-ui"
+import { jsx, Link as LinkUI } from "theme-ui"
 import { LocalizedLink as Link } from "gatsby-theme-i18n"
 export default function ({ to, children }) {
   return (
-    <Styled.a
+    <LinkUI
       as={Link}
       to={to}
       sx={{
@@ -16,6 +16,6 @@ export default function ({ to, children }) {
       }}
     >
       <span>{children}</span>
-    </Styled.a>
+    </LinkUI>
   )
 }

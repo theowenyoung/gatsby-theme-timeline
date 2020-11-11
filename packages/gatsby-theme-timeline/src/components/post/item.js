@@ -56,9 +56,9 @@ const Item = (post) => {
           </Styled.div>
         )}
         <section>
-          <Styled.a as={Link} sx={{ color: `textMuted` }} to={slug}>
+          <LinkUI as={Link} sx={{ color: `textMuted` }} to={slug}>
             {date}
-          </Styled.a>
+          </LinkUI>
         </section>
       </footer>
     </Box>

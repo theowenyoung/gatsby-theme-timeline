@@ -1,5 +1,5 @@
 import React from "react"
-import { Styled, css } from "theme-ui"
+import { css, Link as LinkUI } from "theme-ui"
 
 const Footer = () => (
   <footer
@@ -10,13 +10,13 @@ const Footer = () => (
   >
     © {new Date().getFullYear()}, Powered by
     {` `}
-    <Styled.a href="https://www.gatsbyjs.com">Gatsby</Styled.a>
+    <LinkUI href="https://www.gatsbyjs.com">Gatsby</LinkUI>
     {` `}
     Theme by
     {` `}
-    <Styled.a href="https://github.com/theowenyoung/gatsby-theme-timeline">
+    <LinkUI href="https://github.com/theowenyoung/gatsby-theme-timeline">
       Timeline
-    </Styled.a>
+    </LinkUI>
   </footer>
 )
 export default Footer

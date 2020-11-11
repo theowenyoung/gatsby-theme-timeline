@@ -1,20 +1,21 @@
 /** @jsx jsx */
-import { Box, jsx, Styled } from "theme-ui"
+import { Box, jsx, Styled, Link as LinkUI } from "theme-ui"
+import LinksTitle from "./links-title"
 const Links = ({ links }) => {
   return (
     <Box>
-      <Styled.h4 sx={{ color: `text` }}>Links</Styled.h4>
+      <LinksTitle></LinksTitle>
       <Styled.ul>
         {links
           ? links.map((link, i, arr) => (
               <li key={`links-${i}`}>
-                <Styled.a
+                <LinkUI
                   href={link.url}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
                   {link.name}
-                </Styled.a>
+                </LinkUI>
               </li>
             ))
           : null}

@@ -1,14 +1,14 @@
 /** @jsx jsx */
 import { withPrefix } from "gatsby"
-import { Flex, Box, jsx, Styled } from "theme-ui"
+import { Flex, Box, jsx } from "theme-ui"
 import kebabCase from "lodash/kebabCase"
 import Tag from "./tag"
 import { join as urlJoin } from "path"
-
+import TagsTitle from "./tags-title"
 const Tags = ({ basePath, group }) => {
   return (
     <Box>
-      <Styled.h4 sx={{ color: `text` }}>Tags</Styled.h4>
+      <TagsTitle></TagsTitle>
       <Flex sx={{ mb: 4, flexWrap: `wrap` }}>
         {group.map(({ fieldValue, totalCount }, index) => {
           return (
