@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { withPrefix } from "gatsby"
-import { Box, Link as LinkUI, jsx, Styled } from "theme-ui"
+import { Box, jsx, Styled } from "theme-ui"
 import Tag from "./tag"
 import kebabCase from "lodash/kebabCase"
 import Hero from "./hero"
@@ -10,7 +10,7 @@ import AuthorInfo from "./author-info"
 import ItemTitle from "./item-title"
 import ItemDate from "./item-date"
 import ItemExcerpt from "./item-excerpt"
-
+import ItemSource from "./item-source"
 const Item = (post) => {
   const {
     title,
@@ -83,13 +83,7 @@ const Item = (post) => {
         <section>
           <ItemDate {...post}></ItemDate>
           <span sx={{ color: `textMuted` }}> · </span>
-          <LinkUI
-            href={`https://www.reddit.com${permalink}`}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            View on Reddit
-          </LinkUI>
+          <ItemSource {...post}></ItemSource>
         </section>
       </footer>
     </Box>
