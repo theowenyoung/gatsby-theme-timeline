@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.38](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-theme-timeline@0.1.37...gatsby-theme-timeline@0.1.38) (2020-11-11)
+
+### Features
+
+- remove 404 ([0c48bcb](https://github.com/theowenyoung/gatsby-theme-timeline/commit/0c48bcbfdb230d683b90b19eb65cbcec56191c4e))
+
 ## [0.1.37](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-theme-timeline@0.1.36...gatsby-theme-timeline@0.1.37) (2020-11-11)
 
 ### Features
