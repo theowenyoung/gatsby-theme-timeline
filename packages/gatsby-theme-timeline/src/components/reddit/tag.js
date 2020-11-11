@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { Styled, jsx } from "theme-ui"
-import { Link } from "gatsby"
+import { LocalizedLink as Link } from "gatsby-theme-i18n"
 export default function ({ to, children }) {
   return (
     <Styled.a

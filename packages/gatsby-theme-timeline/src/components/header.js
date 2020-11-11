@@ -1,5 +1,6 @@
 /** @jsx jsx */
-import { Link, withPrefix } from "gatsby"
+import { withPrefix } from "gatsby"
+import { LocalizedLink as Link } from "gatsby-theme-i18n"
 import { css, Styled, jsx } from "theme-ui"
 
 const Title = ({ children, type, basePath }) => {

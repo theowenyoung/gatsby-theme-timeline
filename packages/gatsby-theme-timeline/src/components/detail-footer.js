@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { Link } from "gatsby"
+import { LocalizedLink as Link } from "gatsby-theme-i18n"
 import { css, Styled, Flex, jsx } from "theme-ui"
 import { withPrefix } from "gatsby"
 import kebabCase from "lodash/kebabCase"

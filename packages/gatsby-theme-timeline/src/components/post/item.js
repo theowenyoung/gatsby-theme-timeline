@@ -1,5 +1,6 @@
 /** @jsx jsx */
-import { Link, withPrefix } from "gatsby"
+import { withPrefix } from "gatsby"
+import { LocalizedLink as Link } from "gatsby-theme-i18n"
 import { Box, Link as LinkUI, jsx, Styled } from "theme-ui"
 import Tag from "./tag"
 import kebabCase from "lodash/kebabCase"

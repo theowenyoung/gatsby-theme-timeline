@@ -22,10 +22,6 @@ module.exports = (themeOptions) => {
           ...themeOptions,
         },
       },
-      `gatsby-plugin-react-helmet`,
-      `gatsby-plugin-twitter`,
-      `gatsby-plugin-reddit`,
-      `gatsby-plugin-emotion`,
       {
         resolve: `gatsby-plugin-theme-ui`,
         options: {
@@ -33,6 +29,14 @@ module.exports = (themeOptions) => {
           prismPreset: options.prismPreset,
         },
       },
+      {
+        resolve: `gatsby-theme-i18n`,
+        options: options.i18nConfig,
+      },
+      `gatsby-plugin-react-helmet`,
+      `gatsby-plugin-twitter`,
+      `gatsby-plugin-reddit`,
+      `gatsby-plugin-emotion`,
     ],
   }
 }

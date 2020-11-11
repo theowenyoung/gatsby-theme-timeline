@@ -4,6 +4,11 @@ This is a repo for Gatsby's timeline theme, with the theme, you can show all you
 
 ![Screen](https://i.imgur.com/qtXnwLQ.png)
 
+## Features
+
+- Support Mdx, tweet, reddit post
+- Support i18n by [gatsby-theme-i18n](https://www.gatsbyjs.com/plugins/gatsby-theme-i18n/), you can choose your own [i18n library](https://github.com/gatsbyjs/themes/tree/master/packages)
+
 ## 🚀 Quick start
 
 1.  **Create a Gatsby site.**

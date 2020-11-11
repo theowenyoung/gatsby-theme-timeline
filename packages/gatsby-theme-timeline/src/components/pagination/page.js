@@ -1,5 +1,6 @@
 import React from "react"
-import { Link, withPrefix } from "gatsby"
+import { withPrefix } from "gatsby"
+import { LocalizedLink as Link } from "gatsby-theme-i18n"
 import { Link as LinkUI, Text } from "theme-ui"
 import { join as urlJoin } from "path"
 export default function Page({ prefix }, props) {

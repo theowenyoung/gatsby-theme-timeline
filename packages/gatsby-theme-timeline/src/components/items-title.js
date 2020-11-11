@@ -1,6 +1,7 @@
 /** @jsx jsx */
 import { Link as LinkUI, jsx, Styled } from "theme-ui"
-import { Link, withPrefix } from "gatsby"
+import { withPrefix } from "gatsby"
+import { LocalizedLink as Link } from "gatsby-theme-i18n"
 /**
  * Shadow me to add your own bio content
  */

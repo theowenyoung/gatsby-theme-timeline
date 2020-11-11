@@ -18,6 +18,10 @@ module.exports = (themeOptions) => {
       return _.upperFirst(_.camelCase(`${rootDirectoryName} Json`))
     },
   }
+  const i18nConfig = themeOptions.i18nConfig || {
+    defaultLang: `en`,
+    configPath: require.resolve(`../i18n/config.json`),
+  }
   return {
     tweetTypeName,
     redditTypeName,
@@ -33,6 +37,10 @@ module.exports = (themeOptions) => {
     jsonTransformerOptions: {
       ...jsonTransformerOptions,
       ...themeOptions.jsonTransformerOptions,
+    },
+    i18nConfig: {
+      ...i18nConfig,
+      ...themeOptions.i18nConfig,
     },
   }
 }
