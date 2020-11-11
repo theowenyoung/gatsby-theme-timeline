@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.36](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-theme-timeline@0.1.35...gatsby-theme-timeline@0.1.36) (2020-11-11)
+
+### Features
+
+- support i18n ([31335e3](https://github.com/theowenyoung/gatsby-theme-timeline/commit/31335e3c6a915c770373e405a28fc443c9a0f1dc))
+
 ## [0.1.35](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-theme-timeline@0.1.34...gatsby-theme-timeline@0.1.35) (2020-11-10)
 
 ### Bug Fixes
