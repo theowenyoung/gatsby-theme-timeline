@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.41](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-theme-timeline@0.1.40...gatsby-theme-timeline@0.1.41) (2020-11-13)
+
+### Features
+
+- add item-tag ([4597df0](https://github.com/theowenyoung/gatsby-theme-timeline/commit/4597df0b4c9dcc0081ebef0a869083c8c33f8f54))
+
 ## [0.1.40](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-theme-timeline@0.1.39...gatsby-theme-timeline@0.1.40) (2020-11-13)
 
 **Note:** Version bump only for package gatsby-theme-timeline
