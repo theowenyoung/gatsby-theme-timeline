@@ -2,7 +2,7 @@
 import { withPrefix } from "gatsby"
 import { LocalizedLink as Link } from "gatsby-theme-i18n"
 import { Box, Link as LinkUI, jsx, Styled } from "theme-ui"
-import Tag from "./tag"
+import Tag from "../item-tag"
 import kebabCase from "lodash/kebabCase"
 import Hero from "./hero"
 import { join as urlJoin } from "path"
