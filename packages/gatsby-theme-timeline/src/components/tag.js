@@ -2,7 +2,7 @@
 import { Link as LinkUI, jsx } from "theme-ui"
 import { LocalizedLink as Link } from "gatsby-theme-i18n"
 
-export default function ({ children, to }) {
+export default function ({ children, to, count }) {
   return (
     <LinkUI
       sx={{
@@ -20,6 +20,7 @@ export default function ({ children, to }) {
       to={to}
     >
       {children}
+      {count && `(${count})`}
     </LinkUI>
   )
 }

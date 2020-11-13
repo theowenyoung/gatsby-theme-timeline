@@ -14,11 +14,12 @@ const Tags = ({ basePath, group }) => {
           return (
             <Tag
               key={`tag-list-${index}`}
+              count={totalCount}
               to={withPrefix(
                 urlJoin(basePath, `/tags/${kebabCase(fieldValue)}`)
               )}
             >
-              {`${fieldValue}(${totalCount})`}
+              {fieldValue}
             </Tag>
           )
         })}
