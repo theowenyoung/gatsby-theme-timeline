@@ -85,6 +85,7 @@ exports.createSchemaCustomization = ({ actions }) => {
       isVideo: Boolean!
       postHint: String
       url: String
+      html: String
     }
   `)
 }
@@ -494,6 +495,7 @@ exports.onCreateNode = async (
       title: node.title,
       excerpt: excerpt,
       body: node.selftext_html || ``,
+      html: node.selftext_html || ``,
       tags: tags,
       slug: urlResolve(basePath, `reddit${node.permalink}`),
       date: date,
