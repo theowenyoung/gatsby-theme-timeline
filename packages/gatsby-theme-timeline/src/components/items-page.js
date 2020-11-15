@@ -13,6 +13,7 @@ import ItemsTitle from "./items-title"
 import path from "path"
 import kebabCase from "lodash/kebabCase"
 import itemFormat from "./item-format"
+import AsideBox from "./aside-box"
 const Items = ({ location, data, pageContext }) => {
   const { pageType, tag, currentPage, totalPages, basePath } = pageContext
   const items = data.allBlogPost.nodes
@@ -54,11 +55,11 @@ const Items = ({ location, data, pageContext }) => {
             )}
           ></Pagination>
         </main>
-        <aside>
+        <AsideBox>
           <Bio></Bio>
           <Tags basePath={basePath} group={group}></Tags>
           <Links links={social}></Links>
-        </aside>
+        </AsideBox>
       </Grid>
       <Footer />
     </Layout>

@@ -16,7 +16,7 @@ const DetailPage = ({
   location,
 }) => {
   const item = blogPost
-  const basePath = item?.fields?.basePath || "/"
+  const basePath = item?.fields?.basePath || `/`
   return (
     <Layout basePath={basePath} location={location} title={title} type="detail">
       <SEO
