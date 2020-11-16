@@ -317,7 +317,7 @@ exports.createPages = async ({ graphql, actions, reporter }, themeOptions) => {
 // Create fields for post slugs and source
 // This will change with schema customization with work
 exports.onCreateNode = async (
-  { node, actions, createNodeId, getNode, store, cache },
+  { node, actions, createNodeId, getNode, store, cache, reporter },
   themeOptions
 ) => {
   const { createNode, createParentChildLink, createNodeField } = actions
@@ -372,28 +372,9 @@ exports.onCreateNode = async (
       fieldData.quoteAuthorName = node.quoted_status.user.name
       fieldData.quoteAuthorScreenName = node.quoted_status.user.screen_name
       // create a file node for image URLs
-
-      const remoteFileNode = await createRemoteFileNode({
-        url: node.quoted_status.user.profile_image_url_https,
-        parentNodeId: node.id,
-        createNode,
-        createNodeId,
-        cache,
-        store,
-      })
-      // if the file was created, attach the new node to the parent node
-      if (remoteFileNode) {
-        fieldData.quoteAuthorAvatar___NODE = remoteFileNode.id
-      }
-      if (
-        node.quoted_status.entities &&
-        node.quoted_status.entities.media &&
-        node.quoted_status.entities.media[0] &&
-        node.quoted_status.entities.media[0].media_url_https
-      ) {
-        // create a file node for image URLs
+      try {
         const remoteFileNode = await createRemoteFileNode({
-          url: node.quoted_status.entities.media[0].media_url_https,
+          url: node.quoted_status.user.profile_image_url_https,
           parentNodeId: node.id,
           createNode,
           createNodeId,
@@ -402,7 +383,38 @@ exports.onCreateNode = async (
         })
         // if the file was created, attach the new node to the parent node
         if (remoteFileNode) {
-          fieldData.quoteImage___NODE = remoteFileNode.id
+          fieldData.quoteAuthorAvatar___NODE = remoteFileNode.id
+        }
+      } catch (error) {
+        reporter.warn(
+          `create remote file for tweet quoted_status author avatar failed: ${error}`
+        )
+      }
+
+      if (
+        node.quoted_status.entities &&
+        node.quoted_status.entities.media &&
+        node.quoted_status.entities.media[0] &&
+        node.quoted_status.entities.media[0].media_url_https
+      ) {
+        try {
+          // create a file node for image URLs
+          const remoteFileNode = await createRemoteFileNode({
+            url: node.quoted_status.entities.media[0].media_url_https,
+            parentNodeId: node.id,
+            createNode,
+            createNodeId,
+            cache,
+            store,
+          })
+          // if the file was created, attach the new node to the parent node
+          if (remoteFileNode) {
+            fieldData.quoteImage___NODE = remoteFileNode.id
+          }
+        } catch (error) {
+          reporter.warn(
+            `create remote file for tweet quoted_status media failed: ${error}`
+          )
         }
       }
     }
@@ -417,18 +429,22 @@ exports.onCreateNode = async (
       node.entities.media[0].media_url_https
     ) {
       fieldData.imageAlt = `Tweet Image`
-      // create a file node for image URLs
-      const remoteFileNode = await createRemoteFileNode({
-        url: node.entities.media[0].media_url_https,
-        parentNodeId: node.id,
-        createNode,
-        createNodeId,
-        cache,
-        store,
-      })
-      // if the file was created, attach the new node to the parent node
-      if (remoteFileNode) {
-        fieldData.image___NODE = remoteFileNode.id
+      try {
+        // create a file node for image URLs
+        const remoteFileNode = await createRemoteFileNode({
+          url: node.entities.media[0].media_url_https,
+          parentNodeId: node.id,
+          createNode,
+          createNodeId,
+          cache,
+          store,
+        })
+        // if the file was created, attach the new node to the parent node
+        if (remoteFileNode) {
+          fieldData.image___NODE = remoteFileNode.id
+        }
+      } catch (error) {
+        reporter.warn(`create remote file for tweet media failed: ${error}`)
       }
     }
 
@@ -437,18 +453,25 @@ exports.onCreateNode = async (
     if (authorAvatarUrl) {
       authorAvatarUrl = authorAvatarUrl.replace(`_normal.jpg`, `.jpg`)
     }
-    const remoteFileNode = await createRemoteFileNode({
-      url: authorAvatarUrl,
-      parentNodeId: node.id,
-      createNode,
-      createNodeId,
-      cache,
-      store,
-    })
-    // if the file was created, attach the new node to the parent node
-    if (remoteFileNode) {
-      fieldData.authorAvatar___NODE = remoteFileNode.id
+    try {
+      const remoteFileNode = await createRemoteFileNode({
+        url: authorAvatarUrl,
+        parentNodeId: node.id,
+        createNode,
+        createNodeId,
+        cache,
+        store,
+      })
+      // if the file was created, attach the new node to the parent node
+      if (remoteFileNode) {
+        fieldData.authorAvatar___NODE = remoteFileNode.id
+      }
+    } catch (error) {
+      reporter.warn(
+        `create remote file for tweet author avatar failed: ${error}`
+      )
     }
+
     const tweetNodeId = `${TWEET_TYPE_NAME}-${node.id}`
     await createNode({
       ...fieldData,
@@ -541,17 +564,21 @@ exports.onCreateNode = async (
     ) {
       fieldData.imageAlt = `Reddit Image`
       // create a file node for image URLs
-      const remoteFileNode = await createRemoteFileNode({
-        url: node.preview.images[0].source.url,
-        parentNodeId: node.id,
-        createNode,
-        createNodeId,
-        cache,
-        store,
-      })
-      // if the file was created, attach the new node to the parent node
-      if (remoteFileNode) {
-        fieldData.image___NODE = remoteFileNode.id
+      try {
+        const remoteFileNode = await createRemoteFileNode({
+          url: node.preview.images[0].source.url,
+          parentNodeId: node.id,
+          createNode,
+          createNodeId,
+          cache,
+          store,
+        })
+        // if the file was created, attach the new node to the parent node
+        if (remoteFileNode) {
+          fieldData.image___NODE = remoteFileNode.id
+        }
+      } catch (error) {
+        reporter.warn(`create remote file for reddit media failed: ${error}`)
       }
     }
 
