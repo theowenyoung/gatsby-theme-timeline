@@ -510,9 +510,6 @@ exports.onCreateNode = async (
       })
     }
     const tags = [node.subreddit]
-    if (node.link_flair_text) {
-      tags.push(node.link_flair_text)
-    }
     const excerpt = truncate(text, EXCERPT_LENGTH)
     const fieldData = {
       title: node.title,
