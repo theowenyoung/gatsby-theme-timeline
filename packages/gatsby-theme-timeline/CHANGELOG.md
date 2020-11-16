@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.46](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-theme-timeline@0.1.45...gatsby-theme-timeline@0.1.46) (2020-11-16)
+
+### Bug Fixes
+
+- catch image not exist ([55cb947](https://github.com/theowenyoung/gatsby-theme-timeline/commit/55cb94719f052e110f1024d33ddfc15445884aaa))
+
 ## [0.1.45](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-theme-timeline@0.1.44...gatsby-theme-timeline@0.1.45) (2020-11-16)
 
 **Note:** Version bump only for package gatsby-theme-timeline
