@@ -57,8 +57,8 @@ const Items = ({ location, data, pageContext }) => {
         </main>
         <AsideBox>
           <Bio></Bio>
-          <Tags basePath={basePath} group={group}></Tags>
           <Links links={social}></Links>
+          <Tags basePath={basePath} group={group}></Tags>
         </AsideBox>
       </Grid>
       <Footer />
