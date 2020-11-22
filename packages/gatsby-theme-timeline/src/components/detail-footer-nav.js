@@ -15,7 +15,7 @@ const DetailFooterNav = ({ previous, next, item, basePath }) => {
         listStyle: `none`,
         padding: 0,
         pt: 3,
-        pb: 3,
+        pb: 4,
         fontSize: 2,
       }}
     >

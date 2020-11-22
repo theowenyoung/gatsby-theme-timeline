@@ -42,8 +42,6 @@ export default class Comments extends Component {
             }
           `}
         />
-        <Styled.h2>Comments</Styled.h2>
-        <Styled.hr />
         <div ref={this.commentBox}></div>
       </Styled.div>
     )

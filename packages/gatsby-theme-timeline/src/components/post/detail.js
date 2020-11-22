@@ -11,11 +11,11 @@ const Detail = (post) => {
       <header>
         <PostDate>{post.date}</PostDate>
         <Hero post={post} />
-        <Title sx={{ mb: 5, mt: 3 }}>{post.title}</Title>
+        <Title sx={{ mb: 4, mt: 3 }}>{post.title}</Title>
       </header>
       <section
         sx={{
-          fontSize: 2,
+          fontSize: `1.125rem`,
           img: {
             maxWidth: `full`,
             margin: `0 auto`,

@@ -9,7 +9,7 @@ const Tags = ({ basePath, group }) => {
   return (
     <Box>
       <TagsTitle></TagsTitle>
-      <Flex sx={{ mb: 4, flexWrap: `wrap` }}>
+      <Flex sx={{ mb: 3, flexWrap: `wrap` }}>
         {group.map(({ fieldValue, totalCount }, index) => {
           return (
             <Tag

@@ -8,6 +8,7 @@ import { join as urlJoin } from "path"
 import Disqus from "./comments/disqus"
 import Utterances from "./comments/utterances"
 import DetailFooterNav from "./detail-footer-nav"
+import Bio from "./bio"
 const PostFooter = ({ previous, next, item, basePath }) => {
   const timelineThemeConfig = useTimelineThemeConfig()
   const { tags } = item
@@ -43,6 +44,7 @@ const PostFooter = ({ previous, next, item, basePath }) => {
             })}
         </Styled.div>
       )}
+      <Bio></Bio>
       <DetailFooterNav
         previous={previous}
         next={next}
