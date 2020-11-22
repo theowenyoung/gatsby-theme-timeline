@@ -26,6 +26,7 @@ const Item = (post) => {
     permalink,
     authorName,
     subreddit,
+    score,
   } = post
   return (
     <Box
@@ -45,6 +46,7 @@ const Item = (post) => {
         subreddit={subreddit}
         authorName={authorName}
         permalink={permalink}
+        score={score}
       ></AuthorInfo>
       {title && <ItemTitle {...post}></ItemTitle>}
       <Hero post={{ image: image, imageAlt: imageAlt, excerpt }}></Hero>

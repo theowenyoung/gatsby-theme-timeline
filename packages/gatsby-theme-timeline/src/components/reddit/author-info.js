@@ -1,7 +1,7 @@
 /** @jsx jsx */
-import { jsx, Flex, Link } from "theme-ui"
+import { jsx, Flex, Link, Styled } from "theme-ui"
 import Logo from "./logo"
-const AuthorInfo = ({ subreddit, authorName, permalink }) => {
+const AuthorInfo = ({ subreddit, authorName, permalink, score }) => {
   if (!subreddit || !authorName) {
     return null
   }
@@ -43,6 +43,21 @@ const AuthorInfo = ({ subreddit, authorName, permalink }) => {
         >
           {`${authorName}`}
         </Link>
+        <span
+          sx={{
+            mx: 1,
+            color: `textMuted`,
+            fontSize: 4,
+            mt: -1,
+            fontWidth: `bold`,
+          }}
+        >
+          ·
+        </span>
+        <Styled.div
+          as="span"
+          sx={{ color: `textMuted` }}
+        >{`${score} points`}</Styled.div>
       </Flex>
     </Flex>
   )

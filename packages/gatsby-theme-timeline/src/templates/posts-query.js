@@ -65,6 +65,7 @@ export const query = graphql`
           subreddit
           authorName
           url
+          score
         }
         ... on TweetPost {
           idStr

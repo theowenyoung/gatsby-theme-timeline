@@ -102,6 +102,7 @@ exports.createSchemaCustomization = ({ actions }) => {
       postHint: String
       url: String
       html: String
+      score: Int
     }
   `)
 }
@@ -544,6 +545,7 @@ exports.onCreateNode = async (
       isVideo: node.is_video,
       url: node.url_overridden_by_dest,
       postHint: node.post_hint,
+      score: node.score,
     }
     // add tweet tag
     if (!fieldData.tags.includes(`reddit`)) {
