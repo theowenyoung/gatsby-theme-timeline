@@ -52,6 +52,11 @@ exports.createSchemaCustomization = ({ actions }) => {
       disqus: DisqusConfig
       utterances: UtterancesConfig
     }
+    type SiteSiteMetadataSocial {
+      name: String
+      url: String
+      external: Boolean
+    }
     type ${TWEET_TYPE_NAME} implements BlogPost & Node @dontInfer {
       id: ID!
       title: String!

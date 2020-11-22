@@ -7,7 +7,7 @@ module.exports = {
       {
         name: "Github",
         url: "https://github.com/theowenyoung/gatsby-theme-timeline",
-        external: true,
+        // external: true,
       },
       {
         name: "Twitter",
