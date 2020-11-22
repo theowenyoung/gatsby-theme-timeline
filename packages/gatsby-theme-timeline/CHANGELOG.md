@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.51](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-theme-timeline@0.1.50...gatsby-theme-timeline@0.1.51) (2020-11-22)
+
+### Features
+
+- reddit add points ([9dfe3d8](https://github.com/theowenyoung/gatsby-theme-timeline/commit/9dfe3d89b277e2bdc5aeb13e152f730bb0b62eb5))
+
 ## [0.1.50](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-theme-timeline@0.1.49...gatsby-theme-timeline@0.1.50) (2020-11-22)
 
 ### Features
