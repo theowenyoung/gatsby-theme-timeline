@@ -1,6 +1,5 @@
 /** @jsx jsx */
-import { LocalizedLink as Link } from "gatsby-theme-i18n"
-import { css, Styled, Flex, jsx, Link as LinkUI } from "theme-ui"
+import { css, Styled, jsx } from "theme-ui"
 import { withPrefix } from "gatsby"
 import kebabCase from "lodash/kebabCase"
 import Tag from "./tag"
@@ -8,6 +7,7 @@ import useTimelineThemeConfig from "../hooks/configOptions"
 import { join as urlJoin } from "path"
 import Disqus from "./comments/disqus"
 import Utterances from "./comments/utterances"
+import DetailFooterNav from "./detail-footer-nav"
 const PostFooter = ({ previous, next, item, basePath }) => {
   const timelineThemeConfig = useTimelineThemeConfig()
   const { tags } = item
@@ -43,35 +43,12 @@ const PostFooter = ({ previous, next, item, basePath }) => {
             })}
         </Styled.div>
       )}
-      {(previous || next) && (
-        <Flex
-          as="ul"
-          sx={{
-            flexWrap: `wrap`,
-            justifyContent: `space-between`,
-            listStyle: `none`,
-            padding: 0,
-            pt: 3,
-            pb: 3,
-            fontSize: 2,
-          }}
-        >
-          <li>
-            {previous && (
-              <LinkUI as={Link} to={previous.slug} rel="prev">
-                ← {previous.title}
-              </LinkUI>
-            )}
-          </li>
-          <li>
-            {next && (
-              <LinkUI as={Link} to={next.slug} rel="next">
-                {next.title} →
-              </LinkUI>
-            )}
-          </li>
-        </Flex>
-      )}
+      <DetailFooterNav
+        previous={previous}
+        next={next}
+        item={item}
+        basePath={basePath}
+      ></DetailFooterNav>
       {disqus && disqus.shortname && (
         <Disqus config={disqus} item={item}></Disqus>
       )}
