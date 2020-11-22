@@ -16,6 +16,7 @@ export const query = graphql`
         social {
           name
           url
+          external
         }
       }
     }

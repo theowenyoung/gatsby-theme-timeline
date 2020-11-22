@@ -7,17 +7,20 @@ const Links = ({ links }) => {
       <LinksTitle></LinksTitle>
       <Styled.ul>
         {links
-          ? links.map((link, i, arr) => (
-              <li key={`links-${i}`}>
-                <LinkUI
-                  href={link.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {link.name}
-                </LinkUI>
-              </li>
-            ))
+          ? links.map((link, i) => {
+              const attr = {}
+              if (link.external) {
+                attr.target = `_blank`
+                attr.rel = `noopener noreferrer`
+              }
+              return (
+                <li key={`links-${i}`}>
+                  <LinkUI {...attr} href={link.url}>
+                    {link.name}
+                  </LinkUI>
+                </li>
+              )
+            })
           : null}
       </Styled.ul>
     </Box>

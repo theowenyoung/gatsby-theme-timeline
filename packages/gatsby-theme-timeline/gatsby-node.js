@@ -38,8 +38,19 @@ exports.createSchemaCustomization = ({ actions }) => {
     type Fields {
       basePath: String
     }
+    type DisqusConfig {
+      shortname: String
+    }
+    type UtterancesConfig {
+      repo: String
+      theme: String
+      label: String
+      issueTerm: String
+    }
     type TimelineThemeConfig implements Node {
       webfontURL: String
+      disqus: DisqusConfig
+      utterances: UtterancesConfig
     }
     type ${TWEET_TYPE_NAME} implements BlogPost & Node @dontInfer {
       id: ID!
@@ -165,12 +176,14 @@ exports.createResolvers = ({ createResolvers }) => {
 }
 exports.sourceNodes = (
   { actions, createContentDigest },
-  { webfontURL = `` }
+  { webfontURL = ``, disqus = {}, utterances = {} }
 ) => {
   const { createNode } = actions
 
   const timelineThemeConfig = {
     webfontURL,
+    disqus,
+    utterances,
   }
 
   createNode({

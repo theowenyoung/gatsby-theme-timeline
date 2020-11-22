@@ -118,6 +118,11 @@ module.exports = {
 | `webfontURL`             | `''`                                                    | URL for the webfont you'd like to include. Be sure that your local theme does not override it.                                                                                                                                    |
 | `imageMaxWidth`          | `1024`                                                  | Set the max width of images in your blog posts. This applies to your featured image in frontmatter as well.                                                                                                                       |
 | `i18nConfig`             | `{defaultLang: 'en',configPath: './i18n/config.json')}` | i18n config, this will forward to [gatsby-theme-i18n](https://github.com/gatsbyjs/themes/tree/master/packages/gatsby-theme-i18n)                                                                                                  |
+|                          |
+| `disqus`                 | `{shortname: '')}`                                      | Get it by <https://disqus.com/>                                                                                                                                                                                                   |
+|                          |
+| `utterances`             | `{repo: '')}`                                           | `{repo:"your-repo","theme":"github-light","issueTerm":"pathname","label":""}`, more information see <https://utteranc.es/>                                                                                                        |
+|                          |
 
 More options see [`utils/default-options.js`](utils/default-options.js)
 
@@ -160,6 +165,7 @@ module.exports = {
       {
         name: `Twitter`,
         url: `https://twitter.com/TheOwenYoung`,
+        external: true,
       },
       {
         name: `GitHub`,

@@ -1,8 +1,19 @@
 require("dotenv").config()
 module.exports = {
   siteMetadata: {
-    title: `Shadowed Site Title`,
-    siteUrl: `https://gatsby-starter-timeline.surge.sh`,
+    title: `Gatsby Theme Timeline`,
+    siteUrl: `https://gatsby-theme-timeline.vercel.app`,
+    social: [
+      {
+        name: "Github",
+        url: "https://github.com/theowenyoung/gatsby-theme-timeline",
+        external: true,
+      },
+      {
+        name: "Twitter",
+        url: "https://twitter.com/theowenyoung",
+      },
+    ],
   },
   plugins: [
     // {
@@ -31,6 +42,13 @@ module.exports = {
       options: {
         // postsPerPage: 5,
         tweetTypeName: ["TweetsJson", "twitterStatusesUserTimelineMyTweet"],
+        // disqus: {
+        //   shortname: "gatsby-theme-timeline",
+        // },
+        utterances: {
+          repo: "theowenyoung/gatsby-theme-timeline",
+          label: "comment",
+        },
         // basePath: "/test",
         // postsFilter: {
         //   tags: {

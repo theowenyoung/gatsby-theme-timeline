@@ -1,7 +1,6 @@
 import React from "react"
 import { withPrefix } from "gatsby"
 import Layout from "./layout"
-import SEO from "./seo"
 import Footer from "./home-footer"
 import Bio from "./bio"
 import Tags from "./tags"
@@ -14,6 +13,7 @@ import path from "path"
 import kebabCase from "lodash/kebabCase"
 import itemFormat from "./item-format"
 import AsideBox from "./aside-box"
+import ItemsSEO from "./items-seo"
 const Items = ({ location, data, pageContext }) => {
   const { pageType, tag, currentPage, totalPages, basePath } = pageContext
   const items = data.allBlogPost.nodes
@@ -26,7 +26,7 @@ const Items = ({ location, data, pageContext }) => {
 
   return (
     <Layout basePath={basePath} location={location} title={title}>
-      <SEO title="Home" />
+      <ItemsSEO pageType={pageType} tag={tag} />
       <ItemsTitle
         pageType={pageType}
         tag={tag}

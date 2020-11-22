@@ -9,7 +9,7 @@ import React from "react"
 import PropTypes from "prop-types"
 import Helmet from "react-helmet"
 import { useStaticQuery, graphql } from "gatsby"
-
+import { useLocalization } from "gatsby-theme-i18n"
 function SEO({ description, lang, meta, title, imageSource, imageAlt }) {
   const { site } = useStaticQuery(
     graphql`
@@ -25,7 +25,7 @@ function SEO({ description, lang, meta, title, imageSource, imageAlt }) {
       }
     `
   )
-
+  const { locale } = useLocalization()
   const metaDescription = description || site.siteMetadata.description
   const image = imageSource
     ? `${site.siteMetadata.siteUrl}${imageSource}`
@@ -35,7 +35,7 @@ function SEO({ description, lang, meta, title, imageSource, imageAlt }) {
   return (
     <Helmet
       htmlAttributes={{
-        lang,
+        lang: lang || locale,
       }}
       title={title}
       titleTemplate={`%s | ${site.siteMetadata.title}`}
@@ -106,7 +106,6 @@ function SEO({ description, lang, meta, title, imageSource, imageAlt }) {
 }
 
 SEO.defaultProps = {
-  lang: `en`,
   meta: [],
 }
 

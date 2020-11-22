@@ -22,7 +22,19 @@ module.exports = (themeOptions) => {
     defaultLang: `en`,
     configPath: require.resolve(`../i18n/config.json`),
   }
+  const disqusDefault = { shortname: `` }
+  const disqus = themeOptions.disqus || {}
+  const utterancesDefault = { repo: `` }
+  const utterances = themeOptions.utterances || {}
   return {
+    disqus: {
+      ...disqusDefault,
+      ...disqus,
+    },
+    utterances: {
+      ...utterancesDefault,
+      ...utterances,
+    },
     tweetTypeName,
     redditTypeName,
     postsPerPage,

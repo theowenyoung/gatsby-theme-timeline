@@ -10,6 +10,7 @@ This is a repo for Gatsby's timeline theme, with the theme, you can show all you
 
 - Support Mdx, tweet, reddit post
 - Support i18n by [gatsby-theme-i18n](https://www.gatsbyjs.com/plugins/gatsby-theme-i18n/), you can choose your own [i18n library](https://github.com/gatsbyjs/themes/tree/master/packages)
+- Support comments [disqus](https://disqus.com/) or [utterances](https://utteranc.es/)
 
 ## 🚀 Quick start
 

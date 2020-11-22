@@ -1,9 +1,9 @@
 import React from "react"
 import Layout from "./layout"
-import SEO from "./seo"
 import DetailFooter from "./detail-footer"
 import Bio from "./bio"
 import Detail from "./detail"
+import DetailSEO from "./detail-seo"
 const DetailPage = ({
   data: {
     blogPost,
@@ -19,25 +19,15 @@ const DetailPage = ({
   const basePath = item?.fields?.basePath || `/`
   return (
     <Layout basePath={basePath} location={location} title={title} type="detail">
-      <SEO
-        title={item.title}
-        description={item.excerpt}
-        imageSource={
-          item.socialImage
-            ? item.socialImage?.childImageSharp?.fluid.src
-            : item.image?.childImageSharp?.fluid.src
-        }
-        imageAlt={item.imageAlt}
-      />
-
+      <DetailSEO {...item}></DetailSEO>
       <main>
         <Detail {...item}></Detail>
         <DetailFooter
           {...{
             previous,
             next,
-            tags: item.tags,
             basePath: basePath,
+            item,
           }}
         />
       </main>

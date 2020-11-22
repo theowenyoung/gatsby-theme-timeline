@@ -5,6 +5,15 @@ const useTimelineThemeConfig = () => {
     query {
       timelineThemeConfig(id: { eq: "gatsby-theme-timeline-config" }) {
         webfontURL
+        disqus {
+          shortname
+        }
+        utterances {
+          repo
+          theme
+          label
+          issueTerm
+        }
       }
     }
   `)
