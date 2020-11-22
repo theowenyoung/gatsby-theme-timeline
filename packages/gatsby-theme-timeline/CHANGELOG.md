@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.50](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-theme-timeline@0.1.49...gatsby-theme-timeline@0.1.50) (2020-11-22)
+
+### Features
+
+- separate detail footer nav ([746f241](https://github.com/theowenyoung/gatsby-theme-timeline/commit/746f241a0dd0b256002f0b175f98037b90d8a205))
+
 ## [0.1.49](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-theme-timeline@0.1.48...gatsby-theme-timeline@0.1.49) (2020-11-22)
 
 ### Bug Fixes
