@@ -6,12 +6,13 @@
  */
 
 import React from "react"
-import { useStaticQuery, graphql } from "gatsby"
+import { useStaticQuery, graphql, Link, withPrefix } from "gatsby"
 import Image from "gatsby-image"
-import { Styled, css, Flex } from "theme-ui"
+import { Styled, css, Flex, Link as LinkUI } from "theme-ui"
 import BioContent from "./bio-content"
 
-const Bio = () => {
+const Bio = ({ basePath }) => {
+  basePath = basePath || `/`
   const data = useStaticQuery(bioQuery)
   const {
     site: {
@@ -22,30 +23,31 @@ const Bio = () => {
 
   return (
     <Flex css={css({ mb: 3, alignItems: `center` })}>
-      {avatar ? (
-        <Image
-          fixed={avatar.childImageSharp.fixed}
-          alt={author}
-          css={css({
-            mr: 2,
-            mb: 0,
-            width: `48px`,
-            minWidth: `48px`,
-            borderRadius: `full`,
-          })}
-        />
-      ) : (
-        <div
-          css={css({
-            mr: 2,
-            mb: 0,
-            width: `48px`,
-            minWidth: `48px`,
-            borderRadius: `full`,
-          })}
-          role="presentation"
-        />
-      )}
+      <LinkUI css={css({ pr: 2, pt: 2 })} as={Link} to={withPrefix(basePath)}>
+        {avatar ? (
+          <Image
+            fixed={avatar.childImageSharp.fixed}
+            alt={author}
+            css={css({
+              mb: 0,
+              width: `48px`,
+              minWidth: `48px`,
+              borderRadius: `full`,
+            })}
+          />
+        ) : (
+          <div
+            css={css({
+              mb: 0,
+              width: `48px`,
+              minWidth: `48px`,
+              borderRadius: `full`,
+            })}
+            role="presentation"
+          />
+        )}
+      </LinkUI>
+
       <Styled.div>
         <BioContent />
       </Styled.div>

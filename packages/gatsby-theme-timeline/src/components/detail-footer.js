@@ -44,7 +44,7 @@ const PostFooter = ({ previous, next, item, basePath }) => {
             })}
         </Styled.div>
       )}
-      <Bio></Bio>
+      <Bio basePath={basePath}></Bio>
       <DetailFooterNav
         previous={previous}
         next={next}

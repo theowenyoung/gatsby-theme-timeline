@@ -32,7 +32,7 @@ const Items = ({ location, data, pageContext }) => {
         tag={tag}
         basePath={basePath}
       ></ItemsTitle>
-      <Grid gap={[null, null, 4, 5]} columns={[1, 1, `2fr 1fr`]}>
+      <Grid gap={[null, null, 3, 4]} columns={[1, 1, `2fr 1fr`]}>
         <main>
           {items.map((item, index) => {
             return (
@@ -56,7 +56,7 @@ const Items = ({ location, data, pageContext }) => {
           ></Pagination>
         </main>
         <AsideBox>
-          <Bio></Bio>
+          <Bio basePath={basePath}></Bio>
           <Tags basePath={basePath} group={group}></Tags>
           <Links links={social}></Links>
         </AsideBox>
