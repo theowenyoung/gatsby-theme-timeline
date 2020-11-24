@@ -1,7 +1,7 @@
 import React from "react"
 import SEO from "./seo"
 
-export default (item) => {
+export default ({ item }) => {
   return (
     <SEO
       title={item.title}

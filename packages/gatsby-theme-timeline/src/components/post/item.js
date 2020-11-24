@@ -1,15 +1,15 @@
 /** @jsx jsx */
 import { withPrefix } from "gatsby"
-import { LocalizedLink as Link } from "gatsby-theme-i18n"
-import { Box, Link as LinkUI, jsx, Styled } from "theme-ui"
+import { Box, jsx, Styled } from "theme-ui"
 import Tag from "../item-tag"
 import kebabCase from "lodash/kebabCase"
 import Hero from "./hero"
 import { join as urlJoin } from "path"
 import ItemExcerpt from "./item-excerpt"
-
-const Item = (post) => {
-  const { title, slug, date, excerpt, tags, image, imageAlt, basePath } = post
+import ItemFooter from "./item-footer"
+import ItemTitle from "./item-title"
+const Item = ({ item, basePath }) => {
+  const { title, tags } = item
   return (
     <Box
       sx={{
@@ -24,43 +24,31 @@ const Item = (post) => {
         pb: 4,
       }}
     >
-      <Hero post={{ image: image, imageAlt: imageAlt, excerpt }}></Hero>
-      {title && (
-        <header>
-          <LinkUI sx={{ color: `text` }} as={Link} to={slug}>
-            <Styled.h3 sx={{ fontWeight: `normal` }}>{title}</Styled.h3>
-          </LinkUI>
-        </header>
+      <Hero item={item}></Hero>
+      {title && <ItemTitle item={item}></ItemTitle>}
+      <ItemExcerpt item={item}></ItemExcerpt>
+      {tags && tags.length > 0 && (
+        <Styled.div
+          sx={{
+            display: `flex`,
+            flexWrap: `wrap`,
+            pb: 3,
+          }}
+        >
+          {tags &&
+            tags.map((tag) => {
+              return (
+                <Tag
+                  to={withPrefix(urlJoin(basePath, `tags/${kebabCase(tag)}`))}
+                  key={`tag-${tag}`}
+                >
+                  {tag}
+                </Tag>
+              )
+            })}
+        </Styled.div>
       )}
-      <ItemExcerpt {...post}></ItemExcerpt>
-      <footer>
-        {tags && tags.length > 0 && (
-          <Styled.div
-            sx={{
-              display: `flex`,
-              flexWrap: `wrap`,
-              pb: 3,
-            }}
-          >
-            {tags &&
-              tags.map((tag) => {
-                return (
-                  <Tag
-                    to={withPrefix(urlJoin(basePath, `tags/${kebabCase(tag)}`))}
-                    key={`tag-${tag}`}
-                  >
-                    {tag}
-                  </Tag>
-                )
-              })}
-          </Styled.div>
-        )}
-        <section>
-          <LinkUI as={Link} sx={{ color: `textMuted` }} to={slug}>
-            {date}
-          </LinkUI>
-        </section>
-      </footer>
+      <ItemFooter item={item}></ItemFooter>
     </Box>
   )
 }

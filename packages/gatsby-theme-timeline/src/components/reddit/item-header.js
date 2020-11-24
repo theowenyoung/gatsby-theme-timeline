@@ -20,7 +20,8 @@ function formatNumber(number) {
   // format number and add suffix
   return scaled.toFixed(1) + suffix
 }
-const AuthorInfo = ({ subreddit, authorName, permalink, score }) => {
+const AuthorInfo = ({ item }) => {
+  const { subreddit, authorName, permalink, score } = item
   if (!subreddit || !authorName) {
     return null
   }

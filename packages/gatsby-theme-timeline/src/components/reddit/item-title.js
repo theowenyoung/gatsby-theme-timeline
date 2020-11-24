@@ -1,7 +1,8 @@
 /** @jsx jsx */
 import { Link as LinkUI, jsx, Styled } from "theme-ui"
 
-export default function ({ title, isSelf, permalink, url, postHint }) {
+export default function ({ item }) {
+  const { title, isSelf, permalink, url, postHint } = item
   return (
     <LinkUI
       sx={{ color: `text` }}

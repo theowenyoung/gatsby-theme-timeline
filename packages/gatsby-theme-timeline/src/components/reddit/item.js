@@ -3,31 +3,16 @@ import { withPrefix } from "gatsby"
 import { Box, jsx, Styled } from "theme-ui"
 import Tag from "../item-tag"
 import kebabCase from "lodash/kebabCase"
-import Hero from "./hero"
+import Hero from "./item-hero"
 import Video from "./video"
 import { join as urlJoin } from "path"
-import AuthorInfo from "./author-info"
+import ItemHeader from "./item-header"
 import ItemTitle from "./item-title"
-import ItemDate from "./item-date"
 import ItemExcerpt from "./item-excerpt"
-import ItemSource from "./item-source"
-const Item = (post) => {
-  const {
-    title,
-    isVideo,
-    excerpt,
-    tags,
-    image,
-    imageAlt,
-    basePath,
-    video,
-    videoHeight,
-    videoWidth,
-    permalink,
-    authorName,
-    subreddit,
-    score,
-  } = post
+import ItemFooter from "./item-footer"
+const Item = ({ item, basePath }) => {
+  const { title, isVideo, tags, video, videoHeight, videoWidth } = item
+
   return (
     <Box
       sx={{
@@ -42,14 +27,9 @@ const Item = (post) => {
         pb: 4,
       }}
     >
-      <AuthorInfo
-        subreddit={subreddit}
-        authorName={authorName}
-        permalink={permalink}
-        score={score}
-      ></AuthorInfo>
-      {title && <ItemTitle {...post}></ItemTitle>}
-      <Hero post={{ image: image, imageAlt: imageAlt, excerpt }}></Hero>
+      <ItemHeader item={item}></ItemHeader>
+      {title && <ItemTitle item={item}></ItemTitle>}
+      <Hero item={item}></Hero>
       {video && (
         <Video
           isVideo={isVideo}
@@ -58,36 +38,29 @@ const Item = (post) => {
           width={videoWidth}
         ></Video>
       )}
-      <ItemExcerpt {...post}></ItemExcerpt>
-
-      <footer>
-        {tags && tags.length > 0 && (
-          <Styled.div
-            sx={{
-              display: `flex`,
-              flexWrap: `wrap`,
-              pb: 3,
-            }}
-          >
-            {tags &&
-              tags.map((tag) => {
-                return (
-                  <Tag
-                    to={withPrefix(urlJoin(basePath, `tags/${kebabCase(tag)}`))}
-                    key={`tag-${tag}`}
-                  >
-                    {tag}
-                  </Tag>
-                )
-              })}
-          </Styled.div>
-        )}
-        <section>
-          <ItemDate {...post}></ItemDate>
-          <span sx={{ color: `textMuted` }}> · </span>
-          <ItemSource {...post}></ItemSource>
-        </section>
-      </footer>
+      <ItemExcerpt item={item}></ItemExcerpt>
+      {tags && tags.length > 0 && (
+        <Styled.div
+          sx={{
+            display: `flex`,
+            flexWrap: `wrap`,
+            pb: 3,
+          }}
+        >
+          {tags &&
+            tags.map((tag) => {
+              return (
+                <Tag
+                  to={withPrefix(urlJoin(basePath, `tags/${kebabCase(tag)}`))}
+                  key={`tag-${tag}`}
+                >
+                  {tag}
+                </Tag>
+              )
+            })}
+        </Styled.div>
+      )}
+      <ItemFooter item={item}></ItemFooter>
     </Box>
   )
 }

@@ -18,10 +18,9 @@ const DetailPage = ({
   const basePath = item?.fields?.basePath || `/`
   return (
     <Layout basePath={basePath} location={location} title={title} type="detail">
-      <DetailSEO {...item}></DetailSEO>
+      <DetailSEO item={item}></DetailSEO>
       <main>
-        <Detail {...item}></Detail>
-
+        <Detail item={item}></Detail>
         <DetailFooter
           {...{
             previous,

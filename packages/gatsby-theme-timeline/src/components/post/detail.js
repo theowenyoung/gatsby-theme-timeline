@@ -1,11 +1,12 @@
 /** @jsx jsx */
 import { MDXRenderer } from "gatsby-plugin-mdx"
 import Hero from "./hero"
-import Title from "./title"
-import PostDate from "./date"
+import Title from "./detail-title"
+import PostDate from "./detail-date"
 import { jsx } from "theme-ui"
 
-const Detail = (post) => {
+const Detail = ({ item }) => {
+  const post = item
   return (
     <article>
       <header>

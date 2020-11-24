@@ -7,6 +7,8 @@ const itemHero = ({ item }) => (
       <Image
         fluid={item.image.childImageSharp.fluid}
         alt={item.imageAlt ? item.imageAlt : item.excerpt}
+        sx={{ maxHeight: `lg` }}
+        imgStyle={{ objectFit: `contain` }}
       />
     )}
   </Box>

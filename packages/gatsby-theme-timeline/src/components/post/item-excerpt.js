@@ -1,7 +1,8 @@
 /** @jsx jsx */
 import { Styled, jsx } from "theme-ui"
 
-export default function ({ excerpt }) {
+export default function ({ item }) {
+  const { excerpt } = item
   if (!excerpt) {
     return null
   }

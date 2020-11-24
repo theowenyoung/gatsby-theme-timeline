@@ -1,15 +1,15 @@
 /** @jsx jsx */
 import { jsx, Styled, Link as LinkUI } from "theme-ui"
 import processTweetString from "./process-tweet-string"
-import Hero from "./hero"
-const Detail = (post) => {
-  const { idStr, datetime, authorName, authorScreenName } = post
-  const body = processTweetString(post.body)
+import Hero from "./item-hero"
+const Detail = ({ item }) => {
+  const { idStr, datetime, authorName, authorScreenName } = item
+  const body = processTweetString(item.body)
   return (
     <Styled.div sx={{ maxWidth: `550px`, fontSize: 2 }}>
       <Styled.blockquote className="twitter-tweet">
         <Styled.p>{body}</Styled.p>
-        <Hero post={post}></Hero>
+        <Hero item={item}></Hero>
         &mdash; {authorName} (@{authorScreenName}){` `}
         <LinkUI
           href={`https://twitter.com/${authorScreenName}/status/${idStr}`}

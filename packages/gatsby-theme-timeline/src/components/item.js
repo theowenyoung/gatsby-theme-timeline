@@ -4,13 +4,14 @@ import PostItem from "./post/item"
 import TweetItem from "./tweet/item"
 import RedditItem from "./reddit/item"
 
-const Item = (node) => {
-  if (node.__typename === TWEET_TYPE_NAME) {
-    return <TweetItem {...node}></TweetItem>
-  } else if (node.__typename === REDDIT_TYPE_NAME) {
-    return <RedditItem {...node}></RedditItem>
+const Item = (props) => {
+  const { item } = props
+  if (item.__typename === TWEET_TYPE_NAME) {
+    return <TweetItem {...props}></TweetItem>
+  } else if (item.__typename === REDDIT_TYPE_NAME) {
+    return <RedditItem {...props}></RedditItem>
   }
-  return <PostItem {...node}></PostItem>
+  return <PostItem {...props}></PostItem>
 }
 
 export default Item

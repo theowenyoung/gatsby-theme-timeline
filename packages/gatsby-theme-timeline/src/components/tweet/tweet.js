@@ -4,25 +4,24 @@ import processTweetString from "./process-tweet-string"
 import UserInfo from "./user-info"
 import TwitterButton from "./twitter-button"
 import { Fragment } from "react"
-import Hero from "./hero"
+import Hero from "./item-hero"
 import RetweetedIcon from "./retweeted-icon"
 import QuoteUserInfo from "./quote-user-info"
-const Tweet = ({
-  excerpt,
-  authorName,
-  authorScreenName,
-  authorAvatar,
-  image,
-  idStr,
-  imageAlt,
-  retweeted,
-  isQuoteStatus,
-  quoteBody,
-  quoteAuthorName,
-  quoteAuthorScreenName,
-  quoteAuthorAvatar,
-  quoteImage,
-}) => {
+const Tweet = ({ item }) => {
+  const {
+    excerpt,
+    authorName,
+    authorScreenName,
+    authorAvatar,
+    idStr,
+    retweeted,
+    isQuoteStatus,
+    quoteBody,
+    quoteAuthorName,
+    quoteAuthorScreenName,
+    quoteAuthorAvatar,
+    quoteImage,
+  } = item
   const body = processTweetString(excerpt)
   let finalQuoteBody = ``
   if (isQuoteStatus) {
@@ -60,7 +59,7 @@ const Tweet = ({
 
       <div>
         <Box sx={{ fontSize: 1, py: 2, whiteSpace: `pre-line` }}>{body}</Box>
-        <Hero post={{ image: image, imageAlt: imageAlt, excerpt }}></Hero>
+        <Hero item={item}></Hero>
         {isQuoteStatus && (
           <div
             sx={{
@@ -83,7 +82,7 @@ const Tweet = ({
             </div>
 
             <Hero
-              post={{
+              item={{
                 image: quoteImage,
                 imageAlt: `quote image`,
                 excerpt: quoteBody,

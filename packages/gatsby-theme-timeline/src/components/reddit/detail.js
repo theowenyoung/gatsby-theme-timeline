@@ -2,8 +2,8 @@
 
 import { jsx, Styled, Link as LinkUI } from "theme-ui"
 
-const Detail = (post) => {
-  const { permalink, title, subreddit } = post
+const Detail = ({ item }) => {
+  const { permalink, title, subreddit } = item
   return (
     <article>
       <Styled.div
