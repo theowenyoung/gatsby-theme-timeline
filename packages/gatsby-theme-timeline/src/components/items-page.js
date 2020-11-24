@@ -1,4 +1,4 @@
-import React from "react"
+/** @jsx jsx */
 import { withPrefix } from "gatsby"
 import Layout from "./layout"
 import Footer from "./home-footer"
@@ -6,7 +6,7 @@ import Bio from "./bio"
 import Tags from "./tags"
 import Links from "./links"
 import ItemBox from "./item-box"
-import { Grid } from "theme-ui"
+import { jsx, Grid } from "theme-ui"
 import Pagination from "./pagination"
 import ItemsTitle from "./items-title"
 import path from "path"
@@ -33,7 +33,7 @@ const Items = ({ location, data, pageContext }) => {
         basePath={basePath}
       ></ItemsTitle>
       <Grid gap={[null, null, 3, 4]} columns={[1, 1, `2fr 1fr`]}>
-        <main>
+        <main sx={{ minWidth: 0 }}>
           {items.map((item, index) => {
             return (
               <ItemBox
