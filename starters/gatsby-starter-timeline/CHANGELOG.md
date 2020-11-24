@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.54](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-starter-timeline@0.1.53...gatsby-starter-timeline@0.1.54) (2020-11-24)
+
+### Bug Fixes
+
+- reddit author line overflow ([265de2a](https://github.com/theowenyoung/gatsby-theme-timeline/commit/265de2a687758ed3909aed9762080b5ba2241d2b))
+
 ## [0.1.53](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-starter-timeline@0.1.52...gatsby-starter-timeline@0.1.53) (2020-11-23)
 
 ### Bug Fixes
