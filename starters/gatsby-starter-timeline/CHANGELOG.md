@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.56](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-starter-timeline@0.1.55...gatsby-starter-timeline@0.1.56) (2020-11-25)
+
+### Features
+
+- add items footer component, change pagination ui ([9e12195](https://github.com/theowenyoung/gatsby-theme-timeline/commit/9e12195528c2ee0bb0c7a480fee3b3d0c1cf1008))
+
 ## [0.1.55](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-starter-timeline@0.1.54...gatsby-starter-timeline@0.1.55) (2020-11-24)
 
 **Note:** Version bump only for package gatsby-starter-timeline
