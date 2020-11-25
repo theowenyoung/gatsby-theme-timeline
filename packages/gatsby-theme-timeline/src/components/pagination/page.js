@@ -9,6 +9,7 @@ export default function Page({ prefix }, props) {
     return (
       <Text
         sx={{
+          px: 2,
           fontWeight: props.isActive ? `bold` : undefined,
           color: props.isActive ? `text` : `textMuted`,
         }}
@@ -26,6 +27,7 @@ export default function Page({ prefix }, props) {
           : urlJoin(`${prefix}`, `page/${props.value}`)
       )}
       sx={{
+        px: 2,
         color: `textMuted`,
       }}
     >

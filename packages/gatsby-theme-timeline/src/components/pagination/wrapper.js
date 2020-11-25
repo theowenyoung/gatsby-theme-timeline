@@ -1,31 +1,32 @@
 /** @jsx jsx */
 import { Flex, jsx } from "theme-ui"
 export default function Wrapper(props) {
+  let children = props.children
+  if (children.length > 2) {
+    children = [
+      children[0],
+      <Flex key="pagination-pages">
+        {children.slice(1, children.length - 1)}
+      </Flex>,
+      children[children.length - 1],
+    ]
+  }
+
   return (
     <nav
       sx={{
-        left: [null, null, 0],
-        right: [null, null, 0],
-        position: [null, null, `absolute`],
         pb: 4,
+        lineHeight: 2,
       }}
     >
       <Flex
         sx={{
-          justifyContent: `center`,
+          justifyContent: `space-between`,
+          flexWrap: `wrap`,
           fontSize: 2,
-          "a:nth-of-type(1)": {
-            ml: 0,
-          },
-          "a:nth-of-type(n+2)": {
-            ml: 3,
-          },
-          "div:nth-of-type(n)": {
-            ml: 3,
-          },
         }}
       >
-        {props.children}
+        {children}
       </Flex>
     </nav>
   )

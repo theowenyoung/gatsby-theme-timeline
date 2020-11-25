@@ -1,5 +1,4 @@
 /** @jsx jsx */
-import { withPrefix } from "gatsby"
 import Layout from "./layout"
 import Footer from "./home-footer"
 import Bio from "./bio"
@@ -7,15 +6,13 @@ import Tags from "./tags"
 import Links from "./links"
 import ItemBox from "./item-box"
 import { jsx, Grid } from "theme-ui"
-import Pagination from "./pagination"
 import ItemsTitle from "./items-title"
-import path from "path"
-import kebabCase from "lodash/kebabCase"
 import itemFormat from "./item-format"
 import AsideBox from "./aside-box"
 import ItemsSEO from "./items-seo"
+import ItemsFooter from "./items-footer"
 const Items = ({ location, data, pageContext }) => {
-  const { pageType, tag, currentPage, totalPages, basePath } = pageContext
+  const { pageType, tag, basePath } = pageContext
   const items = data.allBlogPost.nodes
   const {
     site: {
@@ -43,17 +40,7 @@ const Items = ({ location, data, pageContext }) => {
               ></ItemBox>
             )
           })}
-          <Pagination
-            currentPage={currentPage}
-            totalPages={totalPages}
-            hideFirstAndLastPageLinks
-            prefix={withPrefix(
-              path.join(
-                basePath,
-                pageType === `tag` ? `tags/${kebabCase(tag)}` : ``
-              )
-            )}
-          ></Pagination>
+          <ItemsFooter pageContext={pageContext}></ItemsFooter>
         </main>
         <AsideBox>
           <Bio basePath={basePath}></Bio>

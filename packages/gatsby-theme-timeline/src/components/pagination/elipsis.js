@@ -5,6 +5,7 @@ export default function Ellipsis() {
     <Text
       sx={{
         color: `textMuted`,
+        px: 2,
       }}
     >
       ...
