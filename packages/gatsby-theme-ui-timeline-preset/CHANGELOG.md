@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.10](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-theme-ui-timeline-preset@0.1.9...gatsby-theme-ui-timeline-preset@0.1.10) (2020-11-27)
+
+### Features
+
+- use reddit iframe video instead fallback video ([b122b67](https://github.com/theowenyoung/gatsby-theme-timeline/commit/b122b675be3f81047e3572783a7287e4d8aaa523))
+
 ## [0.1.9](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-theme-ui-timeline-preset@0.1.8...gatsby-theme-ui-timeline-preset@0.1.9) (2020-10-29)
 
 ### Features
