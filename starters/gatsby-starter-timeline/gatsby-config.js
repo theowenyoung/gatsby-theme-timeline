@@ -2,7 +2,7 @@ require("dotenv").config()
 module.exports = {
   siteMetadata: {
     title: `Gatsby Theme Timeline`,
-    siteUrl: `https://gatsby-theme-timeline.vercel.app`,
+    siteUrl: `https://gatsby-theme-timeline.netlify.app`,
     social: [
       {
         name: "Github",
