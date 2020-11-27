@@ -599,6 +599,7 @@ exports.onCreateNode = async (
       fieldData.videoWidth = node.preview.images[0].variants.mp4.source.width
       fieldData.videoHeight = node.preview.images[0].variants.mp4.source.height
     } else if (
+      node.preview &&
       node.preview.reddit_video_preview &&
       node.preview.reddit_video_preview.fallback_url
     ) {
