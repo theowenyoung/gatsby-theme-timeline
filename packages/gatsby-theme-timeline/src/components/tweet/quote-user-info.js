@@ -1,15 +1,15 @@
 /** @jsx jsx */
-import { jsx, Flex, Box, Link, Text } from "theme-ui"
+import { jsx, Flex, Box, Link, Text, Styled } from "theme-ui"
 import Image from "gatsby-image"
 import { css } from "theme-ui"
-const UserInfo = ({ name, screenName, avatar }) => {
+const UserInfo = ({ name, screenName, avatar, avatarRemote }) => {
   if (!name || !screenName) {
     return null
   }
   return (
     <Flex sx={{ alignItems: `center` }}>
       <Link href={`https://twitter.com/${screenName}`}>
-        {avatar?.childImageSharp && (
+        {avatar?.childImageSharp ? (
           <Image
             fixed={avatar.childImageSharp.fixed}
             alt={`${name} avatar`}
@@ -20,6 +20,18 @@ const UserInfo = ({ name, screenName, avatar }) => {
               minWidth: `20px`,
               borderRadius: `full`,
             })}
+          />
+        ) : (
+          <Styled.img
+            alt={`${name} avatar`}
+            sx={{
+              mr: 2,
+              mb: -1,
+              width: `20px`,
+              minWidth: `20px`,
+              borderRadius: `full`,
+            }}
+            src={avatarRemote}
           />
         )}
       </Link>

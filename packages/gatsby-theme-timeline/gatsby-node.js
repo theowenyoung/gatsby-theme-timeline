@@ -66,6 +66,7 @@ exports.createSchemaCustomization = ({ actions }) => {
       tags: [String]!
       excerpt: String!
       image: File
+      imageRemote: String
       imageAlt: String
       socialImage: File
       idStr: String!
@@ -73,12 +74,15 @@ exports.createSchemaCustomization = ({ actions }) => {
       authorName: String!
       authorScreenName: String!
       authorAvatar: File
+      authorAvatarRemote: String
       isQuoteStatus: Boolean!
       quoteBody: String
       quoteAuthorName: String
       quoteAuthorScreenName: String
       quoteAuthorAvatar: File
+      quoteAuthorAvatarRemote: String
       quoteImage: File
+      quoteImageRemote: String
     }
     type ${REDDIT_TYPE_NAME} implements BlogPost & Node @dontInfer {
       id: ID!
@@ -89,6 +93,7 @@ exports.createSchemaCustomization = ({ actions }) => {
       tags: [String]!
       excerpt: String!
       image: File
+      imageRemote: String
       imageAlt: String
       socialImage: File
       permalink: String!
@@ -103,6 +108,7 @@ exports.createSchemaCustomization = ({ actions }) => {
       url: String
       html: String
       score: Int
+      redditId: String
     }
   `)
 }
@@ -340,7 +346,12 @@ exports.onCreateNode = async (
   themeOptions
 ) => {
   const { createNode, createParentChildLink, createNodeField } = actions
-  const { tweetTypeName, redditTypeName, basePath } = withDefaults(themeOptions)
+  const {
+    tweetTypeName,
+    redditTypeName,
+    basePath,
+    shouldTransformImage,
+  } = withDefaults(themeOptions)
   const { contentPath } = withCoreDefaults(themeOptions)
   let allTweetsTypeName = []
   if (typeof tweetTypeName === `string`) {
@@ -390,36 +401,13 @@ exports.onCreateNode = async (
       fieldData.quoteBody = node.quoted_status.full_text
       fieldData.quoteAuthorName = node.quoted_status.user.name
       fieldData.quoteAuthorScreenName = node.quoted_status.user.screen_name
+      fieldData.quoteAuthorAvatarRemote =
+        node.quoted_status.user.profile_image_url_https
       // create a file node for image URLs
-      try {
-        const remoteFileNode = await createRemoteFileNode({
-          url: node.quoted_status.user.profile_image_url_https,
-          parentNodeId: node.id,
-          createNode,
-          createNodeId,
-          cache,
-          store,
-        })
-        // if the file was created, attach the new node to the parent node
-        if (remoteFileNode) {
-          fieldData.quoteAuthorAvatar___NODE = remoteFileNode.id
-        }
-      } catch (error) {
-        reporter.warn(
-          `create remote file for tweet quoted_status author avatar failed: ${error}`
-        )
-      }
-
-      if (
-        node.quoted_status.entities &&
-        node.quoted_status.entities.media &&
-        node.quoted_status.entities.media[0] &&
-        node.quoted_status.entities.media[0].media_url_https
-      ) {
+      if (shouldTransformImage) {
         try {
-          // create a file node for image URLs
           const remoteFileNode = await createRemoteFileNode({
-            url: node.quoted_status.entities.media[0].media_url_https,
+            url: node.quoted_status.user.profile_image_url_https,
             parentNodeId: node.id,
             createNode,
             createNodeId,
@@ -428,12 +416,43 @@ exports.onCreateNode = async (
           })
           // if the file was created, attach the new node to the parent node
           if (remoteFileNode) {
-            fieldData.quoteImage___NODE = remoteFileNode.id
+            fieldData.quoteAuthorAvatar___NODE = remoteFileNode.id
           }
         } catch (error) {
           reporter.warn(
-            `create remote file for tweet quoted_status media failed: ${error}`
+            `create remote file for tweet quoted_status author avatar failed: ${error}`
           )
+        }
+      }
+
+      if (
+        node.quoted_status.entities &&
+        node.quoted_status.entities.media &&
+        node.quoted_status.entities.media[0] &&
+        node.quoted_status.entities.media[0].media_url_https
+      ) {
+        fieldData.quoteImageRemote =
+          node.quoted_status.entities.media[0].media_url_https
+        if (shouldTransformImage) {
+          try {
+            // create a file node for image URLs
+            const remoteFileNode = await createRemoteFileNode({
+              url: node.quoted_status.entities.media[0].media_url_https,
+              parentNodeId: node.id,
+              createNode,
+              createNodeId,
+              cache,
+              store,
+            })
+            // if the file was created, attach the new node to the parent node
+            if (remoteFileNode) {
+              fieldData.quoteImage___NODE = remoteFileNode.id
+            }
+          } catch (error) {
+            reporter.warn(
+              `create remote file for tweet quoted_status media failed: ${error}`
+            )
+          }
         }
       }
     }
@@ -448,22 +467,25 @@ exports.onCreateNode = async (
       node.entities.media[0].media_url_https
     ) {
       fieldData.imageAlt = `Tweet Image`
-      try {
-        // create a file node for image URLs
-        const remoteFileNode = await createRemoteFileNode({
-          url: node.entities.media[0].media_url_https,
-          parentNodeId: node.id,
-          createNode,
-          createNodeId,
-          cache,
-          store,
-        })
-        // if the file was created, attach the new node to the parent node
-        if (remoteFileNode) {
-          fieldData.image___NODE = remoteFileNode.id
+      fieldData.imageRemote = node.entities.media[0].media_url_https
+      if (shouldTransformImage) {
+        try {
+          // create a file node for image URLs
+          const remoteFileNode = await createRemoteFileNode({
+            url: node.entities.media[0].media_url_https,
+            parentNodeId: node.id,
+            createNode,
+            createNodeId,
+            cache,
+            store,
+          })
+          // if the file was created, attach the new node to the parent node
+          if (remoteFileNode) {
+            fieldData.image___NODE = remoteFileNode.id
+          }
+        } catch (error) {
+          reporter.warn(`create remote file for tweet media failed: ${error}`)
         }
-      } catch (error) {
-        reporter.warn(`create remote file for tweet media failed: ${error}`)
       }
     }
 
@@ -472,23 +494,26 @@ exports.onCreateNode = async (
     if (authorAvatarUrl) {
       authorAvatarUrl = authorAvatarUrl.replace(`_normal.jpg`, `.jpg`)
     }
-    try {
-      const remoteFileNode = await createRemoteFileNode({
-        url: authorAvatarUrl,
-        parentNodeId: node.id,
-        createNode,
-        createNodeId,
-        cache,
-        store,
-      })
-      // if the file was created, attach the new node to the parent node
-      if (remoteFileNode) {
-        fieldData.authorAvatar___NODE = remoteFileNode.id
+    fieldData.authorAvatarRemote = authorAvatarUrl
+    if (shouldTransformImage) {
+      try {
+        const remoteFileNode = await createRemoteFileNode({
+          url: authorAvatarUrl,
+          parentNodeId: node.id,
+          createNode,
+          createNodeId,
+          cache,
+          store,
+        })
+        // if the file was created, attach the new node to the parent node
+        if (remoteFileNode) {
+          fieldData.authorAvatar___NODE = remoteFileNode.id
+        }
+      } catch (error) {
+        reporter.warn(
+          `create remote file for tweet author avatar failed: ${error}`
+        )
       }
-    } catch (error) {
-      reporter.warn(
-        `create remote file for tweet author avatar failed: ${error}`
-      )
     }
 
     const tweetNodeId = `${TWEET_TYPE_NAME}-${node.id}`
@@ -546,6 +571,7 @@ exports.onCreateNode = async (
       url: node.url_overridden_by_dest,
       postHint: node.post_hint,
       score: node.score,
+      redditId: node.id,
     }
     // add tweet tag
     if (!fieldData.tags.includes(`reddit`)) {
@@ -573,6 +599,14 @@ exports.onCreateNode = async (
       fieldData.videoWidth = node.preview.images[0].variants.mp4.source.width
       fieldData.videoHeight = node.preview.images[0].variants.mp4.source.height
     } else if (
+      node.preview.reddit_video_preview &&
+      node.preview.reddit_video_preview.fallback_url
+    ) {
+      // gif
+      fieldData.video = node.preview.reddit_video_preview.fallback_url
+      fieldData.videoWidth = node.preview.reddit_video_preview.width
+      fieldData.videoHeight = node.preview.reddit_video_preview.height
+    } else if (
       node.preview &&
       node.preview.images &&
       node.preview.images[0] &&
@@ -580,22 +614,33 @@ exports.onCreateNode = async (
       node.preview.images[0].source.url
     ) {
       fieldData.imageAlt = `Reddit Image`
+      if (node.preview.images[0].resolutions) {
+        fieldData.imageRemote =
+          node.preview.images[0].resolutions[
+            node.preview.images[0].resolutions.length - 1
+          ].url
+      } else {
+        fieldData.imageRemote = node.preview.images[0].source.url
+      }
+
       // create a file node for image URLs
-      try {
-        const remoteFileNode = await createRemoteFileNode({
-          url: node.preview.images[0].source.url,
-          parentNodeId: node.id,
-          createNode,
-          createNodeId,
-          cache,
-          store,
-        })
-        // if the file was created, attach the new node to the parent node
-        if (remoteFileNode) {
-          fieldData.image___NODE = remoteFileNode.id
+      if (shouldTransformImage) {
+        try {
+          const remoteFileNode = await createRemoteFileNode({
+            url: node.preview.images[0].source.url,
+            parentNodeId: node.id,
+            createNode,
+            createNodeId,
+            cache,
+            store,
+          })
+          // if the file was created, attach the new node to the parent node
+          if (remoteFileNode) {
+            fieldData.image___NODE = remoteFileNode.id
+          }
+        } catch (error) {
+          reporter.warn(`create remote file for reddit media failed: ${error}`)
         }
-      } catch (error) {
-        reporter.warn(`create remote file for reddit media failed: ${error}`)
       }
     }
 

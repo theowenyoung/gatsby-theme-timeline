@@ -4,15 +4,14 @@ import { Box, jsx, Styled } from "theme-ui"
 import Tag from "../item-tag"
 import kebabCase from "lodash/kebabCase"
 import Hero from "./item-hero"
-import Video from "./video"
 import { join as urlJoin } from "path"
 import ItemHeader from "./item-header"
 import ItemTitle from "./item-title"
 import ItemExcerpt from "./item-excerpt"
 import ItemFooter from "./item-footer"
+import ItemVideo from "./item-video"
 const Item = ({ item, basePath }) => {
-  const { title, isVideo, tags, video, videoHeight, videoWidth } = item
-
+  const { title, tags } = item
   return (
     <Box
       sx={{
@@ -30,14 +29,7 @@ const Item = ({ item, basePath }) => {
       <ItemHeader item={item}></ItemHeader>
       {title && <ItemTitle item={item}></ItemTitle>}
       <Hero item={item}></Hero>
-      {video && (
-        <Video
-          isVideo={isVideo}
-          src={video}
-          height={videoHeight}
-          width={videoWidth}
-        ></Video>
-      )}
+      <ItemVideo item={item}></ItemVideo>
       <ItemExcerpt item={item}></ItemExcerpt>
       {tags && tags.length > 0 && (
         <Styled.div

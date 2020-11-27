@@ -49,12 +49,12 @@ export const query = graphql`
           childImageSharp {
             fluid(maxHeight: $maxHeight) {
               ...GatsbyImageSharpFluid
-              src
             }
           }
         }
         imageAlt
         ... on RedditPost {
+          imageRemote
           video
           videoWidth
           videoHeight
@@ -66,11 +66,16 @@ export const query = graphql`
           authorName
           url
           score
+          redditId
         }
         ... on TweetPost {
           idStr
           retweeted
           isQuoteStatus
+          imageRemote
+          quoteImageRemote
+          authorAvatarRemote
+          quoteAuthorAvatarRemote
           quoteBody
           quoteAuthorName
           quoteAuthorScreenName

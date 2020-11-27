@@ -49,6 +49,7 @@ module.exports = {
           repo: "theowenyoung/gatsby-theme-timeline",
           label: "comment",
         },
+        // shouldTransformImage: false,
         // basePath: "/test",
         // postsFilter: {
         //   tags: {

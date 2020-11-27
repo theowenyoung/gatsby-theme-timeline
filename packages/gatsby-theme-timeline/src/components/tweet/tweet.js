@@ -13,6 +13,7 @@ const Tweet = ({ item }) => {
     authorName,
     authorScreenName,
     authorAvatar,
+    authorAvatarRemote,
     idStr,
     retweeted,
     isQuoteStatus,
@@ -20,7 +21,9 @@ const Tweet = ({ item }) => {
     quoteAuthorName,
     quoteAuthorScreenName,
     quoteAuthorAvatar,
+    quoteAuthorAvatarRemote,
     quoteImage,
+    quoteImageRemote,
   } = item
   const body = processTweetString(excerpt)
   let finalQuoteBody = ``
@@ -51,6 +54,7 @@ const Tweet = ({ item }) => {
           name={authorName}
           screenName={authorScreenName}
           avatar={authorAvatar}
+          avatarRemote={authorAvatarRemote}
         ></UserInfo>
         <TwitterButton
           to={`https://twitter.com/${authorScreenName}/status/${idStr}`}
@@ -77,6 +81,7 @@ const Tweet = ({ item }) => {
                 name={quoteAuthorName}
                 screenName={quoteAuthorScreenName}
                 avatar={quoteAuthorAvatar}
+                avatarRemote={quoteAuthorAvatarRemote}
               ></QuoteUserInfo>
               <Box sx={{ fontSize: 1, pt: 2 }}>{finalQuoteBody}</Box>
             </div>
@@ -86,6 +91,7 @@ const Tweet = ({ item }) => {
                 image: quoteImage,
                 imageAlt: `quote image`,
                 excerpt: quoteBody,
+                imageRemote: quoteImageRemote,
               }}
             ></Hero>
           </div>

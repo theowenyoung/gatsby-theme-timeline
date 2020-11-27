@@ -7,7 +7,10 @@ module.exports = (themeOptions) => {
   const postsPerPage = themeOptions.postsPerPage || 25
   const preset = themeOptions.preset || `gatsby-theme-ui-timeline-preset`
   const prismPreset = themeOptions.prismPreset || `github`
-  const shouldTransformJson = themeOptions.shouldTransformJson || true
+  const shouldTransformJson =
+    typeof themeOptions.shouldTransformJson === `undefined`
+      ? true
+      : themeOptions.shouldTransformJson
   const dataPath = themeOptions.dataPath || `data`
   const imageMaxWidth = themeOptions.imageMaxWidth || 1024
   const imageMaxHeight = themeOptions.imageMaxHeight || 512
@@ -26,6 +29,10 @@ module.exports = (themeOptions) => {
   const disqus = themeOptions.disqus || {}
   const utterancesDefault = { repo: `` }
   const utterances = themeOptions.utterances || {}
+  const shouldTransformImage =
+    typeof themeOptions.shouldTransformImage === `undefined`
+      ? true
+      : themeOptions.shouldTransformImage
   return {
     disqus: {
       ...disqusDefault,
@@ -43,6 +50,7 @@ module.exports = (themeOptions) => {
     dataPath,
     postsFilter,
     shouldTransformJson,
+    shouldTransformImage,
     imageMaxWidth,
     imageMaxHeight,
     ...baseOptions,

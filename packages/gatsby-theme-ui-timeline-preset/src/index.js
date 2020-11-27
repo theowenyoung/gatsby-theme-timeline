@@ -24,6 +24,10 @@ const final = {
 
   styles: {
     ...tailwindPreset.styles,
+    img: {
+      ...tailwindPreset.styles.img,
+      maxWidth: `full`,
+    },
     p: {
       ...tailwindPreset.styles.p,
       mb: 3,

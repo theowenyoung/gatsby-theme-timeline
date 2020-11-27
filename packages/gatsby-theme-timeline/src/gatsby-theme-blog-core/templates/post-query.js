@@ -51,6 +51,7 @@ export const query = graphql`
         video
         videoWidth
         videoHeight
+        imageRemote
         permalink
         isSelf
         postHint
@@ -58,6 +59,7 @@ export const query = graphql`
         subreddit
         authorName
         url
+        redditId
       }
       ... on TweetPost {
         idStr
@@ -66,6 +68,10 @@ export const query = graphql`
         quoteBody
         quoteAuthorName
         quoteAuthorScreenName
+        imageRemote
+        quoteImageRemote
+        authorAvatarRemote
+        quoteAuthorAvatarRemote
         quoteAuthorAvatar {
           childImageSharp {
             fixed(width: 24, height: 24) {
