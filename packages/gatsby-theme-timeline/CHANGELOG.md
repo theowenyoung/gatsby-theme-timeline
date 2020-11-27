@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.60](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-theme-timeline@0.1.59...gatsby-theme-timeline@0.1.60) (2020-11-27)
+
+### Bug Fixes
+
+- node preview check undefined ([c97873b](https://github.com/theowenyoung/gatsby-theme-timeline/commit/c97873b96fb64f7f41d27ee0265b6945c2043748))
+
 ## [0.1.59](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-theme-timeline@0.1.58...gatsby-theme-timeline@0.1.59) (2020-11-27)
 
 ### Bug Fixes
