@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.60](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-starter-timeline@0.1.59...gatsby-starter-timeline@0.1.60) (2020-11-28)
+
+### Bug Fixes
+
+- reddit gif render ([f0aceac](https://github.com/theowenyoung/gatsby-theme-timeline/commit/f0aceac513f1474c9e26b3262a47fb543af7701c))
+
 ## [0.1.59](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-starter-timeline@0.1.58...gatsby-starter-timeline@0.1.59) (2020-11-27)
 
 **Note:** Version bump only for package gatsby-starter-timeline
