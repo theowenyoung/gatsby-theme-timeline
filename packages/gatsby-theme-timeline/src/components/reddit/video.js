@@ -26,7 +26,7 @@ export default function Video({ src, width, height, isVideo }) {
         muted={true}
         width={width}
         height={height}
-        sx={{ maxWidth: `full` }}
+        sx={{ maxWidth: `full`, width: `full`, height: `full` }}
       >
         <source src={src} />
       </video>

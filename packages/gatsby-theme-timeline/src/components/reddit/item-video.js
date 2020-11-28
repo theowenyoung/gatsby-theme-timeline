@@ -4,21 +4,22 @@ import Video from "./video"
 
 const itemHero = ({ item }) => {
   const { isVideo, video, redditId, videoHeight, videoWidth } = item
+
   if (!(isVideo || video)) {
     return null
   }
   return (
     <div sx={{ pb: 2 }}>
-      <div
-        sx={{
-          position: `relative`,
-          height: 0,
-          overflow: `hidden`,
-          width: `full`,
-          paddingBottom: `56.25%`,
-        }}
-      >
-        {isVideo ? (
+      {isVideo ? (
+        <div
+          sx={{
+            position: `relative`,
+            height: 0,
+            overflow: `hidden`,
+            width: `full`,
+            paddingBottom: `56.25%`,
+          }}
+        >
           <iframe
             title={`video ${redditId}`}
             frameBorder="0"
@@ -33,17 +34,17 @@ const itemHero = ({ item }) => {
               top: 0,
             }}
           ></iframe>
-        ) : (
-          video && (
-            <Video
-              isVideo={isVideo}
-              src={video}
-              height={videoHeight}
-              width={videoWidth}
-            ></Video>
-          )
-        )}
-      </div>
+        </div>
+      ) : (
+        video && (
+          <Video
+            isVideo={isVideo}
+            src={video}
+            height={videoHeight}
+            width={videoWidth}
+          ></Video>
+        )
+      )}
     </div>
   )
 }
