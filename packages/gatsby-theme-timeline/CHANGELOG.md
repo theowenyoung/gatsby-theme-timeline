@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.64](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-theme-timeline@0.1.63...gatsby-theme-timeline@0.1.64) (2020-11-29)
+
+### Bug Fixes
+
+- reddit type name check ([2a2758d](https://github.com/theowenyoung/gatsby-theme-timeline/commit/2a2758ddc4026921c015a9c07b082cbdc3b3db46))
+
 ## [0.1.63](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-theme-timeline@0.1.62...gatsby-theme-timeline@0.1.63) (2020-11-29)
 
 **Note:** Version bump only for package gatsby-theme-timeline
