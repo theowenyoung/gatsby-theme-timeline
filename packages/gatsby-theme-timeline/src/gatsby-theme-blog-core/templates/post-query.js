@@ -18,6 +18,11 @@ export const query = graphql`
           url
           external
         }
+        menuLinks {
+          name
+          url
+          external
+        }
       }
     }
     blogPost(id: { eq: $id }) {

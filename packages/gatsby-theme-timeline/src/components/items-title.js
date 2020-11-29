@@ -6,19 +6,45 @@ import { LocalizedLink as Link } from "gatsby-theme-i18n"
  * Shadow me to add your own bio content
  */
 
-const ItemsTitle = ({ pageType, tag, basePath }) => {
+const ItemsTitle = ({ pageType, tag, basePath, currentPage }) => {
   if (pageType === `tag`) {
-    return (
-      <Styled.h3>
-        <LinkUI sx={{ color: `textMuted` }} as={Link} to={withPrefix(basePath)}>
-          All posts
-        </LinkUI>
-        <span> / </span>
-        <span>{tag}</span>
-      </Styled.h3>
-    )
+    if (currentPage > 1) {
+      return (
+        <Styled.h4 sx={{ fontWeight: `normal` }}>
+          <LinkUI sx={{ color: `text` }} as={Link} to={withPrefix(basePath)}>
+            All posts
+          </LinkUI>
+          <span sx={{ color: `textMuted` }}> / </span>
+          <span sx={{ color: `textMuted` }}>{tag}</span>
+          <span sx={{ color: `textMuted` }}> / </span>
+          <span sx={{ color: `textMuted` }}>page {currentPage}</span>
+        </Styled.h4>
+      )
+    } else {
+      return (
+        <Styled.h4 sx={{ fontWeight: `normal` }}>
+          <LinkUI sx={{ color: `text` }} as={Link} to={withPrefix(basePath)}>
+            All posts
+          </LinkUI>
+          <span sx={{ color: `textMuted` }}> / </span>
+          <span sx={{ color: `textMuted` }}>{tag}</span>
+        </Styled.h4>
+      )
+    }
   } else {
-    return <Styled.h4>Latest</Styled.h4>
+    if (currentPage > 1) {
+      return (
+        <Styled.h4 sx={{ fontWeight: `normal` }}>
+          <LinkUI sx={{ color: `text` }} as={Link} to={withPrefix(basePath)}>
+            Latest
+          </LinkUI>
+          <span sx={{ color: `textMuted` }}> / </span>
+          <span sx={{ color: `textMuted` }}>page {currentPage}</span>
+        </Styled.h4>
+      )
+    } else {
+      return <Styled.h4 sx={{ fontWeight: `normal` }}>Latest</Styled.h4>
+    }
   }
 }
 

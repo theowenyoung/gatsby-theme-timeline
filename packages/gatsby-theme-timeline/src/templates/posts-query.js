@@ -19,6 +19,11 @@ export const query = graphql`
           url
           external
         }
+        menuLinks {
+          name
+          url
+          external
+        }
       }
     }
     tagsGroup: allBlogPost(

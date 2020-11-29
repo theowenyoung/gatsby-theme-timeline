@@ -12,20 +12,27 @@ import AsideBox from "./aside-box"
 import ItemsSEO from "./items-seo"
 import ItemsFooter from "./items-footer"
 const Items = ({ location, data, pageContext }) => {
-  const { pageType, tag, basePath } = pageContext
+  const { pageType, tag, basePath, currentPage, totalPages } = pageContext
   const items = data.allBlogPost.nodes
   const {
     site: {
-      siteMetadata: { social, title },
+      siteMetadata: { social, title, menuLinks },
     },
     tagsGroup: { group },
   } = data
 
   return (
-    <Layout basePath={basePath} location={location} title={title}>
+    <Layout
+      basePath={basePath}
+      location={location}
+      menuLinks={menuLinks}
+      title={title}
+    >
       <ItemsSEO pageType={pageType} tag={tag} />
       <ItemsTitle
         pageType={pageType}
+        currentPage={currentPage}
+        totalPages={totalPages}
         tag={tag}
         basePath={basePath}
       ></ItemsTitle>

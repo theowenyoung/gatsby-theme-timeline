@@ -5,6 +5,16 @@ import { LocalizedLink as Link } from "gatsby-theme-i18n"
 import { Link as LinkUI } from "theme-ui"
 import { join as urlJoin } from "path"
 export default function NextPageLink({ prefix }, props) {
+  if (props.isActive) {
+    return (
+      <div
+        sx={{
+          flexGrow: 1,
+          textAlign: `right`,
+        }}
+      ></div>
+    )
+  }
   return (
     <div
       sx={{

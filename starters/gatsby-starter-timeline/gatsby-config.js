@@ -1,7 +1,9 @@
 require("dotenv").config()
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Theme Timeline`,
+    title: `Timeline`,
+    author: "Owen Young",
+    description: "Gatsby theme timeline",
     siteUrl: `https://gatsby-theme-timeline.netlify.app`,
     social: [
       {
@@ -13,6 +15,11 @@ module.exports = {
         name: "Twitter",
         url: "https://twitter.com/theowenyoung",
       },
+    ],
+    menuLinks: [
+      { name: "Post", url: "/tags/post" },
+      { name: "Reddit", url: "/tags/reddit/" },
+      { name: "Twitter", url: "/tags/tweet/" },
     ],
   },
   plugins: [
@@ -40,7 +47,7 @@ module.exports = {
     {
       resolve: `gatsby-theme-timeline`,
       options: {
-        postsPerPage: 5,
+        postsPerPage: 2,
         tweetTypeName: ["TweetsJson", "twitterStatusesUserTimelineMyTweet"],
         // disqus: {
         //   shortname: "gatsby-theme-timeline",
@@ -49,6 +56,7 @@ module.exports = {
           repo: "theowenyoung/gatsby-theme-timeline",
           label: "comment",
         },
+
         // shouldTransformImage: false,
         // basePath: "/test",
         // postsFilter: {

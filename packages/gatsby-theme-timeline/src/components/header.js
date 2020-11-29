@@ -1,29 +1,33 @@
 /** @jsx jsx */
 import { css, Styled, jsx } from "theme-ui"
 import Title from "./header-title"
-
-const Header = ({ children, title, ...props }) => (
-  <header>
-    <Styled.div
-      css={css({
-        maxWidth: `5xl`,
-        mx: `auto`,
-        px: [3, 4],
-        pt: 3,
-      })}
-    >
+import HeaderMenu from "./header-menu"
+const Header = (props) => {
+  const { menuLinks, title, type } = props
+  return (
+    <header sx={{ px: [3, 4], mb: 4, maxWidth: `5xl`, mx: `auto` }}>
       <Styled.div
         css={css({
-          display: `flex`,
-          justifyContent: `space-between`,
-          alignItems: `center`,
+          pt: 3,
+          pb: type === `detail` ? 2 : 3,
+          borderBottomStyle: `solid`,
+          borderBottomWidth: 1,
+          borderBottomColor: `muted`,
         })}
       >
-        <Title {...props}>{title}</Title>
-        {children}
+        <Styled.div
+          css={css({
+            display: `flex`,
+            alignItems: `baseline`,
+            flexWrap: `wrap`,
+          })}
+        >
+          <Title {...props}>{title}</Title>
+          <HeaderMenu menuLinks={menuLinks}></HeaderMenu>
+        </Styled.div>
       </Styled.div>
-    </Styled.div>
-  </header>
-)
+    </header>
+  )
+}
 
 export default Header
