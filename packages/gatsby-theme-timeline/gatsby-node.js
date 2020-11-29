@@ -371,7 +371,7 @@ exports.onCreateNode = async (
     allTweetsTypeName = tweetTypeName
   }
   let allRedditTypeName = []
-  if (typeof tweetTypeName === `string`) {
+  if (typeof redditTypeName === `string`) {
     allRedditTypeName.push(redditTypeName)
   } else if (Array.isArray(redditTypeName)) {
     allRedditTypeName = redditTypeName
