@@ -21,6 +21,7 @@ const Pagination = (props) => {
   itemTypeKeys.forEach((key) => {
     itemTypeToComponent[key] = itemTypeToComponent[key].bind(null, {
       prefix: props.prefix,
+      pagePath: props.pagePath || `page`,
       pageContext: props.pageContext,
     })
   })

@@ -3,7 +3,7 @@ import { withPrefix } from "gatsby"
 import { LocalizedLink as Link } from "gatsby-theme-i18n"
 import { Link as LinkUI, Text } from "theme-ui"
 import { join as urlJoin } from "path"
-export default function Page({ prefix }, props) {
+export default function Page({ prefix, pagePath }, props) {
   const isDisabled = props.disabled || props.isActive
   if (isDisabled) {
     return (
@@ -24,7 +24,7 @@ export default function Page({ prefix }, props) {
       to={withPrefix(
         props.value === 1
           ? `${prefix}`
-          : urlJoin(`${prefix}`, `page/${props.value}`)
+          : urlJoin(`${prefix}`, `${pagePath}/${props.value}`)
       )}
       sx={{
         px: 2,

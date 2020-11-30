@@ -5,7 +5,7 @@ import { LocalizedLink as Link } from "gatsby-theme-i18n"
 import { Link as LinkUI } from "theme-ui"
 import { join as urlJoin } from "path"
 
-export default function PreviousPageLink({ prefix }, props) {
+export default function PreviousPageLink({ prefix, pagePath }, props) {
   if (props.isActive) {
     return (
       <div
@@ -28,7 +28,7 @@ export default function PreviousPageLink({ prefix }, props) {
         to={withPrefix(
           props.value === 1
             ? `${prefix}`
-            : urlJoin(prefix, `page/${props.value}`)
+            : urlJoin(prefix, `${pagePath}/${props.value}`)
         )}
         sx={{
           color: `textMuted`,
