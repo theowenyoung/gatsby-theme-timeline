@@ -19,6 +19,7 @@ const PostFooter = ({ pageContext }) => {
             pageType === `tag` ? `tags/${kebabCase(tag)}` : ``
           )
         )}
+        pageContext={pageContext}
       ></Pagination>
     )
   } else {
