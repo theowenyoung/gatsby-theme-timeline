@@ -12,7 +12,7 @@ import AsideBox from "./aside-box"
 import ItemsSEO from "./items-seo"
 import ItemsFooter from "./items-footer"
 const Items = ({ location, data, pageContext }) => {
-  const { pageType, tag, basePath, currentPage, totalPages } = pageContext
+  const { basePath } = pageContext
   const items = data.allBlogPost.nodes
   const {
     site: {
@@ -28,14 +28,8 @@ const Items = ({ location, data, pageContext }) => {
       menuLinks={menuLinks}
       title={title}
     >
-      <ItemsSEO pageType={pageType} tag={tag} />
-      <ItemsTitle
-        pageType={pageType}
-        currentPage={currentPage}
-        totalPages={totalPages}
-        tag={tag}
-        basePath={basePath}
-      ></ItemsTitle>
+      <ItemsSEO pageContext={pageContext} />
+      <ItemsTitle pageContext={pageContext}></ItemsTitle>
       <Grid gap={[null, null, 3, 4]} columns={[1, 1, `2fr 1fr`]}>
         <main sx={{ minWidth: 0 }}>
           {items.map((item, index) => {

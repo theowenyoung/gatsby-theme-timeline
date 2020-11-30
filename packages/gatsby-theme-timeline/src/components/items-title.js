@@ -7,7 +7,8 @@ import { LocalizedLink as Link } from "gatsby-theme-i18n"
  * Shadow me to add your own bio content
  */
 
-const ItemsTitle = ({ pageType, tag, basePath, currentPage }) => {
+const ItemsTitle = ({ pageContext }) => {
+  const { pageType, tag, basePath, currentPage } = pageContext
   if (pageType === `tag`) {
     return (
       <Styled.h4 sx={{ fontWeight: `normal`, mb: `1.5rem` }}>
