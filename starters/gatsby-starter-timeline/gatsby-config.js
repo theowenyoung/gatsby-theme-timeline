@@ -69,11 +69,11 @@ module.exports = {
     {
       resolve: `gatsby-plugin-sitemap`,
     },
-    {
-      resolve: "gatsby-plugin-robots-txt",
-      options: {
-        policy: [{ userAgent: "*", disallow: ["/"] }],
-      },
-    },
+    // {
+    //   resolve: "gatsby-plugin-robots-txt",
+    //   options: {
+    //     policy: [{ userAgent: "*", disallow: ["/"] }],
+    //   },
+    // },
   ],
 }
