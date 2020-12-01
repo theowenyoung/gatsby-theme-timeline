@@ -13,6 +13,7 @@ const DetailPage = ({
     },
   },
   location,
+  pageContext,
 }) => {
   const item = blogPost
   const basePath = item?.fields?.basePath || `/`
@@ -24,7 +25,11 @@ const DetailPage = ({
       title={title}
       type="detail"
     >
-      <DetailSEO item={item}></DetailSEO>
+      <DetailSEO
+        location={location}
+        pageContext={pageContext}
+        item={item}
+      ></DetailSEO>
       <main>
         <Detail item={item}></Detail>
         <DetailFooter

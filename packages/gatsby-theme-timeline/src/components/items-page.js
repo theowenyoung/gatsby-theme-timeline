@@ -28,7 +28,7 @@ const Items = ({ location, data, pageContext }) => {
       menuLinks={menuLinks}
       title={title}
     >
-      <ItemsSEO pageContext={pageContext} />
+      <ItemsSEO location={location} pageContext={pageContext} />
       <ItemsTitle pageContext={pageContext}></ItemsTitle>
       <Grid gap={[null, null, 3, 4]} columns={[1, 1, `2fr 1fr`]}>
         <main sx={{ minWidth: 0 }}>
