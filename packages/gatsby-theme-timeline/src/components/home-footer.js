@@ -10,11 +10,16 @@ const Footer = () => (
   >
     © {new Date().getFullYear()}, Powered by
     {` `}
-    <LinkUI href="https://www.gatsbyjs.com">Gatsby</LinkUI>
+    <LinkUI data-test="powered-link" href="https://www.gatsbyjs.com">
+      Gatsby
+    </LinkUI>
     {` `}
     Theme by
     {` `}
-    <LinkUI href="https://github.com/theowenyoung/gatsby-theme-timeline">
+    <LinkUI
+      data-test="theme-link"
+      href="https://github.com/theowenyoung/gatsby-theme-timeline"
+    >
       Timeline
     </LinkUI>
   </footer>
