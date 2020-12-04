@@ -8,6 +8,10 @@ const itemHero = ({ item }) => {
   if (!(isVideo || video)) {
     return null
   }
+  let paddingBottom = `56.25%`
+  if (videoHeight > videoWidth) {
+    paddingBottom = `100%`
+  }
   return (
     <div sx={{ pb: 2 }}>
       {isVideo ? (
@@ -15,9 +19,10 @@ const itemHero = ({ item }) => {
           sx={{
             position: `relative`,
             height: 0,
+            margin: 0,
             overflow: `hidden`,
-            width: `full`,
-            paddingBottom: `56.25%`,
+            maxWidth: `full`,
+            paddingBottom: paddingBottom,
           }}
         >
           <iframe
@@ -25,7 +30,7 @@ const itemHero = ({ item }) => {
             frameBorder="0"
             allowFullScreen
             scrolling="no"
-            src={`https://old.reddit.com/mediaembed/${redditId}`}
+            src={`https://www.reddit.com/mediaembed/${redditId}`}
             sx={{
               width: `full`,
               height: `full`,
