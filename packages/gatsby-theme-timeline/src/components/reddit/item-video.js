@@ -9,9 +9,14 @@ const itemHero = ({ item }) => {
     return null
   }
   let paddingBottom = `56.25%`
-  if (videoHeight > videoWidth) {
-    paddingBottom = `100%`
+  if (videoHeight && videoWidth) {
+    if (videoHeight > videoWidth) {
+      paddingBottom = `100%`
+    } else {
+      paddingBottom = `${(videoHeight * 100) / videoWidth}%`
+    }
   }
+
   return (
     <div sx={{ pb: 2 }}>
       {isVideo ? (
