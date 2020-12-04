@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.68](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-starter-timeline@0.1.67...gatsby-starter-timeline@0.1.68) (2020-12-04)
+
+### Bug Fixes
+
+- reddit video embed ([01344d5](https://github.com/theowenyoung/gatsby-theme-timeline/commit/01344d58e3d131a5c291230dc559172fb3f30985))
+
+### Features
+
+- add google verify ([dad3752](https://github.com/theowenyoung/gatsby-theme-timeline/commit/dad3752e5df86390909ecc489a121a6f472a56b3))
+
 ## [0.1.67](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-starter-timeline@0.1.66...gatsby-starter-timeline@0.1.67) (2020-12-01)
 
 **Note:** Version bump only for package gatsby-starter-timeline
