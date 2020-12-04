@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.70](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-theme-timeline@0.1.69...gatsby-theme-timeline@0.1.70) (2020-12-04)
+
+### Bug Fixes
+
+- reddit video height ([8575dba](https://github.com/theowenyoung/gatsby-theme-timeline/commit/8575dba539e6a4bd2ccdab039c049a5fd6cb39cc))
+
 ## [0.1.69](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-theme-timeline@0.1.68...gatsby-theme-timeline@0.1.69) (2020-12-04)
 
 ### Bug Fixes
