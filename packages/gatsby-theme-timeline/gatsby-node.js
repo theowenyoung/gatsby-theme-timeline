@@ -626,7 +626,10 @@ exports.onCreateNode = async (
       node.preview.images[0].source.url
     ) {
       fieldData.imageAlt = `Reddit Image`
-      if (node.preview.images[0].resolutions) {
+      if (
+        node.preview.images[0].resolutions &&
+        node.preview.images[0].resolutions.length > 0
+      ) {
         fieldData.imageRemote =
           node.preview.images[0].resolutions[
             node.preview.images[0].resolutions.length - 1
