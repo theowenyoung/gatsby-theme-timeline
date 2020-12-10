@@ -4,13 +4,13 @@ import Title from "./header-title"
 import HeaderMenu from "./header-menu"
 import HeaderRight from "./header-right"
 const Header = (props) => {
-  const { menuLinks, title, type } = props
+  const { title, pageType } = props
   return (
     <header sx={{ px: [3, 4], mb: 4, maxWidth: `5xl`, mx: `auto` }}>
       <Styled.div
         sx={{
           pt: 3,
-          pb: type === `detail` ? 2 : 3,
+          pb: pageType === `detail` ? 2 : 3,
           borderBottomStyle: `solid`,
           borderBottomWidth: 1,
           borderBottomColor: `muted`,
@@ -32,10 +32,10 @@ const Header = (props) => {
             }}
           >
             <Title {...props}>{title}</Title>
-            <HeaderMenu menuLinks={menuLinks}></HeaderMenu>
+            <HeaderMenu {...props}></HeaderMenu>
           </Flex>
 
-          <HeaderRight></HeaderRight>
+          <HeaderRight {...props}></HeaderRight>
         </Styled.div>
       </Styled.div>
     </header>

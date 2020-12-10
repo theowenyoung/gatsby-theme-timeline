@@ -23,7 +23,7 @@ const DetailPage = ({
       menuLinks={menuLinks}
       location={location}
       title={title}
-      type="detail"
+      pageType="detail"
     >
       <DetailSEO
         location={location}

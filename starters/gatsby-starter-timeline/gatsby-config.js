@@ -47,7 +47,7 @@ module.exports = {
     {
       resolve: `gatsby-theme-timeline`,
       options: {
-        postsPerPage: 2,
+        // postsPerPage: 2,
         tweetTypeName: ["TweetsJson", "twitterStatusesUserTimelineMyTweet"],
         // disqus: {
         //   shortname: "gatsby-theme-timeline",
