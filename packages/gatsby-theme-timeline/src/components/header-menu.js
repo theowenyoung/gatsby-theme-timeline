@@ -7,36 +7,31 @@ const Title = ({ menuLinks }) => {
     return null
   }
   return (
-    <Flex sx={{ fontSize: 2 }}>
+    <Flex sx={{ fontSize: `1.15rem`, fontWeight: `light` }}>
       {menuLinks.map((nav, index) => {
         const attr = {}
         if (nav.external) {
           attr.target = `_blank`
           attr.rel = `noopener noreferrer`
         }
-        if (nav.url.startsWith(`http`)) {
-          return (
-            <LinkUI
-              sx={{ mr: index < menuLinks.length - 1 ? 3 : 0 }}
-              href={nav.url}
-              key={nav.url}
-              {...attr}
-            >
-              {nav.name}
-            </LinkUI>
-          )
-        } else {
-          return (
-            <LinkUI
-              as={Link}
-              sx={{ mr: index < menuLinks.length - 1 ? 3 : 0 }}
-              to={nav.url}
-              key={nav.url}
-            >
-              {nav.name}
-            </LinkUI>
-          )
-        }
+
+        return (
+          <LinkUI
+            sx={{
+              mr: 3,
+              color: `text`,
+              ":hover": {
+                color: `primary`,
+                textDecoration: `none`,
+              },
+            }}
+            as={nav.url.startsWith(`http`) ? undefined : Link}
+            to={nav.url}
+            key={nav.url}
+          >
+            {nav.name}
+          </LinkUI>
+        )
       })}
     </Flex>
   )
