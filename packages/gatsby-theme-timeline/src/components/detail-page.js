@@ -24,6 +24,7 @@ const DetailPage = ({
       location={location}
       title={title}
       pageType="detail"
+      pageContext={pageContext}
     >
       <DetailSEO
         location={location}

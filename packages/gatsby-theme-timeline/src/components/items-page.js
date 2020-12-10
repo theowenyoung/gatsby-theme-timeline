@@ -28,6 +28,7 @@ const Items = ({ location, data, pageContext }) => {
       menuLinks={menuLinks}
       title={title}
       pageType={pageType}
+      pageContext={pageContext}
     >
       <ItemsSEO location={location} pageContext={pageContext} />
       <ItemsTitle pageContext={pageContext}></ItemsTitle>
