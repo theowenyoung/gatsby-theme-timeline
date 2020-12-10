@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.75](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-theme-timeline@0.1.74...gatsby-theme-timeline@0.1.75) (2020-12-10)
+
+### Features
+
+- add pageContext to layout ([a389db5](https://github.com/theowenyoung/gatsby-theme-timeline/commit/a389db561cc2f76a25889ceaa2a2e0411b5d1e90))
+
 ## [0.1.74](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-theme-timeline@0.1.73...gatsby-theme-timeline@0.1.74) (2020-12-10)
 
 **Note:** Version bump only for package gatsby-theme-timeline
