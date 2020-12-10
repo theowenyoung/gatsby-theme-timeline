@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.73](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-theme-timeline@0.1.72...gatsby-theme-timeline@0.1.73) (2020-12-10)
+
+### Features
+
+- add header right component ([9711962](https://github.com/theowenyoung/gatsby-theme-timeline/commit/9711962a103961fc5b837ab53ee515efe65d6375))
+
 ## [0.1.72](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-theme-timeline@0.1.71...gatsby-theme-timeline@0.1.72) (2020-12-10)
 
 ### Features
