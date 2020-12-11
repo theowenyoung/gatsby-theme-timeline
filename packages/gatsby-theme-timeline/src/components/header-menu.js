@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { jsx, Link as LinkUI, Flex } from "theme-ui"
+import { jsx, NavLink as LinkUI, Flex } from "theme-ui"
 import { LocalizedLink as Link } from "gatsby-theme-i18n"
 
 const Title = ({ menuLinks }) => {
@@ -7,7 +7,7 @@ const Title = ({ menuLinks }) => {
     return null
   }
   return (
-    <Flex sx={{ fontSize: `1.15rem`, fontWeight: `light` }}>
+    <Flex as="nav">
       {menuLinks.map((nav, index) => {
         const attr = {}
         if (nav.external) {
@@ -17,14 +17,6 @@ const Title = ({ menuLinks }) => {
 
         return (
           <LinkUI
-            sx={{
-              mr: 3,
-              color: `text`,
-              ":hover": {
-                color: `primary`,
-                textDecoration: `none`,
-              },
-            }}
             as={nav.url.startsWith(`http`) ? undefined : Link}
             to={nav.url}
             key={nav.url}

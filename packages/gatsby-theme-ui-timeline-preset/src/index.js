@@ -15,6 +15,14 @@ const final = {
     `16rem`,
     `32rem`,
   ],
+  links: {
+    ...tailwindPreset.links,
+    nav: {
+      px: 2,
+      py: 1,
+      letterSpacing: `0.2rem`,
+    },
+  },
   alerts: {
     primary: {
       color: `background`,
