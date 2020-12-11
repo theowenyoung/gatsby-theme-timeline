@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.13](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-theme-ui-timeline-preset@0.1.12...gatsby-theme-ui-timeline-preset@0.1.13) (2020-12-11)
+
+### Features
+
+- fontWeight for menu link ([443f23d](https://github.com/theowenyoung/gatsby-theme-timeline/commit/443f23dc57fbe9e2daad0859ebd1952666f7613a))
+
 ## [0.1.12](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-theme-ui-timeline-preset@0.1.11...gatsby-theme-ui-timeline-preset@0.1.12) (2020-12-11)
 
 ### Bug Fixes
