@@ -6,5 +6,5 @@ export default function ({ item }) {
   if (!excerpt) {
     return null
   }
-  return <Styled.p sx={{ whiteSpace: `pre-line` }}>{excerpt}</Styled.p>
+  return <Styled.p sx={{ whiteSpace: `pre-line`, mt: 0 }}>{excerpt}</Styled.p>
 }

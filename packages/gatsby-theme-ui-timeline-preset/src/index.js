@@ -86,7 +86,7 @@ const final = {
     },
     h3: {
       ...tailwindPreset.styles.h3,
-      mb: 4,
+      mb: 3,
     },
     h4: {
       ...tailwindPreset.styles.h4,
