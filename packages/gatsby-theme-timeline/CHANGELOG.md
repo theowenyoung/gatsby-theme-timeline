@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.76](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-theme-timeline@0.1.75...gatsby-theme-timeline@0.1.76) (2020-12-11)
+
+### Features
+
+- use navLink instead of link ([d8e8b7c](https://github.com/theowenyoung/gatsby-theme-timeline/commit/d8e8b7c89e7533a0c23214b5fbb33b1d3dcfb92b))
+
 ## [0.1.75](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-theme-timeline@0.1.74...gatsby-theme-timeline@0.1.75) (2020-12-10)
 
 ### Features
