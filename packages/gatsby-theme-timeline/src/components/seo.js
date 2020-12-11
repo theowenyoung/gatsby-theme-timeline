@@ -47,7 +47,11 @@ function SEO({
   const metaDescription = description || site.siteMetadata.description
   const author = site.siteMetadata.author
   const siteUrl = site.siteMetadata.siteUrl
-  const avatarImage = avatar.childImageSharp.fixed.src
+  const avatarImage =
+    avatar &&
+    avatar.childImageSharp &&
+    avatar.childImageSharp.fixed &&
+    avatar.childImageSharp.fixed.src
   const getImagePath = (imageURI) => {
     if (
       !imageURI.match(
@@ -69,7 +73,7 @@ function SEO({
 
   const logoJSONLD = {
     "@type": `ImageObject`,
-    url: getImagePath(avatarImage),
+    url: avatarImage ? getImagePath(avatarImage) : null,
     "@id": path.join(siteUrl, withPrefix(`#logo`)),
     caption: `${siteTitle} Logo`,
   }
