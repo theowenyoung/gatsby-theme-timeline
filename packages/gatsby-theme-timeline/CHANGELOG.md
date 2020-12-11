@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.78](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-theme-timeline@0.1.77...gatsby-theme-timeline@0.1.78) (2020-12-11)
+
+### Bug Fixes
+
+- themeOption merge ([abdbc43](https://github.com/theowenyoung/gatsby-theme-timeline/commit/abdbc432917c64abed36e21c0270491bd0dd6647))
+
 ## [0.1.77](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-theme-timeline@0.1.76...gatsby-theme-timeline@0.1.77) (2020-12-11)
 
 ### Bug Fixes
