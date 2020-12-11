@@ -34,14 +34,7 @@ module.exports = (themeOptions) => {
       ? true
       : themeOptions.shouldTransformImage
   return {
-    disqus: {
-      ...disqusDefault,
-      ...disqus,
-    },
-    utterances: {
-      ...utterancesDefault,
-      ...utterances,
-    },
+    ...baseOptions,
     tweetTypeName,
     redditTypeName,
     postsPerPage,
@@ -53,7 +46,15 @@ module.exports = (themeOptions) => {
     shouldTransformImage,
     imageMaxWidth,
     imageMaxHeight,
-    ...baseOptions,
+    ...themeOptions,
+    disqus: {
+      ...disqusDefault,
+      ...disqus,
+    },
+    utterances: {
+      ...utterancesDefault,
+      ...utterances,
+    },
     jsonTransformerOptions: {
       ...jsonTransformerOptions,
       ...themeOptions.jsonTransformerOptions,

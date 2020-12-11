@@ -5,7 +5,7 @@ export default function ({ item }) {
   const { slug, title } = item
   return (
     <LinkUI sx={{ color: `text` }} as={Link} to={slug}>
-      <Styled.h3 sx={{ fontWeight: `normal` }}>{title}</Styled.h3>
+      <Styled.h3 sx={{ mb: 0, fontWeight: `normal` }}>{title}</Styled.h3>
     </LinkUI>
   )
 }
