@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.77](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-theme-timeline@0.1.76...gatsby-theme-timeline@0.1.77) (2020-12-11)
+
+### Bug Fixes
+
+- avatar not exist ([5cb097b](https://github.com/theowenyoung/gatsby-theme-timeline/commit/5cb097b45c6ba47ad3e98b7ad54cfee14be3115a))
+
 ## [0.1.76](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-theme-timeline@0.1.75...gatsby-theme-timeline@0.1.76) (2020-12-11)
 
 ### Features
