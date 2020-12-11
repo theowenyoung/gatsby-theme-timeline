@@ -18,6 +18,7 @@ const final = {
   links: {
     ...tailwindPreset.links,
     nav: {
+      fontWeight: `normal`,
       px: 2,
       py: 1,
       letterSpacing: `0.2rem`,
