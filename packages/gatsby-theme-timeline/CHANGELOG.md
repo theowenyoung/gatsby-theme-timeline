@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.81](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-theme-timeline@0.1.80...gatsby-theme-timeline@0.1.81) (2020-12-12)
+
+### Features
+
+- add pageContext props to item ([faa76bc](https://github.com/theowenyoung/gatsby-theme-timeline/commit/faa76bca0bb40ed9deec0f38f38342db6eede7bf))
+
 ## [0.1.80](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-theme-timeline@0.1.79...gatsby-theme-timeline@0.1.80) (2020-12-11)
 
 **Note:** Version bump only for package gatsby-theme-timeline
