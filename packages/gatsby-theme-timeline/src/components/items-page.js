@@ -40,6 +40,7 @@ const Items = ({ location, data, pageContext }) => {
                 key={`item-box-${index}`}
                 basePath={basePath}
                 item={itemFormat(item)}
+                pageContext={pageContext}
               ></ItemBox>
             )
           })}

@@ -8,7 +8,8 @@ import { join as urlJoin } from "path"
 import ItemExcerpt from "./item-excerpt"
 import ItemFooter from "./item-footer"
 import ItemTitle from "./item-title"
-const Item = ({ item, basePath }) => {
+const Item = (props) => {
+  const { item, basePath } = props
   const { title, tags } = item
   return (
     <Box
@@ -24,9 +25,9 @@ const Item = ({ item, basePath }) => {
         pb: 4,
       }}
     >
-      <Hero item={item}></Hero>
-      {title && <ItemTitle item={item}></ItemTitle>}
-      <ItemExcerpt item={item}></ItemExcerpt>
+      <Hero {...props}></Hero>
+      {title && <ItemTitle {...props}></ItemTitle>}
+      <ItemExcerpt {...props}></ItemExcerpt>
       {tags && tags.length > 0 && (
         <Styled.div
           sx={{
@@ -48,7 +49,7 @@ const Item = ({ item, basePath }) => {
             })}
         </Styled.div>
       )}
-      <ItemFooter item={item}></ItemFooter>
+      <ItemFooter {...props}></ItemFooter>
     </Box>
   )
 }

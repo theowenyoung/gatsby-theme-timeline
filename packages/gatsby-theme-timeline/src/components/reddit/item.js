@@ -10,7 +10,8 @@ import ItemTitle from "./item-title"
 import ItemExcerpt from "./item-excerpt"
 import ItemFooter from "./item-footer"
 import ItemVideo from "./item-video"
-const Item = ({ item, basePath }) => {
+const Item = (props) => {
+  const { item, basePath } = props
   const { title, tags } = item
   return (
     <Box
@@ -26,11 +27,11 @@ const Item = ({ item, basePath }) => {
         pb: 4,
       }}
     >
-      <ItemHeader item={item}></ItemHeader>
-      {title && <ItemTitle item={item}></ItemTitle>}
-      <Hero item={item}></Hero>
-      <ItemVideo item={item}></ItemVideo>
-      <ItemExcerpt item={item}></ItemExcerpt>
+      <ItemHeader {...props}></ItemHeader>
+      {title && <ItemTitle {...props}></ItemTitle>}
+      <Hero {...props}></Hero>
+      <ItemVideo {...props}></ItemVideo>
+      <ItemExcerpt {...props}></ItemExcerpt>
       {tags && tags.length > 0 && (
         <Styled.div
           sx={{
@@ -52,7 +53,7 @@ const Item = ({ item, basePath }) => {
             })}
         </Styled.div>
       )}
-      <ItemFooter item={item}></ItemFooter>
+      <ItemFooter {...props}></ItemFooter>
     </Box>
   )
 }

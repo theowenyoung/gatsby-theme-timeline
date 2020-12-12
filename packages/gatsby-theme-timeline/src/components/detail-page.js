@@ -32,13 +32,18 @@ const DetailPage = ({
         item={item}
       ></DetailSEO>
       <main>
-        <Detail item={item}></Detail>
+        <Detail
+          item={item}
+          pageContext={pageContext}
+          location={location}
+        ></Detail>
         <DetailFooter
           {...{
             previous,
             next,
             basePath: basePath,
             item,
+            pageContext,
           }}
         />
       </main>

@@ -6,7 +6,8 @@ import Tag from "../item-tag"
 import kebabCase from "lodash/kebabCase"
 import Tweet from "./tweet"
 import { join as urlJoin } from "path"
-const Item = ({ item, basePath }) => {
+const Item = (props) => {
+  const { item, basePath } = props
   const { tags } = item
   return (
     <Box
@@ -21,7 +22,7 @@ const Item = ({ item, basePath }) => {
         py: 4,
       }}
     >
-      <Tweet item={item}></Tweet>
+      <Tweet {...props}></Tweet>
       {tags && tags.length > 0 && (
         <Styled.div
           sx={{
@@ -43,7 +44,7 @@ const Item = ({ item, basePath }) => {
             })}
         </Styled.div>
       )}
-      <ItemFooter item={item}></ItemFooter>
+      <ItemFooter {...props}></ItemFooter>
     </Box>
   )
 }
