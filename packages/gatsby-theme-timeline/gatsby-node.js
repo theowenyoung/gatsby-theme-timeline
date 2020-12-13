@@ -350,6 +350,45 @@ exports.createPages = async ({ graphql, actions, reporter }, themeOptions) => {
       })
     })
   })
+
+  // create limit >1000 detail page, cause blog-core limit 1000
+  const detailsPageResult = await graphql(`
+    {
+      allBlogPost(sort: { fields: [date, title], order: DESC }, skip: 1000) {
+        nodes {
+          id
+          slug
+        }
+      }
+    }
+  `)
+
+  if (detailsPageResult.errors) {
+    reporter.panic(detailsPageResult.errors)
+  }
+
+  // Create Posts and Post pages.
+  const { allBlogPost: allDetailBlogPost } = detailsPageResult.data
+  const detailPosts = allDetailBlogPost.nodes
+  const PostTemplate = require.resolve(
+    `gatsby-theme-blog-core/src/templates/post-query`
+  )
+  // Create a page for each Post
+  detailPosts.forEach((post, index) => {
+    const previous = index === posts.length - 1 ? null : posts[index + 1]
+    const next = index === 0 ? null : posts[index - 1]
+    const { slug } = post
+    createPage({
+      path: slug,
+      component: PostTemplate,
+      context: {
+        id: post.id,
+        previousId: previous ? previous.id : undefined,
+        nextId: next ? next.id : undefined,
+        maxWidth: imageMaxWidth,
+      },
+    })
+  })
 }
 
 // Create fields for post slugs and source
