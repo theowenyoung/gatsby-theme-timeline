@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.82](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-theme-timeline@0.1.81...gatsby-theme-timeline@0.1.82) (2020-12-13)
+
+### Features
+
+- add props ([1e3a7ae](https://github.com/theowenyoung/gatsby-theme-timeline/commit/1e3a7ae456a5d855bd917283ce938112fa677cb8))
+
 ## [0.1.81](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-theme-timeline@0.1.80...gatsby-theme-timeline@0.1.81) (2020-12-12)
 
 ### Features
