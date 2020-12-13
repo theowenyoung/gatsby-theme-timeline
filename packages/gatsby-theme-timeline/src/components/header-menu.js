@@ -17,9 +17,11 @@ const Title = ({ menuLinks }) => {
 
         return (
           <LinkUI
-            as={nav.url.startsWith(`http`) ? undefined : Link}
-            to={nav.url}
+            as={nav.external ? undefined : Link}
+            to={!nav.external && nav.url}
+            href={nav.external && nav.url}
             key={nav.url}
+            {...attr}
           >
             {nav.name}
           </LinkUI>
