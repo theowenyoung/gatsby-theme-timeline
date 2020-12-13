@@ -9,7 +9,8 @@ import Disqus from "./comments/disqus"
 import Utterances from "./comments/utterances"
 import DetailFooterNav from "./detail-footer-nav"
 import Bio from "./bio"
-const PostFooter = ({ previous, next, item, basePath }) => {
+const PostFooter = (props) => {
+  const { item, basePath } = props
   const timelineThemeConfig = useTimelineThemeConfig()
   const { tags } = item
   const { disqus, utterances } = timelineThemeConfig
@@ -45,12 +46,7 @@ const PostFooter = ({ previous, next, item, basePath }) => {
         </Styled.div>
       )}
       <Bio basePath={basePath}></Bio>
-      <DetailFooterNav
-        previous={previous}
-        next={next}
-        item={item}
-        basePath={basePath}
-      ></DetailFooterNav>
+      <DetailFooterNav {...props}></DetailFooterNav>
       {disqus && disqus.shortname && (
         <Disqus config={disqus} item={item}></Disqus>
       )}
