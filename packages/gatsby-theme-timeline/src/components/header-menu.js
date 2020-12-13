@@ -25,7 +25,7 @@ const Title = ({ menuLinks }) => {
 
         return (
           <LinkUI
-            as={isUseATag ? undefined : Link}
+            as={isUseATag ? LinkUI : Link}
             to={!isUseATag ? url : undefined}
             href={isUseATag ? url : undefined}
             key={url}
