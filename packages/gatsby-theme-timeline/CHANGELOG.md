@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.86](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-theme-timeline@0.1.85...gatsby-theme-timeline@0.1.86) (2020-12-13)
+
+### Features
+
+- create detail pages more than 1000 ([3bb8cb6](https://github.com/theowenyoung/gatsby-theme-timeline/commit/3bb8cb6770a50755958df4612112c3ae1604eaf5))
+
 ## [0.1.85](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-theme-timeline@0.1.84...gatsby-theme-timeline@0.1.85) (2020-12-13)
 
 ### Bug Fixes
