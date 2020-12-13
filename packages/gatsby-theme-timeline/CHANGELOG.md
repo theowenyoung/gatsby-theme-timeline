@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.83](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-theme-timeline@0.1.82...gatsby-theme-timeline@0.1.83) (2020-12-13)
+
+### Bug Fixes
+
+- header menu external link ([580f051](https://github.com/theowenyoung/gatsby-theme-timeline/commit/580f0511ddc3a2ab39b3fd0fdc0b21d8ae6543ea))
+
 ## [0.1.82](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-theme-timeline@0.1.81...gatsby-theme-timeline@0.1.82) (2020-12-13)
 
 ### Features
