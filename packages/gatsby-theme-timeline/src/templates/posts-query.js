@@ -18,11 +18,13 @@ export const query = graphql`
           name
           url
           external
+          prefetch
         }
         menuLinks {
           name
           url
           external
+          prefetch
         }
       }
     }

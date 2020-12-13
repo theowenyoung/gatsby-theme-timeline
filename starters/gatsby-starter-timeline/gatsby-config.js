@@ -18,8 +18,8 @@ module.exports = {
     ],
     menuLinks: [
       { name: "Post", url: "/tags/post" },
-      { name: "Reddit", url: "/tags/reddit/" },
-      { name: "Twitter", url: "/tags/tweet/" },
+      { name: "Reddit", url: "/tags/reddit/", external: true },
+      { name: "Twitter", url: "/tags/tweet/", prefetch: false },
     ],
   },
   plugins: [

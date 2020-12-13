@@ -62,11 +62,13 @@ exports.createSchemaCustomization = ({ actions }) => {
       name: String
       url: String
       external: Boolean
+      prefetch: Boolean
     }
     type MenuLinks {
       name: String!
       url: String!
       external: Boolean
+      prefetch: Boolean
     }
     type ${TWEET_TYPE_NAME} implements BlogPost & Node @dontInfer {
       id: ID!
