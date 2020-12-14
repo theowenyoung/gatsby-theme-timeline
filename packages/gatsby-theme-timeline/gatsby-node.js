@@ -12,7 +12,6 @@ const { truncate } = require(`./utils/truncate`)
 const {
   TWEET_TYPE_NAME,
   REDDIT_TYPE_NAME,
-  TITLE_LENGTH,
   EXCERPT_LENGTH,
 } = require(`./utils/constans`)
 const { createRemoteFileNode } = require(`gatsby-source-filesystem`)
@@ -437,7 +436,7 @@ exports.onCreateNode = async (
     }
 
     const fieldData = {
-      title: `Tweet: "${truncate(tweetText, TITLE_LENGTH)}"`,
+      title: tweetText,
       excerpt: tweetText,
       body: tweetText,
       tags: node.entities.hashtags.map((tag) => tag.text) || [],
