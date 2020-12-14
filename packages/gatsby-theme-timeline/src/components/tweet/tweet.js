@@ -1,15 +1,17 @@
 /** @jsx jsx */
-import { jsx, Box, Flex, Text } from "theme-ui"
-import processTweetString from "./process-tweet-string"
+import { jsx, Flex, Text } from "theme-ui"
 import UserInfo from "./user-info"
 import TwitterButton from "./twitter-button"
 import { Fragment } from "react"
 import Hero from "./item-hero"
 import RetweetedIcon from "./retweeted-icon"
 import QuoteUserInfo from "./quote-user-info"
-const Tweet = ({ item }) => {
+import ItemExcerpt from "./item-excerpt"
+import QuoteExcerpt from "./quote-excerpt"
+
+const Tweet = (props) => {
+  const { item } = props
   const {
-    excerpt,
     authorName,
     authorScreenName,
     authorAvatar,
@@ -25,11 +27,7 @@ const Tweet = ({ item }) => {
     quoteImage,
     quoteImageRemote,
   } = item
-  const body = processTweetString(excerpt)
-  let finalQuoteBody = ``
-  if (isQuoteStatus) {
-    finalQuoteBody = processTweetString(quoteBody)
-  }
+
   return (
     <Fragment>
       {retweeted && (
@@ -62,7 +60,7 @@ const Tweet = ({ item }) => {
       </Flex>
 
       <div>
-        <Box sx={{ fontSize: 1, py: 2, whiteSpace: `pre-line` }}>{body}</Box>
+        <ItemExcerpt {...props}></ItemExcerpt>
         <Hero item={item}></Hero>
         {isQuoteStatus && (
           <div
@@ -83,7 +81,7 @@ const Tweet = ({ item }) => {
                 avatar={quoteAuthorAvatar}
                 avatarRemote={quoteAuthorAvatarRemote}
               ></QuoteUserInfo>
-              <Box sx={{ fontSize: 1, pt: 2 }}>{finalQuoteBody}</Box>
+              <QuoteExcerpt {...props}></QuoteExcerpt>
             </div>
 
             <Hero
