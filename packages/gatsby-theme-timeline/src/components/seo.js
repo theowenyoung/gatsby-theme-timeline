@@ -31,6 +31,7 @@ function SEO({
             description
             author
             siteUrl
+            keywords
           }
         }
         avatar: file(absolutePath: { regex: "/avatar.(jpeg|jpg|gif|png)/" }) {
@@ -47,6 +48,7 @@ function SEO({
   const metaDescription = description || site.siteMetadata.description
   const author = site.siteMetadata.author
   const siteUrl = site.siteMetadata.siteUrl
+  const keywords = site.siteMetadata.keywords || []
   const avatarImage =
     avatar &&
     avatar.childImageSharp &&
@@ -135,6 +137,10 @@ function SEO({
         {
           name: `description`,
           content: metaDescription,
+        },
+        {
+          name: `keywords`,
+          content: keywords.join(`,`),
         },
         {
           property: `og:title`,

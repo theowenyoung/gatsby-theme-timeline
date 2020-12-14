@@ -4,6 +4,7 @@ module.exports = {
     title: `Timeline`,
     author: "Owen Young",
     description: "Gatsby theme timeline",
+    keywords: ["timeline", "gatsby"],
     siteUrl: `https://gatsby-theme-timeline.netlify.app`,
     social: [
       {
