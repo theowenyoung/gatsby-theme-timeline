@@ -1,11 +1,30 @@
 /** @jsx jsx */
-import { LocalizedLink as Link } from "gatsby-theme-i18n"
 import { Link as LinkUI, jsx, Styled } from "theme-ui"
+function getDomain(url) {
+  url = url.replace(/(https?:\/\/)?(www.)?/i, ``)
+  if (url.indexOf(`/`) !== -1) {
+    return url.split(`/`)[0]
+  }
+
+  return url
+}
 export default function ({ item }) {
-  const { slug, title } = item
+  const { title, url, hnId } = item
+  let finalUrl = url
+  if (!url) {
+    finalUrl = `https://news.ycombinator.com/item?id=${hnId}`
+  }
   return (
-    <LinkUI sx={{ color: `text` }} as={Link} to={slug}>
-      <Styled.h3 sx={{ fontWeight: `normal`, fontSize: 2 }}>{title}</Styled.h3>
+    <LinkUI sx={{ color: `text` }} href={finalUrl}>
+      <Styled.h3 sx={{ fontWeight: `normal`, fontSize: `1.15rem` }}>
+        {title}
+        {` `}
+        {url && (
+          <span sx={{ color: `textMuted`, fontSize: `0.9rem` }}>
+            ({getDomain(url)})
+          </span>
+        )}
+      </Styled.h3>
     </LinkUI>
   )
 }

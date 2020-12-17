@@ -73,6 +73,7 @@ export const query = graphql`
         authorName
         score
         hnId
+        url
       }
       ... on TweetPost {
         idStr

@@ -138,6 +138,7 @@ exports.createSchemaCustomization = ({ actions }) => {
       score: Int
       hnId: String!
       authorName: String!
+      url: String
     }
   `)
 }
@@ -776,6 +777,7 @@ exports.onCreateNode = async (
       slug: urlResolve(basePath, `hn/${node.objectID}`),
       date: date,
       authorName,
+      url: node.url,
       score: node.points,
       hnId: node.objectID,
     }
