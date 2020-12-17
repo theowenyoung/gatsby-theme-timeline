@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.91](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-theme-timeline@0.1.90...gatsby-theme-timeline@0.1.91) (2020-12-17)
+
+### Features
+
+- add url ([3e2ca36](https://github.com/theowenyoung/gatsby-theme-timeline/commit/3e2ca362803948aba41de8555c348b7ca25383fd))
+
 ## [0.1.90](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-theme-timeline@0.1.89...gatsby-theme-timeline@0.1.90) (2020-12-17)
 
 ### Features
