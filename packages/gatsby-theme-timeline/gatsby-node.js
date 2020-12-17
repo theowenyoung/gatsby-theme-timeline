@@ -12,6 +12,7 @@ const { truncate } = require(`./utils/truncate`)
 const {
   TWEET_TYPE_NAME,
   REDDIT_TYPE_NAME,
+  HN_TYPE_NAME,
   EXCERPT_LENGTH,
 } = require(`./utils/constans`)
 const { createRemoteFileNode } = require(`gatsby-source-filesystem`)
@@ -122,6 +123,22 @@ exports.createSchemaCustomization = ({ actions }) => {
       score: Int
       redditId: String
     }
+    type ${HN_TYPE_NAME} implements BlogPost & Node @dontInfer {
+      id: ID!
+      title: String!
+      body: String!
+      slug: String!
+      date: Date! @dateformat
+      tags: [String]!
+      excerpt: String!
+      image: File
+      imageRemote: String
+      imageAlt: String
+      socialImage: File
+      score: Int
+      hnId: String!
+      authorName: String!
+    }
   `)
 }
 exports.createResolvers = ({ createResolvers }) => {
@@ -182,6 +199,20 @@ exports.createResolvers = ({ createResolvers }) => {
       },
     },
     [REDDIT_TYPE_NAME]: {
+      fields: {
+        type: `Fields`,
+      },
+      image: {
+        resolve: (source, _, context, __) => {
+          if (source.image___NODE) {
+            return context.nodeModel.getNodeById({
+              id: source.image___NODE,
+            })
+          }
+        },
+      },
+    },
+    [HN_TYPE_NAME]: {
       fields: {
         type: `Fields`,
       },
@@ -400,6 +431,7 @@ exports.onCreateNode = async (
   const {
     tweetTypeName,
     redditTypeName,
+    hnTypeName,
     basePath,
     shouldTransformImage,
   } = withDefaults(themeOptions)
@@ -415,6 +447,13 @@ exports.onCreateNode = async (
     allRedditTypeName.push(redditTypeName)
   } else if (Array.isArray(redditTypeName)) {
     allRedditTypeName = redditTypeName
+  }
+
+  let allHnTypeName = []
+  if (typeof hnTypeName === `string`) {
+    allHnTypeName.push(hnTypeName)
+  } else if (Array.isArray(hnTypeName)) {
+    allHnTypeName = hnTypeName
   }
   if (allTweetsTypeName.includes(node.internal.type)) {
     const date = moment(
@@ -721,7 +760,52 @@ exports.onCreateNode = async (
       value: basePath,
     })
   }
+  if (allHnTypeName.includes(node.internal.type)) {
+    const date = new Date(node.created_at).toISOString()
+    const authorName = node.author
+    const tags = []
+    if (node._tags && node._tags[0]) {
+      tags.push(node._tags[0])
+    }
+    const excerpt = ``
+    const fieldData = {
+      title: node.title,
+      excerpt: excerpt,
+      body: ``,
+      tags: tags,
+      slug: urlResolve(basePath, `hn/${node.objectID}`),
+      date: date,
+      authorName,
+      score: node.points,
+      hnId: node.objectID,
+    }
+    // add  tag
+    if (!fieldData.tags.includes(`Hacker News`)) {
+      fieldData.tags.push(`Hacker News`)
+    }
 
+    const nodeId = `${HN_TYPE_NAME}-${node.id}`
+    await createNode({
+      ...fieldData,
+      // Required fields.
+      id: nodeId,
+      parent: node.id,
+      children: [],
+      internal: {
+        type: HN_TYPE_NAME,
+        contentDigest: createContentDigest(fieldData),
+        content: JSON.stringify(fieldData),
+        description: `${HN_TYPE_NAME} of the Item interface`,
+      },
+    })
+    createParentChildLink({ parent: node, child: getNode(nodeId) })
+    // createNodeField
+    createNodeField({
+      node: getNode(nodeId),
+      name: `basePath`,
+      value: basePath,
+    })
+  }
   if (node.internal.type === `MdxBlogPost`) {
     // Create source field (according to contentPath)
     const mdxNode = getNode(node.parent)

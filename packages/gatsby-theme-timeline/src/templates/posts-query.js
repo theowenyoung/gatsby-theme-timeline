@@ -75,6 +75,12 @@ export const query = graphql`
           score
           redditId
         }
+        ... on HnPost {
+          imageRemote
+          authorName
+          score
+          hnId
+        }
         ... on TweetPost {
           idStr
           retweeted
