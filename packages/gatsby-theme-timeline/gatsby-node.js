@@ -309,7 +309,7 @@ exports.createPages = async ({ graphql, actions, reporter }, themeOptions) => {
     `
       query ItemsCreatePageQuery($filter: BlogPostFilterInput) {
         allBlogPost(
-          sort: { fields: [date, slug], order: DESC }
+          sort: { fields: [date, title], order: DESC }
           filter: $filter
         ) {
           nodes {
@@ -318,7 +318,7 @@ exports.createPages = async ({ graphql, actions, reporter }, themeOptions) => {
           }
         }
         tagsGroup: allBlogPost(
-          sort: { fields: [date, slug], order: DESC }
+          sort: { fields: [date, title], order: DESC }
           filter: $filter
         ) {
           group(field: tags) {

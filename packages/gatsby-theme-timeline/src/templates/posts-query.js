@@ -29,7 +29,7 @@ export const query = graphql`
       }
     }
     tagsGroup: allBlogPost(
-      sort: { fields: [date, slug], order: DESC }
+      sort: { fields: [date, title], order: DESC }
       filter: $tagsFilter
     ) {
       group(field: tags) {
@@ -40,7 +40,7 @@ export const query = graphql`
     allBlogPost(
       limit: $limit
       skip: $skip
-      sort: { fields: [date, slug], order: DESC }
+      sort: { fields: [date, title], order: DESC }
       filter: $filter
     ) {
       nodes {
