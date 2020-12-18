@@ -651,7 +651,7 @@ exports.onCreateNode = async (
       }
     }
 
-    const tweetNodeId = `${TWEET_TYPE_NAME}-${node.id}`
+    const tweetNodeId = `${TWEET_TYPE_NAME}-${node.id_str}`
     await createNode({
       ...fieldData,
       // Required fields.
@@ -830,7 +830,7 @@ exports.onCreateNode = async (
       fieldData.tags.push(`Hacker News`)
     }
 
-    const nodeId = `${HN_TYPE_NAME}-${node.id}`
+    const nodeId = `${HN_TYPE_NAME}-${node.objectID}`
     await createNode({
       ...fieldData,
       // Required fields.
