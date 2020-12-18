@@ -75,6 +75,17 @@ export const query = graphql`
         hnId
         url
       }
+      ... on PhPost {
+        imageRemote
+        authorName
+        authorUrl
+        phUrl
+        score
+        url
+        tagline
+        video
+        phId
+      }
       ... on TweetPost {
         idStr
         retweeted

@@ -13,6 +13,7 @@ const {
   TWEET_TYPE_NAME,
   REDDIT_TYPE_NAME,
   HN_TYPE_NAME,
+  PH_TYPE_NAME,
   EXCERPT_LENGTH,
 } = require(`./utils/constans`)
 const { createRemoteFileNode } = require(`gatsby-source-filesystem`)
@@ -140,6 +141,27 @@ exports.createSchemaCustomization = ({ actions }) => {
       authorName: String!
       url: String
     }
+    type ${PH_TYPE_NAME} implements BlogPost & Node @dontInfer {
+      id: ID!
+      title: String!
+      body: String!
+      slug: String!
+      date: Date! @dateformat
+      tags: [String]!
+      excerpt: String!
+      image: File
+      imageRemote: String
+      imageAlt: String
+      socialImage: File
+      video: String
+      tagline: String
+      score: Int
+      authorName: String!
+      authorUrl: String
+      url: String
+      phUrl: String
+      phId: String
+    }
   `)
 }
 exports.createResolvers = ({ createResolvers }) => {
@@ -214,6 +236,20 @@ exports.createResolvers = ({ createResolvers }) => {
       },
     },
     [HN_TYPE_NAME]: {
+      fields: {
+        type: `Fields`,
+      },
+      image: {
+        resolve: (source, _, context, __) => {
+          if (source.image___NODE) {
+            return context.nodeModel.getNodeById({
+              id: source.image___NODE,
+            })
+          }
+        },
+      },
+    },
+    [PH_TYPE_NAME]: {
       fields: {
         type: `Fields`,
       },
@@ -433,6 +469,7 @@ exports.onCreateNode = async (
     tweetTypeName,
     redditTypeName,
     hnTypeName,
+    phTypeName,
     basePath,
     shouldTransformImage,
   } = withDefaults(themeOptions)
@@ -455,6 +492,13 @@ exports.onCreateNode = async (
     allHnTypeName.push(hnTypeName)
   } else if (Array.isArray(hnTypeName)) {
     allHnTypeName = hnTypeName
+  }
+
+  let allPhTypeName = []
+  if (typeof phTypeName === `string`) {
+    allPhTypeName.push(phTypeName)
+  } else if (Array.isArray(phTypeName)) {
+    allPhTypeName = phTypeName
   }
   if (allTweetsTypeName.includes(node.internal.type)) {
     const date = moment(
@@ -798,6 +842,67 @@ exports.onCreateNode = async (
         contentDigest: createContentDigest(fieldData),
         content: JSON.stringify(fieldData),
         description: `${HN_TYPE_NAME} of the Item interface`,
+      },
+    })
+    createParentChildLink({ parent: node, child: getNode(nodeId) })
+    // createNodeField
+    createNodeField({
+      node: getNode(nodeId),
+      name: `basePath`,
+      value: basePath,
+    })
+  }
+  if (allPhTypeName.includes(node.internal.type)) {
+    const date = node.createdAt
+    const authorName = node.user.name
+    const authorUrl = node.user.url
+    const tags = []
+    if (node.topics && node.topics.edges && node.topics.edges.length > 0) {
+      node.topics.edges.forEach((edge) => {
+        tags.push(edge.node.name)
+      })
+    }
+    const excerpt = node.description
+    const fieldData = {
+      title: node.name,
+      excerpt: excerpt,
+      body: excerpt,
+      tags: tags,
+      slug: urlResolve(basePath, `ph/${node.slug}`),
+      date: date,
+      authorName,
+      authorUrl,
+      url: node.website,
+      phUrl: node.url,
+      phId: node.id,
+      score: node.votesCount,
+      tagline: node.tagline,
+    }
+    if (node.media && node.media.length > 0) {
+      if (node.media[0].type === `video`) {
+        fieldData.video = node.media[0].videoUrl
+      }
+      if (node.media[0].type === `image` && node.media[0].url) {
+        fieldData.imageRemote = node.media[0].url
+      }
+    }
+    // add  tag
+    if (!fieldData.tags.includes(`ProductHunt`)) {
+      fieldData.tags.push(`ProductHunt`)
+    }
+
+    const nodeId = `${PH_TYPE_NAME}-${node.id}`
+    await createNode({
+      ...fieldData,
+      // Required fields.
+      id: nodeId,
+      parent: node.id,
+      children: [],
+      internal: {
+        type: PH_TYPE_NAME,
+        contentDigest: createContentDigest(fieldData),
+        content: JSON.stringify(fieldData),
+        description: `${PH_TYPE_NAME} of the Item interface`,
       },
     })
     createParentChildLink({ parent: node, child: getNode(nodeId) })

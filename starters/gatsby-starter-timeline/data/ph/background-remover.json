@@ -1,0 +1,82 @@
+{
+  "id": "278358",
+  "commentsCount": 75,
+  "createdAt": "2020-12-18T08:47:54.485Z",
+  "description": "Need to clip the background out of a photo to use on an e-commerce store or web design? No problem! Just upload your images to the background remover, and our AI will handle the rest. - 1-click simplicity - High-quality image masking - Bulk processing",
+  "featuredAt": "2020-12-17T08:00:00Z",
+  "media": [
+    {
+      "type": "video",
+      "url": "https://ph-files.imgix.net/d85c7db6-95b9-4cad-b352-50fd6801a1ac.jpeg?auto=format&fit=crop",
+      "videoUrl": "https://www.youtube.com/watch?v=ZdANfdn90pc"
+    },
+    {
+      "type": "image",
+      "url": "https://ph-files.imgix.net/4e66688f-7852-4000-a54d-a11d22f66621.jpeg?auto=format&fit=crop",
+      "videoUrl": null
+    },
+    {
+      "type": "image",
+      "url": "https://ph-files.imgix.net/c993ed9a-fe75-4476-a593-1670259ffe49.jpeg?auto=format&fit=crop",
+      "videoUrl": null
+    },
+    {
+      "type": "image",
+      "url": "https://ph-files.imgix.net/fd1a9862-1616-4886-815a-8d3a1844548d.jpeg?auto=format&fit=crop",
+      "videoUrl": null
+    },
+    {
+      "type": "image",
+      "url": "https://ph-files.imgix.net/6a1849ac-991b-47bb-a2ef-a542679c12d7.jpeg?auto=format&fit=crop",
+      "videoUrl": null
+    },
+    {
+      "type": "image",
+      "url": "https://ph-files.imgix.net/a33e63fb-59ba-4495-b78e-4fde0828bc13.gif?auto=format&fit=crop",
+      "videoUrl": null
+    },
+    {
+      "type": "image",
+      "url": "https://ph-files.imgix.net/0ca390cc-9268-42d3-b194-33befce2f40f.jpeg?auto=format&fit=crop",
+      "videoUrl": null
+    }
+  ],
+  "name": "Background Remover",
+  "productLinks": [
+    {
+      "type": "Website",
+      "url": "https://www.producthunt.com/r/97015c3b96b482?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+Buzzing+%28ID%3A+41381%29"
+    }
+  ],
+  "user": {
+    "name": "Ivan",
+    "url": "https://www.producthunt.com/@visualpharm?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+Buzzing+%28ID%3A+41381%29"
+  },
+  "reviewsCount": 12,
+  "reviewsRating": 4.2,
+  "slug": "background-remover",
+  "tagline": "Quickly remove the background from any photo for free",
+  "url": "https://www.producthunt.com/posts/background-remover?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+Buzzing+%28ID%3A+41381%29",
+  "votesCount": 520,
+  "website": "https://www.producthunt.com/r/97015c3b96b482?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+Buzzing+%28ID%3A+41381%29",
+  "topics": {
+    "edges": [
+      {
+        "node": {
+          "name": "Design Tools"
+        }
+      },
+      {
+        "node": {
+          "name": "User Experience"
+        }
+      },
+      {
+        "node": {
+          "name": "Artificial Intelligence"
+        }
+      }
+    ]
+  },
+  "original_createdAt": "2020-12-17T08:00:00Z"
+}

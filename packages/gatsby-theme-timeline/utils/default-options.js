@@ -5,6 +5,7 @@ module.exports = (themeOptions) => {
   const tweetTypeName = themeOptions.tweetTypeName || [`TweetsJson`]
   const redditTypeName = themeOptions.redditTypeName || [`RedditJson`]
   const hnTypeName = themeOptions.hnTypeName || [`HnJson`]
+  const phTypeName = themeOptions.phTypeName || [`PhJson`]
   const postsPerPage = themeOptions.postsPerPage || 25
   const preset = themeOptions.preset || `gatsby-theme-ui-timeline-preset`
   const prismPreset = themeOptions.prismPreset || `github`
@@ -39,6 +40,7 @@ module.exports = (themeOptions) => {
     tweetTypeName,
     redditTypeName,
     hnTypeName,
+    phTypeName,
     postsPerPage,
     preset,
     prismPreset,
