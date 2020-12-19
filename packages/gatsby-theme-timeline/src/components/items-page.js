@@ -15,12 +15,10 @@ const Items = ({ location, data, pageContext }) => {
   const { basePath, pageType } = pageContext
   const items = data.allBlogPost.nodes
   const {
-    site: {
-      siteMetadata: { social, title, menuLinks },
-    },
+    site: { siteMetadata },
     tagsGroup: { group },
   } = data
-
+  const { social, title, menuLinks } = siteMetadata
   return (
     <Layout
       basePath={basePath}
@@ -29,6 +27,7 @@ const Items = ({ location, data, pageContext }) => {
       title={title}
       pageType={pageType}
       pageContext={pageContext}
+      siteMetadata={siteMetadata}
     >
       <ItemsSEO location={location} pageContext={pageContext} />
       <ItemsTitle pageContext={pageContext}></ItemsTitle>
@@ -49,7 +48,7 @@ const Items = ({ location, data, pageContext }) => {
         <AsideBox>
           <Bio basePath={basePath}></Bio>
           <Tags basePath={basePath} group={group}></Tags>
-          <Links links={social}></Links>
+          <Links siteMetadata={siteMetadata} links={social}></Links>
         </AsideBox>
       </Grid>
       <Footer />
