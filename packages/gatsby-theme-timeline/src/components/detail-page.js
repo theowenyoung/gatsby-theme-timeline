@@ -8,13 +8,12 @@ const DetailPage = ({
     blogPost,
     previous,
     next,
-    site: {
-      siteMetadata: { title, menuLinks },
-    },
+    site: { siteMetadata },
   },
   location,
   pageContext,
 }) => {
+  const { title, menuLinks } = siteMetadata
   const item = blogPost
   const basePath = item?.fields?.basePath || `/`
   return (
@@ -25,6 +24,7 @@ const DetailPage = ({
       title={title}
       pageType="detail"
       pageContext={pageContext}
+      siteMetadata={siteMetadata}
     >
       <DetailSEO
         location={location}
