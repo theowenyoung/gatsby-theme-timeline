@@ -30,6 +30,7 @@ const DetailPage = ({
         location={location}
         pageContext={pageContext}
         item={item}
+        siteMetadata={siteMetadata}
       ></DetailSEO>
       <main>
         <Detail
