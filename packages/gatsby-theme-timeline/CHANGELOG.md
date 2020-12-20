@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.98](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-theme-timeline@0.1.97...gatsby-theme-timeline@0.1.98) (2020-12-20)
+
+### Features
+
+- add sitemetadata to seo ([4fab002](https://github.com/theowenyoung/gatsby-theme-timeline/commit/4fab0027cd040c34f88c13fb53b0851c6a1ef03f))
+
 ## [0.1.97](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-theme-timeline@0.1.96...gatsby-theme-timeline@0.1.97) (2020-12-20)
 
 ### Bug Fixes
