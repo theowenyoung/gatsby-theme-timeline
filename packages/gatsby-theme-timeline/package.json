@@ -44,7 +44,8 @@
     "react-process-string": "^1.2.0",
     "react-twemoji": "^0.3.0",
     "react-ultimate-pagination": "^1.2.0",
-    "theme-ui": "^0.4.0-rc.5"
+    "theme-ui": "^0.4.0-rc.5",
+    "url-join": "^4.0.1"
   },
   "peerDependencies": {
     "gatsby": "^2.24.22",
