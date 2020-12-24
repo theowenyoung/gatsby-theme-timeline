@@ -511,7 +511,7 @@ exports.onCreateNode = async (
     let authorScreenName = node.user.screen_name
     let authorAvatarUrl = node.user.profile_image_url_https
     const retweeted = !!(node.retweeted || node.retweeted_status)
-    const isQuoteStatus = node.is_quote_status
+    const isQuoteStatus = !!node.quoted_status
     if (retweeted) {
       tweetText = node.retweeted_status.full_text
       authorName = node.retweeted_status.user.name
