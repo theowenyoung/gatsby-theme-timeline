@@ -69,6 +69,11 @@ export const query = graphql`
         url
         redditId
       }
+      ... on RedirectPost {
+        authorName
+        authorUrl
+        url
+      }
       ... on HnPost {
         imageRemote
         authorName

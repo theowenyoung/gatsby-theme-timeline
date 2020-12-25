@@ -15,6 +15,7 @@ const {
   HN_TYPE_NAME,
   PH_TYPE_NAME,
   EXCERPT_LENGTH,
+  REDIRECT_TYPE_NAME,
 } = require(`./utils/constans`)
 const { createRemoteFileNode } = require(`gatsby-source-filesystem`)
 const { createContentDigest, urlResolve } = require(`gatsby-core-utils`)
@@ -141,6 +142,22 @@ exports.createSchemaCustomization = ({ actions }) => {
       authorName: String!
       url: String
     }
+    type ${REDIRECT_TYPE_NAME} implements BlogPost & Node @dontInfer {
+      id: ID!
+      title: String!
+      body: String!
+      slug: String!
+      date: Date! @dateformat
+      tags: [String]!
+      excerpt: String!
+      image: File
+      imageRemote: String
+      imageAlt: String
+      socialImage: File
+      url: String
+      authorName: String!
+      authorUrl: String
+    }
     type ${PH_TYPE_NAME} implements BlogPost & Node @dontInfer {
       id: ID!
       title: String!
@@ -236,6 +253,20 @@ exports.createResolvers = ({ createResolvers }) => {
       },
     },
     [HN_TYPE_NAME]: {
+      fields: {
+        type: `Fields`,
+      },
+      image: {
+        resolve: (source, _, context, __) => {
+          if (source.image___NODE) {
+            return context.nodeModel.getNodeById({
+              id: source.image___NODE,
+            })
+          }
+        },
+      },
+    },
+    [REDIRECT_TYPE_NAME]: {
       fields: {
         type: `Fields`,
       },
@@ -470,6 +501,7 @@ exports.onCreateNode = async (
     redditTypeName,
     hnTypeName,
     phTypeName,
+    redirectTypeName,
     basePath,
     shouldTransformImage,
   } = withDefaults(themeOptions)
@@ -492,6 +524,12 @@ exports.onCreateNode = async (
     allHnTypeName.push(hnTypeName)
   } else if (Array.isArray(hnTypeName)) {
     allHnTypeName = hnTypeName
+  }
+  let allRedirectTypeName = []
+  if (typeof redirectTypeName === `string`) {
+    allRedirectTypeName.push(redirectTypeName)
+  } else if (Array.isArray(redirectTypeName)) {
+    allRedirectTypeName = redirectTypeName
   }
 
   let allPhTypeName = []
@@ -842,6 +880,45 @@ exports.onCreateNode = async (
         contentDigest: createContentDigest(fieldData),
         content: JSON.stringify(fieldData),
         description: `${HN_TYPE_NAME} of the Item interface`,
+      },
+    })
+    createParentChildLink({ parent: node, child: getNode(nodeId) })
+    // createNodeField
+    createNodeField({
+      node: getNode(nodeId),
+      name: `basePath`,
+      value: basePath,
+    })
+  }
+  if (allRedirectTypeName.includes(node.internal.type)) {
+    const date = new Date(node.created_at).toISOString()
+    const authorName = node.author || node.source || ``
+    const tags = node.tags || []
+    const excerpt = node.excerpt || node.description || ``
+    const id = node.id || node.guid || ``
+    const fieldData = {
+      title: node.title,
+      excerpt: excerpt,
+      body: node.body || ``,
+      tags: tags,
+      slug: urlResolve(basePath, `redirect/${id}`),
+      date: date,
+      authorName,
+      url: node.url || node.link || ``,
+      authorUrl: node.author_url || ``,
+    }
+    const nodeId = `${REDIRECT_TYPE_NAME}-${id}`
+    await createNode({
+      ...fieldData,
+      // Required fields.
+      id: nodeId,
+      parent: node.id,
+      children: [],
+      internal: {
+        type: REDIRECT_TYPE_NAME,
+        contentDigest: createContentDigest(fieldData),
+        content: JSON.stringify(fieldData),
+        description: `${REDIRECT_TYPE_NAME} of the Item interface`,
       },
     })
     createParentChildLink({ parent: node, child: getNode(nodeId) })

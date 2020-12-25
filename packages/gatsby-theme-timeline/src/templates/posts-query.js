@@ -83,6 +83,11 @@ export const query = graphql`
           hnId
           url
         }
+        ... on RedirectPost {
+          authorName
+          authorUrl
+          url
+        }
         ... on PhPost {
           imageRemote
           authorName

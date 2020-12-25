@@ -6,6 +6,7 @@ module.exports = (themeOptions) => {
   const redditTypeName = themeOptions.redditTypeName || [`RedditJson`]
   const hnTypeName = themeOptions.hnTypeName || [`HnJson`]
   const phTypeName = themeOptions.phTypeName || [`PhJson`]
+  const redirectTypeName = themeOptions.redirectTypeName || [`RedirectJson`]
   const postsPerPage = themeOptions.postsPerPage || 25
   const preset = themeOptions.preset || `gatsby-theme-ui-timeline-preset`
   const prismPreset = themeOptions.prismPreset || `github`
@@ -41,6 +42,7 @@ module.exports = (themeOptions) => {
     redditTypeName,
     hnTypeName,
     phTypeName,
+    redirectTypeName,
     postsPerPage,
     preset,
     prismPreset,

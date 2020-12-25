@@ -5,6 +5,7 @@ import {
   POST_TYPE_NAME,
   HN_TYPE_NAME,
   PH_TYPE_NAME,
+  REDIRECT_TYPE_NAME,
 } from "../constans"
 import PostDetail from "./post/detail"
 import TweetDetail from "./tweet/detail"
@@ -12,6 +13,7 @@ import RedditDetail from "./reddit/detail"
 import HNDetail from "./hn/detail"
 import DefaultDetail from "./detail-default"
 import PHDetail from "./ph/detail"
+import RedirectDetail from "./redirect/detail"
 const Detail = (props) => {
   const { item } = props
   if (item.__typename === TWEET_TYPE_NAME) {
@@ -24,6 +26,8 @@ const Detail = (props) => {
     return <PostDetail {...props}></PostDetail>
   } else if (item.__typename === PH_TYPE_NAME) {
     return <PHDetail {...props}></PHDetail>
+  } else if (item.__typename === REDIRECT_TYPE_NAME) {
+    return <RedirectDetail {...props}></RedirectDetail>
   } else {
     return <DefaultDetail {...props}></DefaultDetail>
   }

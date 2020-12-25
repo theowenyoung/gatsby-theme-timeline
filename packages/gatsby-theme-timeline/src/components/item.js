@@ -4,13 +4,14 @@ import {
   REDDIT_TYPE_NAME,
   HN_TYPE_NAME,
   PH_TYPE_NAME,
+  REDIRECT_TYPE_NAME,
 } from "../constans"
 import PostItem from "./post/item"
 import TweetItem from "./tweet/item"
 import RedditItem from "./reddit/item"
 import HnItem from "./hn/item"
 import PhItem from "./ph/item"
-
+import RedirectItem from "./redirect/item"
 const Item = (props) => {
   const { item } = props
   if (item.__typename === TWEET_TYPE_NAME) {
@@ -21,6 +22,8 @@ const Item = (props) => {
     return <HnItem {...props}></HnItem>
   } else if (item.__typename === PH_TYPE_NAME) {
     return <PhItem {...props}></PhItem>
+  } else if (item.__typename === REDIRECT_TYPE_NAME) {
+    return <RedirectItem {...props}></RedirectItem>
   }
   return <PostItem {...props}></PostItem>
 }
