@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.101](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-theme-timeline@0.1.100...gatsby-theme-timeline@0.1.101) (2020-12-25)
+
+### Features
+
+- support redirect type post ([4b84b76](https://github.com/theowenyoung/gatsby-theme-timeline/commit/4b84b76fbf3ae1e54a8df6ac4ec85c731b4a9502))
+
 ## [0.1.100](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-theme-timeline@0.1.99...gatsby-theme-timeline@0.1.100) (2020-12-24)
 
 ### Bug Fixes
