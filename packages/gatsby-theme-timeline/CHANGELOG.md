@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.102](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-theme-timeline@0.1.101...gatsby-theme-timeline@0.1.102) (2020-12-26)
+
+### Features
+
+- support youtube type post ([203ae75](https://github.com/theowenyoung/gatsby-theme-timeline/commit/203ae752258c14ce1e1c083d59c3f96817993e28))
+
 ## [0.1.101](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-theme-timeline@0.1.100...gatsby-theme-timeline@0.1.101) (2020-12-25)
 
 ### Features
