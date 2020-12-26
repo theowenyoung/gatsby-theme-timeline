@@ -16,6 +16,7 @@ const {
   PH_TYPE_NAME,
   EXCERPT_LENGTH,
   REDIRECT_TYPE_NAME,
+  YOUTUBE_TYPE_NAME,
 } = require(`./utils/constans`)
 const { createRemoteFileNode } = require(`gatsby-source-filesystem`)
 const { createContentDigest, urlResolve } = require(`gatsby-core-utils`)
@@ -158,6 +159,26 @@ exports.createSchemaCustomization = ({ actions }) => {
       authorName: String!
       authorUrl: String
     }
+    type ${YOUTUBE_TYPE_NAME} implements BlogPost & Node @dontInfer {
+      id: ID!
+      title: String!
+      body: String!
+      slug: String!
+      date: Date! @dateformat
+      tags: [String]!
+      excerpt: String!
+      image: File
+      imageRemote: String
+      imageAlt: String
+      socialImage: File
+      video: String
+      score: Int
+      authorName: String!
+      authorUrl: String
+      url: String
+      youtubeId: String
+      views: Int
+    }
     type ${PH_TYPE_NAME} implements BlogPost & Node @dontInfer {
       id: ID!
       title: String!
@@ -281,6 +302,20 @@ exports.createResolvers = ({ createResolvers }) => {
       },
     },
     [PH_TYPE_NAME]: {
+      fields: {
+        type: `Fields`,
+      },
+      image: {
+        resolve: (source, _, context, __) => {
+          if (source.image___NODE) {
+            return context.nodeModel.getNodeById({
+              id: source.image___NODE,
+            })
+          }
+        },
+      },
+    },
+    [YOUTUBE_TYPE_NAME]: {
       fields: {
         type: `Fields`,
       },
@@ -502,6 +537,7 @@ exports.onCreateNode = async (
     hnTypeName,
     phTypeName,
     redirectTypeName,
+    youtubeTypeName,
     basePath,
     shouldTransformImage,
   } = withDefaults(themeOptions)
@@ -537,6 +573,13 @@ exports.onCreateNode = async (
     allPhTypeName.push(phTypeName)
   } else if (Array.isArray(phTypeName)) {
     allPhTypeName = phTypeName
+  }
+
+  let allYoutubeTypeName = []
+  if (typeof youtubeTypeName === `string`) {
+    allYoutubeTypeName.push(youtubeTypeName)
+  } else if (Array.isArray(youtubeTypeName)) {
+    allYoutubeTypeName = youtubeTypeName
   }
   if (allTweetsTypeName.includes(node.internal.type)) {
     const date = moment(
@@ -990,6 +1033,67 @@ exports.onCreateNode = async (
       value: basePath,
     })
   }
+  if (allYoutubeTypeName.includes(node.internal.type)) {
+    const date = node.created_at || node.isoDate
+    const authorName = node.author
+    const authorUrl = `https://www.youtube.com/channel/${node.channelId}`
+    let tags = []
+    if (node.tags && node.tags.length > 0) {
+      tags = node.tags
+    } else {
+      tags = findHashtags(node.description)
+    }
+    const excerpt = node.excerpt || node.description
+    const score = Math.floor(
+      (node.starRating.count * node.starRating.average) / 5
+    )
+    const fieldData = {
+      title: node.title,
+      excerpt: excerpt,
+      body: excerpt,
+      tags: tags,
+      slug: urlResolve(basePath, `youtube/${node.videoId}`),
+      date: date,
+      authorName,
+      authorUrl,
+      url: node.link,
+      youtubeId: node.videoId,
+      score: score,
+      views: Number(node.statistics.views),
+      video: node.link,
+    }
+
+    if (node.thumbnail && node.thumbnail.url) {
+      fieldData.imageRemote = node.thumbnail.url
+    }
+
+    // add  tag
+    if (!fieldData.tags.includes(`Youtube`)) {
+      fieldData.tags.push(`Youtube`)
+    }
+
+    const nodeId = `${YOUTUBE_TYPE_NAME}-${node.id}`
+    await createNode({
+      ...fieldData,
+      // Required fields.
+      id: nodeId,
+      parent: node.id,
+      children: [],
+      internal: {
+        type: YOUTUBE_TYPE_NAME,
+        contentDigest: createContentDigest(fieldData),
+        content: JSON.stringify(fieldData),
+        description: `${YOUTUBE_TYPE_NAME} of the Item interface`,
+      },
+    })
+    createParentChildLink({ parent: node, child: getNode(nodeId) })
+    // createNodeField
+    createNodeField({
+      node: getNode(nodeId),
+      name: `basePath`,
+      value: basePath,
+    })
+  }
   if (node.internal.type === `MdxBlogPost`) {
     // Create source field (according to contentPath)
     const mdxNode = getNode(node.parent)
@@ -1014,5 +1118,17 @@ exports.onCreatePage = function ({ page, actions }, themeOptions) {
   ) {
     deletePage(page)
     createPage(indexPages[basePath])
+  }
+}
+function findHashtags(searchText) {
+  searchText = searchText || ``
+  const regexp = /\B#\w\w+\b/g
+  const result = searchText.match(regexp)
+  if (result) {
+    return result.map((item) => {
+      return item.trim().slice(1)
+    })
+  } else {
+    return []
   }
 }

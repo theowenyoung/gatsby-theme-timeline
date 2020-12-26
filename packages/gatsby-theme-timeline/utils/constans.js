@@ -5,3 +5,4 @@ exports.PH_TYPE_NAME = `PhPost`
 exports.REDIRECT_TYPE_NAME = `RedirectPost`
 exports.TITLE_LENGTH = 36
 exports.EXCERPT_LENGTH = 280
+exports.YOUTUBE_TYPE_NAME = `YoutubePost`

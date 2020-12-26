@@ -92,6 +92,15 @@ export const query = graphql`
         video
         phId
       }
+      ... on YoutubePost {
+        imageRemote
+        authorName
+        authorUrl
+        views
+        score
+        url
+        video
+      }
       ... on TweetPost {
         idStr
         retweeted
