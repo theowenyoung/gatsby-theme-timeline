@@ -12,7 +12,7 @@ export default function ({ item }) {
       sx={{ color: `text` }}
       href={finalUrl}
     >
-      <Styled.h3 sx={{ fontWeight: `normal`, fontSize: `1.15rem` }}>
+      <Styled.h3 sx={{ fontWeight: `normal`, fontSize: `1.5rem` }}>
         {title}
       </Styled.h3>
     </LinkUI>

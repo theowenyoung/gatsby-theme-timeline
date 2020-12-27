@@ -886,7 +886,10 @@ exports.onCreateNode = async (
       value: basePath,
     })
   }
+
   if (allHnTypeName.includes(node.internal.type)) {
+    console.log(`node`, node)
+
     const date = new Date(node.created_at).toISOString()
     const authorName = node.author
     const tags = []
@@ -906,12 +909,36 @@ exports.onCreateNode = async (
       score: node.points,
       hnId: node.objectID,
     }
+    if (node.image) {
+      fieldData.imageRemote = node.image
+      // create a file node for image URLs
+      if (shouldTransformImage) {
+        try {
+          const remoteFileNode = await createRemoteFileNode({
+            url: node.image,
+            parentNodeId: node.id,
+            createNode,
+            createNodeId,
+            cache,
+            store,
+          })
+          // if the file was created, attach the new node to the parent node
+          if (remoteFileNode) {
+            fieldData.image___NODE = remoteFileNode.id
+          }
+        } catch (error) {
+          reporter.warn(`create remote file for media failed: ${error}`)
+        }
+      }
+    }
     // add  tag
     if (!fieldData.tags.includes(`Hacker News`)) {
       fieldData.tags.push(`Hacker News`)
     }
 
     const nodeId = `${HN_TYPE_NAME}-${node.objectID}`
+    console.log(`fieldData`, fieldData)
+
     await createNode({
       ...fieldData,
       // Required fields.
@@ -951,6 +978,28 @@ exports.onCreateNode = async (
       authorUrl: node.author_url || ``,
     }
     const nodeId = `${REDIRECT_TYPE_NAME}-${id}`
+    if (node.image) {
+      fieldData.imageRemote = node.image
+      // create a file node for image URLs
+      if (shouldTransformImage) {
+        try {
+          const remoteFileNode = await createRemoteFileNode({
+            url: node.image,
+            parentNodeId: node.id,
+            createNode,
+            createNodeId,
+            cache,
+            store,
+          })
+          // if the file was created, attach the new node to the parent node
+          if (remoteFileNode) {
+            fieldData.image___NODE = remoteFileNode.id
+          }
+        } catch (error) {
+          reporter.warn(`create remote file for media failed: ${error}`)
+        }
+      }
+    }
     await createNode({
       ...fieldData,
       // Required fields.
