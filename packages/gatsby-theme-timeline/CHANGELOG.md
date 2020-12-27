@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.103](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-theme-timeline@0.1.102...gatsby-theme-timeline@0.1.103) (2020-12-27)
+
+### Features
+
+- hn, redirect support image ([af6fafd](https://github.com/theowenyoung/gatsby-theme-timeline/commit/af6fafd07b08e4037aa54d1a20a001ee028ba6e3))
+
 ## [0.1.102](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-theme-timeline@0.1.101...gatsby-theme-timeline@0.1.102) (2020-12-26)
 
 ### Features
