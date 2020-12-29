@@ -888,8 +888,6 @@ exports.onCreateNode = async (
   }
 
   if (allHnTypeName.includes(node.internal.type)) {
-    console.log(`node`, node)
-
     const date = new Date(node.created_at).toISOString()
     const authorName = node.author
     const tags = []
@@ -937,7 +935,6 @@ exports.onCreateNode = async (
     }
 
     const nodeId = `${HN_TYPE_NAME}-${node.objectID}`
-    console.log(`fieldData`, fieldData)
 
     await createNode({
       ...fieldData,
