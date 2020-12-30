@@ -893,6 +893,15 @@ exports.onCreateNode = async (
     const tags = []
     if (node._tags && node._tags[0]) {
       tags.push(node._tags[0])
+      if (node._tags.includes(`show_hn`)) {
+        tags.push(`Show HN`)
+      }
+      if (node._tags.includes(`ask_hn`)) {
+        tags.push(`ASK HN`)
+      }
+      if (node._tags.includes(`poll`)) {
+        tags.push(`Poll`)
+      }
     }
     const excerpt = ``
     const fieldData = {
