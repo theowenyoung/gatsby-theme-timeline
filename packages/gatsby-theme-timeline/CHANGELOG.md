@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.105](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-theme-timeline@0.1.104...gatsby-theme-timeline@0.1.105) (2020-12-30)
+
+### Features
+
+- hn support show hn tag ([260a6d7](https://github.com/theowenyoung/gatsby-theme-timeline/commit/260a6d75a2d0c472516c0053e7e02baf224e3a8b))
+
 ## [0.1.104](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-theme-timeline@0.1.103...gatsby-theme-timeline@0.1.104) (2020-12-29)
 
 **Note:** Version bump only for package gatsby-theme-timeline
