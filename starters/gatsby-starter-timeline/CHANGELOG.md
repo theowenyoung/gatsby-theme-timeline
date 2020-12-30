@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.105](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-starter-timeline@0.1.104...gatsby-starter-timeline@0.1.105) (2020-12-30)
+
+**Note:** Version bump only for package gatsby-starter-timeline
+
 ## [0.1.104](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-starter-timeline@0.1.103...gatsby-starter-timeline@0.1.104) (2020-12-30)
 
 **Note:** Version bump only for package gatsby-starter-timeline

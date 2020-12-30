@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.106](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-theme-timeline@0.1.105...gatsby-theme-timeline@0.1.106) (2020-12-30)
+
+### Features
+
+- update react helmet ([a8fe108](https://github.com/theowenyoung/gatsby-theme-timeline/commit/a8fe108a5779ad8ac7765a516459a1006ed6e75e))
+
 ## [0.1.105](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-theme-timeline@0.1.104...gatsby-theme-timeline@0.1.105) (2020-12-30)
 
 ### Features
