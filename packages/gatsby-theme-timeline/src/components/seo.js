@@ -103,7 +103,7 @@ function SEO({
             position: 1,
             item: {
               "@id": postURL,
-              name: title,
+              name: pageTitle,
               image,
             },
           },
@@ -113,8 +113,8 @@ function SEO({
         "@context": `http://schema.org`,
         "@type": `BlogPosting`,
         url: postURL,
-        name: title,
-        headline: title,
+        name: pageTitle,
+        headline: pageTitle,
         image: { "@type": `ImageObject`, url: image },
         author: authorJSONLD,
         publisher: {
@@ -144,7 +144,7 @@ function SEO({
         },
         {
           property: `og:title`,
-          content: title,
+          content: pageTitle,
         },
         {
           property: `og:description`,
@@ -160,7 +160,7 @@ function SEO({
         },
         {
           name: `twitter:title`,
-          content: title,
+          content: pageTitle,
         },
         {
           name: `twitter:description`,
