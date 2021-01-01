@@ -9,7 +9,7 @@ const itemHero = ({ item }) => {
     return null
   }
   return (
-    <div sx={{ pb: 0 }}>
+    <div sx={{ pb: 0 }} data-test="item-video-container">
       <div sx={{ position: `relative`, pb: `56.25%` }}>
         <ReactPlayer
           controls

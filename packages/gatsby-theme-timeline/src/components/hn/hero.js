@@ -11,6 +11,7 @@ const itemHero = ({ item }) => {
         py: item?.image?.childImageSharp || item.imageRemote ? 2 : 0,
         textAlign: `center`,
       }}
+      data-test="item-hero-container"
     >
       <LinkUI href={item.imageRemote}>
         {item?.image?.childImageSharp ? (

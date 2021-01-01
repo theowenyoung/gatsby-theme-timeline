@@ -7,6 +7,7 @@ const itemHero = ({ item }) => {
   }
   return (
     <Box
+      data-test="item-hero-container"
       sx={{
         py: item?.image?.childImageSharp || item.imageRemote ? 2 : 0,
         textAlign: `center`,
