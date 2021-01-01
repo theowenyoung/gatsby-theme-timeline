@@ -8,7 +8,7 @@ const ItemBox = (props) => {
       as="article"
       data-test="item-container"
       data-index={props.index}
-      itemscope
+      itemScope
       itemType="https://schema.org/Article https://schema.org/itemListElement"
       sx={{
         paddingBottom: 5,
