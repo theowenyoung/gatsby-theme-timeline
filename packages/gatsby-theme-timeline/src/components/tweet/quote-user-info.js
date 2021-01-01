@@ -8,7 +8,10 @@ const UserInfo = ({ name, screenName, avatar, avatarRemote }) => {
   }
   return (
     <Flex sx={{ alignItems: `center` }}>
-      <Link href={`https://twitter.com/${screenName}`}>
+      <Link
+        href={`https://twitter.com/${screenName}`}
+        data-test="author-image-container"
+      >
         {avatar?.childImageSharp ? (
           <Image
             fixed={avatar.childImageSharp.fixed}

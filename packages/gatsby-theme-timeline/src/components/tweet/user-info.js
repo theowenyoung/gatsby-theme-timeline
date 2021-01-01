@@ -12,6 +12,7 @@ const UserInfo = ({ name, screenName, avatar, avatarRemote }) => {
         target="_blank"
         rel="noopener noreferrer"
         href={`https://twitter.com/${screenName}`}
+        data-test="author-image-container"
       >
         {avatar?.childImageSharp ? (
           <Image

@@ -39,6 +39,7 @@ const AuthorInfo = ({ item }) => {
         rel="noopener noreferrer"
         sx={{ mr: 2, mt: 2, flexShrink: 0 }}
         href={url}
+        data-test="author-image-container"
       >
         <Logo />
       </Link>
