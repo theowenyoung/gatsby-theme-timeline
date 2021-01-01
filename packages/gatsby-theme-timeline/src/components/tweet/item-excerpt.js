@@ -11,7 +11,7 @@ export default function ({ item }) {
   return (
     <Box
       data-test="item-excerpt"
-      itemprop="description"
+      itemProp="description"
       sx={{ fontSize: 1, py: 2, whiteSpace: `pre-line` }}
     >
       {body}

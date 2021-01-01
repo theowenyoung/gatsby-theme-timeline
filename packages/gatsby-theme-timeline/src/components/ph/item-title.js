@@ -12,7 +12,7 @@ export default function ({ item }) {
       rel="noopener noreferrer"
     >
       <Styled.h3
-        itemprop="name"
+        itemProp="name"
         sx={{ fontWeight: `normal` }}
       >{`${title} - ${tagline}`}</Styled.h3>
     </LinkUI>

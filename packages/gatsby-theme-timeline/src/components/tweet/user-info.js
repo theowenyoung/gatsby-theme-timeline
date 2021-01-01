@@ -46,7 +46,7 @@ const UserInfo = ({ name, screenName, avatar, avatarRemote }) => {
         href={`https://twitter.com/${screenName}`}
       >
         <Box sx={{ fontWeight: `bold` }}>
-          <Text itemprop="author" sx={{ color: `text` }}>
+          <Text itemProp="author" sx={{ color: `text` }}>
             {name}
           </Text>
         </Box>

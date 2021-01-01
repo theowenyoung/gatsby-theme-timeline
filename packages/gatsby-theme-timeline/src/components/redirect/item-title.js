@@ -14,7 +14,7 @@ export default function ({ item }) {
       data-test="item-title"
     >
       <Styled.h3
-        itemprop="name"
+        itemProp="name"
         sx={{ fontWeight: `normal`, fontSize: `1.5rem` }}
       >
         {title}

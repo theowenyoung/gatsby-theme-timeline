@@ -12,7 +12,7 @@ export default function ({ item }) {
       data-test="item-title"
     >
       <Styled.h3
-        itemprop="name"
+        itemProp="name"
         sx={{ fontWeight: `normal` }}
       >{`${title}`}</Styled.h3>
     </LinkUI>

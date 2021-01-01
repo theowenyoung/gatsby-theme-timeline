@@ -17,7 +17,7 @@ export default function ({ item }) {
   return (
     <LinkUI data-test="item-title" sx={{ color: `text` }} href={finalUrl}>
       <Styled.h3
-        itemprop="name"
+        itemProp="name"
         sx={{ fontWeight: `normal`, fontSize: `1.5rem` }}
       >
         {title}

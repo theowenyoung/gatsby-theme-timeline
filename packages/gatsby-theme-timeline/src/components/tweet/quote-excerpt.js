@@ -15,7 +15,7 @@ export default function ({ item }) {
   return (
     <Box
       data-test="item-quote-excerpt"
-      itemprop="citation"
+      itemProp="citation"
       sx={{ fontSize: 1, py: 2, whiteSpace: `pre-line` }}
     >
       {finalQuoteBody}

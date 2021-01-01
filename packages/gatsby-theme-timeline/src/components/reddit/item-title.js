@@ -15,7 +15,7 @@ export default function ({ item }) {
       target="_blank"
       rel="noopener noreferrer"
     >
-      <Styled.h3 itemprop="name" sx={{ fontSize: 2, fontWeight: `medium` }}>
+      <Styled.h3 itemProp="name" sx={{ fontSize: 2, fontWeight: `medium` }}>
         {title}
       </Styled.h3>
     </LinkUI>

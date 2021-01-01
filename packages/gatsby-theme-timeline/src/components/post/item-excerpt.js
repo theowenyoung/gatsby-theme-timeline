@@ -8,7 +8,7 @@ export default function ({ item }) {
   }
   return (
     <Styled.p
-      itemprop="description"
+      itemProp="description"
       data-test="item-excerpt"
       sx={{ whiteSpace: `pre-line`, mt: 0 }}
     >
