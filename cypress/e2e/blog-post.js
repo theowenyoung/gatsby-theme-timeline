@@ -6,6 +6,6 @@ describe(`hello world post`, () => {
 
   it(`should display relative image`, () => {
     cy.visit(`/my-second-post/`)
-    cy.getBySel(`item-hero`).should(`exist`)
+    cy.getBySel(`item-hero-container`).should(`exist`)
   })
 })
