@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.108](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-theme-timeline@0.1.107...gatsby-theme-timeline@0.1.108) (2021-01-01)
+
+### Bug Fixes
+
+- item prop name ([4cb0fd7](https://github.com/theowenyoung/gatsby-theme-timeline/commit/4cb0fd7fd20474c9f5d7288f1040d51269d5edd0))
+
+### Features
+
+- add schema prop ([1f20930](https://github.com/theowenyoung/gatsby-theme-timeline/commit/1f20930843c9ab0738a690cf6e5a72c288b128ce))
+
 ## [0.1.107](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-theme-timeline@0.1.106...gatsby-theme-timeline@0.1.107) (2020-12-30)
 
 **Note:** Version bump only for package gatsby-theme-timeline
