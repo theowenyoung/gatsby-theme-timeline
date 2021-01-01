@@ -16,6 +16,8 @@ function SEO({
   lang,
   meta,
   title,
+  author: itemAuthor,
+  authorImage,
   imageSource,
   imageAlt,
   location,
@@ -46,14 +48,15 @@ function SEO({
   )
   const { locale } = useLocalization()
   const metaDescription = description || site.siteMetadata.description
-  const author = site.siteMetadata.author
+  const author = itemAuthor || site.siteMetadata.author
   const siteUrl = site.siteMetadata.siteUrl
   const keywords = site.siteMetadata.keywords || []
   const avatarImage =
-    avatar &&
-    avatar.childImageSharp &&
-    avatar.childImageSharp.fixed &&
-    avatar.childImageSharp.fixed.src
+    authorImage ||
+    (avatar &&
+      avatar.childImageSharp &&
+      avatar.childImageSharp.fixed &&
+      avatar.childImageSharp.fixed.src)
   const getImagePath = (imageURI) => {
     if (
       !imageURI.match(

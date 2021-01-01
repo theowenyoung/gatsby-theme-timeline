@@ -14,6 +14,7 @@ export default function ({ to, children }) {
         },
         mr: 2,
       }}
+      data-test="item-tag"
     >
       <span>{children}</span>
     </LinkUI>

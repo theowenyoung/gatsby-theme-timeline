@@ -7,7 +7,11 @@ export default function ({ item }) {
     return null
   }
   return (
-    <Styled.p sx={{ whiteSpace: `pre-line`, color: `textMuted` }}>
+    <Styled.p
+      data-test="item-excerpt"
+      itemprop="description"
+      sx={{ whiteSpace: `pre-line`, color: `textMuted` }}
+    >
       {excerpt}
     </Styled.p>
   )

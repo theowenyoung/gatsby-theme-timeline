@@ -34,6 +34,7 @@ const Item = (props) => {
       <ItemExcerpt {...props}></ItemExcerpt>
       {tags && tags.length > 0 && (
         <Styled.div
+          data-test="item-tags"
           sx={{
             display: `flex`,
             flexWrap: `wrap`,

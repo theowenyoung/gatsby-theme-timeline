@@ -64,6 +64,8 @@ const Tweet = (props) => {
         <Hero item={item}></Hero>
         {isQuoteStatus && (
           <div
+            itemType="https://schema.org/Quotation"
+            itemScope
             sx={{
               borderRadius: `default`,
               overflow: `hidden`,

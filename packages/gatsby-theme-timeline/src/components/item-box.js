@@ -6,6 +6,10 @@ const ItemBox = (props) => {
   return (
     <Styled.div
       as="article"
+      data-test="item-container"
+      data-index={props.index}
+      itemscope
+      itemtype="https://schema.org/Article"
       sx={{
         paddingBottom: 5,
       }}

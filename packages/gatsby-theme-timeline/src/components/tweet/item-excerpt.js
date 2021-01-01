@@ -8,5 +8,13 @@ export default function ({ item }) {
     return null
   }
   const body = processTweetString(excerpt)
-  return <Box sx={{ fontSize: 1, py: 2, whiteSpace: `pre-line` }}>{body}</Box>
+  return (
+    <Box
+      data-test="item-excerpt"
+      itemprop="description"
+      sx={{ fontSize: 1, py: 2, whiteSpace: `pre-line` }}
+    >
+      {body}
+    </Box>
+  )
 }

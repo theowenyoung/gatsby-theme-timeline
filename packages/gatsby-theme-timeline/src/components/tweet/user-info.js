@@ -41,11 +41,14 @@ const UserInfo = ({ name, screenName, avatar, avatarRemote }) => {
       </Link>
       <Link
         target="_blank"
+        data-text="item-author"
         rel="noopener noreferrer"
         href={`https://twitter.com/${screenName}`}
       >
         <Box sx={{ fontWeight: `bold` }}>
-          <Text sx={{ color: `text` }}>{name}</Text>
+          <Text itemprop="author" sx={{ color: `text` }}>
+            {name}
+          </Text>
         </Box>
         <Text
           sx={{

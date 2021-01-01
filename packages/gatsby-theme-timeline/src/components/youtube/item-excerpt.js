@@ -8,7 +8,11 @@ export default function ({ item }) {
   }
   const finalExcerpt = processReactString(excerpt)
   return (
-    <Styled.p sx={{ whiteSpace: `pre-line`, color: `textMuted` }}>
+    <Styled.p
+      data-test="item-excerpt"
+      itemprop="description"
+      sx={{ whiteSpace: `pre-line`, color: `textMuted` }}
+    >
       {finalExcerpt}
     </Styled.p>
   )

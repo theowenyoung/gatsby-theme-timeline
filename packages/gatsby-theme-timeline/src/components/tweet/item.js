@@ -25,6 +25,7 @@ const Item = (props) => {
       <Tweet {...props}></Tweet>
       {tags && tags.length > 0 && (
         <Styled.div
+          data-test="item-tags"
           sx={{
             display: `flex`,
             flexWrap: `wrap`,

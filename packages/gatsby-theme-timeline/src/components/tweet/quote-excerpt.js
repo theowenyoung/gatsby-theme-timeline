@@ -13,7 +13,11 @@ export default function ({ item }) {
     finalQuoteBody = processTweetString(quoteBody)
   }
   return (
-    <Box sx={{ fontSize: 1, py: 2, whiteSpace: `pre-line` }}>
+    <Box
+      data-test="item-quote-excerpt"
+      itemprop="citation"
+      sx={{ fontSize: 1, py: 2, whiteSpace: `pre-line` }}
+    >
       {finalQuoteBody}
     </Box>
   )

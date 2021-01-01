@@ -15,6 +15,7 @@ const itemHero = ({ item }) => {
       <LinkUI href={item.imageRemote}>
         {item?.image?.childImageSharp ? (
           <Image
+            data-test="item-hero"
             fluid={item.image.childImageSharp.fluid}
             alt={item.imageAlt ? item.imageAlt : item.excerpt}
             sx={{ maxHeight: `lg` }}
@@ -23,6 +24,7 @@ const itemHero = ({ item }) => {
         ) : (
           item.imageRemote && (
             <Styled.img
+              data-test="item-hero"
               alt={item.imageAlt}
               sx={{ maxHeight: `lg` }}
               src={item.imageRemote}

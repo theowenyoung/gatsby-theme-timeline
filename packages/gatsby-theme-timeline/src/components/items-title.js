@@ -11,7 +11,10 @@ const ItemsTitle = ({ pageContext }) => {
   const { pageType, tag, basePath, currentPage } = pageContext
   if (pageType === `tag`) {
     return (
-      <Styled.h4 sx={{ fontWeight: `normal`, mb: `1.5rem` }}>
+      <Styled.h4
+        data-test="list-title"
+        sx={{ fontWeight: `normal`, mb: `1.5rem` }}
+      >
         <LinkUI sx={{ color: `text` }} as={Link} to={withPrefix(basePath)}>
           All posts
         </LinkUI>
@@ -25,7 +28,10 @@ const ItemsTitle = ({ pageContext }) => {
     )
   } else {
     return (
-      <Styled.h4 sx={{ fontWeight: `normal`, mb: `1.5rem` }}>
+      <Styled.h4
+        data-test="list-title"
+        sx={{ fontWeight: `normal`, mb: `1.5rem` }}
+      >
         Latest
         {currentPage > 1 && <span sx={{ color: `textMuted` }}> / </span>}
         {currentPage > 1 && (

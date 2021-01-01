@@ -19,7 +19,7 @@ export default function ({ children, to, count }) {
       as={Link}
       to={to}
     >
-      {children}
+      <span data-test="tag">{children}</span>
       {count && `(${count})`}
     </LinkUI>
   )

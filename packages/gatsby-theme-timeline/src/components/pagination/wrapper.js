@@ -14,6 +14,7 @@ export default function Wrapper(props) {
 
   return (
     <nav
+      data-test="pagination"
       sx={{
         pb: 4,
         lineHeight: 2,

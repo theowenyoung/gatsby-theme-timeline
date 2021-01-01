@@ -4,6 +4,7 @@ import { Link as LinkUI, jsx } from "theme-ui"
 export default function ({ to, children }) {
   return (
     <LinkUI
+      data-test="item-source"
       sx={{
         overflow: `hidden`,
         whiteSpace: `nowrap`,

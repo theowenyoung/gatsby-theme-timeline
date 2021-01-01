@@ -8,6 +8,7 @@ export default function ({ to, children }) {
       as={Link}
       sx={{ color: `textMuted`, display: `inline-block`, flexShrink: 0 }}
       to={to}
+      data-test="item-date"
     >
       {children}
     </LinkUI>

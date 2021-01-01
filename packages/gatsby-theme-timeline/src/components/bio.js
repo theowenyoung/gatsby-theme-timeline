@@ -15,7 +15,7 @@ const Bio = ({ basePath }) => {
   } = data
 
   return (
-    <Flex sx={{ mb: 4, alignItems: `center` }}>
+    <Flex data-test="bio" sx={{ mb: 4, alignItems: `center` }}>
       <LinkUI
         sx={{ minWidth: `56px`, pr: 2, pt: 1 }}
         as={Link}

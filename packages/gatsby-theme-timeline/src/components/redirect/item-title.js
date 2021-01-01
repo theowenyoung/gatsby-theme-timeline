@@ -11,8 +11,12 @@ export default function ({ item }) {
       rel="noopener noreferrer"
       sx={{ color: `text` }}
       href={finalUrl}
+      data-test="item-title"
     >
-      <Styled.h3 sx={{ fontWeight: `normal`, fontSize: `1.5rem` }}>
+      <Styled.h3
+        itemprop="name"
+        sx={{ fontWeight: `normal`, fontSize: `1.5rem` }}
+      >
         {title}
       </Styled.h3>
     </LinkUI>

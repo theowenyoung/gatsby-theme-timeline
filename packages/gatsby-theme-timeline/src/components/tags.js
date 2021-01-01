@@ -7,7 +7,7 @@ import { join as urlJoin } from "path"
 import TagsTitle from "./tags-title"
 const Tags = ({ basePath, group }) => {
   return (
-    <Box>
+    <Box data-test="tags-container">
       <TagsTitle></TagsTitle>
       <Flex sx={{ mb: 3, flexWrap: `wrap` }}>
         {group.map(({ fieldValue, totalCount }, index) => {

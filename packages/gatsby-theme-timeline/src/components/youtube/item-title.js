@@ -9,8 +9,12 @@ export default function ({ item }) {
       href={url}
       target="_blank"
       rel="noopener noreferrer"
+      data-test="item-title"
     >
-      <Styled.h3 sx={{ fontWeight: `normal` }}>{`${title}`}</Styled.h3>
+      <Styled.h3
+        itemprop="name"
+        sx={{ fontWeight: `normal` }}
+      >{`${title}`}</Styled.h3>
     </LinkUI>
   )
 }

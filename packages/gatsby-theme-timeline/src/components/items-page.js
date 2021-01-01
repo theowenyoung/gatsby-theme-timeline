@@ -37,16 +37,20 @@ const Items = ({ location, data, pageContext }) => {
       <ItemsTitle pageContext={pageContext}></ItemsTitle>
       <Grid gap={[null, null, 3, 4]} columns={[1, 1, `2fr 1fr`]}>
         <main sx={{ minWidth: 0 }}>
-          {items.map((item, index) => {
-            return (
-              <ItemBox
-                key={`item-box-${index}`}
-                basePath={basePath}
-                item={itemFormat(item)}
-                pageContext={pageContext}
-              ></ItemBox>
-            )
-          })}
+          <section data-test="list-container" data-count={items.length}>
+            {items.map((item, index) => {
+              return (
+                <ItemBox
+                  key={`item-box-${index}`}
+                  index={index}
+                  basePath={basePath}
+                  item={itemFormat(item)}
+                  pageContext={pageContext}
+                ></ItemBox>
+              )
+            })}
+          </section>
+
           <ItemsFooter pageContext={pageContext}></ItemsFooter>
         </main>
         <AsideBox>

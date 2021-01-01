@@ -43,6 +43,7 @@ const AuthorInfo = ({ item }) => {
       <Link
         target="_blank"
         rel="noopener noreferrer"
+        data-test="item-author"
         sx={{
           color: `textMuted`,
           overflow: `hidden`,

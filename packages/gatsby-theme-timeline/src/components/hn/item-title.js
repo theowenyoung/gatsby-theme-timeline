@@ -15,8 +15,11 @@ export default function ({ item }) {
     finalUrl = `https://news.ycombinator.com/item?id=${hnId}`
   }
   return (
-    <LinkUI sx={{ color: `text` }} href={finalUrl}>
-      <Styled.h3 sx={{ fontWeight: `normal`, fontSize: `1.5rem` }}>
+    <LinkUI data-test="item-title" sx={{ color: `text` }} href={finalUrl}>
+      <Styled.h3
+        itemprop="name"
+        sx={{ fontWeight: `normal`, fontSize: `1.5rem` }}
+      >
         {title}
         {` `}
         {url && (
