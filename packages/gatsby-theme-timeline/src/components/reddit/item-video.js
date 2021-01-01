@@ -31,6 +31,7 @@ const itemHero = ({ item }) => {
           }}
         >
           <iframe
+            data-test="item-embed-video"
             title={`video ${redditId}`}
             frameBorder="0"
             allowFullScreen
