@@ -37,7 +37,13 @@ const Items = ({ location, data, pageContext }) => {
       <ItemsTitle pageContext={pageContext}></ItemsTitle>
       <Grid gap={[null, null, 3, 4]} columns={[1, 1, `2fr 1fr`]}>
         <main sx={{ minWidth: 0 }}>
-          <section data-test="list-container" data-count={items.length}>
+          <section
+            data-test="list-container"
+            itemScope
+            itemType="https://schema.org/ItemList"
+          >
+            <link href="https://schema.org/ItemListOrderDescending"></link>
+            <meta itemProp="numberOfItems" content={items.length} />
             {items.map((item, index) => {
               return (
                 <ItemBox

@@ -9,7 +9,7 @@ const ItemBox = (props) => {
       data-test="item-container"
       data-index={props.index}
       itemscope
-      itemType="https://schema.org/Article"
+      itemType="https://schema.org/Article https://schema.org/itemListElement"
       sx={{
         paddingBottom: 5,
       }}
