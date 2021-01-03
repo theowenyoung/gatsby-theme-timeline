@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-theme-timeline@0.1.108...gatsby-theme-timeline@0.2.0) (2021-01-03)
+
+### Features
+
+- reflact type ([30f33b7](https://github.com/theowenyoung/gatsby-theme-timeline/commit/30f33b7ec8034bfb538d5341fd7f3726a194b238))
+
 ## [0.1.108](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-theme-timeline@0.1.107...gatsby-theme-timeline@0.1.108) (2021-01-01)
 
 ### Bug Fixes
