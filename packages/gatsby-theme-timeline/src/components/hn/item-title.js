@@ -9,11 +9,8 @@ function getDomain(url) {
   return url
 }
 export default function ({ item }) {
-  const { title, url, hnId } = item
-  let finalUrl = url
-  if (!url) {
-    finalUrl = `https://news.ycombinator.com/item?id=${hnId}`
-  }
+  const { title, url } = item
+  const finalUrl = url
   return (
     <LinkUI data-test="item-title" sx={{ color: `text` }} href={finalUrl}>
       <Styled.h3

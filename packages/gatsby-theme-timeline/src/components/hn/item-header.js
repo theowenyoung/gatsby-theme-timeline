@@ -21,7 +21,7 @@ function formatNumber(number) {
   return scaled.toFixed(1) + suffix
 }
 const AuthorInfo = ({ item }) => {
-  const { author, hnId, score } = item
+  const { author, authorUrl, url, score } = item
   if (!author) {
     return null
   }
@@ -36,7 +36,7 @@ const AuthorInfo = ({ item }) => {
         target="_blank"
         rel="noopener noreferrer"
         sx={{ mr: 2, mt: 2, flexShrink: 0 }}
-        href={`https://news.ycombinator.com/item?id=${hnId}`}
+        href={url}
         data-test="author-image-container"
       >
         <Logo />
@@ -52,7 +52,7 @@ const AuthorInfo = ({ item }) => {
           whiteSpace: `nowrap`,
           display: `inline-block`,
         }}
-        href={`https://news.ycombinator.com/user?id=${author}`}
+        href={authorUrl}
       >
         {`${author}`}
       </Link>
