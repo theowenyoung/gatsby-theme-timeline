@@ -2,7 +2,7 @@
 import { jsx, Link } from "theme-ui"
 import ItemDate from "./item-date"
 export default function ({ item }) {
-  const { authorUrl, author } = item
+  const { channelUrl, channel } = item
   return (
     <footer sx={{ display: `flex` }}>
       <ItemDate item={item}></ItemDate>
@@ -16,7 +16,7 @@ export default function ({ item }) {
       >
         ·
       </span>
-      {authorUrl ? (
+      {channelUrl ? (
         <Link
           target="_blank"
           rel="noopener noreferrer"
@@ -27,9 +27,9 @@ export default function ({ item }) {
             whiteSpace: `nowrap`,
             display: `inline-block`,
           }}
-          href={authorUrl}
+          href={channelUrl}
         >
-          {`${author}`}
+          {`${channel}`}
         </Link>
       ) : (
         <span
@@ -41,7 +41,7 @@ export default function ({ item }) {
             display: `inline-block`,
           }}
         >
-          {author}
+          {channel}
         </span>
       )}
     </footer>
