@@ -63,6 +63,7 @@ export const query = graphql`
         imageAlt
         ... on SocialMediaPost {
           provider
+          thirdPartyId
           url
           originalUrl
           imageRemote

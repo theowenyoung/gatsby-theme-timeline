@@ -61,6 +61,7 @@ exports.createSchemaCustomization = ({ actions }) => {
     views: Int
     sharedCount: Int
     likeCount: Int
+    thirdPartyId: String
   }`)
 
   createTypes(`
@@ -106,6 +107,7 @@ exports.createSchemaCustomization = ({ actions }) => {
       slug: String!
       date: Date! @dateformat
       tags: [String]!
+      thirdPartyId: String
       excerpt: String!
       image: File
       imageRemote: String
@@ -153,6 +155,7 @@ exports.createSchemaCustomization = ({ actions }) => {
       views: Int
       sharedCount: Int
       likeCount: Int
+      thirdPartyId: String
       sharedContent: SharedContent
     }
    
@@ -493,6 +496,7 @@ exports.onCreateNode = async (
       provider: `Twitter`,
       title: tweetText,
       excerpt: ``,
+      thirdPartyId: node.id_str,
       body: tweetText,
       tags: node.entities.hashtags.map((tag) => tag.text) || [],
       slug: urlResolve(basePath, `tweet/${node.id_str}`),
@@ -531,6 +535,7 @@ exports.onCreateNode = async (
       )
       fieldData.sharedContent = {
         id: sharedStatus.id_str,
+        thirdPartyId: sharedStatus.id_str,
         title: sharedStatus.full_text,
         body: ``,
         slug: ``,
@@ -611,6 +616,7 @@ exports.onCreateNode = async (
     const fieldData = {
       provider: `Reddit`,
       title: node.title,
+      thirdPartyId: node.id,
       excerpt: excerpt,
       body: node.selftext_html || ``,
       tags: tags,
@@ -745,6 +751,7 @@ exports.onCreateNode = async (
     const fieldData = {
       provider: `Hacker News`,
       title: node.title,
+      thirdPartyId: node.objectID,
       excerpt: excerpt,
       body: ``,
       tags: tags,
@@ -851,6 +858,7 @@ exports.onCreateNode = async (
       provider: `Product Hunt`,
       title: `${node.name} - ${node.tagline}`,
       excerpt: excerpt,
+      thirdPartyId: node.id,
       body: excerpt,
       tags: tags,
       slug: urlResolve(basePath, `ph/${node.slug}`),
@@ -918,6 +926,7 @@ exports.onCreateNode = async (
       title: node.title,
       excerpt: excerpt,
       body: excerpt,
+      thirdPartyId: node.videoId,
       tags: tags,
       slug: urlResolve(basePath, `youtube/${node.videoId}`),
       date: date,

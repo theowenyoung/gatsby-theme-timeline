@@ -3,7 +3,7 @@
 import { jsx, Styled, Link as LinkUI } from "theme-ui"
 import { useState } from "react"
 const Detail = ({ item }) => {
-  const { phId, title, excerpt, phUrl, tagline, author, authorUrl } = item
+  const { thirdPartyId, title, excerpt, url, author, authorUrl } = item
   const [isShowPlaceholder, setIsShowPlaceholder] = useState(true)
   const handleOnLoad = () => {
     setIsShowPlaceholder(false)
@@ -13,10 +13,9 @@ const Detail = ({ item }) => {
       <div>
         {isShowPlaceholder && (
           <Styled.blockquote>
-            <LinkUI
-              href={phUrl}
-              sx={{ fontSize: 2 }}
-            >{`${title} - ${tagline}`}</LinkUI>
+            <LinkUI href={url} sx={{ fontSize: 2 }}>
+              {title}
+            </LinkUI>
             <p>{excerpt}</p>
             &mdash;
             <LinkUI href={authorUrl}>{author}</LinkUI>
@@ -28,7 +27,7 @@ const Detail = ({ item }) => {
         <div sx={{ position: `relative`, pb: `81%` }}>
           <iframe
             title={title}
-            src={`https://cards.producthunt.com/cards/posts/${phId}?v=1`}
+            src={`https://cards.producthunt.com/cards/posts/${thirdPartyId}?v=1`}
             width="100%"
             height="100%"
             sx={{ position: `absolute`, top: 0, left: 0 }}

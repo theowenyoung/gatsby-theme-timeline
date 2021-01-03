@@ -62,6 +62,10 @@ export const query = graphql`
         }
       }
       ... on SocialMediaPost {
+        fields {
+          basePath
+        }
+        thirdPartyId
         provider
         url
         originalUrl
@@ -73,9 +77,10 @@ export const query = graphql`
           height
         }
         channel
+        channelUrl
         author
         authorUrl
-        image {
+        authorImage {
           childImageSharp {
             fixed(width: 48, height: 48) {
               ...GatsbyImageSharpFixed
@@ -88,10 +93,26 @@ export const query = graphql`
         sharedCount
         likeCount
         sharedContent {
+          excerpt
+          slug
+          title
+          date(formatString: "MMMM DD, YYYY")
+          dateISO: date
+          datetime: date(formatString: "YYYY-MM-DD HH:mm")
+          tags
           imageRemote
           image {
             childImageSharp {
-              fixed(width: 48, height: 48) {
+              fluid(maxWidth: $maxWidth) {
+                ...GatsbyImageSharpFluid
+                src
+              }
+            }
+          }
+          imageAlt
+          authorImage {
+            childImageSharp {
+              fixed(width: 24, height: 24) {
                 ...GatsbyImageSharpFixed
               }
             }
@@ -103,6 +124,7 @@ export const query = graphql`
             height
           }
           channel
+          channelUrl
           author
           authorUrl
           authorSlug

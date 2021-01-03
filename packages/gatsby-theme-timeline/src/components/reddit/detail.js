@@ -3,7 +3,7 @@
 import { jsx, Styled, Link as LinkUI } from "theme-ui"
 
 const Detail = ({ item }) => {
-  const { permalink, title, subreddit } = item
+  const { url, title, channel, channelUrl } = item
   return (
     <article>
       <Styled.div
@@ -15,12 +15,10 @@ const Detail = ({ item }) => {
         }}
       >
         <blockquote className="reddit-card">
-          <LinkUI href={`https://www.reddit.com${permalink}`}>{title}</LinkUI>
+          <LinkUI href={url}>{title}</LinkUI>
           <br />
           from
-          <LinkUI
-            href={`http://www.reddit.com/r/${subreddit}`}
-          >{` /r/${subreddit}`}</LinkUI>
+          <LinkUI href={channelUrl}>{` /r/${channel}`}</LinkUI>
         </blockquote>
       </Styled.div>
     </article>
