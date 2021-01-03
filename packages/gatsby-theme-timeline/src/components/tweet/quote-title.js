@@ -3,15 +3,14 @@ import { Box, jsx } from "theme-ui"
 import processTweetString from "./process-tweet-string"
 
 export default function ({ item }) {
-  const { isQuoteStatus, quoteBody } = item
+  const { sharedContent } = item
 
-  if (!isQuoteStatus || !quoteBody) {
+  if (!sharedContent || !sharedContent.title) {
     return null
   }
   let finalQuoteBody = ``
-  if (isQuoteStatus) {
-    finalQuoteBody = processTweetString(quoteBody)
-  }
+  finalQuoteBody = processTweetString(sharedContent.title)
+
   return (
     <Box
       data-test="item-quote-excerpt"

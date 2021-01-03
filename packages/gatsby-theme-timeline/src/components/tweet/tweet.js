@@ -6,28 +6,23 @@ import { Fragment } from "react"
 import Hero from "./item-hero"
 import RetweetedIcon from "./retweeted-icon"
 import QuoteUserInfo from "./quote-user-info"
-import ItemExcerpt from "./item-excerpt"
-import QuoteExcerpt from "./quote-excerpt"
+import ItemTitle from "./item-title"
+import QuoteTitle from "./quote-title"
 
 const Tweet = (props) => {
   const { item } = props
   const {
-    authorName,
-    authorScreenName,
-    authorAvatar,
-    authorAvatarRemote,
-    idStr,
-    retweeted,
-    isQuoteStatus,
-    quoteBody,
-    quoteAuthorName,
-    quoteAuthorScreenName,
-    quoteAuthorAvatar,
-    quoteAuthorAvatarRemote,
-    quoteImage,
-    quoteImageRemote,
+    author,
+    authorSlug,
+    authorImage,
+    authorImageRemote,
+    sharedContent,
+    title,
+    url,
   } = item
 
+  const retweeted = sharedContent && title.startsWith(`RT @`)
+  const isQuoteStatus = sharedContent && !retweeted
   return (
     <Fragment>
       {retweeted && (
@@ -49,18 +44,16 @@ const Tweet = (props) => {
       )}
       <Flex>
         <UserInfo
-          name={authorName}
-          screenName={authorScreenName}
-          avatar={authorAvatar}
-          avatarRemote={authorAvatarRemote}
+          name={author}
+          screenName={authorSlug}
+          avatar={authorImage}
+          avatarRemote={authorImageRemote}
         ></UserInfo>
-        <TwitterButton
-          to={`https://twitter.com/${authorScreenName}/status/${idStr}`}
-        ></TwitterButton>
+        <TwitterButton to={url}></TwitterButton>
       </Flex>
 
       <div>
-        <ItemExcerpt {...props}></ItemExcerpt>
+        <ItemTitle {...props}></ItemTitle>
         <Hero item={item}></Hero>
         {isQuoteStatus && (
           <div
@@ -78,20 +71,19 @@ const Tweet = (props) => {
           >
             <div sx={{ p: 3 }}>
               <QuoteUserInfo
-                name={quoteAuthorName}
-                screenName={quoteAuthorScreenName}
-                avatar={quoteAuthorAvatar}
-                avatarRemote={quoteAuthorAvatarRemote}
+                name={sharedContent.author}
+                screenName={sharedContent.authorSlug}
+                avatar={sharedContent.authorImage}
+                avatarRemote={sharedContent.authorImageRemote}
               ></QuoteUserInfo>
-              <QuoteExcerpt {...props}></QuoteExcerpt>
+              <QuoteTitle {...props}></QuoteTitle>
             </div>
-
             <Hero
               item={{
-                image: quoteImage,
+                image: sharedContent.image,
                 imageAlt: `quote image`,
-                excerpt: quoteBody,
-                imageRemote: quoteImageRemote,
+                excerpt: sharedContent.title,
+                imageRemote: sharedContent.imageRemote,
               }}
             ></Hero>
           </div>

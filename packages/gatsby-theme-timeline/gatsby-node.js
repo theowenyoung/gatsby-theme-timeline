@@ -38,6 +38,32 @@ exports.onPreBootstrap = ({ store }, themeOptions) => {
 exports.createSchemaCustomization = ({ actions }) => {
   const { createTypes } = actions
   createTypes(`
+    type Video {
+      url: String
+      embed: Boolean
+      width: Int
+      height: Int
+    }
+  `)
+  createTypes(`interface TimelinePost @blogPostInterface {
+    provider: String
+    url: String
+    originalUrl: String
+    imageRemote: String
+    video: Video
+    channel: String
+    channelUrl: String
+    author: String
+    authorUrl: String
+    authorImage: File
+    authorSlug: String
+    score: Int
+    views: Int
+    sharedCount: Int
+    likeCount: Int
+  }`)
+
+  createTypes(`
     type Fields {
       basePath: String
     }
@@ -73,78 +99,8 @@ exports.createSchemaCustomization = ({ actions }) => {
       external: Boolean
       prefetch: Boolean
     }
-    type ${TWEET_TYPE_NAME} implements BlogPost & Node @dontInfer {
-      id: ID!
-      title: String!
-      body: String!
-      slug: String!
-      date: Date! @dateformat
-      tags: [String]!
-      excerpt: String!
-      image: File
-      imageRemote: String
-      imageAlt: String
-      socialImage: File
-      idStr: String!
-      retweeted: Boolean!
-      authorName: String!
-      authorScreenName: String!
-      authorAvatar: File
-      authorAvatarRemote: String
-      isQuoteStatus: Boolean!
-      quoteBody: String
-      quoteAuthorName: String
-      quoteAuthorScreenName: String
-      quoteAuthorAvatar: File
-      quoteAuthorAvatarRemote: String
-      quoteImage: File
-      quoteImageRemote: String
-    }
-    type ${REDDIT_TYPE_NAME} implements BlogPost & Node @dontInfer {
-      id: ID!
-      title: String!
-      body: String!
-      slug: String!
-      date: Date! @dateformat
-      tags: [String]!
-      excerpt: String!
-      image: File
-      imageRemote: String
-      imageAlt: String
-      socialImage: File
-      permalink: String!
-      authorName: String!
-      video: String
-      videoWidth: Int
-      videoHeight: Int
-      subreddit: String!
-      isSelf: Boolean!
-      isVideo: Boolean!
-      postHint: String
-      url: String
-      html: String
-      score: Int
-      redditId: String
-    }
-    type ${HN_TYPE_NAME} implements BlogPost & Node @dontInfer {
-      id: ID!
-      title: String!
-      body: String!
-      slug: String!
-      date: Date! @dateformat
-      tags: [String]!
-      excerpt: String!
-      image: File
-      imageRemote: String
-      imageAlt: String
-      socialImage: File
-      score: Int
-      hnId: String!
-      authorName: String!
-      url: String
-    }
-    type ${REDIRECT_TYPE_NAME} implements BlogPost & Node @dontInfer {
-      id: ID!
+    type SharedContent implements TimelinePost & BlogPost & Node @dontInfer {
+      provider: String
       title: String!
       body: String!
       slug: String!
@@ -156,30 +112,22 @@ exports.createSchemaCustomization = ({ actions }) => {
       imageAlt: String
       socialImage: File
       url: String
-      authorName: String!
+      originalUrl: String
+      imageRemote: String
+      video: Video
+      channel: String
+      channelUrl: String
+      author: String
       authorUrl: String
-    }
-    type ${YOUTUBE_TYPE_NAME} implements BlogPost & Node @dontInfer {
-      id: ID!
-      title: String!
-      body: String!
-      slug: String!
-      date: Date! @dateformat
-      tags: [String]!
-      excerpt: String!
-      image: File
-      imageRemote: String
-      imageAlt: String
-      socialImage: File
-      video: String
+      authorImage: File
+      authorSlug: String
       score: Int
-      authorName: String!
-      authorUrl: String
-      url: String
-      youtubeId: String
       views: Int
+      sharedCount: Int
+      likeCount: Int
     }
-    type ${PH_TYPE_NAME} implements BlogPost & Node @dontInfer {
+    type SocialMediaPost implements BlogPost & Node @dontInfer {
+      provider: String
       id: ID!
       title: String!
       body: String!
@@ -191,15 +139,23 @@ exports.createSchemaCustomization = ({ actions }) => {
       imageRemote: String
       imageAlt: String
       socialImage: File
-      video: String
-      tagline: String
-      score: Int
-      authorName: String!
-      authorUrl: String
       url: String
-      phUrl: String
-      phId: String
+      channel: String
+      channelUrl: String
+      originalUrl: String
+      imageRemote: String
+      video: Video
+      author: String
+      authorSlug: String
+      authorUrl: String
+      authorImage: File
+      score: Int
+      views: Int
+      sharedCount: Int
+      likeCount: Int
+      sharedContent: SharedContent
     }
+   
   `)
 }
 exports.createResolvers = ({ createResolvers }) => {
@@ -218,28 +174,7 @@ exports.createResolvers = ({ createResolvers }) => {
         },
       },
     },
-    [TWEET_TYPE_NAME]: {
-      fields: {
-        type: `Fields`,
-      },
-      authorAvatar: {
-        resolve: (source, _, context, __) => {
-          if (source.authorAvatar___NODE) {
-            return context.nodeModel.getNodeById({
-              id: source.authorAvatar___NODE,
-            })
-          }
-        },
-      },
-      quoteAuthorAvatar: {
-        resolve: (source, _, context, __) => {
-          if (source.quoteAuthorAvatar___NODE) {
-            return context.nodeModel.getNodeById({
-              id: source.quoteAuthorAvatar___NODE,
-            })
-          }
-        },
-      },
+    SharedContent: {
       image: {
         resolve: (source, _, context, __) => {
           if (source.image___NODE) {
@@ -249,17 +184,17 @@ exports.createResolvers = ({ createResolvers }) => {
           }
         },
       },
-      quoteImage: {
+      authorImage: {
         resolve: (source, _, context, __) => {
-          if (source.quoteImage___NODE) {
+          if (source.authorImage___NODE) {
             return context.nodeModel.getNodeById({
-              id: source.quoteImage___NODE,
+              id: source.authorImage___NODE,
             })
           }
         },
       },
     },
-    [REDDIT_TYPE_NAME]: {
+    SocialMediaPost: {
       fields: {
         type: `Fields`,
       },
@@ -272,58 +207,11 @@ exports.createResolvers = ({ createResolvers }) => {
           }
         },
       },
-    },
-    [HN_TYPE_NAME]: {
-      fields: {
-        type: `Fields`,
-      },
-      image: {
+      authorImage: {
         resolve: (source, _, context, __) => {
-          if (source.image___NODE) {
+          if (source.authorImage___NODE) {
             return context.nodeModel.getNodeById({
-              id: source.image___NODE,
-            })
-          }
-        },
-      },
-    },
-    [REDIRECT_TYPE_NAME]: {
-      fields: {
-        type: `Fields`,
-      },
-      image: {
-        resolve: (source, _, context, __) => {
-          if (source.image___NODE) {
-            return context.nodeModel.getNodeById({
-              id: source.image___NODE,
-            })
-          }
-        },
-      },
-    },
-    [PH_TYPE_NAME]: {
-      fields: {
-        type: `Fields`,
-      },
-      image: {
-        resolve: (source, _, context, __) => {
-          if (source.image___NODE) {
-            return context.nodeModel.getNodeById({
-              id: source.image___NODE,
-            })
-          }
-        },
-      },
-    },
-    [YOUTUBE_TYPE_NAME]: {
-      fields: {
-        type: `Fields`,
-      },
-      image: {
-        resolve: (source, _, context, __) => {
-          if (source.image___NODE) {
-            return context.nodeModel.getNodeById({
-              id: source.image___NODE,
+              id: source.authorImage___NODE,
             })
           }
         },
@@ -587,94 +475,36 @@ exports.onCreateNode = async (
       `dd MMM DD HH:mm:ss ZZ YYYY`,
       `en`
     ).toISOString()
-    let tweetText = node.full_text
-    let authorName = node.user.name
-    let authorScreenName = node.user.screen_name
-    let authorAvatarUrl = node.user.profile_image_url_https
-    const retweeted = !!(node.retweeted || node.retweeted_status)
-    const isQuoteStatus = !!node.quoted_status
-    if (retweeted) {
-      tweetText = node.retweeted_status.full_text
-      authorName = node.retweeted_status.user.name
-      authorScreenName = node.retweeted_status.user.screen_name
-      authorAvatarUrl = node.retweeted_status.user.profile_image_url_https
-    }
+    const tweetText = node.full_text
+    const author = node.user.name
+    const authorSlug = node.user.screen_name
+    const authorUrl = `https://twitter.com/${node.user.screen_name}`
+    const authorAvatarUrl = node.user.profile_image_url_https.replace(
+      `_normal.`,
+      `.`
+    )
 
+    const retweeted = !!node.retweeted_status
+    const isQuoteStatus = !!node.quoted_status
+    const sharedCount = node.retweet_count
+    const likeCount = node.favorite_count
+    const score = sharedCount * 2 + likeCount
     const fieldData = {
+      provider: `Twitter`,
       title: tweetText,
-      excerpt: tweetText,
+      excerpt: ``,
       body: tweetText,
       tags: node.entities.hashtags.map((tag) => tag.text) || [],
       slug: urlResolve(basePath, `tweet/${node.id_str}`),
       date: date,
-      authorName,
-      authorScreenName,
-      idStr: node.id_str,
-      retweeted,
-      isQuoteStatus,
-    }
-    if (isQuoteStatus) {
-      fieldData.quoteBody = node.quoted_status.full_text
-      fieldData.quoteAuthorName = node.quoted_status.user.name
-      fieldData.quoteAuthorScreenName = node.quoted_status.user.screen_name
-      fieldData.quoteAuthorAvatarRemote =
-        node.quoted_status.user.profile_image_url_https
-      // create a file node for image URLs
-      if (shouldTransformImage) {
-        try {
-          const remoteFileNode = await createRemoteFileNode({
-            url: node.quoted_status.user.profile_image_url_https,
-            parentNodeId: node.id,
-            createNode,
-            createNodeId,
-            cache,
-            store,
-          })
-          // if the file was created, attach the new node to the parent node
-          if (remoteFileNode) {
-            fieldData.quoteAuthorAvatar___NODE = remoteFileNode.id
-          }
-        } catch (error) {
-          reporter.warn(
-            `create remote file for tweet quoted_status author avatar failed: ${error}`
-          )
-        }
-      }
-
-      if (
-        node.quoted_status.entities &&
-        node.quoted_status.entities.media &&
-        node.quoted_status.entities.media[0] &&
-        node.quoted_status.entities.media[0].media_url_https
-      ) {
-        fieldData.quoteImageRemote =
-          node.quoted_status.entities.media[0].media_url_https
-        if (shouldTransformImage) {
-          try {
-            // create a file node for image URLs
-            const remoteFileNode = await createRemoteFileNode({
-              url: node.quoted_status.entities.media[0].media_url_https,
-              parentNodeId: node.id,
-              createNode,
-              createNodeId,
-              cache,
-              store,
-            })
-            // if the file was created, attach the new node to the parent node
-            if (remoteFileNode) {
-              fieldData.quoteImage___NODE = remoteFileNode.id
-            }
-          } catch (error) {
-            reporter.warn(
-              `create remote file for tweet quoted_status media failed: ${error}`
-            )
-          }
-        }
-      }
-    }
-    // add tweet tag
-    if (!fieldData.tags.includes(`tweet`)) {
-      fieldData.tags.push(`tweet`)
+      author,
+      authorSlug,
+      authorUrl,
+      authorImage___NODE: await createLocalImage(authorAvatarUrl, true),
+      score,
+      sharedCount,
+      likeCount,
+      url: `https://twitter.com/${authorSlug}/statuses/${node.id_str}`,
     }
     if (
       node.entities &&
@@ -684,52 +514,57 @@ exports.onCreateNode = async (
     ) {
       fieldData.imageAlt = `Tweet Image`
       fieldData.imageRemote = node.entities.media[0].media_url_https
-      if (shouldTransformImage) {
-        try {
-          // create a file node for image URLs
-          const remoteFileNode = await createRemoteFileNode({
-            url: node.entities.media[0].media_url_https,
-            parentNodeId: node.id,
-            createNode,
-            createNodeId,
-            cache,
-            store,
-          })
-          // if the file was created, attach the new node to the parent node
-          if (remoteFileNode) {
-            fieldData.image___NODE = remoteFileNode.id
-          }
-        } catch (error) {
-          reporter.warn(`create remote file for tweet media failed: ${error}`)
-        }
+      fieldData.image___NODE = await createLocalImage(fieldData.imageRemote)
+    }
+
+    if (retweeted || isQuoteStatus) {
+      const sharedStatus = node.retweeted_status || node.quoted_status
+
+      const sharedCreated = moment(
+        sharedStatus.created_at,
+        `dd MMM DD HH:mm:ss ZZ YYYY`,
+        `en`
+      ).toISOString()
+      const sharedAuthorImageRemote = sharedStatus.user.profile_image_url_https.replace(
+        `_normal.`,
+        `.`
+      )
+      fieldData.sharedContent = {
+        id: sharedStatus.id_str,
+        title: sharedStatus.full_text,
+        body: ``,
+        slug: ``,
+        date: sharedCreated,
+        tags: sharedStatus.entities.hashtags.map((tag) => tag.text) || [],
+        excerpt: ``,
+        url: `https://twitter.com/${sharedStatus.user.screen_name}/statuses/${sharedStatus.id_str}`,
+        author: sharedStatus.user.name,
+        authorUrl: `https://twitter.com/statuses/${sharedStatus.user.screen_name}`,
+        authorImage___NODE: await createLocalImage(
+          sharedAuthorImageRemote,
+          true
+        ),
+        authorSlug: sharedStatus.user.screen_name,
+      }
+
+      if (
+        sharedStatus.entities &&
+        sharedStatus.entities.media &&
+        sharedStatus.entities.media[0] &&
+        sharedStatus.entities.media[0].media_url_https
+      ) {
+        fieldData.sharedContent.imageAlt = `Tweet Image`
+        fieldData.sharedContent.imageRemote =
+          sharedStatus.entities.media[0].media_url_https
+        fieldData.sharedContent.image___NODE = await createLocalImage(
+          fieldData.imageRemote
+        )
       }
     }
 
-    // create a file node for image URLs
-    // try to use origin avatar res
-    if (authorAvatarUrl) {
-      authorAvatarUrl = authorAvatarUrl.replace(`_normal.jpg`, `.jpg`)
-    }
-    fieldData.authorAvatarRemote = authorAvatarUrl
-    if (shouldTransformImage) {
-      try {
-        const remoteFileNode = await createRemoteFileNode({
-          url: authorAvatarUrl,
-          parentNodeId: node.id,
-          createNode,
-          createNodeId,
-          cache,
-          store,
-        })
-        // if the file was created, attach the new node to the parent node
-        if (remoteFileNode) {
-          fieldData.authorAvatar___NODE = remoteFileNode.id
-        }
-      } catch (error) {
-        reporter.warn(
-          `create remote file for tweet author avatar failed: ${error}`
-        )
-      }
+    // add tweet tag
+    if (!fieldData.tags.includes(`tweet`)) {
+      fieldData.tags.push(`tweet`)
     }
 
     const tweetNodeId = `${TWEET_TYPE_NAME}-${node.id_str}`
@@ -740,7 +575,7 @@ exports.onCreateNode = async (
       parent: node.id,
       children: [],
       internal: {
-        type: TWEET_TYPE_NAME,
+        type: `SocialMediaPost`,
         contentDigest: createContentDigest(fieldData),
         content: JSON.stringify(fieldData),
         description: `${TWEET_TYPE_NAME} of the Item interface`,
@@ -756,7 +591,7 @@ exports.onCreateNode = async (
   }
   if (allRedditTypeName.includes(node.internal.type)) {
     const date = new Date(node.created_utc * 1000).toISOString()
-    const authorName = node.author
+    const author = node.author
     let text = ``
     if (node.selftext_html) {
       text = htmlToText(node.selftext_html, {
@@ -771,23 +606,27 @@ exports.onCreateNode = async (
     }
     const tags = [node.subreddit]
     const excerpt = truncate(text, EXCERPT_LENGTH)
+    const postHint = node.postHint
+    const redditUrl = `https://www.reddit.com${node.permalink}`
     const fieldData = {
+      provider: `Reddit`,
       title: node.title,
       excerpt: excerpt,
       body: node.selftext_html || ``,
-      html: node.selftext_html || ``,
       tags: tags,
       slug: urlResolve(basePath, `reddit${node.permalink}`),
       date: date,
-      authorName,
-      subreddit: node.subreddit,
-      permalink: node.permalink,
-      isSelf: node.is_self,
-      isVideo: node.is_video,
-      url: node.url_overridden_by_dest,
-      postHint: node.post_hint,
+      author,
+      authorSlug: author,
+      authorUrl: `https://www.reddit.com/user/${node.author}`,
+      channel: node.subreddit,
+      channelUrl: `https://www.reddit.com/r/${node.subreddit}`,
+      url: redditUrl,
+      originalUrl:
+        node.is_self || postHint === `image` || postHint === `hosted:video`
+          ? `https://www.reddit.com${node.permalink}`
+          : redditUrl,
       score: node.score,
-      redditId: node.id,
     }
     // add tweet tag
     if (!fieldData.tags.includes(`reddit`)) {
@@ -796,11 +635,13 @@ exports.onCreateNode = async (
     if (
       node.media &&
       node.media.reddit_video &&
-      node.media.reddit_video.hls_url
+      node.media.reddit_video.fallback_url
     ) {
-      fieldData.video = node.media.reddit_video.fallback_url
-      fieldData.videoWidth = node.media.reddit_video.width
-      fieldData.videoHeight = node.media.reddit_video.height
+      fieldData.video = {
+        url: node.media.reddit_video.fallback_url,
+        width: node.media.reddit_video.width,
+        height: node.media.reddit_video.height,
+      }
     } else if (
       node.preview &&
       node.preview.images &&
@@ -811,18 +652,22 @@ exports.onCreateNode = async (
       node.preview.images[0].variants.mp4.source.url
     ) {
       // gif
-      fieldData.video = node.preview.images[0].variants.mp4.source.url
-      fieldData.videoWidth = node.preview.images[0].variants.mp4.source.width
-      fieldData.videoHeight = node.preview.images[0].variants.mp4.source.height
+
+      fieldData.video = {
+        url: node.preview.images[0].variants.mp4.source.url,
+        width: node.preview.images[0].variants.mp4.source.width,
+        height: node.preview.images[0].variants.mp4.source.height,
+      }
     } else if (
       node.preview &&
       node.preview.reddit_video_preview &&
       node.preview.reddit_video_preview.fallback_url
     ) {
-      // gif
-      fieldData.video = node.preview.reddit_video_preview.fallback_url
-      fieldData.videoWidth = node.preview.reddit_video_preview.width
-      fieldData.videoHeight = node.preview.reddit_video_preview.height
+      fieldData.video = {
+        url: node.preview.reddit_video_preview.fallback_url,
+        width: node.preview.reddit_video_preview.width,
+        height: node.preview.reddit_video_preview.height,
+      }
     } else if (
       node.preview &&
       node.preview.images &&
@@ -842,26 +687,13 @@ exports.onCreateNode = async (
       } else {
         fieldData.imageRemote = node.preview.images[0].source.url
       }
-
-      // create a file node for image URLs
-      if (shouldTransformImage) {
-        try {
-          const remoteFileNode = await createRemoteFileNode({
-            url: node.preview.images[0].source.url,
-            parentNodeId: node.id,
-            createNode,
-            createNodeId,
-            cache,
-            store,
-          })
-          // if the file was created, attach the new node to the parent node
-          if (remoteFileNode) {
-            fieldData.image___NODE = remoteFileNode.id
-          }
-        } catch (error) {
-          reporter.warn(`create remote file for reddit media failed: ${error}`)
-        }
+      if (fieldData.imageRemote) {
+        fieldData.image___NODE = await createLocalImage(fieldData.imageRemote)
       }
+    }
+    if (node.is_video && fieldData.video) {
+      fieldData.video.url = `https://www.reddit.com/mediaembed/${node.id}`
+      fieldData.video.embed = true
     }
 
     const redditNodeId = `${REDDIT_TYPE_NAME}-${node.id}`
@@ -872,7 +704,7 @@ exports.onCreateNode = async (
       parent: node.id,
       children: [],
       internal: {
-        type: REDDIT_TYPE_NAME,
+        type: `SocialMediaPost`,
         contentDigest: createContentDigest(fieldData),
         content: JSON.stringify(fieldData),
         description: `${REDDIT_TYPE_NAME} of the Item interface`,
@@ -889,15 +721,21 @@ exports.onCreateNode = async (
 
   if (allHnTypeName.includes(node.internal.type)) {
     const date = new Date(node.created_at).toISOString()
-    const authorName = node.author
+    const author = node.author
     const tags = []
+    let channel = ``
+    let channelUrl = ``
     if (node._tags && node._tags[0]) {
       tags.push(node._tags[0])
       if (node._tags.includes(`show_hn`)) {
         tags.push(`Show HN`)
+        channel = `Show HN`
+        channelUrl = `https://news.ycombinator.com/show`
       }
       if (node._tags.includes(`ask_hn`)) {
         tags.push(`ASK HN`)
+        channel = `ASK HN`
+        channelUrl = `https://news.ycombinator.com/ask`
       }
       if (node._tags.includes(`poll`)) {
         tags.push(`Poll`)
@@ -905,38 +743,26 @@ exports.onCreateNode = async (
     }
     const excerpt = ``
     const fieldData = {
+      provider: `Hacker News`,
       title: node.title,
       excerpt: excerpt,
       body: ``,
       tags: tags,
       slug: urlResolve(basePath, `hn/${node.objectID}`),
       date: date,
-      authorName,
-      url: node.url,
+      author,
+      authorUrl: `https://news.ycombinator.com/user?id=${author}`,
+      url: `https://news.ycombinator.com/item?id=${node.objectID}`,
+      originalUrl: node.url,
       score: node.points,
-      hnId: node.objectID,
+    }
+    if (channel) {
+      fieldData.channel = channel
+      fieldData.channelUrl = channelUrl
     }
     if (node.image) {
       fieldData.imageRemote = node.image
-      // create a file node for image URLs
-      if (shouldTransformImage) {
-        try {
-          const remoteFileNode = await createRemoteFileNode({
-            url: node.image,
-            parentNodeId: node.id,
-            createNode,
-            createNodeId,
-            cache,
-            store,
-          })
-          // if the file was created, attach the new node to the parent node
-          if (remoteFileNode) {
-            fieldData.image___NODE = remoteFileNode.id
-          }
-        } catch (error) {
-          reporter.warn(`create remote file for media failed: ${error}`)
-        }
-      }
+      fieldData.image___NODE = await createLocalImage(node.image)
     }
     // add  tag
     if (!fieldData.tags.includes(`Hacker News`)) {
@@ -952,7 +778,7 @@ exports.onCreateNode = async (
       parent: node.id,
       children: [],
       internal: {
-        type: HN_TYPE_NAME,
+        type: `SocialMediaPost`,
         contentDigest: createContentDigest(fieldData),
         content: JSON.stringify(fieldData),
         description: `${HN_TYPE_NAME} of the Item interface`,
@@ -968,43 +794,26 @@ exports.onCreateNode = async (
   }
   if (allRedirectTypeName.includes(node.internal.type)) {
     const date = new Date(node.created_at).toISOString()
-    const authorName = node.author || node.source || ``
+    const channel = node.author || node.source || ``
     const tags = node.tags || []
     const excerpt = node.excerpt || node.description || ``
     const id = node.id || node.guid || ``
     const fieldData = {
+      provider: `Google News`,
       title: node.title,
       excerpt: excerpt,
       body: node.body || ``,
       tags: tags,
       slug: urlResolve(basePath, `redirect/${id}`),
       date: date,
-      authorName,
+      channel,
       url: node.url || node.link || ``,
-      authorUrl: node.author_url || ``,
+      channelUrl: node.author_url || ``,
     }
     const nodeId = `${REDIRECT_TYPE_NAME}-${id}`
     if (node.image) {
       fieldData.imageRemote = node.image
-      // create a file node for image URLs
-      if (shouldTransformImage) {
-        try {
-          const remoteFileNode = await createRemoteFileNode({
-            url: node.image,
-            parentNodeId: node.id,
-            createNode,
-            createNodeId,
-            cache,
-            store,
-          })
-          // if the file was created, attach the new node to the parent node
-          if (remoteFileNode) {
-            fieldData.image___NODE = remoteFileNode.id
-          }
-        } catch (error) {
-          reporter.warn(`create remote file for media failed: ${error}`)
-        }
-      }
+      fieldData.image___NODE = await createLocalImage(fieldData.imageRemote)
     }
     await createNode({
       ...fieldData,
@@ -1013,7 +822,7 @@ exports.onCreateNode = async (
       parent: node.id,
       children: [],
       internal: {
-        type: REDIRECT_TYPE_NAME,
+        type: `SocialMediaPost`,
         contentDigest: createContentDigest(fieldData),
         content: JSON.stringify(fieldData),
         description: `${REDIRECT_TYPE_NAME} of the Item interface`,
@@ -1029,7 +838,7 @@ exports.onCreateNode = async (
   }
   if (allPhTypeName.includes(node.internal.type)) {
     const date = node.createdAt
-    const authorName = node.user.name
+    const author = node.user.name
     const authorUrl = node.user.url
     const tags = []
     if (node.topics && node.topics.edges && node.topics.edges.length > 0) {
@@ -1039,26 +848,28 @@ exports.onCreateNode = async (
     }
     const excerpt = node.description
     const fieldData = {
-      title: node.name,
+      provider: `Product Hunt`,
+      title: `${node.name} - ${node.tagline}`,
       excerpt: excerpt,
       body: excerpt,
       tags: tags,
       slug: urlResolve(basePath, `ph/${node.slug}`),
       date: date,
-      authorName,
+      author,
       authorUrl,
-      url: node.website,
-      phUrl: node.url,
-      phId: node.id,
+      originalUrl: node.website,
+      url: node.url,
       score: node.votesCount,
-      tagline: node.tagline,
     }
     if (node.media && node.media.length > 0) {
       if (node.media[0].type === `video`) {
-        fieldData.video = node.media[0].videoUrl
+        fieldData.video = {
+          url: node.media[0].videoUrl,
+        }
       }
       if (node.media[0].type === `image` && node.media[0].url) {
         fieldData.imageRemote = node.media[0].url
+        fieldData.image___NODE = await createLocalImage(fieldData.imageRemote)
       }
     }
     // add  tag
@@ -1074,7 +885,7 @@ exports.onCreateNode = async (
       parent: node.id,
       children: [],
       internal: {
-        type: PH_TYPE_NAME,
+        type: `SocialMediaPost`,
         contentDigest: createContentDigest(fieldData),
         content: JSON.stringify(fieldData),
         description: `${PH_TYPE_NAME} of the Item interface`,
@@ -1090,8 +901,8 @@ exports.onCreateNode = async (
   }
   if (allYoutubeTypeName.includes(node.internal.type)) {
     const date = node.created_at || node.isoDate
-    const authorName = node.author
-    const authorUrl = `https://www.youtube.com/channel/${node.channelId}`
+    const author = node.author
+    const channelUrl = `https://www.youtube.com/channel/${node.channelId}`
     let tags = []
     if (node.tags && node.tags.length > 0) {
       tags = node.tags
@@ -1103,23 +914,26 @@ exports.onCreateNode = async (
       (node.starRating.count * node.starRating.average) / 5
     )
     const fieldData = {
+      provider: `Youtube`,
       title: node.title,
       excerpt: excerpt,
       body: excerpt,
       tags: tags,
       slug: urlResolve(basePath, `youtube/${node.videoId}`),
       date: date,
-      authorName,
-      authorUrl,
+      author,
+      channelUrl,
       url: node.link,
-      youtubeId: node.videoId,
       score: score,
       views: Number(node.statistics.views),
-      video: node.link,
+      video: {
+        url: node.link,
+      },
     }
 
     if (node.thumbnail && node.thumbnail.url) {
       fieldData.imageRemote = node.thumbnail.url
+      fieldData.image___NODE = await createLocalImage(fieldData.imageRemote)
     }
 
     // add  tag
@@ -1135,7 +949,7 @@ exports.onCreateNode = async (
       parent: node.id,
       children: [],
       internal: {
-        type: YOUTUBE_TYPE_NAME,
+        type: `SocialMediaPost`,
         contentDigest: createContentDigest(fieldData),
         content: JSON.stringify(fieldData),
         description: `${YOUTUBE_TYPE_NAME} of the Item interface`,
@@ -1161,6 +975,28 @@ exports.onCreateNode = async (
         value: basePath,
       })
     }
+  }
+  async function createLocalImage(url, shouldCreateLocalImage) {
+    let fileNodeId = ``
+    if (url && (shouldTransformImage || shouldCreateLocalImage)) {
+      try {
+        const remoteFileNode = await createRemoteFileNode({
+          url: url,
+          parentNodeId: node.id,
+          createNode,
+          createNodeId,
+          cache,
+          store,
+        })
+        // if the file was created, attach the new node to the parent node
+        if (remoteFileNode) {
+          fileNodeId = remoteFileNode.id
+        }
+      } catch (error) {
+        reporter.warn(`create remote file for this image: ${error}`)
+      }
+    }
+    return fileNodeId
   }
 }
 exports.onCreatePage = function ({ page, actions }, themeOptions) {

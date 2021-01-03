@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { Link as LinkUI, jsx } from "theme-ui"
 
-export default function ({ to, children }) {
+export default function ({ item }) {
   return (
     <LinkUI
       data-test="item-source"
@@ -12,11 +12,11 @@ export default function ({ to, children }) {
         display: `inline-block`,
         flexShrink: 1,
       }}
-      href={to}
+      href={item.url}
       target="_blank"
       rel="noopener noreferrer"
     >
-      {children}
+      View on {item.provider}
     </LinkUI>
   )
 }

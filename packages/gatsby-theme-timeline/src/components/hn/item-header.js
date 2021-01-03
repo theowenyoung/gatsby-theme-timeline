@@ -21,8 +21,8 @@ function formatNumber(number) {
   return scaled.toFixed(1) + suffix
 }
 const AuthorInfo = ({ item }) => {
-  const { authorName, hnId, score } = item
-  if (!authorName) {
+  const { author, hnId, score } = item
+  if (!author) {
     return null
   }
   return (
@@ -52,9 +52,9 @@ const AuthorInfo = ({ item }) => {
           whiteSpace: `nowrap`,
           display: `inline-block`,
         }}
-        href={`https://news.ycombinator.com/user?id=${authorName}`}
+        href={`https://news.ycombinator.com/user?id=${author}`}
       >
-        {`${authorName}`}
+        {`${author}`}
       </Link>
       <span
         sx={{

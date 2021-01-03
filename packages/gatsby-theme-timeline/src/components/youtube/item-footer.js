@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx } from "theme-ui"
 import ItemDate from "./item-date"
-import ItemSource from "./item-source"
+import ItemSource from "../item-source"
 export default function ({ item }) {
   return (
     <footer sx={{ display: `flex` }}>

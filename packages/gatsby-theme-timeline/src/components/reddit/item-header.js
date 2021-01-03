@@ -21,8 +21,8 @@ function formatNumber(number) {
   return scaled.toFixed(1) + suffix
 }
 const AuthorInfo = ({ item }) => {
-  const { subreddit, authorName, permalink, score } = item
-  if (!subreddit || !authorName) {
+  const { channelUrl, channel, author, authorUrl, originalUrl, score } = item
+  if (!channel || !author) {
     return null
   }
   return (
@@ -36,7 +36,7 @@ const AuthorInfo = ({ item }) => {
         target="_blank"
         rel="noopener noreferrer"
         sx={{ mr: 2, mt: 2, flexShrink: 0 }}
-        href={`https://www.reddit.com${permalink}`}
+        href={originalUrl}
         data-test="author-image-container"
       >
         <Logo />
@@ -45,9 +45,9 @@ const AuthorInfo = ({ item }) => {
         target="_blank"
         rel="noopener noreferrer"
         sx={{ color: `text`, flexShrink: 0 }}
-        href={`https://www.reddit.com/r/${subreddit}`}
+        href={channelUrl}
       >
-        {`r/${subreddit}`}
+        {`r/${channel}`}
       </Link>
       <span
         sx={{
@@ -69,9 +69,9 @@ const AuthorInfo = ({ item }) => {
           whiteSpace: `nowrap`,
           display: `inline-block`,
         }}
-        href={`https://www.reddit.com/u/${authorName}`}
+        href={authorUrl}
       >
-        {`${authorName}`}
+        {`${author}`}
       </Link>
       <span
         sx={{

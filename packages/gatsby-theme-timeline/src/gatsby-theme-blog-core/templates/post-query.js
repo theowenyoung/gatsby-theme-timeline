@@ -55,96 +55,61 @@ export const query = graphql`
           }
         }
       }
-      ... on RedditPost {
-        video
-        videoWidth
-        videoHeight
-        imageRemote
-        permalink
-        isSelf
-        postHint
-        isVideo
-        subreddit
-        authorName
-        url
-        redditId
-      }
-      ... on RedirectPost {
-        authorName
-        imageRemote
-        authorUrl
-        url
-      }
-      ... on HnPost {
-        imageRemote
-        authorName
-        score
-        hnId
-        url
-      }
-      ... on PhPost {
-        imageRemote
-        authorName
-        authorUrl
-        phUrl
-        score
-        url
-        tagline
-        video
-        phId
-      }
-      ... on YoutubePost {
-        imageRemote
-        authorName
-        authorUrl
-        views
-        score
-        url
-        video
-      }
-      ... on TweetPost {
-        idStr
-        retweeted
-        isQuoteStatus
-        quoteBody
-        quoteAuthorName
-        quoteAuthorScreenName
-        imageRemote
-        quoteImageRemote
-        authorAvatarRemote
-        quoteAuthorAvatarRemote
-        quoteAuthorAvatar {
-          childImageSharp {
-            fixed(width: 24, height: 24) {
-              ...GatsbyImageSharpFixed
-            }
-          }
+      ... on MdxBlogPost {
+        id
+        fields {
+          basePath
         }
-        quoteImage {
-          childImageSharp {
-            fluid(maxWidth: $maxWidth) {
-              ...GatsbyImageSharpFluid
-              src
-            }
-          }
+      }
+      ... on SocialMediaPost {
+        provider
+        url
+        originalUrl
+        imageRemote
+        video {
+          url
+          embed
+          width
+          height
         }
-        authorName
-        authorScreenName
-        authorAvatar {
+        channel
+        author
+        authorUrl
+        image {
           childImageSharp {
             fixed(width: 48, height: 48) {
               ...GatsbyImageSharpFixed
             }
           }
         }
-        fields {
-          basePath
-        }
-      }
-      ... on MdxBlogPost {
-        id
-        fields {
-          basePath
+        authorSlug
+        score
+        views
+        sharedCount
+        likeCount
+        sharedContent {
+          imageRemote
+          image {
+            childImageSharp {
+              fixed(width: 48, height: 48) {
+                ...GatsbyImageSharpFixed
+              }
+            }
+          }
+          video {
+            url
+            embed
+            width
+            height
+          }
+          channel
+          author
+          authorUrl
+          authorSlug
+          score
+          views
+          sharedCount
+          likeCount
         }
       }
     }

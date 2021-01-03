@@ -3,14 +3,14 @@
 import { jsx, Styled, Link as LinkUI } from "theme-ui"
 
 const Detail = ({ item }) => {
-  const { hnId, datetime, authorName } = item
+  const { hnId, datetime, author } = item
   return (
     <Styled.root>
       <div>
         <div className="hn-card" data-id={hnId}>
           <Styled.blockquote>
             <Styled.p>{item.title}</Styled.p>
-            &mdash; {authorName} {` `}
+            &mdash; {author} {` `}
             <LinkUI href={`https://news.ycombinator.com/item?id=${hnId}`}>
               {datetime}
             </LinkUI>

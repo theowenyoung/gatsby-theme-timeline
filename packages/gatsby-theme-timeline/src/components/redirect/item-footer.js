@@ -2,7 +2,7 @@
 import { jsx, Link } from "theme-ui"
 import ItemDate from "./item-date"
 export default function ({ item }) {
-  const { authorUrl, authorName } = item
+  const { authorUrl, author } = item
   return (
     <footer sx={{ display: `flex` }}>
       <ItemDate item={item}></ItemDate>
@@ -29,7 +29,7 @@ export default function ({ item }) {
           }}
           href={authorUrl}
         >
-          {`${authorName}`}
+          {`${author}`}
         </Link>
       ) : (
         <span
@@ -41,7 +41,7 @@ export default function ({ item }) {
             display: `inline-block`,
           }}
         >
-          {authorName}
+          {author}
         </span>
       )}
     </footer>

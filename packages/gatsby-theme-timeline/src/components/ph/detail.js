@@ -3,7 +3,7 @@
 import { jsx, Styled, Link as LinkUI } from "theme-ui"
 import { useState } from "react"
 const Detail = ({ item }) => {
-  const { phId, title, excerpt, phUrl, tagline, authorName, authorUrl } = item
+  const { phId, title, excerpt, phUrl, tagline, author, authorUrl } = item
   const [isShowPlaceholder, setIsShowPlaceholder] = useState(true)
   const handleOnLoad = () => {
     setIsShowPlaceholder(false)
@@ -19,7 +19,7 @@ const Detail = ({ item }) => {
             >{`${title} - ${tagline}`}</LinkUI>
             <p>{excerpt}</p>
             &mdash;
-            <LinkUI href={authorUrl}>{authorName}</LinkUI>
+            <LinkUI href={authorUrl}>{author}</LinkUI>
           </Styled.blockquote>
         )}
       </div>

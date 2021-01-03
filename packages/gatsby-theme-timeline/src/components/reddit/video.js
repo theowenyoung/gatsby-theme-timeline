@@ -1,8 +1,8 @@
 /** @jsx jsx */
 import { jsx, Box } from "theme-ui"
 
-export default function Video({ src, width, height, isVideo }) {
-  if (isVideo) {
+export default function Video({ src, width, height, embed }) {
+  if (embed) {
     return (
       <Box sx={{ maxWidth: `full` }}>
         <video

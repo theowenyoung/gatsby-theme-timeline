@@ -61,88 +61,72 @@ export const query = graphql`
           }
         }
         imageAlt
-        ... on RedditPost {
-          imageRemote
-          video
-          videoWidth
-          videoHeight
-          permalink
-          isSelf
-          postHint
-          isVideo
-          subreddit
-          authorName
+        ... on SocialMediaPost {
+          provider
           url
-          score
-          redditId
-        }
-        ... on HnPost {
+          originalUrl
           imageRemote
-          authorName
-          score
-          hnId
-          url
-        }
-        ... on RedirectPost {
-          authorName
-          authorUrl
-          imageRemote
-          url
-        }
-        ... on PhPost {
-          imageRemote
-          authorName
-          authorUrl
-          phUrl
-          score
-          url
-          tagline
-          video
-          phId
-        }
-        ... on YoutubePost {
-          imageRemote
-          authorName
-          authorUrl
-          views
-          score
-          url
-          video
-        }
-        ... on TweetPost {
-          idStr
-          retweeted
-          isQuoteStatus
-          imageRemote
-          quoteImageRemote
-          authorAvatarRemote
-          quoteAuthorAvatarRemote
-          quoteBody
-          quoteAuthorName
-          quoteAuthorScreenName
-          quoteAuthorAvatar {
-            childImageSharp {
-              fixed(width: 24, height: 24) {
-                ...GatsbyImageSharpFixed
-              }
-            }
+          video {
+            url
+            embed
+            width
+            height
           }
-          quoteImage {
-            childImageSharp {
-              fluid(maxHeight: $maxHeight) {
-                ...GatsbyImageSharpFluid
-                src
-              }
-            }
-          }
-          authorName
-          authorScreenName
-          authorAvatar {
+          channel
+          channelUrl
+          author
+          authorUrl
+          authorImage {
             childImageSharp {
               fixed(width: 48, height: 48) {
                 ...GatsbyImageSharpFixed
               }
             }
+          }
+          authorSlug
+          score
+          views
+          sharedCount
+          likeCount
+          sharedContent {
+            excerpt
+            slug
+            title
+            date(formatString: "MMMM DD, YYYY")
+            dateISO: date
+            datetime: date(formatString: "YYYY-MM-DD HH:mm")
+            tags
+            imageRemote
+            image {
+              childImageSharp {
+                fluid(maxHeight: $maxHeight) {
+                  ...GatsbyImageSharpFluid
+                }
+              }
+            }
+            imageAlt
+            authorImage {
+              childImageSharp {
+                fixed(width: 24, height: 24) {
+                  ...GatsbyImageSharpFixed
+                }
+              }
+            }
+            video {
+              url
+              embed
+              width
+              height
+            }
+            channel
+            channelUrl
+            author
+            authorUrl
+            authorSlug
+            score
+            views
+            sharedCount
+            likeCount
           }
         }
       }

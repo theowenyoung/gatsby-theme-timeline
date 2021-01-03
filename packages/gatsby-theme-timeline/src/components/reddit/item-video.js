@@ -3,11 +3,14 @@ import { jsx } from "theme-ui"
 import Video from "./video"
 
 const itemHero = ({ item }) => {
-  const { isVideo, video, redditId, videoHeight, videoWidth } = item
+  const { video } = item
 
-  if (!(isVideo || video)) {
+  if (!video || !video.url) {
     return null
   }
+  const embed = video.embed
+  const videoHeight = video.height
+  const videoWidth = video.width
   let paddingBottom = `56.25%`
   if (videoHeight && videoWidth) {
     if (videoHeight > videoWidth) {
@@ -19,7 +22,7 @@ const itemHero = ({ item }) => {
 
   return (
     <div sx={{ pb: 2 }}>
-      {isVideo ? (
+      {embed ? (
         <div
           sx={{
             position: `relative`,
@@ -32,11 +35,11 @@ const itemHero = ({ item }) => {
         >
           <iframe
             data-test="item-embed-video"
-            title={`video ${redditId}`}
+            title={`video ${item.id}`}
             frameBorder="0"
             allowFullScreen
             scrolling="no"
-            src={`https://www.reddit.com/mediaembed/${redditId}`}
+            src={video.url}
             sx={{
               width: `full`,
               height: `full`,
@@ -49,8 +52,8 @@ const itemHero = ({ item }) => {
       ) : (
         video && (
           <Video
-            isVideo={isVideo}
-            src={video}
+            embed={embed}
+            src={video.url}
             height={videoHeight}
             width={videoWidth}
           ></Video>
