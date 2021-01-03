@@ -1,22 +1,7 @@
 /** @jsx jsx */
 import { jsx, Box } from "theme-ui"
 
-export default function Video({ src, width, height, embed }) {
-  if (embed) {
-    return (
-      <Box sx={{ maxWidth: `full` }}>
-        <video
-          preload="auto"
-          controls
-          autoPlay={true}
-          muted={true}
-          sx={{ maxHeight: `lg`, width: `full` }}
-        >
-          <source src={src} type="video/mp4" />
-        </video>
-      </Box>
-    )
-  }
+export default function Video({ src, width, height }) {
   return (
     <Box sx={{ display: `flex`, justifyContent: `center`, maxWidth: `full` }}>
       <video

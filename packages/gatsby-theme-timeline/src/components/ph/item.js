@@ -9,7 +9,7 @@ import ItemHeader from "./item-header"
 import ItemTitle from "./item-title"
 import ItemExcerpt from "./item-excerpt"
 import ItemFooter from "./item-footer"
-import ItemVideo from "./item-video"
+import ItemVideo from "../item-video"
 const Item = (props) => {
   const { item, basePath } = props
   const { title, tags } = item
