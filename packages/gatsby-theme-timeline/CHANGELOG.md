@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.2](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-theme-timeline@0.2.1...gatsby-theme-timeline@0.2.2) (2021-01-03)
+
+### Bug Fixes
+
+- redirect channel name ([80ec4ba](https://github.com/theowenyoung/gatsby-theme-timeline/commit/80ec4ba8b4645c9171605bca3320e83feef097c7))
+
 ## [0.2.1](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-theme-timeline@0.2.0...gatsby-theme-timeline@0.2.1) (2021-01-03)
 
 ### Bug Fixes
