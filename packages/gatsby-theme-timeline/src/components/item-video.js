@@ -2,12 +2,24 @@
 import { jsx } from "theme-ui"
 import ReactPlayer from "react-player"
 import Video from "./video"
+function getDomain(url) {
+  url = url.replace(/(https?:\/\/)?(www.)?/i, ``)
+  if (url.indexOf(`/`) !== -1) {
+    return url.split(`/`)[0]
+  }
+
+  return url
+}
 const itemHero = ({ item }) => {
   const { video, provider } = item
 
   if (!video || !video.url) {
     return null
   }
+  // check video url
+  const urlDomain = getDomain(video.url)
+  const videoUrlObj = new URL(video.url)
+
   if (provider === `Reddit`) {
     const embed = video.embed
     const videoHeight = video.height
@@ -62,7 +74,27 @@ const itemHero = ({ item }) => {
         )}
       </div>
     )
+  } else if (urlDomain === `youtube.com`) {
+    const videoId = videoUrlObj.searchParams.get(`v`)
+
+    return (
+      <div sx={{ position: `relative`, pb: `56.25%` }}>
+        <iframe
+          data-test="item-embed-video"
+          title={item.title}
+          type="text/html"
+          sx={{ position: `absolute`, top: 0, left: 0 }}
+          width="100%"
+          height="100%"
+          allowFullScreen
+          src={`https://www.youtube.com/embed/${videoId}`}
+          frameBorder="0"
+        ></iframe>
+      </div>
+    )
   }
+  // else youtube
+
   return (
     <div data-test="item-video-container" sx={{ pb: 0 }}>
       <div sx={{ position: `relative`, pb: `56.25%` }}>
