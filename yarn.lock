@@ -8840,10 +8840,10 @@ gatsby-telemetry@^1.3.38:
     node-fetch "^2.6.1"
     uuid "3.4.0"
 
-gatsby-theme-blog-core@^2.0.2:
-  version "2.0.2"
-  resolved "https://registry.npmjs.org/gatsby-theme-blog-core/-/gatsby-theme-blog-core-2.0.2.tgz#8d5d26e4217ead08983284485b84258898abec66"
-  integrity sha512-h14F6fdXLZMalivT7HmCCBbBIu0iS0oCxmvMPfWkJIb7wqllIram/FHhYNhcQYNzSPlDa09S2c5cAJUIQ/XG7w==
+gatsby-theme-blog-core@^2.0.4:
+  version "2.0.4"
+  resolved "https://registry.npmjs.org/gatsby-theme-blog-core/-/gatsby-theme-blog-core-2.0.4.tgz#bc0a8fcfc40275a5b7f9fa790118ef4538ba273e"
+  integrity sha512-UyOZBRjm1Ab2Em/baHNInn6V+gd6qxuVWn9dMrPygvuIkXOwrli/QQ/9I2Vzlq/BXX0DiF5qpwLlswSLipJ9zA==
   dependencies:
     "@mdx-js/mdx" "^1.6.14"
     gatsby-core-utils "^1.3.13"

@@ -110,12 +110,13 @@ exports.createSchemaCustomization = ({ actions }) => {
       thirdPartyId: String
       excerpt: String!
       image: File
+      imageCaptionText: String
+      imageCaptionLink: String
       imageRemote: String
       imageAlt: String
       socialImage: File
       url: String
       originalUrl: String
-      imageRemote: String
       video: Video
       channel: String
       channelUrl: String
@@ -138,6 +139,8 @@ exports.createSchemaCustomization = ({ actions }) => {
       tags: [String]!
       excerpt: String!
       image: File
+      imageCaptionText: String
+      imageCaptionLink: String
       imageRemote: String
       imageAlt: String
       socialImage: File
