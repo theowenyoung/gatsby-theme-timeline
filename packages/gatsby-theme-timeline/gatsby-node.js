@@ -763,7 +763,8 @@ exports.onCreateNode = async (
       author,
       authorUrl: `https://news.ycombinator.com/user?id=${author}`,
       url: `https://news.ycombinator.com/item?id=${node.objectID}`,
-      originalUrl: node.url,
+      originalUrl:
+        node.url || `https://news.ycombinator.com/item?id=${node.objectID}`,
       score: node.points,
     }
     if (channel) {
@@ -868,7 +869,7 @@ exports.onCreateNode = async (
       date: date,
       author,
       authorUrl,
-      originalUrl: node.website,
+      originalUrl: node.website || node.url,
       url: node.url,
       score: node.votesCount,
     }

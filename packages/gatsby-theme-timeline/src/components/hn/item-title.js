@@ -9,8 +9,8 @@ function getDomain(url) {
   return url
 }
 export default function ({ item }) {
-  const { title, url } = item
-  const finalUrl = url
+  const { title, url, originalUrl } = item
+  const finalUrl = originalUrl || url
   return (
     <LinkUI data-test="item-title" sx={{ color: `text` }} href={finalUrl}>
       <Styled.h3
@@ -19,9 +19,9 @@ export default function ({ item }) {
       >
         {title}
         {` `}
-        {url && (
+        {finalUrl && (
           <span sx={{ color: `textMuted`, fontSize: `0.9rem` }}>
-            ({getDomain(url)})
+            ({getDomain(finalUrl)})
           </span>
         )}
       </Styled.h3>

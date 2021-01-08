@@ -2,12 +2,12 @@
 import { Link as LinkUI, jsx, Styled } from "theme-ui"
 
 export default function ({ item }) {
-  const { title, url, tagline } = item
+  const { title, originalUrl, tagline } = item
   return (
     <LinkUI
       data-test="item-title"
       sx={{ color: `text` }}
-      href={url}
+      href={originalUrl}
       target="_blank"
       rel="noopener noreferrer"
     >
