@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.7](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-theme-timeline@0.2.6...gatsby-theme-timeline@0.2.7) (2021-01-08)
+
+
+### Bug Fixes
+
+* youtube video embed ([0b01532](https://github.com/theowenyoung/gatsby-theme-timeline/commit/0b01532c503aa8234a97a74ff6b5f26b3818d9fd))
+
+
+
+
+
 ## [0.2.6](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-theme-timeline@0.2.5...gatsby-theme-timeline@0.2.6) (2021-01-08)
 
 
