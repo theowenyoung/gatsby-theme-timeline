@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.11](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-theme-timeline@0.2.10...gatsby-theme-timeline@0.2.11) (2021-01-09)
+
+
+### Features
+
+* add items seo  support ([5d913e1](https://github.com/theowenyoung/gatsby-theme-timeline/commit/5d913e1d7b4cb824e837877d57d9b1c2811dda62))
+
+
+
+
+
 ## [0.2.10](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-theme-timeline@0.2.9...gatsby-theme-timeline@0.2.10) (2021-01-09)
 
 
