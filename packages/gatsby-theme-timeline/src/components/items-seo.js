@@ -1,7 +1,7 @@
 import React from "react"
 import SEO from "./seo"
 
-export default ({ pageContext, location, siteMetadata }) => {
+export default ({ pageContext, location, siteMetadata, image }) => {
   const { pageType, tag } = pageContext
   let title = `Home`
   let description = ``
@@ -13,6 +13,7 @@ export default ({ pageContext, location, siteMetadata }) => {
     <SEO
       title={title}
       description={description}
+      imageSource={pageType === `home` ? null : image}
       pageType={pageType}
       location={location}
     />

@@ -10,7 +10,7 @@ export default ({ item, location }) => {
       imageSource={
         item.socialImage
           ? item.socialImage?.childImageSharp?.fluid.src
-          : item.image?.childImageSharp?.fluid.src
+          : item.image?.childImageSharp?.fluid.src && item.imageRemote
       }
       imageAlt={item.imageAlt}
       pageType="detail"

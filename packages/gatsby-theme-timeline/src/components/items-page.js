@@ -19,6 +19,17 @@ const Items = ({ location, data, pageContext }) => {
     tagsGroup: { group },
   } = data
   const { social, title, menuLinks } = siteMetadata
+  let image = null
+  for (let i = 0; i < items.length; i++) {
+    const item = items[i]
+    image = item.socialImage
+      ? item.socialImage?.childImageSharp?.fluid.src
+      : item.image?.childImageSharp?.fluid.src && item.imageRemote
+    if (image) {
+      break
+    }
+  }
+
   return (
     <Layout
       basePath={basePath}
@@ -30,6 +41,7 @@ const Items = ({ location, data, pageContext }) => {
       siteMetadata={siteMetadata}
     >
       <ItemsSEO
+        image={image}
         location={location}
         pageContext={pageContext}
         siteMetadata={siteMetadata}

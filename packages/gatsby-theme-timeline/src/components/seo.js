@@ -24,7 +24,7 @@ function SEO({
   pageType,
   item,
 }) {
-  const { site, avatar } = useStaticQuery(
+  const { site, avatar, defaultImage } = useStaticQuery(
     graphql`
       query {
         site {
@@ -35,6 +35,15 @@ function SEO({
             siteUrl
             keywords
             telegram
+          }
+        }
+        defaultImage: file(
+          absolutePath: { regex: "/avatar.(jpeg|jpg|gif|png)/" }
+        ) {
+          childImageSharp {
+            fluid(maxWidth: 630, quality: 100) {
+              ...GatsbyImageSharpFluid
+            }
           }
         }
         avatar: file(absolutePath: { regex: "/avatar.(jpeg|jpg|gif|png)/" }) {
@@ -68,7 +77,13 @@ function SEO({
 
     return imageURI
   }
-  const image = imageSource ? getImagePath(imageSource) : null
+
+  const image = imageSource
+    ? getImagePath(imageSource)
+    : getImagePath(
+        defaultImage ? defaultImage?.childImageSharp?.fluid.src : null
+      )
+
   const imageAltText = imageAlt || metaDescription
   const siteTitle = site.siteMetadata.title
   const telegram = site.siteMetadata.telegram
@@ -177,7 +192,7 @@ function SEO({
         },
       ]
         .concat(
-          imageSource
+          image
             ? [
                 {
                   name: `og:image`,
