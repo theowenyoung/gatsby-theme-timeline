@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.10](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-theme-timeline@0.2.9...gatsby-theme-timeline@0.2.10) (2021-01-09)
+
+
+### Features
+
+* support telegram channel meta ([d2bedb1](https://github.com/theowenyoung/gatsby-theme-timeline/commit/d2bedb11e0f118258dee8572c1b43f1edc37cfe8))
+
+
+
+
+
 ## [0.2.9](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-theme-timeline@0.2.8...gatsby-theme-timeline@0.2.9) (2021-01-09)
 
 
