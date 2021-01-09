@@ -819,6 +819,7 @@ exports.onCreateNode = async (
       date: date,
       channel,
       url: node.url || node.link || ``,
+      originalUrl: node.url || node.link || ``,
       channelUrl: node.author_url || ``,
     }
     const nodeId = `${REDIRECT_TYPE_NAME}-${id}`
