@@ -87,6 +87,7 @@ exports.createSchemaCustomization = ({ actions }) => {
     }
     type SiteMetadata {
       menuLinks: [MenuLinks]
+      telegram: String
     }
     type SiteSiteMetadataSocial {
       name: String

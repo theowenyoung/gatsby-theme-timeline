@@ -6,6 +6,7 @@ module.exports = {
     description: "Gatsby theme timeline",
     keywords: ["timeline", "gatsby"],
     siteUrl: `https://gatsby-theme-timeline.netlify.app`,
+    telegram: "test",
     social: [
       {
         name: "Github",

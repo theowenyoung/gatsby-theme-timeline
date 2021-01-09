@@ -34,6 +34,7 @@ function SEO({
             author
             siteUrl
             keywords
+            telegram
           }
         }
         avatar: file(absolutePath: { regex: "/avatar.(jpeg|jpg|gif|png)/" }) {
@@ -70,6 +71,7 @@ function SEO({
   const image = imageSource ? getImagePath(imageSource) : null
   const imageAltText = imageAlt || metaDescription
   const siteTitle = site.siteMetadata.title
+  const telegram = site.siteMetadata.telegram
   const pageTitle = `${title} - ${siteTitle}`
   const authorJSONLD = {
     "@type": `Person`,
@@ -146,6 +148,10 @@ function SEO({
           content: keywords.join(`,`),
         },
         {
+          property: `og:site_name`,
+          content: siteTitle,
+        },
+        {
           property: `og:title`,
           content: pageTitle,
         },
@@ -200,6 +206,16 @@ function SEO({
                   content: `summary`,
                 },
               ]
+        )
+        .concat(
+          telegram
+            ? [
+                {
+                  name: `telegram:channel`,
+                  content: telegram,
+                },
+              ]
+            : []
         )
         .concat(meta)}
     >
