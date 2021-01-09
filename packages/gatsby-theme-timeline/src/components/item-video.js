@@ -34,7 +34,7 @@ const itemHero = ({ item }) => {
     }
 
     return (
-      <div sx={{ pb: 0 }}>
+      <figure sx={{ pb: 0, m: 0 }}>
         {embed ? (
           <div
             sx={{
@@ -72,13 +72,13 @@ const itemHero = ({ item }) => {
             ></Video>
           )
         )}
-      </div>
+      </figure>
     )
   } else if (urlDomain === `youtube.com`) {
     const videoId = videoUrlObj.searchParams.get(`v`)
 
     return (
-      <div sx={{ position: `relative`, pb: `56.25%` }}>
+      <figure sx={{ position: `relative`, pb: `56.25%`, m: 0 }}>
         <iframe
           data-test="item-embed-video"
           title={item.title}
@@ -90,13 +90,13 @@ const itemHero = ({ item }) => {
           src={`https://www.youtube.com/embed/${videoId}`}
           frameBorder="0"
         ></iframe>
-      </div>
+      </figure>
     )
   }
   // else youtube
 
   return (
-    <div data-test="item-video-container" sx={{ pb: 0 }}>
+    <figure data-test="item-video-container" sx={{ pb: 0, m: 0 }}>
       <div sx={{ position: `relative`, pb: `56.25%` }}>
         <ReactPlayer
           controls
@@ -106,7 +106,7 @@ const itemHero = ({ item }) => {
           url={video.url}
         />
       </div>
-    </div>
+    </figure>
   )
 }
 
