@@ -24,7 +24,9 @@ const Items = ({ location, data, pageContext }) => {
     const item = items[i]
     image = item.socialImage
       ? item.socialImage?.childImageSharp?.fluid.src
-      : item.image?.childImageSharp?.fluid.src && item.imageRemote
+      : item.image
+      ? item.image?.childImageSharp?.fluid.src
+      : item.imageRemote
     if (image) {
       break
     }
