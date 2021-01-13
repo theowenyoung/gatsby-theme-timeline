@@ -1,9 +1,7 @@
 /** @jsx jsx */
 import Layout from "./layout"
 import Footer from "./home-footer"
-import Bio from "./bio"
-import Tags from "./tags"
-import Links from "./links"
+
 import ItemBox from "./item-box"
 import { jsx, Grid } from "theme-ui"
 import ItemsTitle from "./items-title"
@@ -16,9 +14,8 @@ const Items = ({ location, data, pageContext }) => {
   const items = data.allBlogPost.nodes
   const {
     site: { siteMetadata },
-    tagsGroup: { group },
   } = data
-  const { social, title, menuLinks } = siteMetadata
+  const { title, menuLinks } = siteMetadata
   let image = null
   for (let i = 0; i < items.length; i++) {
     const item = items[i]
@@ -73,11 +70,11 @@ const Items = ({ location, data, pageContext }) => {
 
           <ItemsFooter pageContext={pageContext}></ItemsFooter>
         </main>
-        <AsideBox>
-          <Bio basePath={basePath}></Bio>
-          <Tags basePath={basePath} group={group}></Tags>
-          <Links siteMetadata={siteMetadata} links={social}></Links>
-        </AsideBox>
+        <AsideBox
+          location={location}
+          data={data}
+          pageContext={pageContext}
+        ></AsideBox>
       </Grid>
       <Footer />
     </Layout>
