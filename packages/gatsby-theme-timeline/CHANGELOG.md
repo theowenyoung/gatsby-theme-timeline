@@ -3,98 +3,61 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.14](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-theme-timeline@0.2.13...gatsby-theme-timeline@0.2.14) (2021-01-24)
+
+### Features
+
+- support instagram type post ([d6997f7](https://github.com/theowenyoung/gatsby-theme-timeline/commit/d6997f76064715eb19bd96bf5e35c623f00fada7))
+
 ## [0.2.13](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-theme-timeline@0.2.12...gatsby-theme-timeline@0.2.13) (2021-01-13)
 
 **Note:** Version bump only for package gatsby-theme-timeline
 
-
-
-
-
 ## [0.2.12](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-theme-timeline@0.2.11...gatsby-theme-timeline@0.2.12) (2021-01-09)
-
 
 ### Bug Fixes
 
-* items image ([a205848](https://github.com/theowenyoung/gatsby-theme-timeline/commit/a205848677f6848da93c44481b8607f73d827de8))
-
-
-
-
+- items image ([a205848](https://github.com/theowenyoung/gatsby-theme-timeline/commit/a205848677f6848da93c44481b8607f73d827de8))
 
 ## [0.2.11](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-theme-timeline@0.2.10...gatsby-theme-timeline@0.2.11) (2021-01-09)
 
-
 ### Features
 
-* add items seo  support ([5d913e1](https://github.com/theowenyoung/gatsby-theme-timeline/commit/5d913e1d7b4cb824e837877d57d9b1c2811dda62))
-
-
-
-
+- add items seo support ([5d913e1](https://github.com/theowenyoung/gatsby-theme-timeline/commit/5d913e1d7b4cb824e837877d57d9b1c2811dda62))
 
 ## [0.2.10](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-theme-timeline@0.2.9...gatsby-theme-timeline@0.2.10) (2021-01-09)
 
-
 ### Features
 
-* support telegram channel meta ([d2bedb1](https://github.com/theowenyoung/gatsby-theme-timeline/commit/d2bedb11e0f118258dee8572c1b43f1edc37cfe8))
-
-
-
-
+- support telegram channel meta ([d2bedb1](https://github.com/theowenyoung/gatsby-theme-timeline/commit/d2bedb11e0f118258dee8572c1b43f1edc37cfe8))
 
 ## [0.2.9](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-theme-timeline@0.2.8...gatsby-theme-timeline@0.2.9) (2021-01-09)
 
-
 ### Bug Fixes
 
-* originalUrl ([0645141](https://github.com/theowenyoung/gatsby-theme-timeline/commit/0645141a1c9ca8a5328a3bd37a905b9bfdf87490))
-
-
-
-
+- originalUrl ([0645141](https://github.com/theowenyoung/gatsby-theme-timeline/commit/0645141a1c9ca8a5328a3bd37a905b9bfdf87490))
 
 ## [0.2.8](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-theme-timeline@0.2.7...gatsby-theme-timeline@0.2.8) (2021-01-09)
 
-
 ### Features
 
-* use figure tag ([8586d60](https://github.com/theowenyoung/gatsby-theme-timeline/commit/8586d60c53dbc3f12cdfc199ea84e3963347283d))
-
-
-
-
+- use figure tag ([8586d60](https://github.com/theowenyoung/gatsby-theme-timeline/commit/8586d60c53dbc3f12cdfc199ea84e3963347283d))
 
 ## [0.2.7](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-theme-timeline@0.2.6...gatsby-theme-timeline@0.2.7) (2021-01-08)
 
-
 ### Bug Fixes
 
-* youtube video embed ([0b01532](https://github.com/theowenyoung/gatsby-theme-timeline/commit/0b01532c503aa8234a97a74ff6b5f26b3818d9fd))
-
-
-
-
+- youtube video embed ([0b01532](https://github.com/theowenyoung/gatsby-theme-timeline/commit/0b01532c503aa8234a97a74ff6b5f26b3818d9fd))
 
 ## [0.2.6](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-theme-timeline@0.2.5...gatsby-theme-timeline@0.2.6) (2021-01-08)
 
-
 ### Bug Fixes
 
-* original url ([48e1c0b](https://github.com/theowenyoung/gatsby-theme-timeline/commit/48e1c0b724de1d0a00ec22c35ef3c83fa924ae18))
-
-
-
-
+- original url ([48e1c0b](https://github.com/theowenyoung/gatsby-theme-timeline/commit/48e1c0b724de1d0a00ec22c35ef3c83fa924ae18))
 
 ## [0.2.5](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-theme-timeline@0.2.4...gatsby-theme-timeline@0.2.5) (2021-01-08)
 
 **Note:** Version bump only for package gatsby-theme-timeline
-
-
-
-
 
 ## [0.2.4](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-theme-timeline@0.2.3...gatsby-theme-timeline@0.2.4) (2021-01-03)
 

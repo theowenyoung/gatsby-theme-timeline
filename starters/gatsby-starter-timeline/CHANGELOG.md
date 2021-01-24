@@ -3,80 +3,49 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.14](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-starter-timeline@0.2.13...gatsby-starter-timeline@0.2.14) (2021-01-24)
+
+### Features
+
+- support instagram type post ([d6997f7](https://github.com/theowenyoung/gatsby-theme-timeline/commit/d6997f76064715eb19bd96bf5e35c623f00fada7))
+
 ## [0.2.13](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-starter-timeline@0.2.12...gatsby-starter-timeline@0.2.13) (2021-01-13)
 
 **Note:** Version bump only for package gatsby-starter-timeline
-
-
-
-
 
 ## [0.2.12](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-starter-timeline@0.2.11...gatsby-starter-timeline@0.2.12) (2021-01-09)
 
 **Note:** Version bump only for package gatsby-starter-timeline
 
-
-
-
-
 ## [0.2.11](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-starter-timeline@0.2.10...gatsby-starter-timeline@0.2.11) (2021-01-09)
 
 **Note:** Version bump only for package gatsby-starter-timeline
 
-
-
-
-
 ## [0.2.10](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-starter-timeline@0.2.9...gatsby-starter-timeline@0.2.10) (2021-01-09)
-
 
 ### Features
 
-* support telegram channel meta ([d2bedb1](https://github.com/theowenyoung/gatsby-theme-timeline/commit/d2bedb11e0f118258dee8572c1b43f1edc37cfe8))
-
-
-
-
+- support telegram channel meta ([d2bedb1](https://github.com/theowenyoung/gatsby-theme-timeline/commit/d2bedb11e0f118258dee8572c1b43f1edc37cfe8))
 
 ## [0.2.9](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-starter-timeline@0.2.8...gatsby-starter-timeline@0.2.9) (2021-01-09)
 
 **Note:** Version bump only for package gatsby-starter-timeline
 
-
-
-
-
 ## [0.2.8](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-starter-timeline@0.2.7...gatsby-starter-timeline@0.2.8) (2021-01-09)
 
 **Note:** Version bump only for package gatsby-starter-timeline
-
-
-
-
 
 ## [0.2.7](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-starter-timeline@0.2.6...gatsby-starter-timeline@0.2.7) (2021-01-08)
 
 **Note:** Version bump only for package gatsby-starter-timeline
 
-
-
-
-
 ## [0.2.6](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-starter-timeline@0.2.5...gatsby-starter-timeline@0.2.6) (2021-01-08)
 
 **Note:** Version bump only for package gatsby-starter-timeline
 
-
-
-
-
 ## [0.2.5](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-starter-timeline@0.2.4...gatsby-starter-timeline@0.2.5) (2021-01-08)
 
 **Note:** Version bump only for package gatsby-starter-timeline
-
-
-
-
 
 ## [0.2.4](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-starter-timeline@0.2.3...gatsby-starter-timeline@0.2.4) (2021-01-03)
 
