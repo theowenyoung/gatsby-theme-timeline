@@ -1,6 +1,6 @@
 # Gatsby Theme Timeline
 
-This is a repo for Gatsby's timeline theme, with the theme, you can show all your posts, tweets, instagram medias, youtube videos at one.
+This is a repo for Gatsby's timeline theme, with the theme, you can show all your posts, tweets, instagram medias, youtube videos, hacker news, reddit post at one.
 
 [Live Demo](https://gatsby-theme-timeline.owenyoung.com/)
 
@@ -8,7 +8,7 @@ This is a repo for Gatsby's timeline theme, with the theme, you can show all you
 
 ## Features
 
-- Support Mdx, tweet, reddit post
+- Support Mdx, tweet, instagram medias, youtube videos, hacker news, reddit post
 - Support i18n by [gatsby-theme-i18n](https://www.gatsbyjs.com/plugins/gatsby-theme-i18n/), you can choose your own [i18n library](https://github.com/gatsbyjs/themes/tree/master/packages)
 - Support comments [disqus](https://disqus.com/) or [utterances](https://utteranc.es/)
 

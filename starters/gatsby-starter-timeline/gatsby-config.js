@@ -46,6 +46,18 @@ module.exports = {
     //     },
     //   },
     // },
+    // {
+    //   resolve: `gatsby-source-instagram`,
+    //   options: {
+    //     username: `iamowenyoung`,
+    //     access_token: process.env.INSTAGRAM_ACCESS_TOKEN,
+    //     instagram_id: "17841432487737681",
+    //     paginate: 100,
+    //     maxPosts: 1000,
+    //     endpoint: "https://graph.instagram.com", // optional, the default api endpoint is https://graph.facebook.com/v3.1, you can also choose https://graph.instagram.com as the base api endpoint, see https://developers.facebook.com/docs/instagram-basic-display-api
+    //   },
+    // },
+
     {
       resolve: `gatsby-theme-timeline`,
       options: {
