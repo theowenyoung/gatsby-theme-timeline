@@ -124,6 +124,11 @@ gatsby-starter-timeline
 
 1.  **`README.md`**: A text file containing useful reference information about your project.
 
+## Use Case
+
+- [Owen Young's Story](https://blog.owenyoung.com)
+- [Buzzing on stocks](https://stocks.buzzing.cc)
+
 ## Full Screen
 
 ![Full](https://i.imgur.com/rDfJury.jpg)
