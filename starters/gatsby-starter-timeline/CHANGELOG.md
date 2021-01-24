@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.15](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-starter-timeline@0.2.14...gatsby-starter-timeline@0.2.15) (2021-01-24)
+
+### Features
+
+- finish instagram, edit docs ([59395c2](https://github.com/theowenyoung/gatsby-theme-timeline/commit/59395c2197d1d6c20c85aeca4bbe7eb351ca507d))
+
 ## [0.2.14](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-starter-timeline@0.2.13...gatsby-starter-timeline@0.2.14) (2021-01-24)
 
 ### Features
