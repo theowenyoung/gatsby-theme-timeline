@@ -7,6 +7,7 @@ import {
   REDIRECT_TYPE_NAME,
   YOUTUBE_TYPE_NAME,
   SOCIAL_MEDIA_TYPE_NAME,
+  INSTAGRAM_TYPE_NAME,
 } from "../constans"
 import PostItem from "./post/item"
 import TweetItem from "./tweet/item"
@@ -15,6 +16,7 @@ import HnItem from "./hn/item"
 import PhItem from "./ph/item"
 import RedirectItem from "./redirect/item"
 import YoutubeItem from "./youtube/item"
+import InstagramItem from "./instagram/item"
 const Item = (props) => {
   const { item } = props
   if (item.__typename === SOCIAL_MEDIA_TYPE_NAME) {
@@ -31,6 +33,8 @@ const Item = (props) => {
       return <RedirectItem {...props}></RedirectItem>
     } else if (provider === YOUTUBE_TYPE_NAME) {
       return <YoutubeItem {...props}></YoutubeItem>
+    } else if (provider === INSTAGRAM_TYPE_NAME) {
+      return <InstagramItem {...props}></InstagramItem>
     }
   }
   return <PostItem {...props}></PostItem>

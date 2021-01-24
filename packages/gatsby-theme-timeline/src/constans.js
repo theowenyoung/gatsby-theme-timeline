@@ -6,3 +6,4 @@ export const REDIRECT_TYPE_NAME = `Google News`
 export const YOUTUBE_TYPE_NAME = `Youtube`
 export const SOCIAL_MEDIA_TYPE_NAME = `SocialMediaPost`
 export const POST_TYPE_NAME = `MdxBlogPost`
+export const INSTAGRAM_TYPE_NAME = `Instagram`

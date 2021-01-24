@@ -19,6 +19,7 @@ const itemHero = ({ item }) => {
   // check video url
   const urlDomain = getDomain(video.url)
   const videoUrlObj = new URL(video.url)
+  console.log(`urlDomain`, urlDomain)
 
   if (provider === `Reddit`) {
     const embed = video.embed

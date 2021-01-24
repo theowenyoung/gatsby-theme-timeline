@@ -17,6 +17,7 @@ const {
   EXCERPT_LENGTH,
   REDIRECT_TYPE_NAME,
   YOUTUBE_TYPE_NAME,
+  INSTAGRAM_TYPE_NAME,
 } = require(`./utils/constans`)
 const { createRemoteFileNode } = require(`gatsby-source-filesystem`)
 const { createContentDigest, urlResolve } = require(`gatsby-core-utils`)
@@ -433,6 +434,7 @@ exports.onCreateNode = async (
     phTypeName,
     redirectTypeName,
     youtubeTypeName,
+    instagramTypeName,
     basePath,
     shouldTransformImage,
   } = withDefaults(themeOptions)
@@ -475,6 +477,12 @@ exports.onCreateNode = async (
     allYoutubeTypeName.push(youtubeTypeName)
   } else if (Array.isArray(youtubeTypeName)) {
     allYoutubeTypeName = youtubeTypeName
+  }
+  let allInstagramTypeName = []
+  if (typeof instagramTypeName === `string`) {
+    allInstagramTypeName.push(instagramTypeName)
+  } else if (Array.isArray(instagramTypeName)) {
+    allInstagramTypeName = instagramTypeName
   }
   if (allTweetsTypeName.includes(node.internal.type)) {
     const date = moment(
@@ -968,6 +976,73 @@ exports.onCreateNode = async (
         contentDigest: createContentDigest(fieldData),
         content: JSON.stringify(fieldData),
         description: `${YOUTUBE_TYPE_NAME} of the Item interface`,
+      },
+    })
+    createParentChildLink({ parent: node, child: getNode(nodeId) })
+    // createNodeField
+    createNodeField({
+      node: getNode(nodeId),
+      name: `basePath`,
+      value: basePath,
+    })
+  }
+  if (allInstagramTypeName.includes(node.internal.type)) {
+    // TODO
+    const date = new Date(node.timestamp).toISOString()
+    const author = node.username
+    const channelUrl = `https://www.instagram.com//${node.username}`
+    let tags = []
+    if (node.tags && node.tags.length > 0) {
+      tags = node.tags
+    } else {
+      tags = findHashtags(node.caption)
+    }
+
+    const fieldData = {
+      provider: `Instagram`,
+      title: node.caption,
+      excerpt: ``,
+      body: ``,
+      thirdPartyId: node.id,
+      tags: tags,
+      slug: urlResolve(basePath, `instagram/${node.id}`),
+      date: date,
+      author,
+      channel: author,
+      channelUrl,
+      authorUrl: channelUrl,
+      url: node.permalink,
+      originalUrl: node.permalink,
+    }
+
+    if (node.media_url) {
+      if (node.media_type === `VIDEO`) {
+        fieldData.video = {
+          url: node.media_url,
+        }
+      } else {
+        fieldData.imageRemote = node.media_url
+        fieldData.image___NODE = await createLocalImage(fieldData.imageRemote)
+      }
+    }
+
+    // add  tag
+    if (!fieldData.tags.includes(`Instagram`)) {
+      fieldData.tags.push(`Instagram`)
+    }
+
+    const nodeId = `${INSTAGRAM_TYPE_NAME}-${node.id}`
+    await createNode({
+      ...fieldData,
+      // Required fields.
+      id: nodeId,
+      parent: node.id,
+      children: [],
+      internal: {
+        type: `SocialMediaPost`,
+        contentDigest: createContentDigest(fieldData),
+        content: JSON.stringify(fieldData),
+        description: `${INSTAGRAM_TYPE_NAME} of the Item interface`,
       },
     })
     createParentChildLink({ parent: node, child: getNode(nodeId) })

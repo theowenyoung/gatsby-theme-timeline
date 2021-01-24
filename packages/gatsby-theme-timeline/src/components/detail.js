@@ -8,6 +8,7 @@ import {
   REDIRECT_TYPE_NAME,
   YOUTUBE_TYPE_NAME,
   SOCIAL_MEDIA_TYPE_NAME,
+  INSTAGRAM_TYPE_NAME,
 } from "../constans"
 import PostDetail from "./post/detail"
 import TweetDetail from "./tweet/detail"
@@ -17,6 +18,7 @@ import DefaultDetail from "./detail-default"
 import PHDetail from "./ph/detail"
 import RedirectDetail from "./redirect/detail"
 import YoutubeDetail from "./youtube/detail"
+import InstagramDetail from "./instagram/detail"
 const Detail = (props) => {
   const { item } = props
   if (item.__typename === SOCIAL_MEDIA_TYPE_NAME) {
@@ -33,6 +35,8 @@ const Detail = (props) => {
       return <RedirectDetail {...props}></RedirectDetail>
     } else if (provider === YOUTUBE_TYPE_NAME) {
       return <YoutubeDetail {...props}></YoutubeDetail>
+    } else if (provider === INSTAGRAM_TYPE_NAME) {
+      return <InstagramDetail {...props}></InstagramDetail>
     } else {
       return <DefaultDetail {...props}></DefaultDetail>
     }

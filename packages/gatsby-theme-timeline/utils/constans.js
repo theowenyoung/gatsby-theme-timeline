@@ -6,3 +6,4 @@ exports.REDIRECT_TYPE_NAME = `RedirectPost`
 exports.TITLE_LENGTH = 36
 exports.EXCERPT_LENGTH = 280
 exports.YOUTUBE_TYPE_NAME = `YoutubePost`
+exports.INSTAGRAM_TYPE_NAME = `InstagramPost`

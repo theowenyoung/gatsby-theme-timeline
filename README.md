@@ -1,6 +1,6 @@
 # Gatsby Theme Timeline
 
-This is a repo for Gatsby's timeline theme, with the theme, you can show all your posts, tweets at one timeline.
+This is a repo for Gatsby's timeline theme, with the theme, you can show all your posts, tweets, youtube videos at one.
 
 [Live Demo](https://gatsby-theme-timeline.netlify.app/)
 

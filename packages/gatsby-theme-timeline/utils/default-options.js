@@ -8,7 +8,7 @@ module.exports = (themeOptions) => {
   const phTypeName = themeOptions.phTypeName || [`PhJson`]
   const redirectTypeName = themeOptions.redirectTypeName || [`RedirectJson`]
   const youtubeTypeName = themeOptions.youtubeTypeName || [`YoutubeJson`]
-
+  const instagramTypeName = themeOptions.instagramTypeName || [`InstagramJson`]
   const postsPerPage = themeOptions.postsPerPage || 25
   const preset = themeOptions.preset || `gatsby-theme-ui-timeline-preset`
   const prismPreset = themeOptions.prismPreset || `github`
@@ -45,6 +45,7 @@ module.exports = (themeOptions) => {
     hnTypeName,
     phTypeName,
     youtubeTypeName,
+    instagramTypeName,
     redirectTypeName,
     postsPerPage,
     preset,

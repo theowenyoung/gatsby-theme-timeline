@@ -8534,6 +8534,13 @@ gatsby-plugin-hn@^0.5.0:
   dependencies:
     "@babel/runtime" "^7.8.7"
 
+gatsby-plugin-instagram@^0.0.3:
+  version "0.0.3"
+  resolved "https://registry.npmjs.org/gatsby-plugin-instagram/-/gatsby-plugin-instagram-0.0.3.tgz#21d9fbc3dc0a689ec7e96927d57cb07727b8deec"
+  integrity sha512-PVeu6Kjruys4TVXNU4NlSzJKASmopled0GuX5jGc+gv50x2QRglUwYSqSPfceI5ReAn0HD1s+jnbWD9NBk7+Hw==
+  dependencies:
+    "@babel/runtime" "^7.8.7"
+
 gatsby-plugin-mdx@^1.2.28:
   version "1.2.52"
   resolved "https://registry.npmjs.org/gatsby-plugin-mdx/-/gatsby-plugin-mdx-1.2.52.tgz#b41788a4c5fffb168b79de49b5fd7cdc8efaab92"
