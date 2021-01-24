@@ -10,6 +10,12 @@ function getDomain(url) {
 
   return url
 }
+function getImageUrl(item) {
+  if (item.image && item?.image?.childImageSharp?.fluid?.src) {
+    return item.image.childImageSharp.fluid.src
+  }
+  return item.imageRemote
+}
 const itemHero = ({ item }) => {
   const { video, provider } = item
 
@@ -101,10 +107,19 @@ const itemHero = ({ item }) => {
       <div sx={{ position: `relative`, pb: `56.25%` }}>
         <ReactPlayer
           controls
+          muted={true}
           sx={{ position: `absolute`, top: 0, left: 0 }}
           width="100%"
           height="100%"
           url={video.url}
+          config={{
+            file: {
+              attributes: {
+                muted: true,
+                poster: getImageUrl(item),
+              },
+            },
+          }}
         />
       </div>
     </figure>

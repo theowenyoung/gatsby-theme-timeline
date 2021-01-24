@@ -2997,6 +2997,15 @@
     "@theme-ui/core" "^0.4.0-rc.5"
     "@theme-ui/mdx" "^0.4.0-rc.5"
 
+"@theowenyoung/gatsby-source-instagram@^0.10.0":
+  version "0.10.0"
+  resolved "https://registry.npmjs.org/@theowenyoung/gatsby-source-instagram/-/gatsby-source-instagram-0.10.0.tgz#91e4868f5f580045ba90ffd2afe9d1f4d783db2e"
+  integrity sha512-Ur3dZir91dX4T7iV9QfVORRDZMplrla29T36KccQOLOllAxI03nii5y56ZWp7fSY2lfjZS8U4N+xLjGXBvxCJQ==
+  dependencies:
+    auth1 "^0.0.2"
+    axios "^0.19.0"
+    cheerio "^1.0.0-rc.3"
+
 "@turist/fetch@^7.1.7":
   version "7.1.7"
   resolved "https://registry.npmjs.org/@turist/fetch/-/fetch-7.1.7.tgz#a2b1f7ec0265e6fe0946c51eef34bad9b9efc865"
@@ -4029,6 +4038,15 @@ atob@^2.1.2:
   version "2.1.2"
   resolved "https://registry.npmjs.org/atob/-/atob-2.1.2.tgz#6d9517eb9e030d2436666651e86bd9f6f13533c9"
   integrity sha512-Wm6ukoaOGJi/73p/cl2GvLjTI5JM1k/O14isD73YML8StrH/7/lRFgmg8nICZgD3bZZvjwCGxtMOD3wWNAu8cg==
+
+auth1@^0.0.2:
+  version "0.0.2"
+  resolved "https://registry.npmjs.org/auth1/-/auth1-0.0.2.tgz#31af2820ea59bceae3d1452ae7ec6073504f5f02"
+  integrity sha512-L7F/9S7vYlfMf2VwCNOL+OwouN5D76m+35nRneMZlSXCxkyNlcxBAVqgkBqsr5Pk20i9rmMazP4jWF7wuQQTyg==
+  dependencies:
+    cross-fetch "^3.0.5"
+    debug "^4.1.1"
+    dotenv "^8.2.0"
 
 autoprefixer@^9.8.4:
   version "9.8.6"
@@ -5987,7 +6005,7 @@ cross-env@^7.0.2:
   dependencies:
     cross-spawn "^7.0.1"
 
-cross-fetch@3.0.6:
+cross-fetch@3.0.6, cross-fetch@^3.0.5:
   version "3.0.6"
   resolved "https://registry.npmjs.org/cross-fetch/-/cross-fetch-3.0.6.tgz#3a4040bc8941e653e0e9cf17f29ebcd177d3365c"
   integrity sha512-KBPUbqgFjzWlVcURG+Svp9TlhA5uliYtiNx/0r8nv0pdypeQCRJ9IaSIc3q/x3q8t3F75cHuwxVql1HFGHCNJQ==
@@ -8818,13 +8836,6 @@ gatsby-source-filesystem@^2.3.22:
     read-chunk "^3.2.0"
     valid-url "^1.0.9"
     xstate "^4.13.0"
-
-gatsby-source-instagram@^0.9.0:
-  version "0.9.0"
-  resolved "https://registry.npmjs.org/gatsby-source-instagram/-/gatsby-source-instagram-0.9.0.tgz#a0778d9b9262c535a1788dcb522040a29305718f"
-  integrity sha512-g/TdvMkowzcoIGyHc5lygE2U+QYw+8d9829r2+/vu9mye+xtHXfGCEgCfGOvhDDHiCwTfodGN67RDMu+oSUOTw==
-  dependencies:
-    axios "^0.19.0"
 
 gatsby-source-twitter@^3.2.2:
   version "3.2.2"

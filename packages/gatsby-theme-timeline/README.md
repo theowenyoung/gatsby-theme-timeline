@@ -10,7 +10,18 @@
 
 A Gatsby theme for creating a blog.
 
-![Screen](https://i.imgur.com/qtXnwLQ.png)
+[Live Demo](https://gatsby-theme-timeline.owenyoung.com/)
+
+![Screen](https://i.imgur.com/6yITI4E.png)
+
+## Features
+
+- Support Mdx, tweet, instagram medias, youtube videos, hacker news, reddit post
+- Support i18n by [gatsby-theme-i18n](https://www.gatsbyjs.com/plugins/gatsby-theme-i18n/), you can choose your own [i18n library](https://github.com/gatsbyjs/themes/tree/master/packages)
+- Support comments [disqus](https://disqus.com/) or [utterances](https://utteranc.es/)
+- Support Tags
+- Pagination, even tag page supports pagination
+- SEO Optimization
 
 ## Installation
 
@@ -32,7 +43,7 @@ If you already have a site you'd like to add the timeline theme to, you can manu
 npm install gatsby-theme-timeline theme-ui
 ```
 
-2. Add the configuration to your `gatsby-config.js` file
+1. Add the configuration to your `gatsby-config.js` file
 
 ```js
 // gatsby-config.js
@@ -49,15 +60,15 @@ module.exports = {
 }
 ```
 
-3. Add blog posts to your site by creating `md` or `mdx` files inside `/content/posts`.
+1. Add blog posts to your site by creating `md` or `mdx` files inside `/content/posts`.
 
    > Note that if you've changed the default `contentPath` in the configuration, you'll want to add your markdown files in the directory specified by that path.
 
-4. Add tweets to your site, there are 2 ways for adding tweets:
+1. Optional, Add tweets to your site, there are 2 ways for adding tweets:
 
-   1. by creating `.json` files inside `/data/tweets`.
+   1. By creating `.json` files inside `/data/tweets`, you can use [Actionsflow](https://github.com/actionsflow/actionsflow) to auto sync your tweets, for example [my blog](https://blog.owenyoung.com), [source](https://github.com/theowenyoung/story), [site source](https://github.com/theowenyoung/theowenyoung.github.io)
 
-   1. use [`gatsby-source-twitter`](https://www.gatsbyjs.com/plugins/gatsby-source-twitter/), for example:
+   1. By using [`gatsby-source-twitter`](https://www.gatsbyjs.com/plugins/gatsby-source-twitter/), for example:
 
    ```javascript
    {
@@ -93,11 +104,30 @@ module.exports = {
    }
    ```
 
-5. Add an image with the file name `avatar` (can be jpg or png) inside the `/assets` directory to include a small image next to the footer on every post page.
+1. Optional, add instagram posts to your site, there are 2 ways for adding tweets:
+
+   1. By creating `.json` files inside `/data/instagram`, you can use [Actionsflow](https://github.com/actionsflow/actionsflow) to auto sync your instagram posts, for example [my blog](https://blog.owenyoung.com), [source](https://github.com/theowenyoung/story), [site source](https://github.com/theowenyoung/theowenyoung.github.io)
+
+   1. By using [`@theowenyoung/gatsby-source-instagram`](https://github.com/theowenyoung/gatsby-source-instagram), for example:
+
+   ```javascript
+   {
+      resolve: `@theowenyoung/gatsby-source-instagram`,
+      options: {
+        access_token: process.env.INSTAGRAM_ACCESS_TOKEN,
+        paginate: 100,
+        maxPosts: 1000,
+      },
+    },
+   ```
+
+   > See [How to get instagram access token](https://github.com/nbcommunication/InstagramBasicDisplayApi#creating-a-facebook-app)
+
+1. Add an image with the file name `avatar` (can be jpg or png) inside the `/assets` directory to include a small image next to the footer on every post page.
 
 > Note that if you've changed the default `assetPath` in the configuration, you'll want to add your asset files in the directory specified by that path.
 
-6. Run your site using `gatsby develop` and navigate to your blog posts. If you used the above configuration, your URL will be `http://localhost:8000/blog`
+1. Run your site using `gatsby develop` and navigate to your blog posts. If you used the above configuration, your URL will be `http://localhost:8000/blog`
 
 ## Usage
 
@@ -110,6 +140,7 @@ module.exports = {
 | `dataPath`               | `data/tweets`                                              | Location of tweets                                                                                                                                                                                                                |
 | `assetPath`              | `content/assets`                                           | Location of assets                                                                                                                                                                                                                |
 | `tweetTypeName`          | `['TweetsJson']`                                           | Tweet type name ,`string[]` or `string`                                                                                                                                                                                           |
+| `instagramTypeName`      | `['InstagramJson']`                                        | Instagram type name ,`string[]` or `string`                                                                                                                                                                                       |
 | `postsPerPage`           | `25`                                                       | size per page                                                                                                                                                                                                                     |
 | `mdxOtherwiseConfigured` | `false`                                                    | Set this flag `true` if `gatsby-plugin-mdx` is already configured for your site.                                                                                                                                                  |
 | `preset`                 | `gatsby-theme-ui-preset`                                   | Theme UI compatible package name that will act as the base styles for your project. Be sure to install the package you're referencing. Set to `false` to ignore all presets and only use local styles.                            |
@@ -167,6 +198,17 @@ module.exports = {
     // Used for resolving images in social cards
     siteUrl: `https://example.com`,
     // Used for links in the root aside
+    menuLinks: [
+      {
+        name: `Twitter`,
+        url: `https://twitter.com/TheOwenYoung`,
+        external: true,
+      },
+      {
+        name: `GitHub`,
+        url: `https://github.com/theowenyoung`,
+      },
+    ],
     social: [
       {
         name: `Twitter`,
@@ -270,3 +312,7 @@ This option is null by default, and in all cases local shadowed styles take prec
 You can highlight code snippets using `// highlight line` or a combination of `// highlight-start` and `// highlight-end`.
 
 To update the styling for these highlights override the `.highlight` styles inside your prism theme.
+
+## Full Screen
+
+![Full](https://i.imgur.com/rDfJury.jpg)

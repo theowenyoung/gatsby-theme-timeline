@@ -988,7 +988,7 @@ exports.onCreateNode = async (
   }
   if (allInstagramTypeName.includes(node.internal.type)) {
     // TODO
-    const date = new Date(node.timestamp).toISOString()
+    const date = new Date(node.createdAt || node.timestamp).toISOString()
     const author = node.username
     const channelUrl = `https://www.instagram.com//${node.username}`
     let tags = []
@@ -1015,13 +1015,17 @@ exports.onCreateNode = async (
       originalUrl: node.permalink,
     }
 
-    if (node.media_url) {
-      if (node.media_type === `VIDEO`) {
+    if (node.original || node.media_url) {
+      if (node.mediaType === `VIDEO` || node.media_type === `VIDEO`) {
         fieldData.video = {
-          url: node.media_url,
+          url: node.original || node.media_url,
+        }
+        if (node.preview || node.thumbnail_url) {
+          fieldData.imageRemote = node.preview || node.thumbnail_url
+          fieldData.image___NODE = await createLocalImage(fieldData.imageRemote)
         }
       } else {
-        fieldData.imageRemote = node.media_url
+        fieldData.imageRemote = node.original || node.media_url
         fieldData.image___NODE = await createLocalImage(fieldData.imageRemote)
       }
     }

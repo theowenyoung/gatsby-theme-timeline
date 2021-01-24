@@ -2,6 +2,9 @@
 import Image from "gatsby-image"
 import { jsx, Styled, Box, Link as LinkUI } from "theme-ui"
 const itemHero = ({ item }) => {
+  if (item.video && item.video.url) {
+    return null
+  }
   if (!(item?.image?.childImageSharp || item.imageRemote)) {
     return null
   }

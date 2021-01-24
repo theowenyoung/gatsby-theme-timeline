@@ -8,7 +8,7 @@
   Gatsby timeline starter
 </h1>
 
-Quickly get started using the Gatsby timeline theme, and notes theme, together! This starter creates a new Gatsby site that is preconfigured to work with the [timeline theme](https://www.npmjs.com/package/gatsby-theme-timeline) and the [notes theme](https://www.npmjs.com/package/gatsby-theme-notes), in harmony.
+Quickly get started using the Gatsby timeline theme, and notes theme, together! This starter creates a new Gatsby site that is preconfigured to work with the [timeline theme](https://www.npmjs.com/package/gatsby-theme-timeline)
 
 ## 🚀 Quick start
 
@@ -90,10 +90,6 @@ gatsby-starter-theme
 Looking for more guidance? Full documentation for Gatsby lives [on the website](https://www.gatsbyjs.com/).
 
 Here are some places to start:
-
-### Themes
-
-- To learn more about Gatsby themes specifically, we recommend checking out the [theme docs](https://www.gatsbyjs.com/docs/themes/).
 
 ### General
 

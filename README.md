@@ -11,6 +11,9 @@ This is a repo for Gatsby's timeline theme, with the theme, you can show all you
 - Support Mdx, tweet, instagram medias, youtube videos, hacker news, reddit post
 - Support i18n by [gatsby-theme-i18n](https://www.gatsbyjs.com/plugins/gatsby-theme-i18n/), you can choose your own [i18n library](https://github.com/gatsbyjs/themes/tree/master/packages)
 - Support comments [disqus](https://disqus.com/) or [utterances](https://utteranc.es/)
+- Support Tags
+- Pagination, even tag page supports pagination
+- SEO Optimization
 
 ## 🚀 Quick start
 
@@ -37,6 +40,18 @@ This is a repo for Gatsby's timeline theme, with the theme, you can show all you
     ```
 
     Then, uncomment `gatsby-config.js` plugin `gatsby-source-twitter`
+
+1.  **Create instagram credentials**
+
+    Optional, if you want to add your instagram to blog, create `.env` with the following content:
+
+    ```ini
+    INSTAGRAM_ACCESS_TOKEN=xx
+    ```
+
+    > See [How to get instagram access token](https://github.com/nbcommunication/InstagramBasicDisplayApi#creating-a-facebook-app)
+
+    > Then, uncomment `gatsby-config.js` plugin `gatsby-source-instagram`
 
 1.  **Start developing.**
 
@@ -111,7 +126,7 @@ gatsby-starter-timeline
 
 ## Full Screen
 
-![Full](https://i.imgur.com/XfXuCRJ.png)
+![Full](https://i.imgur.com/rDfJury.jpg)
 
 ## 🎓 Learning Gatsby
 

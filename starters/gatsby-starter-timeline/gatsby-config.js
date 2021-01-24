@@ -5,13 +5,13 @@ module.exports = {
     author: "Owen Young",
     description: "Gatsby theme timeline",
     keywords: ["timeline", "gatsby"],
-    siteUrl: `https://gatsby-theme-timeline.netlify.app`,
+    siteUrl: `https://gatsby-theme-timeline.owenyoung.com`,
     telegram: "test",
     social: [
       {
         name: "Github",
         url: "https://github.com/theowenyoung/gatsby-theme-timeline",
-        // external: true,
+        external: true,
       },
       {
         name: "Twitter",
@@ -47,14 +47,11 @@ module.exports = {
     //   },
     // },
     // {
-    //   resolve: `gatsby-source-instagram`,
+    //   resolve: `@theowenyoung/gatsby-source-instagram`,
     //   options: {
-    //     username: `iamowenyoung`,
     //     access_token: process.env.INSTAGRAM_ACCESS_TOKEN,
-    //     instagram_id: "17841432487737681",
     //     paginate: 100,
     //     maxPosts: 1000,
-    //     endpoint: "https://graph.instagram.com", // optional, the default api endpoint is https://graph.facebook.com/v3.1, you can also choose https://graph.instagram.com as the base api endpoint, see https://developers.facebook.com/docs/instagram-basic-display-api
     //   },
     // },
 
@@ -63,6 +60,7 @@ module.exports = {
       options: {
         // postsPerPage: 2,
         tweetTypeName: ["TweetsJson", "twitterStatusesUserTimelineMyTweet"],
+        instagramTypeName: ["InstagramJson", "InstaNode"],
         // disqus: {
         //   shortname: "gatsby-theme-timeline",
         // },
