@@ -82,26 +82,26 @@ If you already have a site you'd like to add the timeline theme to, you can manu
 
 1. Install the timeline theme
 
-```shell
-npm install gatsby-theme-timeline theme-ui
-```
+   ```shell
+   npm install gatsby-theme-timeline theme-ui
+   ```
 
 1. Add the configuration to your `gatsby-config.js` file
 
-```js
-// gatsby-config.js
-module.exports = {
-  plugins: [
-    {
-      resolve: `gatsby-theme-timeline`,
-      options: {
-        // basePath defaults to `/`
-        basePath: `/blog`,
-      },
-    },
-  ],
-}
-```
+   ```js
+   // gatsby-config.js
+   module.exports = {
+     plugins: [
+       {
+         resolve: `gatsby-theme-timeline`,
+         options: {
+           // basePath defaults to `/`
+           basePath: `/blog`,
+         },
+       },
+     ],
+   }
+   ```
 
 1. Add blog posts to your site by creating `md` or `mdx` files inside `/content/posts`.
 
@@ -168,7 +168,7 @@ module.exports = {
 
 1. Add an image with the file name `avatar` (can be jpg or png) inside the `/assets` directory to include a small image next to the footer on every post page.
 
-> Note that if you've changed the default `assetPath` in the configuration, you'll want to add your asset files in the directory specified by that path.
+   > Note that if you've changed the default `assetPath` in the configuration, you'll want to add your asset files in the directory specified by that path.
 
 1. Run your site using `gatsby develop` and navigate to your blog posts. If you used the above configuration, your URL will be `http://localhost:8000/blog`
 
