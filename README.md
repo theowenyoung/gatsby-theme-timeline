@@ -2,7 +2,7 @@
 
 This is a repo for Gatsby's timeline theme, with the theme, you can show all your posts, tweets, instagram medias, youtube videos, hacker news, reddit post at one.
 
-[Live Demo](https://gatsby-theme-timeline.owenyoung.com/)
+[Live Demo](https://gatsby-starter-timeline.owenyoung.com/)
 
 ![Screen](https://i.imgur.com/6yITI4E.png)
 
@@ -66,9 +66,9 @@ This is a repo for Gatsby's timeline theme, with the theme, you can show all you
 
     Your site is now running at `http://localhost:8000`!
 
-    To get started, check out the guide to [using the Gatsby blog theme starter](https://gatsbyjs.com/docs/themes/using-a-gatsby-theme), or the longer, [more detailed tutorial](https://gatsbyjs.com/tutorial/using-a-theme).
+For exist site or more params, see [here](https://github.com/theowenyoung/gatsby-theme-timeline/tree/main/packages/gatsby-theme-timeline#readme)
 
-For exist site, see [here](https://github.com/theowenyoung/gatsby-theme-timeline/tree/main/packages/gatsby-theme-timeline#readme)
+First using Gatsby? check out the guide to [using the Gatsby blog theme starter](https://gatsbyjs.com/docs/themes/using-a-gatsby-theme), or the longer, [more detailed tutorial](https://gatsbyjs.com/tutorial/using-a-theme).
 
 ## 🧐 What's inside?
 

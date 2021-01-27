@@ -29,9 +29,52 @@ A Gatsby theme for creating a blog.
 
 If you're creating a new site and want to use the timeline theme, you can use the timeline theme starter. This will generate a new site that pre-configures use of the timeline theme.
 
-```shell
-gatsby new my-themed-blog https://github.com/theowenyoung/gatsby-starter-timeline
-```
+1.  **Create a Gatsby site.**
+
+    Use the Gatsby CLI to create a new site, specifying the timeline blog theme starter.
+
+    ```shell
+    # create a new Gatsby site using the timeline blog theme starter
+    gatsby new my-themed-blog https://github.com/theowenyoung/gatsby-starter-timeline
+    ```
+
+1.  **Create twitter credentials**
+
+    Optional, if you want to add your tweets to blog, create `.env` with the following content:
+
+    ```ini
+    TWITTER_CONSUMER_KEY=xx
+    TWITTER_CONSUMER_SECRET=xx
+    TWITTER_ACCESS_TOKEN=xx
+    TWITTER_ACCESS_SECRET=xx
+    ```
+
+    Then, uncomment `gatsby-config.js` plugin `gatsby-source-twitter`
+
+1.  **Create instagram credentials**
+
+    Optional, if you want to add your instagram to blog, create `.env` with the following content:
+
+    ```ini
+    INSTAGRAM_ACCESS_TOKEN=xx
+    ```
+
+    > See [How to get instagram access token](https://github.com/nbcommunication/InstagramBasicDisplayApi#creating-a-facebook-app)
+
+    > Then, uncomment `gatsby-config.js` plugin `gatsby-source-instagram`
+
+1.  **Start developing.**
+
+    Navigate into your new site’s directory and start it up.
+
+    ```shell
+    cd my-themed-blog/
+    gatsby develop
+    ```
+
+1.  **Open the code and start customizing!**
+
+    Your site is now running at `http://localhost:8000`!
 
 ### For an existing site
 
