@@ -2,7 +2,7 @@
 
 This is a repo for Gatsby's timeline theme, with the theme, you can show all your posts, tweets, instagram medias, youtube videos, hacker news, reddit post at one.
 
-[Live Demo](https://gatsby-starter-timeline.owenyoung.com/)
+[Live Demo](https://gatsby-theme-timeline.owenyoung.com/)
 
 ![Screen](https://i.imgur.com/6yITI4E.png)
 
