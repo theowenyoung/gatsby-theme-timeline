@@ -83,7 +83,11 @@ export const query = graphql`
         authorImage {
           childImageSharp {
             fixed(width: 48, height: 48) {
-              ...GatsbyImageSharpFixed
+              base64
+              width
+              height
+              src
+              srcSet
             }
           }
         }
@@ -113,7 +117,11 @@ export const query = graphql`
           authorImage {
             childImageSharp {
               fixed(width: 24, height: 24) {
-                ...GatsbyImageSharpFixed
+                base64
+                width
+                height
+                src
+                srcSet
               }
             }
           }
