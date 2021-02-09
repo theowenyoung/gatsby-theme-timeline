@@ -16,11 +16,17 @@ const UserInfo = ({ name, screenName, avatar, avatarRemote }) => {
           <Image
             fixed={avatar.childImageSharp.fixed}
             alt={`${name} avatar`}
-            css={css({
-              mr: 2,
-              mb: -2,
+            imgStyle={{
               width: `20px`,
-              minWidth: `20px`,
+              height: `20px`,
+            }}
+            style={{
+              width: `20px`,
+              height: `20px`,
+            }}
+            css={css({
+              mr: 1,
+              mb: -1,
               borderRadius: `full`,
             })}
           />

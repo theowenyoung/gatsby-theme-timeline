@@ -44,10 +44,12 @@ const Tweet = (props) => {
       )}
       <Flex>
         <UserInfo
-          name={author}
-          screenName={authorSlug}
-          avatar={authorImage}
-          avatarRemote={authorImageRemote}
+          name={retweeted ? sharedContent.author : author}
+          screenName={retweeted ? sharedContent.authorSlug : authorSlug}
+          avatar={retweeted ? sharedContent.authorImage : authorImage}
+          avatarRemote={
+            retweeted ? sharedContent.authorImageRemote : authorImageRemote
+          }
         ></UserInfo>
         <TwitterButton to={url}></TwitterButton>
       </Flex>
