@@ -509,7 +509,7 @@ exports.onCreateNode = async (
       title: tweetText,
       excerpt: ``,
       thirdPartyId: node.id_str,
-      body: tweetText,
+      body: ``,
       tags: node.entities.hashtags.map((tag) => tag.text) || [],
       slug: urlResolve(basePath, `tweet/${node.id_str}`),
       date: date,
