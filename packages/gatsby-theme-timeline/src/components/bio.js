@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { useStaticQuery, graphql, Link, withPrefix } from "gatsby"
-import Image from "gatsby-image"
-import { Styled, Flex, Link as LinkUI, jsx } from "theme-ui"
+import { GatsbyImage, getImage } from "gatsby-plugin-image"
+import { Themed, Flex, Link as LinkUI, jsx } from "theme-ui"
 import BioContent from "./bio-content"
 
 const Bio = ({ basePath }) => {
@@ -22,8 +22,8 @@ const Bio = ({ basePath }) => {
         to={withPrefix(basePath)}
       >
         {avatar ? (
-          <Image
-            fixed={avatar.childImageSharp.fixed}
+          <GatsbyImage
+            image={getImage(avatar)}
             alt={author}
             sx={{
               mb: 0,
@@ -45,9 +45,9 @@ const Bio = ({ basePath }) => {
         )}
       </LinkUI>
 
-      <Styled.div>
+      <Themed.div>
         <BioContent />
-      </Styled.div>
+      </Themed.div>
     </Flex>
   )
 }
@@ -61,9 +61,7 @@ const bioQuery = graphql`
     }
     avatar: file(absolutePath: { regex: "/avatar.(jpeg|jpg|gif|png)/" }) {
       childImageSharp {
-        fixed(width: 48, height: 48) {
-          ...GatsbyImageSharpFixed
-        }
+        gatsbyImageData(layout: FIXED, width: 48, height: 48)
       }
     }
   }

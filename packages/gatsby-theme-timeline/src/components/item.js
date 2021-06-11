@@ -19,6 +19,7 @@ import YoutubeItem from "./youtube/item"
 import InstagramItem from "./instagram/item"
 const Item = (props) => {
   const { item } = props
+
   if (item.__typename === SOCIAL_MEDIA_TYPE_NAME) {
     const provider = item.provider
     if (provider === TWEET_TYPE_NAME) {

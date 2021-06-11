@@ -1,12 +1,12 @@
 /** @jsx jsx */
 
-import { jsx, Styled } from "theme-ui"
+import { jsx, Themed } from "theme-ui"
 
 const Detail = ({ item }) => {
   const { originalUrl, author } = item
   return (
     <article>
-      <Styled.div
+      <Themed.div
         sx={{
           "& > blockquote": (theme) => theme.styles.blockquote,
           "& > div > div": {
@@ -293,7 +293,7 @@ const Detail = ({ item }) => {
             </p>
           </div>
         </blockquote>
-      </Styled.div>
+      </Themed.div>
     </article>
   )
 }

@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { Styled, jsx } from "theme-ui"
+import { Themed, jsx } from "theme-ui"
 import processReactString from "./process-string"
 export default function ({ item }) {
   const { title } = item
@@ -8,12 +8,12 @@ export default function ({ item }) {
   }
   const finalExcerpt = processReactString(title)
   return (
-    <Styled.p
+    <Themed.p
       data-test="item-excerpt"
       itemProp="description"
       sx={{ whiteSpace: `pre-line`, color: `textMuted` }}
     >
       {finalExcerpt}
-    </Styled.p>
+    </Themed.p>
   )
 }

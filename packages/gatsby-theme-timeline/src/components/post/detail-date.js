@@ -1,8 +1,8 @@
 /** @jsx jsx */
-import { Styled, jsx } from "theme-ui"
+import { Themed, jsx } from "theme-ui"
 
 const PostDate = (props) => (
-  <Styled.p
+  <Themed.p
     data-test="detail-post-date"
     sx={{
       color: `textMuted`,

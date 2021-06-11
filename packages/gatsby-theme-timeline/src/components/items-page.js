@@ -1,6 +1,7 @@
 /** @jsx jsx */
 import Layout from "./layout"
 import Footer from "./home-footer"
+import { getSrc } from "gatsby-plugin-image"
 
 import ItemBox from "./item-box"
 import { jsx, Grid } from "theme-ui"
@@ -20,9 +21,9 @@ const Items = ({ location, data, pageContext }) => {
   for (let i = 0; i < items.length; i++) {
     const item = items[i]
     image = item.socialImage
-      ? item.socialImage?.childImageSharp?.fluid.src
+      ? getSrc(item.socialImage)
       : item.image
-      ? item.image?.childImageSharp?.fluid.src
+      ? getSrc(item.image)
       : item.imageRemote
     if (image) {
       break

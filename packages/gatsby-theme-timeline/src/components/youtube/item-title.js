@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { Link as LinkUI, jsx, Styled } from "theme-ui"
+import { Link as LinkUI, jsx, Themed } from "theme-ui"
 
 export default function ({ item }) {
   const { title, url } = item
@@ -11,10 +11,10 @@ export default function ({ item }) {
       rel="noopener noreferrer"
       data-test="item-title"
     >
-      <Styled.h3
+      <Themed.h3
         itemProp="name"
         sx={{ fontWeight: `normal` }}
-      >{`${title}`}</Styled.h3>
+      >{`${title}`}</Themed.h3>
     </LinkUI>
   )
 }

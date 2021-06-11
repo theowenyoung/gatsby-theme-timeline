@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import React, { Component } from "react"
-import { jsx, Styled } from "theme-ui"
-import { Global, css } from "@emotion/core"
+import { jsx, Themed } from "theme-ui"
+import { Global, css } from "@emotion/react"
 export default class Comments extends Component {
   constructor(props) {
     super(props)
@@ -34,7 +34,7 @@ export default class Comments extends Component {
 
   render() {
     return (
-      <Styled.div>
+      <Themed.div>
         <Global
           styles={css`
             .utterances {
@@ -43,7 +43,7 @@ export default class Comments extends Component {
           `}
         />
         <div ref={this.commentBox}></div>
-      </Styled.div>
+      </Themed.div>
     )
   }
 }

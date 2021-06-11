@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { Link as LinkUI, jsx, Styled } from "theme-ui"
+import { Link as LinkUI, jsx, Themed } from "theme-ui"
 import { withPrefix } from "gatsby"
 import { LocalizedLink as Link } from "gatsby-theme-i18n"
 
@@ -11,7 +11,7 @@ const ItemsTitle = ({ pageContext }) => {
   const { pageType, tag, basePath, currentPage } = pageContext
   if (pageType === `tag`) {
     return (
-      <Styled.h4
+      <Themed.h4
         data-test="list-title"
         sx={{ fontWeight: `normal`, mb: `1.5rem` }}
       >
@@ -24,11 +24,11 @@ const ItemsTitle = ({ pageContext }) => {
         {currentPage > 1 && (
           <span sx={{ color: `textMuted` }}>page {currentPage}</span>
         )}
-      </Styled.h4>
+      </Themed.h4>
     )
   } else {
     return (
-      <Styled.h4
+      <Themed.h4
         data-test="list-title"
         sx={{ fontWeight: `normal`, mb: `1.5rem` }}
       >
@@ -37,7 +37,7 @@ const ItemsTitle = ({ pageContext }) => {
         {currentPage > 1 && (
           <span sx={{ color: `textMuted` }}>page {currentPage}</span>
         )}
-      </Styled.h4>
+      </Themed.h4>
     )
   }
 }

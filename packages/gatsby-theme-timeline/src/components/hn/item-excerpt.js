@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { Styled, jsx } from "theme-ui"
+import { Themed, jsx } from "theme-ui"
 
 export default function ({ item }) {
   const { excerpt } = item
@@ -7,12 +7,12 @@ export default function ({ item }) {
     return null
   }
   return (
-    <Styled.p
+    <Themed.p
       data-test="item-excerpt"
       itemProp="description"
       sx={{ whiteSpace: `pre-line`, mt: 0 }}
     >
       {excerpt}
-    </Styled.p>
+    </Themed.p>
   )
 }

@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { jsx, Styled } from "theme-ui"
+import { jsx, Themed } from "theme-ui"
 export default function () {
-  return <Styled.h4 data-test="links-title">Links</Styled.h4>
+  return <Themed.h4 data-test="links-title">Links</Themed.h4>
 }

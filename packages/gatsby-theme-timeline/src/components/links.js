@@ -1,11 +1,11 @@
 /** @jsx jsx */
-import { Box, jsx, Styled, Link as LinkUI } from "theme-ui"
+import { Box, jsx, Themed, Link as LinkUI } from "theme-ui"
 import LinksTitle from "./links-title"
 const Links = ({ links }) => {
   return (
     <Box data-test="links-container">
       <LinksTitle></LinksTitle>
-      <Styled.ul>
+      <Themed.ul>
         {links
           ? links.map((link, i) => {
               const attr = {}
@@ -22,7 +22,7 @@ const Links = ({ links }) => {
               )
             })
           : null}
-      </Styled.ul>
+      </Themed.ul>
     </Box>
   )
 }

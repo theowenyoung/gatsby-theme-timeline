@@ -1,6 +1,6 @@
 /** @jsx jsx */
-import Image from "gatsby-image"
-import { jsx, Styled, Box, Link as LinkUI } from "theme-ui"
+import { GatsbyImage, getImage } from "gatsby-plugin-image"
+import { jsx, Themed, Box, Link as LinkUI } from "theme-ui"
 const itemHero = ({ item }) => {
   if (item.video && item.video.url) {
     return null
@@ -18,14 +18,14 @@ const itemHero = ({ item }) => {
     >
       <LinkUI href={item.imageRemote}>
         {item?.image?.childImageSharp ? (
-          <Image
-            fluid={item.image.childImageSharp.fluid}
+          <GatsbyImage
+            image={getImage(item.image)}
             alt={item.imageAlt ? item.imageAlt : item.excerpt}
             imgStyle={{ objectFit: `contain` }}
           />
         ) : (
           item.imageRemote && (
-            <Styled.img alt={item.imageAlt} src={item.imageRemote} />
+            <Themed.img alt={item.imageAlt} src={item.imageRemote} />
           )
         )}
       </LinkUI>

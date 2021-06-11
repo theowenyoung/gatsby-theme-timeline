@@ -20,10 +20,10 @@
   },
   "homepage": "https://github.com/theowenyoung/gatsby-theme-timeline/tree/main/packages/gatsby-theme-ui-timeline-preset#readme",
   "dependencies": {
-    "@theme-ui/preset-tailwind": "^0.4.0-rc.5"
+    "@theme-ui/preset-tailwind": "^0.9.1"
   },
   "engines": {
-    "node": ">=10.13.0"
+    "node": ">=12.13.0"
   },
   "gitHead": "bbd71c2a943562393db78c6d84fdb95cbc110220"
 }

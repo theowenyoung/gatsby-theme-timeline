@@ -1,10 +1,10 @@
 /** @jsx jsx */
 import { withPrefix } from "gatsby"
-import { Box, jsx, Styled } from "theme-ui"
+import { Box, jsx, Themed } from "theme-ui"
 import Tag from "../item-tag"
 import kebabCase from "lodash/kebabCase"
 import Hero from "./hero"
-import { join as urlJoin } from "path"
+import { join as urlJoin } from "path-browserify"
 import ItemExcerpt from "./item-excerpt"
 import ItemFooter from "./item-footer"
 import ItemTitle from "./item-title"
@@ -31,7 +31,7 @@ const Item = (props) => {
       {title && <ItemTitle {...props}></ItemTitle>}
       <ItemExcerpt {...props}></ItemExcerpt>
       {tags && tags.length > 0 && (
-        <Styled.div
+        <Themed.div
           data-test="item-tags"
           sx={{
             display: `flex`,
@@ -50,7 +50,7 @@ const Item = (props) => {
                 </Tag>
               )
             })}
-        </Styled.div>
+        </Themed.div>
       )}
       <ItemFooter {...props}></ItemFooter>
     </Box>

@@ -2,6 +2,8 @@
 import { jsx } from "theme-ui"
 import ReactPlayer from "react-player"
 import Video from "./video"
+import { getSrc } from "gatsby-plugin-image"
+
 function getDomain(url) {
   url = url.replace(/(https?:\/\/)?(www.)?/i, ``)
   if (url.indexOf(`/`) !== -1) {
@@ -11,8 +13,8 @@ function getDomain(url) {
   return url
 }
 function getImageUrl(item) {
-  if (item.image && item?.image?.childImageSharp?.fluid?.src) {
-    return item.image.childImageSharp.fluid.src
+  if (item.image && getSrc(item.image)) {
+    return getSrc(item.image)
   }
   return item.imageRemote
 }

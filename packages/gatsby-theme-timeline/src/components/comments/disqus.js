@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { DiscussionEmbed } from "disqus-react"
-import { jsx, Styled } from "theme-ui"
+import { jsx, Themed } from "theme-ui"
 
 const Disqus = ({ item, config }) => {
   const disqusConfig = {
@@ -8,9 +8,9 @@ const Disqus = ({ item, config }) => {
     config: { identifier: item.slug, title: item.title },
   }
   return (
-    <Styled.div sx={{ pt: 3 }}>
+    <Themed.div sx={{ pt: 3 }}>
       <DiscussionEmbed {...disqusConfig} />
-    </Styled.div>
+    </Themed.div>
   )
 }
 export default Disqus

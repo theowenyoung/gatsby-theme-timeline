@@ -1,11 +1,11 @@
 /** @jsx jsx */
-import { jsx, Box, Styled } from "theme-ui"
+import { jsx, Box, Themed } from "theme-ui"
 import ItemFooter from "./item-footer"
 import { withPrefix } from "gatsby"
 import Tag from "../item-tag"
 import kebabCase from "lodash/kebabCase"
 import Tweet from "./tweet"
-import { join as urlJoin } from "path"
+import { join as urlJoin } from "path-browserify"
 const Item = (props) => {
   const { item, basePath } = props
   const { tags } = item
@@ -24,7 +24,7 @@ const Item = (props) => {
     >
       <Tweet {...props}></Tweet>
       {tags && tags.length > 0 && (
-        <Styled.div
+        <Themed.div
           data-test="item-tags"
           sx={{
             display: `flex`,
@@ -43,7 +43,7 @@ const Item = (props) => {
                 </Tag>
               )
             })}
-        </Styled.div>
+        </Themed.div>
       )}
       <ItemFooter {...props}></ItemFooter>
     </Box>

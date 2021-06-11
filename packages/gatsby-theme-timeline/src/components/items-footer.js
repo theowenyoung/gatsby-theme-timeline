@@ -2,7 +2,7 @@
 import { withPrefix } from "gatsby"
 import { jsx } from "theme-ui"
 import Pagination from "./pagination"
-import path from "path"
+import path from "path-browserify"
 import kebabCase from "lodash/kebabCase"
 
 const PostFooter = ({ pageContext }) => {

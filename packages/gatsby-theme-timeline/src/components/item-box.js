@@ -1,10 +1,10 @@
 /** @jsx jsx */
 import Item from "./item"
-import { Styled, jsx } from "theme-ui"
+import { Themed, jsx } from "theme-ui"
 
 const ItemBox = (props) => {
   return (
-    <Styled.div
+    <Themed.div
       as="article"
       data-test="item-container"
       data-index={props.index}
@@ -15,7 +15,7 @@ const ItemBox = (props) => {
       }}
     >
       <Item {...props}></Item>
-    </Styled.div>
+    </Themed.div>
   )
 }
 export default ItemBox

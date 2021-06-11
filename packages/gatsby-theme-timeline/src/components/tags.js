@@ -3,7 +3,7 @@ import { withPrefix } from "gatsby"
 import { Flex, Box, jsx } from "theme-ui"
 import kebabCase from "lodash/kebabCase"
 import Tag from "./tag"
-import { join as urlJoin } from "path"
+import { join as urlJoin } from "path-browserify"
 import TagsTitle from "./tags-title"
 const Tags = ({ basePath, group }) => {
   return (

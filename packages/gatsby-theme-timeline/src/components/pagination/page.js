@@ -2,7 +2,7 @@ import React from "react"
 import { withPrefix } from "gatsby"
 import { LocalizedLink as Link } from "gatsby-theme-i18n"
 import { Link as LinkUI, Text } from "theme-ui"
-import { join as urlJoin } from "path"
+import { join as urlJoin } from "path-browserify"
 export default function Page({ prefix, pagePath }, props) {
   const isDisabled = props.disabled || props.isActive
   if (isDisabled) {

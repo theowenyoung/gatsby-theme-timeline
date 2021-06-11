@@ -1,10 +1,10 @@
 /** @jsx jsx */
-import { css, Styled, jsx } from "theme-ui"
+import { css, Themed, jsx } from "theme-ui"
 import { withPrefix } from "gatsby"
 import kebabCase from "lodash/kebabCase"
 import Tag from "./tag"
 import useTimelineThemeConfig from "../hooks/configOptions"
-import { join as urlJoin } from "path"
+import { join as urlJoin } from "path-browserify"
 import Disqus from "./comments/disqus"
 import Utterances from "./comments/utterances"
 import DetailFooterNav from "./detail-footer-nav"
@@ -22,7 +22,7 @@ const PostFooter = (props) => {
       })}
     >
       {tags && tags.length > 0 && (
-        <Styled.div
+        <Themed.div
           sx={{
             display: `flex`,
             flexWrap: `wrap`,
@@ -43,7 +43,7 @@ const PostFooter = (props) => {
                 </Tag>
               )
             })}
-        </Styled.div>
+        </Themed.div>
       )}
       <Bio basePath={basePath}></Bio>
       <DetailFooterNav {...props}></DetailFooterNav>

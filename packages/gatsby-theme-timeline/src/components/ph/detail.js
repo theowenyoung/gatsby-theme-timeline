@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx, Styled, Link as LinkUI } from "theme-ui"
+import { jsx, Themed, Link as LinkUI } from "theme-ui"
 import { useState } from "react"
 const Detail = ({ item }) => {
   const { thirdPartyId, title, excerpt, url, author, authorUrl } = item
@@ -12,14 +12,14 @@ const Detail = ({ item }) => {
     <article>
       <div>
         {isShowPlaceholder && (
-          <Styled.blockquote>
+          <Themed.blockquote>
             <LinkUI href={url} sx={{ fontSize: 2 }}>
               {title}
             </LinkUI>
             <p>{excerpt}</p>
             &mdash;
             <LinkUI href={authorUrl}>{author}</LinkUI>
-          </Styled.blockquote>
+          </Themed.blockquote>
         )}
       </div>
 

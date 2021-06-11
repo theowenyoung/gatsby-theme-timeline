@@ -1,5 +1,6 @@
 import React from "react"
 import SEO from "./seo"
+import { getSrc } from "gatsby-plugin-image"
 
 export default ({ item, location }) => {
   return (
@@ -9,8 +10,10 @@ export default ({ item, location }) => {
       location={location}
       imageSource={
         item.socialImage
-          ? item.socialImage?.childImageSharp?.fluid.src
-          : item.image?.childImageSharp?.fluid.src && item.imageRemote
+          ? getSrc(item.socialImage)
+          : item.image
+          ? getSrc(item.image)
+          : item.imageRemote
       }
       imageAlt={item.imageAlt}
       pageType="detail"

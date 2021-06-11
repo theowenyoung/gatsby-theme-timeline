@@ -2,7 +2,7 @@ import React from "react"
 import { withPrefix } from "gatsby"
 import { LocalizedLink as Link } from "gatsby-theme-i18n"
 import { Link as LinkUI } from "theme-ui"
-import { join as urlJoin } from "path"
+import { join as urlJoin } from "path-browserify"
 export default function NextPageLink({ prefix, pagePath }, props) {
   return (
     <LinkUI

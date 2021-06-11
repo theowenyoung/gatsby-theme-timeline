@@ -4,12 +4,7 @@ import PostPage from "../../components/detail-page"
 export default PostPage
 
 export const query = graphql`
-  query DetailPageQuery(
-    $id: String!
-    $previousId: String
-    $nextId: String
-    $maxWidth: Int
-  ) {
+  query DetailPageQuery($id: String!, $previousId: String, $nextId: String) {
     site {
       siteMetadata {
         title
@@ -40,21 +35,16 @@ export const query = graphql`
       datetime: date(formatString: "YYYY-MM-DD HH:mm")
       image {
         childImageSharp {
-          fluid(maxWidth: $maxWidth) {
-            ...GatsbyImageSharpFluid
-            src
-          }
+          gatsbyImageData
         }
       }
       imageAlt
       socialImage {
         childImageSharp {
-          fluid {
-            ...GatsbyImageSharpFluid
-            src
-          }
+          gatsbyImageData
         }
       }
+      __typename
       ... on MdxBlogPost {
         id
         fields {
@@ -82,13 +72,7 @@ export const query = graphql`
         authorUrl
         authorImage {
           childImageSharp {
-            fixed(width: 48, height: 48) {
-              base64
-              width
-              height
-              src
-              srcSet
-            }
+            gatsbyImageData(width: 48, height: 48, layout: FIXED)
           }
         }
         authorSlug
@@ -107,22 +91,13 @@ export const query = graphql`
           imageRemote
           image {
             childImageSharp {
-              fluid(maxWidth: $maxWidth) {
-                ...GatsbyImageSharpFluid
-                src
-              }
+              gatsbyImageData
             }
           }
           imageAlt
           authorImage {
             childImageSharp {
-              fixed(width: 24, height: 24) {
-                base64
-                width
-                height
-                src
-                srcSet
-              }
+              gatsbyImageData(width: 24, height: 24, layout: FIXED)
             }
           }
           video {

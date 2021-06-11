@@ -1,6 +1,6 @@
 /** @jsx jsx */
-import Image from "gatsby-image"
-import { jsx, Styled, Box, Link as LinkUI } from "theme-ui"
+import { GatsbyImage, getImage } from "gatsby-plugin-image"
+import { jsx, Themed, Box, Link as LinkUI } from "theme-ui"
 const itemHero = ({ item }) => {
   if (!(item?.image?.childImageSharp || item.imageRemote)) {
     return null
@@ -15,15 +15,15 @@ const itemHero = ({ item }) => {
     >
       <LinkUI href={item.imageRemote}>
         {item?.image?.childImageSharp ? (
-          <Image
-            fluid={item.image.childImageSharp.fluid}
+          <GatsbyImage
+            image={getImage(item.image)}
             alt={item.imageAlt ? item.imageAlt : item.excerpt}
             sx={{ maxHeight: `lg` }}
             imgStyle={{ objectFit: `contain` }}
           />
         ) : (
           item.imageRemote && (
-            <Styled.img
+            <Themed.img
               alt={item.imageAlt}
               sx={{ maxHeight: `lg` }}
               src={item.imageRemote}

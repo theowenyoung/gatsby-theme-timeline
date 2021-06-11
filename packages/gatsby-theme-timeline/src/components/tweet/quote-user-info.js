@@ -1,6 +1,6 @@
 /** @jsx jsx */
-import { jsx, Flex, Box, Link, Text, Styled } from "theme-ui"
-import Image from "gatsby-image"
+import { jsx, Flex, Box, Link, Text, Themed } from "theme-ui"
+import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import { css } from "theme-ui"
 const UserInfo = ({ name, screenName, avatar, avatarRemote }) => {
   if (!name || !screenName) {
@@ -13,8 +13,8 @@ const UserInfo = ({ name, screenName, avatar, avatarRemote }) => {
         data-test="author-image-container"
       >
         {avatar?.childImageSharp ? (
-          <Image
-            fixed={avatar.childImageSharp.fixed}
+          <GatsbyImage
+            image={getImage(avatar)}
             alt={`${name} avatar`}
             imgStyle={{
               width: `20px`,
@@ -31,7 +31,7 @@ const UserInfo = ({ name, screenName, avatar, avatarRemote }) => {
             })}
           />
         ) : (
-          <Styled.img
+          <Themed.img
             alt={`${name} avatar`}
             sx={{
               mr: 2,

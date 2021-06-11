@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { jsx, Flex, Link, Styled } from "theme-ui"
+import { jsx, Flex, Link, Themed } from "theme-ui"
 import Logo from "./logo"
 import UpvoteIcon from "./upvote-icon"
 import EyeIcon from "../icons/eye"
@@ -60,13 +60,13 @@ const AuthorInfo = ({ item }) => {
 
       <span sx={{ width: `8px` }}></span>
 
-      <Styled.div as="span" sx={{ display: `inline-block`, flexShrink: 0 }}>
+      <Themed.div as="span" sx={{ display: `inline-block`, flexShrink: 0 }}>
         <UpvoteIcon></UpvoteIcon>
-      </Styled.div>
-      <Styled.div
+      </Themed.div>
+      <Themed.div
         as="span"
         sx={{ color: `textMuted`, display: `inline-block`, flexShrink: 0 }}
-      >{`${formatNumber(score)}`}</Styled.div>
+      >{`${formatNumber(score)}`}</Themed.div>
       <span
         sx={{
           color: `textMuted`,
@@ -77,13 +77,13 @@ const AuthorInfo = ({ item }) => {
       >
         ·
       </span>
-      <Styled.div as="span" sx={{ display: `inline-block`, flexShrink: 0 }}>
+      <Themed.div as="span" sx={{ display: `inline-block`, flexShrink: 0 }}>
         <EyeIcon></EyeIcon>
-      </Styled.div>
-      <Styled.div
+      </Themed.div>
+      <Themed.div
         as="span"
         sx={{ color: `textMuted`, display: `inline-block`, flexShrink: 0 }}
-      >{`${formatNumber(views)}`}</Styled.div>
+      >{`${formatNumber(views)}`}</Themed.div>
     </Flex>
   )
 }

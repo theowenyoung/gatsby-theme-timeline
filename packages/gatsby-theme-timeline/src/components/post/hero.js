@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import Image from "gatsby-image"
+import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import { jsx, Box } from "theme-ui"
 const itemHero = ({ item }) => (
   <Box
@@ -7,10 +7,10 @@ const itemHero = ({ item }) => (
     sx={{ py: item?.image?.childImageSharp ? 2 : 0 }}
   >
     {item?.image?.childImageSharp && (
-      <Image
+      <GatsbyImage
         data-text="item-hero"
         itemProp="image"
-        fluid={item.image.childImageSharp.fluid}
+        image={getImage(item.image)}
         alt={item.imageAlt ? item.imageAlt : item.excerpt}
       />
     )}

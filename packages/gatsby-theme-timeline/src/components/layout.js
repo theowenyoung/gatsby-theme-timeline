@@ -1,5 +1,5 @@
 import React from "react"
-import { css, Styled, Box } from "theme-ui"
+import { css, Themed, Box } from "theme-ui"
 import Header from "./header"
 import useTimelineThemeConfig from "../hooks/configOptions"
 import Helmet from "react-helmet"
@@ -8,7 +8,7 @@ const Layout = ({ children, ...props }) => {
   const timelineThemeConfig = useTimelineThemeConfig()
   const { webfontURL } = timelineThemeConfig
   return (
-    <Styled.root>
+    <Themed.root>
       <Helmet>
         <link rel="stylesheet" href={webfontURL} />
       </Helmet>
@@ -23,7 +23,7 @@ const Layout = ({ children, ...props }) => {
       >
         {children}
       </Box>
-    </Styled.root>
+    </Themed.root>
   )
 }
 

@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { jsx, Flex, Link, Styled } from "theme-ui"
+import { jsx, Flex, Link, Themed } from "theme-ui"
 import Logo from "./hn-logo"
 import UpvoteIcon from "../reddit/upvote-icon"
 const SI_SYMBOL = [``, `k`, `M`, `G`, `T`, `P`, `E`]
@@ -67,13 +67,13 @@ const AuthorInfo = ({ item }) => {
       >
         ·
       </span>
-      <Styled.div as="span" sx={{ display: `inline-block`, flexShrink: 0 }}>
+      <Themed.div as="span" sx={{ display: `inline-block`, flexShrink: 0 }}>
         <UpvoteIcon></UpvoteIcon>
-      </Styled.div>
-      <Styled.div
+      </Themed.div>
+      <Themed.div
         as="span"
         sx={{ color: `textMuted`, display: `inline-block`, flexShrink: 0 }}
-      >{`${formatNumber(score)}`}</Styled.div>
+      >{`${formatNumber(score)}`}</Themed.div>
     </Flex>
   )
 }

@@ -1,12 +1,12 @@
 /** @jsx jsx */
 
-import { jsx, Styled, Link as LinkUI } from "theme-ui"
+import { jsx, Themed, Link as LinkUI } from "theme-ui"
 
 const Detail = ({ item }) => {
   const { url, title, channel, channelUrl } = item
   return (
     <article>
-      <Styled.div
+      <Themed.div
         sx={{
           "& > blockquote": (theme) => theme.styles.blockquote,
           "& > div > div": {
@@ -20,7 +20,7 @@ const Detail = ({ item }) => {
           from
           <LinkUI href={channelUrl}>{` /r/${channel}`}</LinkUI>
         </blockquote>
-      </Styled.div>
+      </Themed.div>
     </article>
   )
 }

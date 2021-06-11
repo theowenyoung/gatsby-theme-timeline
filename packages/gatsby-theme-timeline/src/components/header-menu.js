@@ -8,7 +8,7 @@ const Title = ({ menuLinks }) => {
   }
   return (
     <Flex as="nav">
-      {menuLinks.map((nav) => {
+      {menuLinks.map((nav, index) => {
         const attr = {}
         let isUseATag = false
         let url = nav.url
@@ -28,7 +28,7 @@ const Title = ({ menuLinks }) => {
             as={isUseATag ? LinkUI : Link}
             to={!isUseATag ? url : undefined}
             href={isUseATag ? url : undefined}
-            key={url}
+            key={`${url}${index}`}
             {...attr}
           >
             {nav.name}

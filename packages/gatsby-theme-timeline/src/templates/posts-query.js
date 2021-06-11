@@ -5,7 +5,6 @@ export default PostsPage
 
 export const query = graphql`
   query ItemsPostsQuery(
-    $maxHeight: Int!
     $skip: Int!
     $limit: Int!
     $filter: BlogPostFilterInput
@@ -55,12 +54,11 @@ export const query = graphql`
         tags
         image {
           childImageSharp {
-            fluid(maxHeight: $maxHeight) {
-              ...GatsbyImageSharpFluid
-            }
+            gatsbyImageData
           }
         }
         imageAlt
+        __typename
         ... on SocialMediaPost {
           provider
           thirdPartyId
@@ -79,9 +77,7 @@ export const query = graphql`
           authorUrl
           authorImage {
             childImageSharp {
-              fixed(width: 48, height: 48) {
-                ...GatsbyImageSharpFixed
-              }
+              gatsbyImageData(width: 48, height: 48, layout: FIXED)
             }
           }
           authorSlug
@@ -100,17 +96,13 @@ export const query = graphql`
             imageRemote
             image {
               childImageSharp {
-                fluid(maxHeight: $maxHeight) {
-                  ...GatsbyImageSharpFluid
-                }
+                gatsbyImageData
               }
             }
             imageAlt
             authorImage {
               childImageSharp {
-                fixed(width: 48, height: 48) {
-                  ...GatsbyImageSharpFixed
-                }
+                gatsbyImageData(width: 48, height: 48, layout: FIXED)
               }
             }
             video {

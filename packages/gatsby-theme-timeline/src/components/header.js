@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { Styled, jsx, Flex } from "theme-ui"
+import { Themed, jsx, Flex } from "theme-ui"
 import Title from "./header-title"
 import HeaderMenu from "./header-menu"
 import HeaderRight from "./header-right"
@@ -7,7 +7,7 @@ const Header = (props) => {
   const { title, pageType } = props
   return (
     <header sx={{ px: [3, 4], mb: 4, maxWidth: `5xl`, mx: `auto` }}>
-      <Styled.div
+      <Themed.div
         sx={{
           pt: 3,
           pb: pageType === `detail` ? 2 : 3,
@@ -16,7 +16,7 @@ const Header = (props) => {
           borderBottomColor: `muted`,
         }}
       >
-        <Styled.div
+        <Themed.div
           sx={{
             display: `flex`,
             alignItems: `baseline`,
@@ -36,8 +36,8 @@ const Header = (props) => {
           </Flex>
 
           <HeaderRight {...props}></HeaderRight>
-        </Styled.div>
-      </Styled.div>
+        </Themed.div>
+      </Themed.div>
     </header>
   )
 }
