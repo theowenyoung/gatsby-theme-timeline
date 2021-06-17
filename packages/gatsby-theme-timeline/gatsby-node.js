@@ -262,6 +262,7 @@ exports.createPages = async ({ graphql, actions, reporter }, themeOptions) => {
     imageMaxHeight,
     postsPerPage,
     postsFilter,
+    archiveTime,
   } = withDefaults(themeOptions)
 
   // These templates are simply data-fetching wrappers that import components
@@ -381,16 +382,43 @@ exports.createPages = async ({ graphql, actions, reporter }, themeOptions) => {
   })
 
   // create limit >1000 detail page, cause blog-core limit 1000
-  const detailsPageResult = await graphql(`
-    {
-      allBlogPost(sort: { fields: [date, title], order: DESC }, skip: 1000) {
-        nodes {
-          id
-          slug
+  // https://github.com/gatsbyjs/themes/pull/136 wait merged
+  let detailsPageResult = {
+    errors: [],
+  }
+  if (archiveTime) {
+    const archiveTimestamp = new Date(archiveTime)
+    detailsPageResult = await graphql(
+      `
+        query DetailsPageFilterQuery($archiveTimestamp: Date!) {
+          allBlogPost(
+            sort: { fields: [date, title], order: DESC }
+            skip: 1
+            filter: { date: { gte: $archiveTimestamp } }
+          ) {
+            nodes {
+              id
+              slug
+            }
+          }
+        }
+      `,
+      {
+        archiveTimestamp: archiveTimestamp,
+      }
+    )
+  } else {
+    detailsPageResult = await graphql(`
+      {
+        allBlogPost(sort: { fields: [date, title], order: DESC }) {
+          nodes {
+            id
+            slug
+          }
         }
       }
-    }
-  `)
+    `)
+  }
 
   if (detailsPageResult.errors) {
     reporter.panic(detailsPageResult.errors)
@@ -541,10 +569,8 @@ exports.onCreateNode = async (
         `dd MMM DD HH:mm:ss ZZ YYYY`,
         `en`
       ).toISOString()
-      const sharedAuthorImageRemote = sharedStatus.user.profile_image_url_https.replace(
-        `_normal.`,
-        `.`
-      )
+      const sharedAuthorImageRemote =
+        sharedStatus.user.profile_image_url_https.replace(`_normal.`, `.`)
       fieldData.sharedContent = {
         id: sharedStatus.id_str,
         thirdPartyId: sharedStatus.id_str,

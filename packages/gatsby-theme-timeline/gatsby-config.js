@@ -20,6 +20,7 @@ module.exports = (themeOptions) => {
       resolve: `gatsby-theme-blog-core`,
       options: {
         imageMaxWidth: options.imageMaxWidth,
+        limit: 1, // todo https://github.com/gatsbyjs/themes/pull/136 be merged
         ...themeOptions,
       },
     },

@@ -20,12 +20,15 @@ module.exports = (themeOptions) => {
   const imageMaxWidth = themeOptions.imageMaxWidth || 1024
   const imageMaxHeight = themeOptions.imageMaxHeight || 512
   const postsFilter = themeOptions.postsFilter || {}
+  const archiveTime =
+    themeOptions.archiveTime || process.env.GATSBY_ARCHIVE_TIME
   const jsonTransformerOptions = {
     typeName: ({ node }) => {
       const rootDirectoryName = node.relativeDirectory.split(`/`)[0]
       return _.upperFirst(_.camelCase(`${rootDirectoryName} Json`))
     },
   }
+
   const i18nConfig = themeOptions.i18nConfig || {
     defaultLang: `en`,
     configPath: require.resolve(`../i18n/config.json`),
@@ -56,6 +59,7 @@ module.exports = (themeOptions) => {
     shouldTransformImage,
     imageMaxWidth,
     imageMaxHeight,
+    archiveTime,
     ...themeOptions,
     disqus: {
       ...disqusDefault,

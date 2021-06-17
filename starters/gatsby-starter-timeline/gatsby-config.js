@@ -61,6 +61,7 @@ module.exports = {
         // postsPerPage: 2,
         tweetTypeName: ["TweetsJson", "twitterStatusesUserTimelineMyTweet"],
         instagramTypeName: ["InstagramJson", "InstaNode"],
+        // archiveTime: "2021/06/17",
         // disqus: {
         //   shortname: "gatsby-theme-timeline",
         // },
