@@ -23,7 +23,7 @@
   },
   "homepage": "https://github.com/theowenyoung/gatsby-theme-timeline/tree/main/packages/gatsby-theme-timeline#readme",
   "dependencies": {
-    "@theme-ui/prism": "0.6.2",
+    "@theme-ui/prism": "^0.9.1",
     "date-fns": "^2.16.1",
     "disqus-react": "^1.0.10",
     "gatsby-image": "^2.11.0",
@@ -43,7 +43,7 @@
     "gatsby-theme-ui-timeline-preset": "^1.0.0",
     "gatsby-transformer-json": "^2.4.14",
     "html-to-text": "^6.0.0",
-    "mdx-utils": "0.2.0",
+    "mdx-utils": "^0.2.0",
     "path": "^0.12.7",
     "path-browserify": "^1.0.1",
     "react-helmet": "^6.1.0",
@@ -51,7 +51,7 @@
     "react-process-string": "^1.2.0",
     "react-twemoji": "^0.3.0",
     "react-ultimate-pagination": "^1.2.0",
-    "theme-ui": "0.7.0",
+    "theme-ui": "^0.7.0",
     "url-join": "^4.0.1"
   },
   "peerDependencies": {
