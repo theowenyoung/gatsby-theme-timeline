@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.7](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-theme-timeline@1.0.6...gatsby-theme-timeline@1.0.7) (2021-06-18)
+
+### Bug Fixes
+
+- youtube score cound be NaN ([97628a6](https://github.com/theowenyoung/gatsby-theme-timeline/commit/97628a61319d11e60d20fea3001055b43a6f776b))
+
 ## [1.0.6](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-theme-timeline@1.0.5...gatsby-theme-timeline@1.0.6) (2021-06-18)
 
 **Note:** Version bump only for package gatsby-theme-timeline
