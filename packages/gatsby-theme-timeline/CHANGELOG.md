@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.3](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-theme-timeline@1.0.2...gatsby-theme-timeline@1.0.3) (2021-06-18)
+
+### Bug Fixes
+
+- version ([3398418](https://github.com/theowenyoung/gatsby-theme-timeline/commit/33984187de930e4e1988fe3aeea9e04c38a88759))
+
 ## [1.0.2](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-theme-timeline@1.0.1...gatsby-theme-timeline@1.0.2) (2021-06-17)
 
 **Note:** Version bump only for package gatsby-theme-timeline
