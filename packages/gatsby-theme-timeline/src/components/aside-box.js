@@ -20,6 +20,7 @@ const Aside = ({ data, pageContext }) => {
           overflowY: `auto`,
           height: `calc(100vh - 32px)`,
           overscrollBehavior: `contain`,
+          px: 4,
         }}
       >
         <Bio basePath={basePath}></Bio>
