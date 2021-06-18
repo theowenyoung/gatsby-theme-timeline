@@ -38,7 +38,7 @@
     "gatsby-plugin-theme-ui": "0.7.0",
     "gatsby-plugin-twitter": "^3.2.0",
     "gatsby-theme-blog-core": "^3.0.0",
-    "gatsby-theme-i18n": "^1.0.4",
+    "gatsby-theme-i18n": "^2.0.0",
     "gatsby-theme-ui-preset": "^2.0.0",
     "gatsby-theme-ui-timeline-preset": "^1.0.0",
     "gatsby-transformer-json": "^3.7.1",
