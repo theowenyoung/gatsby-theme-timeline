@@ -958,9 +958,12 @@ exports.onCreateNode = async (
       tags = findHashtags(node.description)
     }
     const excerpt = node.excerpt || node.description
-    const score = Math.floor(
+    let score = Math.floor(
       (node.starRating.count * node.starRating.average) / 5
     )
+    if (!(score > 0)) {
+      score = 0
+    }
     const fieldData = {
       provider: `Youtube`,
       title: node.title,
