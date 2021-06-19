@@ -33,7 +33,6 @@
     "gatsby-plugin-image": "^1.7.1",
     "gatsby-plugin-instagram": "^0.0.3",
     "gatsby-plugin-react-helmet": "^4.7.1",
-    "gatsby-plugin-reddit": "^0.1.0",
     "gatsby-plugin-sharp": "^3.7.1",
     "gatsby-plugin-theme-ui": "0.7.0",
     "gatsby-plugin-twitter": "^3.2.0",

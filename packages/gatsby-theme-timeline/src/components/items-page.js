@@ -12,6 +12,7 @@ import ItemsSEO from "./items-seo"
 import ItemsFooter from "./items-footer"
 const Items = ({ location, data, pageContext }) => {
   const { basePath, pageType } = pageContext
+
   const items = data.allBlogPost.nodes
   const {
     site: { siteMetadata },
