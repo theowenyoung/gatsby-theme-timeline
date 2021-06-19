@@ -1,0 +1,50 @@
+{
+  "type_of": "article",
+  "id": 611743,
+  "title": "A beginner's guide to applying color in UI design",
+  "description": "Is color theory getting you down? Are you tired of the same old preset palettes? Sick of hitting “reg...",
+  "readable_publish_date": "Feb 25",
+  "slug": "a-beginner-s-guide-to-applying-color-in-ui-design-3904",
+  "path": "/georgedoescode/a-beginner-s-guide-to-applying-color-in-ui-design-3904",
+  "url": "https://dev.to/georgedoescode/a-beginner-s-guide-to-applying-color-in-ui-design-3904",
+  "comments_count": 40,
+  "public_reactions_count": 849,
+  "collection_id": null,
+  "published_timestamp": "2021-02-25T12:28:41Z",
+  "positive_reactions_count": 849,
+  "cover_image": "https://res.cloudinary.com/practicaldev/image/fetch/s--eOdXv_me--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/byvsm2g1tfsf7vr832zq.png",
+  "social_image": "https://res.cloudinary.com/practicaldev/image/fetch/s--e13xmkyr--/c_imagga_scale,f_auto,fl_progressive,h_500,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/byvsm2g1tfsf7vr832zq.png",
+  "canonical_url": "https://dev.to/georgedoescode/a-beginner-s-guide-to-applying-color-in-ui-design-3904",
+  "created_at": "2021-04-05T20:21:55.712Z",
+  "edited_at": "2021-02-25T12:37:04Z",
+  "crossposted_at": null,
+  "published_at": "2021-02-25T12:28:41Z",
+  "last_comment_at": "2021-03-23T19:10:13Z",
+  "tag_list": ["tutorial", "webdev", "css", "codenewbie"],
+  "tags": ["tutorial", "webdev", "css", "codenewbie"],
+  "user": {
+    "name": "George Francis",
+    "username": "georgedoescode",
+    "twitter_username": "georgedoescode",
+    "github_username": "georgedoescode",
+    "website_url": null,
+    "profile_image": "https://res.cloudinary.com/practicaldev/image/fetch/s--aP0cUzzh--/c_fill,f_auto,fl_progressive,h_640,q_auto,w_640/https://dev-to-uploads.s3.amazonaws.com/uploads/user/profile_image/361652/c0894e9a-d92c-4860-9ea3-6c624c01af2b.png",
+    "profile_image_90": "https://res.cloudinary.com/practicaldev/image/fetch/s--6y7U6J7v--/c_fill,f_auto,fl_progressive,h_90,q_auto,w_90/https://dev-to-uploads.s3.amazonaws.com/uploads/user/profile_image/361652/c0894e9a-d92c-4860-9ea3-6c624c01af2b.png"
+  },
+  "original_created_at": "2021-02-19T08:45:00Z",
+  "image": "https://res.cloudinary.com/practicaldev/image/fetch/s--eOdXv_me--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/byvsm2g1tfsf7vr832zq.png",
+  "author": "George Francis",
+  "author_url": "https://dev.to/georgedoescode",
+  "localize": [
+    {
+      "locale": "zh",
+      "description": "色彩理论让你失望了吗？你是否厌倦了同样的老式预设调色板？厌倦了点击 \"reg...",
+      "title": "UI设计中应用色彩的新手指南。"
+    },
+    {
+      "locale": "zh-Hant",
+      "description": "色彩理論讓你失望了嗎？你是否厭倦了同樣的老式預設調色板？厭倦了點擊 \"reg...",
+      "title": "UI設計中應用色彩的新手指南。"
+    }
+  ]
+}

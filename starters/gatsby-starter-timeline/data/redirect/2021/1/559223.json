@@ -1,0 +1,50 @@
+{
+  "type_of": "article",
+  "id": 559223,
+  "title": "Understanding Rendering in React ♻ ⚛️",
+  "description": "Hey there! 👋🏼  I'm Mateo Garcia, I co-organize a community in Medellin, Colombia called React Medelli...",
+  "readable_publish_date": "Jan 31",
+  "slug": "understanding-rendering-in-react-i5i",
+  "path": "/teo_garcia/understanding-rendering-in-react-i5i",
+  "url": "https://dev.to/teo_garcia/understanding-rendering-in-react-i5i",
+  "comments_count": 16,
+  "public_reactions_count": 871,
+  "collection_id": null,
+  "published_timestamp": "2021-01-31T14:34:20Z",
+  "positive_reactions_count": 871,
+  "cover_image": "https://res.cloudinary.com/practicaldev/image/fetch/s--DvCQ4J5S--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/xk1z0iv82gn4b7hcueqa.png",
+  "social_image": "https://res.cloudinary.com/practicaldev/image/fetch/s--4-N2vUr5--/c_imagga_scale,f_auto,fl_progressive,h_500,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/xk1z0iv82gn4b7hcueqa.png",
+  "canonical_url": "https://dev.to/teo_garcia/understanding-rendering-in-react-i5i",
+  "created_at": "2021-04-05T20:21:55.712Z",
+  "edited_at": "2021-01-31T14:43:20Z",
+  "crossposted_at": null,
+  "published_at": "2021-01-31T14:34:20Z",
+  "last_comment_at": "2021-03-02T10:22:15Z",
+  "tag_list": ["react", "webdev", "javascript", "reactnative"],
+  "tags": ["react", "webdev", "javascript", "reactnative"],
+  "user": {
+    "name": "Mateo Garcia",
+    "username": "teo_garcia",
+    "twitter_username": null,
+    "github_username": "teo-garcia",
+    "website_url": null,
+    "profile_image": "https://res.cloudinary.com/practicaldev/image/fetch/s--6DAnVbcQ--/c_fill,f_auto,fl_progressive,h_640,q_auto,w_640/https://dev-to-uploads.s3.amazonaws.com/uploads/user/profile_image/24289/a40519e9-94c2-4ca6-986b-ec73366a7780.jpeg",
+    "profile_image_90": "https://res.cloudinary.com/practicaldev/image/fetch/s--NfC1qZKO--/c_fill,f_auto,fl_progressive,h_90,q_auto,w_90/https://dev-to-uploads.s3.amazonaws.com/uploads/user/profile_image/24289/a40519e9-94c2-4ca6-986b-ec73366a7780.jpeg"
+  },
+  "original_created_at": "2021-01-02T18:13:08Z",
+  "image": "https://res.cloudinary.com/practicaldev/image/fetch/s--DvCQ4J5S--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/xk1z0iv82gn4b7hcueqa.png",
+  "author": "Mateo Garcia",
+  "author_url": "https://dev.to/teo_garcia",
+  "localize": [
+    {
+      "locale": "zh",
+      "description": "嘿，你好！👋🏼我是Mateo Garcia，我在哥伦比亚麦德林共同组织了一个名为React Medelli的社区。",
+      "title": "了解React中的渲染 ♻ ⚛️。"
+    },
+    {
+      "locale": "zh-Hant",
+      "description": "嘿，你好！👋🏼我是Mateo Garcia，我在哥倫比亞麥德林共同組織了一個名爲React Medelli的社區。",
+      "title": "瞭解React中的渲染 ♻ ⚛️。"
+    }
+  ]
+}

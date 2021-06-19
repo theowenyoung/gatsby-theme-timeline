@@ -1,0 +1,50 @@
+{
+  "type_of": "article",
+  "id": 574774,
+  "title": "Some projects to build your resume!",
+  "description": "Projects are the identity of every web developer. Every web developer must build some projects which...",
+  "readable_publish_date": "Jan 18",
+  "slug": "some-projects-to-build-your-resume-2leg",
+  "path": "/commentme/some-projects-to-build-your-resume-2leg",
+  "url": "https://dev.to/commentme/some-projects-to-build-your-resume-2leg",
+  "comments_count": 52,
+  "public_reactions_count": 964,
+  "collection_id": null,
+  "published_timestamp": "2021-01-18T13:14:43Z",
+  "positive_reactions_count": 964,
+  "cover_image": "https://res.cloudinary.com/practicaldev/image/fetch/s--M8enUJ3l--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/yb1nc85cjryewmxxsgcd.png",
+  "social_image": "https://res.cloudinary.com/practicaldev/image/fetch/s--xw7u_6nR--/c_imagga_scale,f_auto,fl_progressive,h_500,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/yb1nc85cjryewmxxsgcd.png",
+  "canonical_url": "https://thesmartcoder.dev/awesome-project-ideas-for-your-resume/",
+  "created_at": "2021-04-05T20:21:55.712Z",
+  "edited_at": "2021-02-09T06:11:07Z",
+  "crossposted_at": null,
+  "published_at": "2021-01-18T13:14:43Z",
+  "last_comment_at": "2021-04-03T04:47:30Z",
+  "tag_list": ["projectbenatar", "javascript", "webdev", "react"],
+  "tags": ["projectbenatar", "javascript", "webdev", "react"],
+  "user": {
+    "name": "Unnati Bamania",
+    "username": "commentme",
+    "twitter_username": "bamania_unnati",
+    "github_username": "unnati2000",
+    "website_url": "https://unnati2000.github.io/unnati2000.github.io",
+    "profile_image": "https://res.cloudinary.com/practicaldev/image/fetch/s--9cxSMpNG--/c_fill,f_auto,fl_progressive,h_640,q_auto,w_640/https://dev-to-uploads.s3.amazonaws.com/uploads/user/profile_image/429862/46d4537e-4efc-4333-b743-d0f67136bb57.png",
+    "profile_image_90": "https://res.cloudinary.com/practicaldev/image/fetch/s--yLe7MHLr--/c_fill,f_auto,fl_progressive,h_90,q_auto,w_90/https://dev-to-uploads.s3.amazonaws.com/uploads/user/profile_image/429862/46d4537e-4efc-4333-b743-d0f67136bb57.png"
+  },
+  "original_created_at": "2021-01-18T08:14:08Z",
+  "image": "https://res.cloudinary.com/practicaldev/image/fetch/s--M8enUJ3l--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/yb1nc85cjryewmxxsgcd.png",
+  "author": "Unnati Bamania",
+  "author_url": "https://dev.to/commentme",
+  "localize": [
+    {
+      "locale": "zh",
+      "description": "项目是每个网站开发人员的身份。每个网络开发者都必须建立一些项目，这...",
+      "title": "一些项目来建立你的简历!"
+    },
+    {
+      "locale": "zh-Hant",
+      "description": "項目是每個網站開發人員的身份。每個網絡開發者都必須建立一些項目，這...",
+      "title": "一些項目來建立你的簡歷!"
+    }
+  ]
+}

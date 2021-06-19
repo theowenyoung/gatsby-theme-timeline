@@ -1,0 +1,50 @@
+{
+  "type_of": "article",
+  "id": 590987,
+  "title": "34 UI Libraries For React, Vue And Angular",
+  "description": "UI Library For React            MATERIAL-UI(React)   The MATERIAL-UI (React) component makes...",
+  "readable_publish_date": "Feb  3",
+  "slug": "34-ui-libraries-for-react-vue-and-angular-525l",
+  "path": "/haycuoilennao19/34-ui-libraries-for-react-vue-and-angular-525l",
+  "url": "https://dev.to/haycuoilennao19/34-ui-libraries-for-react-vue-and-angular-525l",
+  "comments_count": 22,
+  "public_reactions_count": 823,
+  "collection_id": null,
+  "published_timestamp": "2021-02-03T13:57:56Z",
+  "positive_reactions_count": 823,
+  "cover_image": null,
+  "social_image": "https://dev.to/social_previews/article/590987.png",
+  "canonical_url": "https://dev.to/haycuoilennao19/34-ui-libraries-for-react-vue-and-angular-525l",
+  "created_at": "2021-04-05T20:21:55.712Z",
+  "edited_at": null,
+  "crossposted_at": null,
+  "published_at": "2021-02-03T13:57:56Z",
+  "last_comment_at": "2021-03-23T21:55:39Z",
+  "tag_list": ["react", "vue", "angular", "webdev"],
+  "tags": ["react", "vue", "angular", "webdev"],
+  "user": {
+    "name": "haycuoilennao19",
+    "username": "haycuoilennao19",
+    "twitter_username": null,
+    "github_username": "haycuoilennao19",
+    "website_url": "https://en.niemvuilaptrinh.com/",
+    "profile_image": "https://res.cloudinary.com/practicaldev/image/fetch/s---WFpG4wZ--/c_fill,f_auto,fl_progressive,h_640,q_auto,w_640/https://dev-to-uploads.s3.amazonaws.com/uploads/user/profile_image/250777/64dd831f-a536-4d22-8a1e-5887cdfd4d5c.jpg",
+    "profile_image_90": "https://res.cloudinary.com/practicaldev/image/fetch/s--au8dSPuh--/c_fill,f_auto,fl_progressive,h_90,q_auto,w_90/https://dev-to-uploads.s3.amazonaws.com/uploads/user/profile_image/250777/64dd831f-a536-4d22-8a1e-5887cdfd4d5c.jpg"
+  },
+  "original_created_at": "2021-02-03T13:39:15Z",
+  "image": "https://dev.to/social_previews/article/590987.png",
+  "author": "haycuoilennao19",
+  "author_url": "https://dev.to/haycuoilennao19",
+  "localize": [
+    {
+      "locale": "zh",
+      "description": "UI Library For React MATERIAL-UI(React) MATERIAL-UI(React)组件使...",
+      "title": "34个React、Vue和Angular的UI库。"
+    },
+    {
+      "locale": "zh-Hant",
+      "description": "UI Library For React MATERIAL-UI(React) MATERIAL-UI(React)組件使...",
+      "title": "34個React、Vue和Angular的UI庫。"
+    }
+  ]
+}

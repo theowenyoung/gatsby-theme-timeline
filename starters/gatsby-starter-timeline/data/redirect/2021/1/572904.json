@@ -1,0 +1,50 @@
+{
+  "type_of": "article",
+  "id": 572904,
+  "title": "17 Javascript optimization tips to know in 2021 🚀",
+  "description": "You might be using Javascript development for a long time but sometimes you might not be updated with...",
+  "readable_publish_date": "Jan 25",
+  "slug": "17-javascript-optimization-tips-3gil",
+  "path": "/blessingartcreator/17-javascript-optimization-tips-3gil",
+  "url": "https://dev.to/blessingartcreator/17-javascript-optimization-tips-3gil",
+  "comments_count": 53,
+  "public_reactions_count": 1059,
+  "collection_id": null,
+  "published_timestamp": "2021-01-25T16:32:43Z",
+  "positive_reactions_count": 1059,
+  "cover_image": "https://res.cloudinary.com/practicaldev/image/fetch/s--jT3wktcF--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/ejezjwd81ld46em12d9f.jpg",
+  "social_image": "https://res.cloudinary.com/practicaldev/image/fetch/s--ZiAhPbai--/c_imagga_scale,f_auto,fl_progressive,h_500,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/ejezjwd81ld46em12d9f.jpg",
+  "canonical_url": "https://dev.to/blessingartcreator/17-javascript-optimization-tips-3gil",
+  "created_at": "2021-04-05T20:21:55.712Z",
+  "edited_at": "2021-01-31T20:50:38Z",
+  "crossposted_at": null,
+  "published_at": "2021-01-25T16:32:43Z",
+  "last_comment_at": "2021-03-07T15:51:32Z",
+  "tag_list": ["react", "webdev", "javascript", "codenewbie"],
+  "tags": ["react", "webdev", "javascript", "codenewbie"],
+  "user": {
+    "name": "Blessing Hirwa",
+    "username": "blessingartcreator",
+    "twitter_username": "graphicblessing",
+    "github_username": "hirwablessing",
+    "website_url": "http://hirwa-blessing.netlify.com/",
+    "profile_image": "https://res.cloudinary.com/practicaldev/image/fetch/s--ArePox3x--/c_fill,f_auto,fl_progressive,h_640,q_auto,w_640/https://dev-to-uploads.s3.amazonaws.com/uploads/user/profile_image/411915/edb170c0-a142-47ea-acab-90751acbd7fa.png",
+    "profile_image_90": "https://res.cloudinary.com/practicaldev/image/fetch/s--hr-9CVYb--/c_fill,f_auto,fl_progressive,h_90,q_auto,w_90/https://dev-to-uploads.s3.amazonaws.com/uploads/user/profile_image/411915/edb170c0-a142-47ea-acab-90751acbd7fa.png"
+  },
+  "original_created_at": "2021-01-15T20:24:31Z",
+  "image": "https://res.cloudinary.com/practicaldev/image/fetch/s--jT3wktcF--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/ejezjwd81ld46em12d9f.jpg",
+  "author": "Blessing Hirwa",
+  "author_url": "https://dev.to/blessingartcreator",
+  "localize": [
+    {
+      "locale": "zh",
+      "description": "你可能使用Javascript开发很久了，但有时你可能没有更新的...。",
+      "title": "2021年要知道的17个Javascript优化技巧 🚀。"
+    },
+    {
+      "locale": "zh-Hant",
+      "description": "你可能使用Javascript開發很久了，但有時你可能沒有更新的...。",
+      "title": "2021年要知道的17個Javascript優化技巧 🚀。"
+    }
+  ]
+}
