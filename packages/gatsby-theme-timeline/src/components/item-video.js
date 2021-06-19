@@ -29,12 +29,12 @@ const itemHero = ({ item }) => {
   const videoUrlObj = new URL(video.url)
   if (provider === `Reddit`) {
     const embed = video.embed
-    const videoHeight = video.height
+    const videoHeight = video.height + 248
     const videoWidth = video.width
     let paddingBottom = `56.25%`
     if (videoHeight && videoWidth) {
       if (videoHeight > videoWidth) {
-        paddingBottom = `100%`
+        paddingBottom = `104%`
       } else {
         paddingBottom = `${(videoHeight * 100) / videoWidth}%`
       }

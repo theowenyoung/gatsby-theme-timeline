@@ -21,8 +21,12 @@ function formatNumber(number) {
   return scaled.toFixed(1) + suffix
 }
 const AuthorInfo = ({ item }) => {
-  const { channelUrl, channel, author, authorUrl, originalUrl, score } = item
+  const { channelUrl, channel, author, authorUrl, originalUrl, score, video } =
+    item
   if (!channel || !author) {
+    return null
+  }
+  if (video && video.embed) {
     return null
   }
   return (

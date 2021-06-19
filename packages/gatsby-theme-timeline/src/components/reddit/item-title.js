@@ -2,7 +2,10 @@
 import { Link as LinkUI, jsx, Themed } from "theme-ui"
 
 export default function ({ item }) {
-  const { title, originalUrl } = item
+  const { title, originalUrl, video } = item
+  if (video && video.embed) {
+    return null
+  }
   return (
     <LinkUI
       sx={{ color: `text` }}

@@ -22,40 +22,46 @@ const Item = (props) => {
         borderWidth: 1,
         borderStyle: `solid`,
         borderColor: `muted`,
-        px: [3, 4],
+        px: 0,
         pt: 3,
         pb: 4,
       }}
     >
-      <ItemHeader {...props}></ItemHeader>
-      {title && <ItemTitle {...props}></ItemTitle>}
-      <Hero {...props}></Hero>
-      <ItemVideo {...props}></ItemVideo>
-      {video && video.url && <br></br>}
-      <ItemExcerpt {...props}></ItemExcerpt>
-      {tags && tags.length > 0 && (
-        <Themed.div
-          data-test="item-tags"
-          sx={{
-            display: `flex`,
-            flexWrap: `wrap`,
-            pb: 3,
-          }}
-        >
-          {tags &&
-            tags.map((tag) => {
-              return (
-                <Tag
-                  to={withPrefix(urlJoin(basePath, `tags/${kebabCase(tag)}`))}
-                  key={`tag-${tag}`}
-                >
-                  {tag}
-                </Tag>
-              )
-            })}
-        </Themed.div>
-      )}
-      <ItemFooter {...props}></ItemFooter>
+      <Box sx={{ px: [3, 4] }}>
+        <ItemHeader {...props}></ItemHeader>
+        {title && <ItemTitle {...props}></ItemTitle>}
+        <Hero {...props}></Hero>
+      </Box>
+      <Box sx={{ px: [2, 3] }}>
+        <ItemVideo {...props}></ItemVideo>
+      </Box>
+      {video && video.url && !video.embed && <br></br>}
+      <Box sx={{ px: [3, 4] }}>
+        <ItemExcerpt {...props}></ItemExcerpt>
+        {tags && tags.length > 0 && (
+          <Themed.div
+            data-test="item-tags"
+            sx={{
+              display: `flex`,
+              flexWrap: `wrap`,
+              pb: 3,
+            }}
+          >
+            {tags &&
+              tags.map((tag) => {
+                return (
+                  <Tag
+                    to={withPrefix(urlJoin(basePath, `tags/${kebabCase(tag)}`))}
+                    key={`tag-${tag}`}
+                  >
+                    {tag}
+                  </Tag>
+                )
+              })}
+          </Themed.div>
+        )}
+        <ItemFooter {...props}></ItemFooter>
+      </Box>
     </Box>
   )
 }

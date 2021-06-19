@@ -263,6 +263,7 @@ exports.createPages = async ({ graphql, actions, reporter }, themeOptions) => {
     postsPerPage,
     postsFilter,
     archiveTime,
+    redirectTypeName,
   } = withDefaults(themeOptions)
 
   // These templates are simply data-fetching wrappers that import components
@@ -399,6 +400,14 @@ exports.createPages = async ({ graphql, actions, reporter }, themeOptions) => {
             nodes {
               id
               slug
+              __typename
+              ... on SocialMediaPost {
+                parent {
+                  internal {
+                    type
+                  }
+                }
+              }
             }
           }
         }
@@ -414,6 +423,14 @@ exports.createPages = async ({ graphql, actions, reporter }, themeOptions) => {
           nodes {
             id
             slug
+            __typename
+            ... on SocialMediaPost {
+              parent {
+                internal {
+                  type
+                }
+              }
+            }
           }
         }
       }
@@ -432,6 +449,13 @@ exports.createPages = async ({ graphql, actions, reporter }, themeOptions) => {
   )
   // Create a page for each Post
   detailPosts.forEach((post, index) => {
+    // not create redirect type post
+    if (
+      post.__typename === `SocialMediaPost` &&
+      redirectTypeName.includes(post.parent.internal.type)
+    ) {
+      return
+    }
     const previous = index === posts.length - 1 ? null : posts[index + 1]
     const next = index === 0 ? null : posts[index - 1]
     const { slug } = post
@@ -736,7 +760,8 @@ exports.onCreateNode = async (
       }
     }
     if (node.is_video && fieldData.video) {
-      fieldData.video.url = `https://www.reddit.com/mediaembed/${node.id}`
+      // fieldData.video.url = `https://www.reddit.com/mediaembed/${node.id}`
+      fieldData.video.url = `https://www.redditmedia.com${node.permalink}?ref_source=embed&amp;ref=share&amp;embed=true`
       fieldData.video.embed = true
     }
 
@@ -844,17 +869,21 @@ exports.onCreateNode = async (
     const tags = node.tags || []
     const excerpt = node.excerpt || node.description || ``
     const id = node.id || node.guid || ``
+    const fieldUrl = node.url || node.link || ``
     const fieldData = {
       provider: `Google News`,
       title: node.title,
       excerpt: excerpt,
       body: node.body || ``,
       tags: tags,
-      slug: urlResolve(basePath, `redirect/${id}`),
+      slug: urlResolve(
+        basePath,
+        `redirect/?url=${encodeURIComponent(fieldUrl)}`
+      ),
       date: date,
       channel,
-      url: node.url || node.link || ``,
-      originalUrl: node.url || node.link || ``,
+      url: fieldUrl,
+      originalUrl: fieldUrl,
       channelUrl: node.author_url || ``,
     }
     const nodeId = `${REDIRECT_TYPE_NAME}-${id}`
