@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.9](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-theme-timeline@1.0.8...gatsby-theme-timeline@1.0.9) (2021-06-19)
+
+### Bug Fixes
+
+- side box responsive ([1391cc0](https://github.com/theowenyoung/gatsby-theme-timeline/commit/1391cc02f7055cc97dab1a56d9b99ac8ac315695))
+
 ## [1.0.8](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-theme-timeline@1.0.7...gatsby-theme-timeline@1.0.8) (2021-06-19)
 
 ### Features
