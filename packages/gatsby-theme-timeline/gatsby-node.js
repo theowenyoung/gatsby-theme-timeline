@@ -993,6 +993,11 @@ exports.onCreateNode = async (
     if (!(score > 0)) {
       score = 0
     }
+    let views = 0
+    views = Number(node.statistics.views)
+    if (!(views > 0)) {
+      views = 0
+    }
     const fieldData = {
       provider: `Youtube`,
       title: node.title,
@@ -1006,7 +1011,7 @@ exports.onCreateNode = async (
       channelUrl,
       url: node.link,
       score: score,
-      views: Number(node.statistics.views),
+      views: views,
       video: {
         url: node.link,
       },
