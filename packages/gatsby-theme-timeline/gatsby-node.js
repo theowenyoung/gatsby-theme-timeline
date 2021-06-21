@@ -568,7 +568,7 @@ exports.onCreateNode = async (
       author,
       authorSlug,
       authorUrl,
-      authorImage___NODE: await createLocalImage(authorAvatarUrl, true),
+      authorImage___NODE: await createLocalImage(authorAvatarUrl),
       score,
       sharedCount,
       likeCount,
@@ -607,10 +607,7 @@ exports.onCreateNode = async (
         url: `https://twitter.com/${sharedStatus.user.screen_name}/statuses/${sharedStatus.id_str}`,
         author: sharedStatus.user.name,
         authorUrl: `https://twitter.com/statuses/${sharedStatus.user.screen_name}`,
-        authorImage___NODE: await createLocalImage(
-          sharedAuthorImageRemote,
-          true
-        ),
+        authorImage___NODE: await createLocalImage(sharedAuthorImageRemote),
         authorSlug: sharedStatus.user.screen_name,
       }
 
