@@ -1,6 +1,6 @@
 {
   "name": "gatsby-theme-timeline",
-  "version": "1.0.13",
+  "version": "1.0.14",
   "description": "A Gatsby theme for showing timeline of posts, twitter, instagram",
   "main": "index.js",
   "author": {

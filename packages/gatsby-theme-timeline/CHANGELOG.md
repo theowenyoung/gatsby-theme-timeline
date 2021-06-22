@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.14](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-theme-timeline@1.0.13...gatsby-theme-timeline@1.0.14) (2021-06-22)
+
+### Features
+
+- add archive end time support ([0efa494](https://github.com/theowenyoung/gatsby-theme-timeline/commit/0efa494d55119f88cc590390017578ac31438771))
+
 ## [1.0.13](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-theme-timeline@1.0.12...gatsby-theme-timeline@1.0.13) (2021-06-21)
 
 **Note:** Version bump only for package gatsby-theme-timeline
