@@ -22,6 +22,8 @@ module.exports = (themeOptions) => {
   const postsFilter = themeOptions.postsFilter || {}
   const archiveTime =
     themeOptions.archiveTime || process.env.GATSBY_ARCHIVE_TIME
+  const archiveEndTime =
+    themeOptions.archiveEndTime || process.env.GATSBY_ARCHIVE_END_TIME
   const jsonTransformerOptions = {
     typeName: ({ node }) => {
       const rootDirectoryName = node.relativeDirectory.split(`/`)[0]
@@ -60,6 +62,7 @@ module.exports = (themeOptions) => {
     imageMaxWidth,
     imageMaxHeight,
     archiveTime,
+    archiveEndTime,
     ...themeOptions,
     disqus: {
       ...disqusDefault,

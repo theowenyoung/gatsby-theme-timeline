@@ -263,6 +263,7 @@ exports.createPages = async ({ graphql, actions, reporter }, themeOptions) => {
     postsPerPage,
     postsFilter,
     archiveTime,
+    archiveEndTime,
     redirectTypeName,
   } = withDefaults(themeOptions)
 
@@ -387,19 +388,30 @@ exports.createPages = async ({ graphql, actions, reporter }, themeOptions) => {
   let detailsPageResult = {
     errors: [],
   }
+
   if (archiveTime) {
-    const archiveTimestamp = new Date(archiveTime)
+    const archiveTimestamp = new Date(archiveTime).toISOString()
+    let archiveEndTimestamp = new Date(99999999999999)
+    if (archiveEndTime) {
+      archiveEndTimestamp = new Date(archiveEndTime).toISOString()
+    }
     detailsPageResult = await graphql(
       `
-        query DetailsPageFilterQuery($archiveTimestamp: Date!) {
+        query DetailsPageFilterQuery(
+          $archiveTimestamp: Date!
+          $archiveEndTimestamp: Date!
+        ) {
           allBlogPost(
             sort: { fields: [date, title], order: DESC }
             skip: 1
-            filter: { date: { gte: $archiveTimestamp } }
+            filter: {
+              date: { gte: $archiveTimestamp, lt: $archiveEndTimestamp }
+            }
           ) {
             nodes {
               id
               slug
+              date
               __typename
               ... on SocialMediaPost {
                 parent {
@@ -414,6 +426,7 @@ exports.createPages = async ({ graphql, actions, reporter }, themeOptions) => {
       `,
       {
         archiveTimestamp: archiveTimestamp,
+        archiveEndTimestamp: archiveEndTimestamp,
       }
     )
   } else {
@@ -423,6 +436,7 @@ exports.createPages = async ({ graphql, actions, reporter }, themeOptions) => {
           nodes {
             id
             slug
+            date
             __typename
             ... on SocialMediaPost {
               parent {
@@ -447,6 +461,7 @@ exports.createPages = async ({ graphql, actions, reporter }, themeOptions) => {
   const PostTemplate = require.resolve(
     `gatsby-theme-blog-core/src/templates/post-query`
   )
+
   // Create a page for each Post
   detailPosts.forEach((post, index) => {
     // not create redirect type post
