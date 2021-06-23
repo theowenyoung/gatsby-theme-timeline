@@ -8,7 +8,7 @@
 import React from "react"
 import PropTypes from "prop-types"
 import Helmet from "react-helmet"
-import { useStaticQuery, graphql, withPrefix } from "gatsby"
+import { withPrefix } from "gatsby"
 import { useLocalization } from "gatsby-theme-i18n"
 import urlJoin from "url-join"
 
@@ -26,28 +26,6 @@ function SEO({
   item,
   siteMetadata,
 }) {
-  if (!siteMetadata) {
-    const queryData = useStaticQuery(
-      graphql`
-        query {
-          site {
-            siteMetadata {
-              title
-              description
-              defaultSocialImageUrl
-              author
-              siteUrl
-              keywords
-              telegram
-              iconUrl
-            }
-          }
-        }
-      `
-    )
-    siteMetadata = queryData.site.siteMetadata
-  }
-
   const { locale } = useLocalization()
   const metaDescription = description || siteMetadata.description
   const author = itemAuthor || siteMetadata.author

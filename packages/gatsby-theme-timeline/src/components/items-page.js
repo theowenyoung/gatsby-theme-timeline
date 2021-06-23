@@ -11,8 +11,6 @@ import AsideBox from "./aside-box"
 import ItemsSEO from "./items-seo"
 import ItemsFooter from "./items-footer"
 const Items = ({ location, data, pageContext }) => {
-  console.log(`pageContext`, pageContext)
-
   const { basePath, pageType, siteMetadata } = pageContext
 
   const items = data.allBlogPost.nodes

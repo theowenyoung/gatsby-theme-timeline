@@ -1,14 +1,10 @@
 /** @jsx jsx */
-import { useStaticQuery, graphql, Link, withPrefix } from "gatsby"
+import { Link, withPrefix } from "gatsby"
 import { Themed, Flex, Link as LinkUI, jsx, Image } from "theme-ui"
 import BioContent from "./bio-content"
 
 const Bio = ({ basePath, siteMetadata }) => {
   basePath = basePath || `/`
-  if (!siteMetadata) {
-    const data = useStaticQuery(bioQuery)
-    siteMetadata = data.site.siteMetadata
-  }
 
   return (
     <Flex data-test="bio" sx={{ mb: 4, alignItems: `center` }}>
@@ -47,16 +43,5 @@ const Bio = ({ basePath, siteMetadata }) => {
     </Flex>
   )
 }
-
-const bioQuery = graphql`
-  query BioQuery {
-    site {
-      siteMetadata {
-        author
-        iconUrl
-      }
-    }
-  }
-`
 
 export default Bio

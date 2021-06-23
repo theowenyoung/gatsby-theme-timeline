@@ -9,6 +9,9 @@ const DetailPage = ({
   pageContext,
 }) => {
   const { siteMetadata } = pageContext
+  if (!siteMetadata) {
+    return null
+  }
   const { title, menuLinks } = siteMetadata
   const item = blogPost
   const basePath = item?.fields?.basePath || `/`
