@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-starter-timeline@1.0.14...gatsby-starter-timeline@2.0.0) (2021-06-23)
+
+### Features
+
+- remove static query for fast building ([1859450](https://github.com/theowenyoung/gatsby-theme-timeline/commit/1859450afb2619661fab8a0d72b1d2189acdcb50))
+
 ## [1.0.14](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-starter-timeline@1.0.13...gatsby-starter-timeline@1.0.14) (2021-06-22)
 
 **Note:** Version bump only for package gatsby-starter-timeline
