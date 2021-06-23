@@ -4,15 +4,11 @@ import DetailFooter from "./detail-footer"
 import Detail from "./detail"
 import DetailSEO from "./detail-seo"
 const DetailPage = ({
-  data: {
-    blogPost,
-    previous,
-    next,
-    site: { siteMetadata },
-  },
+  data: { blogPost, previous, next },
   location,
   pageContext,
 }) => {
+  const { siteMetadata } = pageContext
   const { title, menuLinks } = siteMetadata
   const item = blogPost
   const basePath = item?.fields?.basePath || `/`
@@ -45,6 +41,7 @@ const DetailPage = ({
             basePath: basePath,
             item,
             pageContext,
+            siteMetadata,
           }}
         />
       </main>

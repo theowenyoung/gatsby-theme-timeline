@@ -11,7 +11,6 @@ import Helmet from "react-helmet"
 import { useStaticQuery, graphql, withPrefix } from "gatsby"
 import { useLocalization } from "gatsby-theme-i18n"
 import urlJoin from "url-join"
-import { getSrc } from "gatsby-plugin-image"
 
 function SEO({
   description,
@@ -25,41 +24,36 @@ function SEO({
   location,
   pageType,
   item,
+  siteMetadata,
 }) {
-  const { site, avatar, defaultImage } = useStaticQuery(
-    graphql`
-      query {
-        site {
-          siteMetadata {
-            title
-            description
-            author
-            siteUrl
-            keywords
-            telegram
+  if (!siteMetadata) {
+    const queryData = useStaticQuery(
+      graphql`
+        query {
+          site {
+            siteMetadata {
+              title
+              description
+              defaultSocialImageUrl
+              author
+              siteUrl
+              keywords
+              telegram
+              iconUrl
+            }
           }
         }
-        defaultImage: file(
-          absolutePath: { regex: "/avatar.(jpeg|jpg|gif|png)/" }
-        ) {
-          childImageSharp {
-            gatsbyImageData
-          }
-        }
-        avatar: file(absolutePath: { regex: "/avatar.(jpeg|jpg|gif|png)/" }) {
-          childImageSharp {
-            gatsbyImageData(width: 48, height: 48, layout: FIXED)
-          }
-        }
-      }
-    `
-  )
+      `
+    )
+    siteMetadata = queryData.site.siteMetadata
+  }
+
   const { locale } = useLocalization()
-  const metaDescription = description || site.siteMetadata.description
-  const author = itemAuthor || site.siteMetadata.author
-  const siteUrl = site.siteMetadata.siteUrl
-  const keywords = site.siteMetadata.keywords || []
-  const avatarImage = authorImage || (avatar && getSrc(avatar))
+  const metaDescription = description || siteMetadata.description
+  const author = itemAuthor || siteMetadata.author
+  const siteUrl = siteMetadata.siteUrl
+  const keywords = siteMetadata.keywords || []
+  const avatarImage = authorImage || siteMetadata.iconUrl
   const getImagePath = (imageURI) => {
     if (
       !imageURI.match(
@@ -73,11 +67,11 @@ function SEO({
 
   const image = imageSource
     ? getImagePath(imageSource)
-    : getImagePath(defaultImage ? getSrc(defaultImage) : null)
+    : siteMetadata.defaultSocialImageUrl
 
   const imageAltText = imageAlt || metaDescription
-  const siteTitle = site.siteMetadata.title
-  const telegram = site.siteMetadata.telegram
+  const siteTitle = siteMetadata.title
+  const telegram = siteMetadata.telegram
   const pageTitle = `${title} - ${siteTitle}`
   const authorJSONLD = {
     "@type": `Person`,
@@ -171,7 +165,7 @@ function SEO({
         },
         {
           name: `twitter:creator`,
-          content: site.siteMetadata.author,
+          content: siteMetadata.author,
         },
         {
           name: `twitter:title`,

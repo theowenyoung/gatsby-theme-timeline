@@ -6,15 +6,14 @@ import Bio from "./bio"
 import Tags from "./tags"
 import Links from "./links"
 const Aside = ({ data, pageContext }) => {
-  const { basePath } = pageContext
+  const { basePath, siteMetadata } = pageContext
   const {
-    site: { siteMetadata },
     tagsGroup: { group },
   } = data
   const { social } = siteMetadata
   const sideItems = (
     <>
-      <Bio basePath={basePath}></Bio>
+      <Bio basePath={basePath} siteMetadata={siteMetadata}></Bio>
       <Tags basePath={basePath} group={group}></Tags>
       <Links siteMetadata={siteMetadata} links={social}></Links>
     </>

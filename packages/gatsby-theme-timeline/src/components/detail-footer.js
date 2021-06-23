@@ -3,17 +3,15 @@ import { css, Themed, jsx } from "theme-ui"
 import { withPrefix } from "gatsby"
 import kebabCase from "lodash/kebabCase"
 import Tag from "./tag"
-import useTimelineThemeConfig from "../hooks/configOptions"
 import { join as urlJoin } from "path-browserify"
 import Disqus from "./comments/disqus"
 import Utterances from "./comments/utterances"
 import DetailFooterNav from "./detail-footer-nav"
 import Bio from "./bio"
 const PostFooter = (props) => {
-  const { item, basePath } = props
-  const timelineThemeConfig = useTimelineThemeConfig()
+  const { item, basePath, siteMetadata } = props
   const { tags } = item
-  const { disqus, utterances } = timelineThemeConfig
+  const { disqus, utterances } = siteMetadata
   return (
     <footer
       css={css({
@@ -45,7 +43,7 @@ const PostFooter = (props) => {
             })}
         </Themed.div>
       )}
-      <Bio basePath={basePath}></Bio>
+      <Bio basePath={basePath} siteMetadata={siteMetadata}></Bio>
       <DetailFooterNav {...props}></DetailFooterNav>
       {disqus && disqus.shortname && (
         <Disqus config={disqus} item={item}></Disqus>

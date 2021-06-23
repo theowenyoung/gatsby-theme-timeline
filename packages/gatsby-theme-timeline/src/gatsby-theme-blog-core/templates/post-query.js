@@ -5,24 +5,6 @@ export default PostPage
 
 export const query = graphql`
   query DetailPageQuery($id: String!, $previousId: String, $nextId: String) {
-    site {
-      siteMetadata {
-        title
-        description
-        social {
-          name
-          url
-          external
-          prefetch
-        }
-        menuLinks {
-          name
-          url
-          external
-          prefetch
-        }
-      }
-    }
     blogPost(id: { eq: $id }) {
       id
       excerpt

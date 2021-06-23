@@ -11,6 +11,7 @@ export default ({ pageContext, location, siteMetadata, image }) => {
   }
   return (
     <SEO
+      siteMetadata={siteMetadata}
       title={title}
       description={description}
       imageSource={pageType === `home` ? null : image}

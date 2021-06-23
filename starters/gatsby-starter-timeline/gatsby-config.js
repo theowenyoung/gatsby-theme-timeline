@@ -1,29 +1,39 @@
 require("dotenv").config()
-module.exports = {
-  siteMetadata: {
-    title: `Timeline`,
-    author: "Owen Young",
-    description: "Gatsby theme timeline",
-    keywords: ["timeline", "gatsby"],
-    siteUrl: `https://gatsby-theme-timeline.owenyoung.com`,
-    telegram: "test",
-    social: [
-      {
-        name: "Github",
-        url: "https://github.com/theowenyoung/gatsby-theme-timeline",
-        external: true,
-      },
-      {
-        name: "Twitter",
-        url: "https://twitter.com/theowenyoung",
-      },
-    ],
-    menuLinks: [
-      { name: "Post", url: "/tags/post" },
-      { name: "Reddit", url: "/tags/reddit/", external: true },
-      { name: "Twitter", url: "/tags/tweet/", prefetch: false },
-    ],
+const siteMetadata = {
+  title: `Timeline`,
+  author: "Owen Young",
+  description: "Gatsby theme timeline",
+  keywords: ["timeline", "gatsby"],
+  siteUrl: `https://gatsby-theme-timeline.owenyoung.com`,
+  telegram: "test",
+  iconUrl: "https://i.imgur.com/jVsw5Oq.png",
+  defaultSocialImageUrl: "https://i.imgur.com/LI3xVu0.png",
+  social: [
+    {
+      name: "Github",
+      url: "https://github.com/theowenyoung/gatsby-theme-timeline",
+      external: true,
+    },
+    {
+      name: "Twitter",
+      url: "https://twitter.com/theowenyoung",
+    },
+  ],
+  menuLinks: [
+    { name: "Post", url: "/tags/post" },
+    { name: "Reddit", url: "/tags/reddit/", external: true },
+    { name: "Twitter", url: "/tags/tweet/", prefetch: false },
+  ],
+  disqus: {
+    shortname: "gatsby-theme-timeline",
   },
+  utterances: {
+    repo: "theowenyoung/gatsby-theme-timeline",
+    label: "comment",
+  },
+}
+module.exports = {
+  siteMetadata,
   plugins: [
     // {
     //   resolve: `gatsby-source-twitter`,
@@ -62,14 +72,8 @@ module.exports = {
         tweetTypeName: ["TweetsJson", "twitterStatusesUserTimelineMyTweet"],
         instagramTypeName: ["InstagramJson", "InstaNode"],
         // archiveTime: "2021/06/17",
-        // disqus: {
-        //   shortname: "gatsby-theme-timeline",
-        // },
-        utterances: {
-          repo: "theowenyoung/gatsby-theme-timeline",
-          label: "comment",
-        },
 
+        siteMetadata,
         // shouldTransformImage: false,
         // basePath: "/test",
         // postsFilter: {

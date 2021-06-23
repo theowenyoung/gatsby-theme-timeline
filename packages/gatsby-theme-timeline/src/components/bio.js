@@ -1,18 +1,14 @@
 /** @jsx jsx */
 import { useStaticQuery, graphql, Link, withPrefix } from "gatsby"
-import { GatsbyImage, getImage } from "gatsby-plugin-image"
-import { Themed, Flex, Link as LinkUI, jsx } from "theme-ui"
+import { Themed, Flex, Link as LinkUI, jsx, Image } from "theme-ui"
 import BioContent from "./bio-content"
 
-const Bio = ({ basePath }) => {
+const Bio = ({ basePath, siteMetadata }) => {
   basePath = basePath || `/`
-  const data = useStaticQuery(bioQuery)
-  const {
-    site: {
-      siteMetadata: { author },
-    },
-    avatar,
-  } = data
+  if (!siteMetadata) {
+    const data = useStaticQuery(bioQuery)
+    siteMetadata = data.site.siteMetadata
+  }
 
   return (
     <Flex data-test="bio" sx={{ mb: 4, alignItems: `center` }}>
@@ -21,15 +17,15 @@ const Bio = ({ basePath }) => {
         as={Link}
         to={withPrefix(basePath)}
       >
-        {avatar ? (
-          <GatsbyImage
-            image={getImage(avatar)}
-            alt={author}
+        {siteMetadata.iconUrl ? (
+          <Image
+            src={siteMetadata.iconUrl}
+            alt="logo"
             sx={{
               mb: 0,
-              width: `48px`,
-              minWidth: `48px`,
               borderRadius: `full`,
+              width: `48px`,
+              height: `48px`,
             }}
           />
         ) : (
@@ -57,11 +53,7 @@ const bioQuery = graphql`
     site {
       siteMetadata {
         author
-      }
-    }
-    avatar: file(absolutePath: { regex: "/avatar.(jpeg|jpg|gif|png)/" }) {
-      childImageSharp {
-        gatsbyImageData(layout: FIXED, width: 48, height: 48)
+        iconUrl
       }
     }
   }

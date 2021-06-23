@@ -11,12 +11,12 @@ import AsideBox from "./aside-box"
 import ItemsSEO from "./items-seo"
 import ItemsFooter from "./items-footer"
 const Items = ({ location, data, pageContext }) => {
-  const { basePath, pageType } = pageContext
+  console.log(`pageContext`, pageContext)
+
+  const { basePath, pageType, siteMetadata } = pageContext
 
   const items = data.allBlogPost.nodes
-  const {
-    site: { siteMetadata },
-  } = data
+
   const { title, menuLinks } = siteMetadata
   let image = null
   for (let i = 0; i < items.length; i++) {

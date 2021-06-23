@@ -265,6 +265,7 @@ exports.createPages = async ({ graphql, actions, reporter }, themeOptions) => {
     archiveTime,
     archiveEndTime,
     redirectTypeName,
+    siteMetadata,
   } = withDefaults(themeOptions)
 
   // These templates are simply data-fetching wrappers that import components
@@ -327,6 +328,7 @@ exports.createPages = async ({ graphql, actions, reporter }, themeOptions) => {
         currentPage: i + 1,
         maxWidth: imageMaxWidth,
         maxHeight: imageMaxHeight,
+        siteMetadata,
       },
     }
     if (i === 0) {
@@ -378,6 +380,7 @@ exports.createPages = async ({ graphql, actions, reporter }, themeOptions) => {
           currentPage: i + 1,
           maxWidth: imageMaxWidth,
           maxHeight: imageMaxHeight,
+          siteMetadata,
         },
       })
     })
@@ -471,8 +474,9 @@ exports.createPages = async ({ graphql, actions, reporter }, themeOptions) => {
     ) {
       return
     }
-    const previous = index === posts.length - 1 ? null : posts[index + 1]
-    const next = index === 0 ? null : posts[index - 1]
+    const previous =
+      index === detailPosts.length - 1 ? null : detailPosts[index + 1]
+    const next = index === 0 ? null : detailPosts[index - 1]
     const { slug } = post
     createPage({
       path: slug,
@@ -482,6 +486,7 @@ exports.createPages = async ({ graphql, actions, reporter }, themeOptions) => {
         previousId: previous ? previous.id : undefined,
         nextId: next ? next.id : undefined,
         maxWidth: imageMaxWidth,
+        siteMetadata,
       },
     })
   })

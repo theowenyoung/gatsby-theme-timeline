@@ -1,12 +1,10 @@
 import React from "react"
 import { css, Themed, Box } from "theme-ui"
 import Header from "./header"
-import useTimelineThemeConfig from "../hooks/configOptions"
 import Helmet from "react-helmet"
 
-const Layout = ({ children, ...props }) => {
-  const timelineThemeConfig = useTimelineThemeConfig()
-  const { webfontURL } = timelineThemeConfig
+const Layout = ({ children, siteMetadata, ...props }) => {
+  const { webfontURL } = siteMetadata
   return (
     <Themed.root>
       <Helmet>

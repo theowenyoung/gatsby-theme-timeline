@@ -2,6 +2,7 @@ const withDefaults = require(`gatsby-theme-blog-core/utils/default-options`)
 const _ = require(`lodash`)
 module.exports = (themeOptions) => {
   const baseOptions = withDefaults(themeOptions)
+  const siteMetadata = themeOptions.siteMetadata || null
   const tweetTypeName = themeOptions.tweetTypeName || [`TweetsJson`]
   const redditTypeName = themeOptions.redditTypeName || [`RedditJson`]
   const hnTypeName = themeOptions.hnTypeName || [`HnJson`]
@@ -10,6 +11,8 @@ module.exports = (themeOptions) => {
   const youtubeTypeName = themeOptions.youtubeTypeName || [`YoutubeJson`]
   const instagramTypeName = themeOptions.instagramTypeName || [`InstagramJson`]
   const postsPerPage = themeOptions.postsPerPage || 25
+  const tagPostsPerPage = themeOptions.tagPostsPerPage || 25
+
   const preset = themeOptions.preset || `gatsby-theme-ui-timeline-preset`
   const prismPreset = themeOptions.prismPreset || `github`
   const shouldTransformJson =
@@ -53,6 +56,7 @@ module.exports = (themeOptions) => {
     instagramTypeName,
     redirectTypeName,
     postsPerPage,
+    tagPostsPerPage,
     preset,
     prismPreset,
     dataPath,
@@ -63,6 +67,7 @@ module.exports = (themeOptions) => {
     imageMaxHeight,
     archiveTime,
     archiveEndTime,
+    siteMetadata: siteMetadata,
     ...themeOptions,
     disqus: {
       ...disqusDefault,
