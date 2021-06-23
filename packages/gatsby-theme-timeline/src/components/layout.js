@@ -3,7 +3,8 @@ import { css, Themed, Box } from "theme-ui"
 import Header from "./header"
 import Helmet from "react-helmet"
 
-const Layout = ({ children, siteMetadata, ...props }) => {
+const Layout = ({ children, ...props }) => {
+  const siteMetadata = props.siteMetadata
   const { webfontURL } = siteMetadata
   return (
     <Themed.root>

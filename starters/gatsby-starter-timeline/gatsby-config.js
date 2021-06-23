@@ -24,9 +24,9 @@ const siteMetadata = {
     { name: "Reddit", url: "/tags/reddit/", external: true },
     { name: "Twitter", url: "/tags/tweet/", prefetch: false },
   ],
-  disqus: {
-    shortname: "gatsby-theme-timeline",
-  },
+  // disqus: {
+  //   shortname: "gatsby-theme-timeline",
+  // },
   utterances: {
     repo: "theowenyoung/gatsby-theme-timeline",
     label: "comment",
