@@ -24,7 +24,7 @@ const Detail = ({ item }) => {
       </div>
 
       <div>
-        <div sx={{ position: `relative`, pb: `56.25%` }}>
+        <div sx={{ position: `relative`, pb: `70%` }}>
           <iframe
             id="reddit-embed"
             title={title}

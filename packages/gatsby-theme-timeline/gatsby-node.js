@@ -24,6 +24,7 @@ const {
 } = require(`./utils/constans`)
 const { createContentDigest, urlResolve } = require(`gatsby-core-utils`)
 const indexPages = {}
+let firstDetailPage = null // temp for blog core create detail page
 // Ensure that content directories exist at site-level
 exports.onPreBootstrap = ({ store }, themeOptions) => {
   const { program } = store.getState()
@@ -269,8 +270,76 @@ exports.createPages = async ({ graphql, actions, reporter }, themeOptions) => {
     postsFilter,
     redirectTypeName,
     siteMetadata,
+    skipCreateIndexPages,
   } = withDefaults(themeOptions)
 
+  // create limit >1000 detail page, cause blog-core limit 1000
+  // https://github.com/gatsbyjs/themes/pull/136 wait merged
+  const detailsPageResult = await graphql(`
+    {
+      allBlogPost(sort: { fields: [date, title], order: DESC }) {
+        nodes {
+          id
+          slug
+          date
+          __typename
+          ... on SocialMediaPost {
+            parent {
+              internal {
+                type
+              }
+            }
+          }
+        }
+      }
+    }
+  `)
+
+  if (detailsPageResult.errors) {
+    reporter.panic(detailsPageResult.errors)
+  }
+
+  // Create Posts and Post pages.
+  const { allBlogPost: allDetailBlogPost } = detailsPageResult.data
+  const detailPosts = allDetailBlogPost.nodes
+  const PostTemplate = require.resolve(
+    `gatsby-theme-blog-core/src/templates/post-query`
+  )
+
+  // Create a page for each Post
+  detailPosts.forEach((post, index) => {
+    // not create redirect type post
+    const previous =
+      index === detailPosts.length - 1 ? null : detailPosts[index + 1]
+    const next = index === 0 ? null : detailPosts[index - 1]
+    const { slug } = post
+    const pageInfo = {
+      path: slug,
+      component: PostTemplate,
+      context: {
+        id: post.id,
+        previousId: previous ? previous.id : undefined,
+        nextId: next ? next.id : undefined,
+        maxWidth: imageMaxWidth,
+        siteMetadata,
+      },
+    }
+    if (index === 0) {
+      firstDetailPage = pageInfo
+    }
+    if (
+      post.__typename === `SocialMediaPost` &&
+      redirectTypeName.includes(post.parent.internal.type)
+    ) {
+      return
+    }
+
+    createPage(pageInfo)
+  })
+
+  if (skipCreateIndexPages) {
+    return
+  }
   // These templates are simply data-fetching wrappers that import components
   // const ItemTemplate = require.resolve(`./src/templates/post-query`)
   const ItemsTemplate = require.resolve(`./src/templates/posts-query`)
@@ -386,65 +455,6 @@ exports.createPages = async ({ graphql, actions, reporter }, themeOptions) => {
           siteMetadata,
         },
       })
-    })
-  })
-
-  // create limit >1000 detail page, cause blog-core limit 1000
-  // https://github.com/gatsbyjs/themes/pull/136 wait merged
-  const detailsPageResult = await graphql(`
-    {
-      allBlogPost(sort: { fields: [date, title], order: DESC }) {
-        nodes {
-          id
-          slug
-          date
-          __typename
-          ... on SocialMediaPost {
-            parent {
-              internal {
-                type
-              }
-            }
-          }
-        }
-      }
-    }
-  `)
-
-  if (detailsPageResult.errors) {
-    reporter.panic(detailsPageResult.errors)
-  }
-
-  // Create Posts and Post pages.
-  const { allBlogPost: allDetailBlogPost } = detailsPageResult.data
-  const detailPosts = allDetailBlogPost.nodes
-  const PostTemplate = require.resolve(
-    `gatsby-theme-blog-core/src/templates/post-query`
-  )
-
-  // Create a page for each Post
-  detailPosts.forEach((post, index) => {
-    // not create redirect type post
-    if (
-      post.__typename === `SocialMediaPost` &&
-      redirectTypeName.includes(post.parent.internal.type)
-    ) {
-      return
-    }
-    const previous =
-      index === detailPosts.length - 1 ? null : detailPosts[index + 1]
-    const next = index === 0 ? null : detailPosts[index - 1]
-    const { slug } = post
-    createPage({
-      path: slug,
-      component: PostTemplate,
-      context: {
-        id: post.id,
-        previousId: previous ? previous.id : undefined,
-        nextId: next ? next.id : undefined,
-        maxWidth: imageMaxWidth,
-        siteMetadata,
-      },
     })
   })
 }
@@ -1282,6 +1292,7 @@ exports.onCreateNode = async (
 exports.onCreatePage = function ({ page, actions }, themeOptions) {
   const { basePath } = withDefaults(themeOptions)
   const { createPage, deletePage } = actions
+
   if (
     !page.context.pageType &&
     page.path === basePath &&
@@ -1289,7 +1300,16 @@ exports.onCreatePage = function ({ page, actions }, themeOptions) {
   ) {
     deletePage(page)
     createPage(indexPages[basePath])
+  } else if (
+    !page.context.siteMetadata &&
+    firstDetailPage &&
+    page.path === firstDetailPage.path
+  ) {
+    deletePage(page)
+
+    createPage(firstDetailPage)
   }
+  // temp
 }
 function findHashtags(searchText) {
   searchText = searchText || ``

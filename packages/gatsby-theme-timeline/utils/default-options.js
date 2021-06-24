@@ -27,6 +27,14 @@ module.exports = (themeOptions) => {
     themeOptions.postStartTime || process.env.GATSBY_POST_START_TIME
   const postEndTime =
     themeOptions.postEndTime || process.env.GATSBY_POST_END_TIME
+  let skipCreateIndexPages = false
+
+  if (process.env.GATSBY_SKIP_CREATE_INDEX_PAGES === `true`) {
+    skipCreateIndexPages = true
+  }
+  if (themeOptions.skipCreateIndexPages) {
+    skipCreateIndexPages = true
+  }
   const jsonTransformerOptions = {
     typeName: ({ node }) => {
       const rootDirectoryName = node.relativeDirectory.split(`/`)[0]
@@ -68,6 +76,7 @@ module.exports = (themeOptions) => {
     postStartTime,
     postEndTime,
     contentPath,
+    skipCreateIndexPages,
     siteMetadata: siteMetadata,
     ...themeOptions,
     disqus: {

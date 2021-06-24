@@ -34,11 +34,12 @@ const itemHero = ({ item }) => {
     let paddingBottom = `56.25%`
     if (videoHeight && videoWidth) {
       if (videoHeight > videoWidth) {
-        paddingBottom = `104%`
+        paddingBottom = `105%`
       } else {
         paddingBottom = `${(videoHeight * 100) / videoWidth}%`
       }
     }
+    console.log(`paddingBottom`, paddingBottom)
 
     return (
       <figure sx={{ pb: 0, m: 0 }}>
