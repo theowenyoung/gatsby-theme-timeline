@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.7](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-theme-timeline@2.0.6...gatsby-theme-timeline@2.0.7) (2021-06-24)
+
+### Features
+
+- replace archiveTime with postStartTime ([ec95f1b](https://github.com/theowenyoung/gatsby-theme-timeline/commit/ec95f1bb8bf08dd0974e5b2f014fd4baf09dc54a))
+
 ## [2.0.6](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-theme-timeline@2.0.5...gatsby-theme-timeline@2.0.6) (2021-06-23)
 
 ### Bug Fixes
