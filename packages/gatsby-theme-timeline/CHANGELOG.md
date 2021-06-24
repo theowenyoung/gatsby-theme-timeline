@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.8](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-theme-timeline@2.0.7...gatsby-theme-timeline@2.0.8) (2021-06-24)
+
+### Features
+
+- reddit skip ([e790da8](https://github.com/theowenyoung/gatsby-theme-timeline/commit/e790da8c89b9c4f113994665d0cd216d1dc857cd))
+
 ## [2.0.7](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-theme-timeline@2.0.6...gatsby-theme-timeline@2.0.7) (2021-06-24)
 
 ### Features
