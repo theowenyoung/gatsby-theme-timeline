@@ -39,8 +39,6 @@ const itemHero = ({ item }) => {
         paddingBottom = `${(videoHeight * 100) / videoWidth}%`
       }
     }
-    console.log(`paddingBottom`, paddingBottom)
-
     return (
       <figure sx={{ pb: 0, m: 0 }}>
         {embed ? (

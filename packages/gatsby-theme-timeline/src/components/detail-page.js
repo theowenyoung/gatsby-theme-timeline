@@ -9,8 +9,6 @@ const DetailPage = ({
   pageContext,
 }) => {
   const { siteMetadata } = pageContext
-  console.log(`pageContenxt`, pageContext)
-
   if (!siteMetadata) {
     return null
   }

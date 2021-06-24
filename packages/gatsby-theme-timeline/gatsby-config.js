@@ -17,6 +17,13 @@ module.exports = (themeOptions) => {
       },
     },
     {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: options.contentPath || `content/posts`,
+        name: options.contentPath || `content/posts`,
+      },
+    },
+    {
       resolve: `gatsby-theme-blog-core`,
       options: {
         imageMaxWidth: options.imageMaxWidth,

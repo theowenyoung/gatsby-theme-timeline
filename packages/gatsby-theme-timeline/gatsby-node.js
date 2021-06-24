@@ -1166,6 +1166,7 @@ exports.onCreateNode = async (
     // Create source field (according to contentPath)
     const fileNode = getNode(node.parent)
     const source = fileNode.sourceInstanceName
+
     if (node.internal.type === `Mdx` && source === contentPath) {
       let date
 
