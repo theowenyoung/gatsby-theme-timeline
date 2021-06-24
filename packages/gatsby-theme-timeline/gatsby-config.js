@@ -21,6 +21,7 @@ module.exports = (themeOptions) => {
       options: {
         imageMaxWidth: options.imageMaxWidth,
         ...themeOptions,
+        contentPath: `content/posts-placeholder`,
         limit: 1, // todo https://github.com/gatsbyjs/themes/pull/136 be merged
       },
     },

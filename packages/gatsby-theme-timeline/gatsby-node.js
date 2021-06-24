@@ -1,5 +1,4 @@
 const withDefaults = require(`./utils/default-options`)
-const withCoreDefaults = require(`gatsby-theme-blog-core/utils/default-options`)
 const kebabCase = require(`lodash/kebabCase`)
 const path = require(`path`)
 const mkdirp = require(`mkdirp`)
@@ -10,6 +9,10 @@ const debugTheme = debug(`gatsby-theme-timeline-core`)
 const { htmlToText } = require(`html-to-text`)
 const { truncate } = require(`./utils/truncate`)
 const {
+  createFilePath,
+  createRemoteFileNode,
+} = require(`gatsby-source-filesystem`)
+const {
   TWEET_TYPE_NAME,
   REDDIT_TYPE_NAME,
   HN_TYPE_NAME,
@@ -19,15 +22,17 @@ const {
   YOUTUBE_TYPE_NAME,
   INSTAGRAM_TYPE_NAME,
 } = require(`./utils/constans`)
-const { createRemoteFileNode } = require(`gatsby-source-filesystem`)
 const { createContentDigest, urlResolve } = require(`gatsby-core-utils`)
 const indexPages = {}
 // Ensure that content directories exist at site-level
 exports.onPreBootstrap = ({ store }, themeOptions) => {
   const { program } = store.getState()
-  const { dataPath } = withDefaults(themeOptions)
+  const { dataPath, contentPath } = withDefaults(themeOptions)
 
-  const dirs = [path.join(program.directory, dataPath)]
+  const dirs = [
+    path.join(program.directory, dataPath),
+    path.join(program.directory, contentPath),
+  ]
 
   dirs.forEach((dir) => {
     debugTheme(`Initializing ${dir} directory`)
@@ -262,8 +267,6 @@ exports.createPages = async ({ graphql, actions, reporter }, themeOptions) => {
     imageMaxHeight,
     postsPerPage,
     postsFilter,
-    archiveTime,
-    archiveEndTime,
     redirectTypeName,
     siteMetadata,
   } = withDefaults(themeOptions)
@@ -388,71 +391,25 @@ exports.createPages = async ({ graphql, actions, reporter }, themeOptions) => {
 
   // create limit >1000 detail page, cause blog-core limit 1000
   // https://github.com/gatsbyjs/themes/pull/136 wait merged
-  let detailsPageResult = {
-    errors: [],
-  }
-
-  if (archiveTime) {
-    const archiveTimestamp = new Date(archiveTime).toISOString()
-    let archiveEndTimestamp = new Date(99999999999999)
-    if (archiveEndTime) {
-      archiveEndTimestamp = new Date(archiveEndTime).toISOString()
+  const detailsPageResult = await graphql(`
+    {
+      allBlogPost(sort: { fields: [date, title], order: DESC }) {
+        nodes {
+          id
+          slug
+          date
+          __typename
+          ... on SocialMediaPost {
+            parent {
+              internal {
+                type
+              }
+            }
+          }
+        }
+      }
     }
-    detailsPageResult = await graphql(
-      `
-        query DetailsPageFilterQuery(
-          $archiveTimestamp: Date!
-          $archiveEndTimestamp: Date!
-        ) {
-          allBlogPost(
-            sort: { fields: [date, title], order: DESC }
-            skip: 1
-            filter: {
-              date: { gte: $archiveTimestamp, lt: $archiveEndTimestamp }
-            }
-          ) {
-            nodes {
-              id
-              slug
-              date
-              __typename
-              ... on SocialMediaPost {
-                parent {
-                  internal {
-                    type
-                  }
-                }
-              }
-            }
-          }
-        }
-      `,
-      {
-        archiveTimestamp: archiveTimestamp,
-        archiveEndTimestamp: archiveEndTimestamp,
-      }
-    )
-  } else {
-    detailsPageResult = await graphql(`
-      {
-        allBlogPost(sort: { fields: [date, title], order: DESC }) {
-          nodes {
-            id
-            slug
-            date
-            __typename
-            ... on SocialMediaPost {
-              parent {
-                internal {
-                  type
-                }
-              }
-            }
-          }
-        }
-      }
-    `)
-  }
+  `)
 
   if (detailsPageResult.errors) {
     reporter.panic(detailsPageResult.errors)
@@ -509,8 +466,44 @@ exports.onCreateNode = async (
     instagramTypeName,
     basePath,
     shouldTransformImage,
+    postStartTime,
+    postEndTime,
+    contentPath,
   } = withDefaults(themeOptions)
-  const { contentPath } = withCoreDefaults(themeOptions)
+  const shouldCreate = (date) => {
+    if (postStartTime || postEndTime) {
+      if (date) {
+        const postDate = new Date(date)
+        if (postStartTime && postEndTime) {
+          const postStartDate = new Date(postStartTime)
+          const postEndDate = new Date(postEndTime)
+          if (postDate >= postStartDate && postDate < postEndDate) {
+            return true
+          } else {
+            return false
+          }
+        } else if (postStartTime) {
+          const postStartDate = new Date(postStartTime)
+          if (postDate >= postStartDate) {
+            return true
+          } else {
+            return false
+          }
+        } else if (postEndTime) {
+          const postEndDate = new Date(postEndTime)
+          if (postDate < postEndDate) {
+            return true
+          } else {
+            return false
+          }
+        }
+      } else {
+        return true
+      }
+    }
+
+    return true
+  }
   let allTweetsTypeName = []
   if (typeof tweetTypeName === `string`) {
     allTweetsTypeName.push(tweetTypeName)
@@ -562,6 +555,9 @@ exports.onCreateNode = async (
       `dd MMM DD HH:mm:ss ZZ YYYY`,
       `en`
     ).toISOString()
+    if (!shouldCreate(date)) {
+      return
+    }
     const tweetText = node.full_text
     const author = node.user.name
     const authorSlug = node.user.screen_name
@@ -675,6 +671,9 @@ exports.onCreateNode = async (
   }
   if (allRedditTypeName.includes(node.internal.type)) {
     const date = new Date(node.created_utc * 1000).toISOString()
+    if (!shouldCreate(date)) {
+      return
+    }
     const author = node.author
     let text = ``
     if (node.selftext_html) {
@@ -807,6 +806,9 @@ exports.onCreateNode = async (
 
   if (allHnTypeName.includes(node.internal.type)) {
     const date = new Date(node.created_at).toISOString()
+    if (!shouldCreate(date)) {
+      return
+    }
     const author = node.author
     const tags = []
     let channel = ``
@@ -882,6 +884,9 @@ exports.onCreateNode = async (
   }
   if (allRedirectTypeName.includes(node.internal.type)) {
     const date = new Date(node.created_at).toISOString()
+    if (!shouldCreate(date)) {
+      return
+    }
     const channel = node.author || node.source || ``
     const tags = node.tags || []
     const excerpt = node.excerpt || node.description || ``
@@ -931,6 +936,9 @@ exports.onCreateNode = async (
   }
   if (allPhTypeName.includes(node.internal.type)) {
     const date = node.createdAt
+    if (!shouldCreate(date)) {
+      return
+    }
     const author = node.user.name
     const authorUrl = node.user.url
     const tags = []
@@ -995,6 +1003,9 @@ exports.onCreateNode = async (
   }
   if (allYoutubeTypeName.includes(node.internal.type)) {
     const date = node.created_at || node.isoDate
+    if (!shouldCreate(date)) {
+      return
+    }
     const author = node.author
     const channelUrl = `https://www.youtube.com/channel/${node.channelId}`
     let tags = []
@@ -1069,6 +1080,9 @@ exports.onCreateNode = async (
   if (allInstagramTypeName.includes(node.internal.type)) {
     // TODO
     const date = new Date(node.createdAt || node.timestamp).toISOString()
+    if (!shouldCreate(date)) {
+      return
+    }
     const author = node.username
     const channelUrl = `https://www.instagram.com//${node.username}`
     let tags = []
@@ -1137,19 +1151,111 @@ exports.onCreateNode = async (
       value: basePath,
     })
   }
-  if (node.internal.type === `MdxBlogPost`) {
+
+  if (node.internal.type === `Mdx`) {
     // Create source field (according to contentPath)
-    const mdxNode = getNode(node.parent)
-    const fileNode = getNode(mdxNode.parent)
-    const sourceInstanceName = fileNode.sourceInstanceName
-    if (sourceInstanceName === contentPath) {
+    const fileNode = getNode(node.parent)
+    const source = fileNode.sourceInstanceName
+    if (node.internal.type === `Mdx` && source === contentPath) {
+      let date
+
+      if (node.frontmatter.date) {
+        date = new Date(node.frontmatter.date).toISOString()
+      }
+      if (date) {
+        if (!shouldCreate(date)) {
+          return
+        }
+      }
+      let slug
+      if (node.frontmatter.slug) {
+        if (path.isAbsolute(node.frontmatter.slug)) {
+          // absolute paths take precedence
+          slug = node.frontmatter.slug
+        } else {
+          // otherwise a relative slug gets turned into a sub path
+          slug = urlResolve(basePath, node.frontmatter.slug)
+        }
+      } else {
+        // otherwise use the filepath function from gatsby-source-filesystem
+        const filePath = createFilePath({
+          node: fileNode,
+          getNode,
+          basePath: contentPath,
+        })
+
+        slug = urlResolve(basePath, filePath)
+      }
+      // normalize use of trailing slash
+      slug = slug.replace(/\/*$/, `/`)
+
+      const fieldData = {
+        title: node.frontmatter.title,
+        tags: node.frontmatter.tags || [],
+        slug,
+        date: node.frontmatter.date,
+        image: node.frontmatter.image,
+        imageAlt: node.frontmatter.imageAlt,
+        imageCaptionText: node.frontmatter.imageCaptionText,
+        imageCaptionLink: node.frontmatter.imageCaptionLink,
+        socialImage: node.frontmatter.socialImage,
+      }
+
+      if (validURL(node.frontmatter.image)) {
+        // create a file node for image URLs
+        const remoteFileNode = await createRemoteFileNode({
+          url: node.frontmatter.image,
+          parentNodeId: node.id,
+          createNode,
+          createNodeId,
+          cache,
+          store,
+        })
+        // if the file was created, attach the new node to the parent node
+        if (remoteFileNode) {
+          fieldData.image___NODE = remoteFileNode.id
+        }
+      }
+
+      if (validURL(node.frontmatter.socialImage)) {
+        // create a file node for image URLs
+        const remoteFileNode = await createRemoteFileNode({
+          url: node.frontmatter.socialImage,
+          parentNodeId: node.id,
+          createNode,
+          createNodeId,
+          cache,
+          store,
+        })
+        // if the file was created, attach the new node to the parent node
+        if (remoteFileNode) {
+          fieldData.socialImage___NODE = remoteFileNode.id
+        }
+      }
+
+      const mdxBlogPostId = createNodeId(`${node.id} >>> MdxBlogPost`)
+      await createNode({
+        ...fieldData,
+        // Required fields.
+        id: mdxBlogPostId,
+        parent: node.id,
+        children: [],
+        internal: {
+          type: `MdxBlogPost`,
+          contentDigest: createContentDigest(fieldData),
+          content: JSON.stringify(fieldData),
+          description: `Mdx implementation of the BlogPost interface`,
+        },
+      })
+      createParentChildLink({ parent: node, child: getNode(mdxBlogPostId) })
       createNodeField({
-        node: node,
+        node: getNode(mdxBlogPostId),
         name: `basePath`,
         value: basePath,
       })
     }
   }
+
   async function createLocalImage(url, shouldCreateLocalImage) {
     let fileNodeId = ``
     if (url && (shouldTransformImage || shouldCreateLocalImage)) {
@@ -1195,5 +1301,13 @@ function findHashtags(searchText) {
     })
   } else {
     return []
+  }
+}
+function validURL(str) {
+  try {
+    new URL(str)
+    return true
+  } catch {
+    return false
   }
 }

@@ -12,7 +12,7 @@ module.exports = (themeOptions) => {
   const instagramTypeName = themeOptions.instagramTypeName || [`InstagramJson`]
   const postsPerPage = themeOptions.postsPerPage || 25
   const tagPostsPerPage = themeOptions.tagPostsPerPage || 25
-
+  const contentPath = themeOptions.contentPath || `content/posts`
   const preset = themeOptions.preset || `gatsby-theme-ui-timeline-preset`
   const prismPreset = themeOptions.prismPreset || `github`
   const shouldTransformJson =
@@ -23,10 +23,10 @@ module.exports = (themeOptions) => {
   const imageMaxWidth = themeOptions.imageMaxWidth || 1024
   const imageMaxHeight = themeOptions.imageMaxHeight || 512
   const postsFilter = themeOptions.postsFilter || {}
-  const archiveTime =
-    themeOptions.archiveTime || process.env.GATSBY_ARCHIVE_TIME
-  const archiveEndTime =
-    themeOptions.archiveEndTime || process.env.GATSBY_ARCHIVE_END_TIME
+  const postStartTime =
+    themeOptions.postStartTime || process.env.GATSBY_POST_START_TIME
+  const postEndTime =
+    themeOptions.postEndTime || process.env.GATSBY_POST_END_TIME
   const jsonTransformerOptions = {
     typeName: ({ node }) => {
       const rootDirectoryName = node.relativeDirectory.split(`/`)[0]
@@ -65,8 +65,9 @@ module.exports = (themeOptions) => {
     shouldTransformImage,
     imageMaxWidth,
     imageMaxHeight,
-    archiveTime,
-    archiveEndTime,
+    postStartTime,
+    postEndTime,
+    contentPath,
     siteMetadata: siteMetadata,
     ...themeOptions,
     disqus: {
