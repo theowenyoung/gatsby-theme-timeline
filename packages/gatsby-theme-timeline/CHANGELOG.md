@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.12](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-theme-timeline@2.0.11...gatsby-theme-timeline@2.0.12) (2021-06-25)
+
+### Features
+
+- tagPostsPerPage ([89d9b48](https://github.com/theowenyoung/gatsby-theme-timeline/commit/89d9b4836767af3cb314a07be3b0772540600b2f))
+
 ## [2.0.11](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-theme-timeline@2.0.10...gatsby-theme-timeline@2.0.11) (2021-06-25)
 
 ### Bug Fixes
