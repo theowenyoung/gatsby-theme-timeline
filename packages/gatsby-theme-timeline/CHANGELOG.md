@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.11](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-theme-timeline@2.0.10...gatsby-theme-timeline@2.0.11) (2021-06-25)
+
+### Bug Fixes
+
+- UTC insteadof local timezone ([afe0bf8](https://github.com/theowenyoung/gatsby-theme-timeline/commit/afe0bf80fe0acb78292e9f4e4e1bc7be48b5e027))
+
 ## [2.0.10](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-theme-timeline@2.0.9...gatsby-theme-timeline@2.0.10) (2021-06-25)
 
 ### Features
