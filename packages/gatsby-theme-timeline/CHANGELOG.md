@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.14](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-theme-timeline@2.0.13...gatsby-theme-timeline@2.0.14) (2021-06-25)
+
+### Features
+
+- skiptagapges ([ea31f2a](https://github.com/theowenyoung/gatsby-theme-timeline/commit/ea31f2ad2e5f01ff38e4e2825b3d97b4f73e853f))
+
 ## [2.0.13](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-theme-timeline@2.0.12...gatsby-theme-timeline@2.0.13) (2021-06-25)
 
 ### Features
