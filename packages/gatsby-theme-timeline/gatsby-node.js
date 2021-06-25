@@ -275,71 +275,74 @@ exports.createPages = async ({ graphql, actions, reporter }, themeOptions) => {
     redirectTypeName,
     siteMetadata,
     skipCreateIndexPages,
+    skipCreateDetailPages,
   } = withDefaults(themeOptions)
 
   // create limit >1000 detail page, cause blog-core limit 1000
   // https://github.com/gatsbyjs/themes/pull/136 wait merged
-  const detailsPageResult = await graphql(`
-    {
-      allBlogPost(sort: { fields: [date, title], order: DESC }) {
-        nodes {
-          id
-          slug
-          date
-          __typename
-          ... on SocialMediaPost {
-            parent {
-              internal {
-                type
+  if (!skipCreateDetailPages) {
+    const detailsPageResult = await graphql(`
+      {
+        allBlogPost(sort: { fields: [date, title], order: DESC }) {
+          nodes {
+            id
+            slug
+            date
+            __typename
+            ... on SocialMediaPost {
+              parent {
+                internal {
+                  type
+                }
               }
             }
           }
         }
       }
-    }
-  `)
+    `)
 
-  if (detailsPageResult.errors) {
-    reporter.panic(detailsPageResult.errors)
+    if (detailsPageResult.errors) {
+      reporter.panic(detailsPageResult.errors)
+    }
+
+    // Create Posts and Post pages.
+    const { allBlogPost: allDetailBlogPost } = detailsPageResult.data
+    const detailPosts = allDetailBlogPost.nodes
+    const PostTemplate = require.resolve(
+      `gatsby-theme-blog-core/src/templates/post-query`
+    )
+
+    // Create a page for each Post
+    detailPosts.forEach((post, index) => {
+      // not create redirect type post
+      const previous =
+        index === detailPosts.length - 1 ? null : detailPosts[index + 1]
+      const next = index === 0 ? null : detailPosts[index - 1]
+      const { slug } = post
+      const pageInfo = {
+        path: slug,
+        component: PostTemplate,
+        context: {
+          id: post.id,
+          previousId: previous ? previous.id : undefined,
+          nextId: next ? next.id : undefined,
+          maxWidth: imageMaxWidth,
+          siteMetadata,
+        },
+      }
+      if (index === 0) {
+        firstDetailPage = pageInfo
+      }
+      if (
+        post.__typename === `SocialMediaPost` &&
+        redirectTypeName.includes(post.parent.internal.type)
+      ) {
+        return
+      }
+
+      createPage(pageInfo)
+    })
   }
-
-  // Create Posts and Post pages.
-  const { allBlogPost: allDetailBlogPost } = detailsPageResult.data
-  const detailPosts = allDetailBlogPost.nodes
-  const PostTemplate = require.resolve(
-    `gatsby-theme-blog-core/src/templates/post-query`
-  )
-
-  // Create a page for each Post
-  detailPosts.forEach((post, index) => {
-    // not create redirect type post
-    const previous =
-      index === detailPosts.length - 1 ? null : detailPosts[index + 1]
-    const next = index === 0 ? null : detailPosts[index - 1]
-    const { slug } = post
-    const pageInfo = {
-      path: slug,
-      component: PostTemplate,
-      context: {
-        id: post.id,
-        previousId: previous ? previous.id : undefined,
-        nextId: next ? next.id : undefined,
-        maxWidth: imageMaxWidth,
-        siteMetadata,
-      },
-    }
-    if (index === 0) {
-      firstDetailPage = pageInfo
-    }
-    if (
-      post.__typename === `SocialMediaPost` &&
-      redirectTypeName.includes(post.parent.internal.type)
-    ) {
-      return
-    }
-
-    createPage(pageInfo)
-  })
 
   if (skipCreateIndexPages) {
     return
@@ -1321,7 +1324,8 @@ exports.onCreateNode = async (
   }
 }
 exports.onCreatePage = function ({ page, actions }, themeOptions) {
-  const { basePath } = withDefaults(themeOptions)
+  const { basePath, skipCreateDetailPages, skipCreateIndexPages } =
+    withDefaults(themeOptions)
   const { createPage, deletePage } = actions
 
   if (
@@ -1330,15 +1334,18 @@ exports.onCreatePage = function ({ page, actions }, themeOptions) {
     indexPages[basePath]
   ) {
     deletePage(page)
-    createPage(indexPages[basePath])
+    if (!skipCreateIndexPages) {
+      createPage(indexPages[basePath])
+    }
   } else if (
     !page.context.siteMetadata &&
     firstDetailPage &&
     page.path === firstDetailPage.path
   ) {
     deletePage(page)
-
-    createPage(firstDetailPage)
+    if (!skipCreateDetailPages) {
+      createPage(firstDetailPage)
+    }
   }
   // temp
 }

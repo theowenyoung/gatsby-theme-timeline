@@ -35,6 +35,14 @@ module.exports = (themeOptions) => {
   if (themeOptions.skipCreateIndexPages) {
     skipCreateIndexPages = true
   }
+  let skipCreateDetailPages = false
+
+  if (process.env.GATSBY_SKIP_CREATE_DETAIL_PAGES === `true`) {
+    skipCreateDetailPages = true
+  }
+  if (themeOptions.skipCreateDetailPages) {
+    skipCreateDetailPages = true
+  }
   const jsonTransformerOptions = {
     typeName: ({ node }) => {
       const rootDirectoryName = node.relativeDirectory.split(`/`)[0]
@@ -77,6 +85,7 @@ module.exports = (themeOptions) => {
     postEndTime,
     contentPath,
     skipCreateIndexPages,
+    skipCreateDetailPages,
     siteMetadata: siteMetadata,
     ...themeOptions,
     disqus: {
