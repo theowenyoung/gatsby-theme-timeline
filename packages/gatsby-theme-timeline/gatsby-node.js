@@ -270,6 +270,7 @@ exports.createPages = async ({ graphql, actions, reporter }, themeOptions) => {
     imageMaxWidth,
     imageMaxHeight,
     postsPerPage,
+    tagPostsPerPage,
     postsFilter,
     redirectTypeName,
     siteMetadata,
@@ -420,7 +421,7 @@ exports.createPages = async ({ graphql, actions, reporter }, themeOptions) => {
   // Make tag pages
   group.forEach((tag) => {
     const tagPosts = tag.nodes
-    const tagTotalPages = Math.ceil(tagPosts.length / postsPerPage)
+    const tagTotalPages = Math.ceil(tagPosts.length / tagPostsPerPage)
     const tagTotal = tagPosts.length
     const tagPostsFilter = Object.assign({}, postsFilter)
     if (postsFilter && postsFilter.tags) {
@@ -448,8 +449,8 @@ exports.createPages = async ({ graphql, actions, reporter }, themeOptions) => {
           tag: tag.fieldValue,
           tagsFilter: postsFilter,
           filter: tagPostsFilter,
-          limit: postsPerPage,
-          skip: i * postsPerPage,
+          limit: tagPostsPerPage,
+          skip: i * tagPostsPerPage,
           total: tagTotal,
           totalPages: tagTotalPages,
           currentPage: i + 1,
