@@ -275,6 +275,7 @@ exports.createPages = async ({ graphql, actions, reporter }, themeOptions) => {
     redirectTypeName,
     siteMetadata,
     skipCreateIndexPages,
+    skipCreateTagPages,
     skipCreateDetailPages,
   } = withDefaults(themeOptions)
 
@@ -344,7 +345,7 @@ exports.createPages = async ({ graphql, actions, reporter }, themeOptions) => {
     })
   }
 
-  if (skipCreateIndexPages) {
+  if (skipCreateIndexPages && skipCreateTagPages) {
     return
   }
   // These templates are simply data-fetching wrappers that import components
@@ -384,86 +385,89 @@ exports.createPages = async ({ graphql, actions, reporter }, themeOptions) => {
   if (result.errors) {
     reporter.panic(result.errors)
   }
-
-  // Create Posts and Post pages.
-  const { allBlogPost } = result.data
-  const posts = allBlogPost.nodes
-  const totalPages = Math.ceil(posts.length / postsPerPage)
-  const total = posts.length
-  // create posts pages
-  Array.from({ length: totalPages }).forEach((_, i) => {
-    const pageInfo = {
-      path: i === 0 ? `${basePath}` : urlResolve(basePath, `page/${i + 1}`),
-      component: ItemsTemplate,
-      context: {
-        basePath,
-        pageType: `home`,
-        tagsFilter: postsFilter,
-        filter: postsFilter,
-        limit: postsPerPage,
-        skip: i * postsPerPage,
-        totalPages,
-        total: total,
-        currentPage: i + 1,
-        maxWidth: imageMaxWidth,
-        maxHeight: imageMaxHeight,
-        siteMetadata,
-      },
-    }
-    if (i === 0) {
-      indexPages[basePath] = pageInfo
-      return
-    }
-    createPage(pageInfo)
-  })
-
-  // Create tag Posts
-  const {
-    tagsGroup: { group },
-  } = result.data
-  // Make tag pages
-  group.forEach((tag) => {
-    const tagPosts = tag.nodes
-    const tagTotalPages = Math.ceil(tagPosts.length / tagPostsPerPage)
-    const tagTotal = tagPosts.length
-    const tagPostsFilter = Object.assign({}, postsFilter)
-    if (postsFilter && postsFilter.tags) {
-      tagPostsFilter.tags = {
-        ...postsFilter.tags,
-        eq: tag.fieldValue,
-      }
-    } else {
-      tagPostsFilter.tags = { eq: tag.fieldValue }
-    }
+  if (!skipCreateIndexPages) {
+    // Create Posts and Post pages.
+    const { allBlogPost } = result.data
+    const posts = allBlogPost.nodes
+    const totalPages = Math.ceil(posts.length / postsPerPage)
+    const total = posts.length
     // create posts pages
-    Array.from({ length: tagTotalPages }).forEach((_, i) => {
-      createPage({
-        path:
-          i === 0
-            ? urlResolve(`${basePath}`, `tags/${kebabCase(tag.fieldValue)}/`)
-            : urlResolve(
-                `${basePath}`,
-                `tags/${kebabCase(tag.fieldValue)}/page/${i + 1}`
-              ),
+    Array.from({ length: totalPages }).forEach((_, i) => {
+      const pageInfo = {
+        path: i === 0 ? `${basePath}` : urlResolve(basePath, `page/${i + 1}`),
         component: ItemsTemplate,
         context: {
           basePath,
-          pageType: `tag`,
-          tag: tag.fieldValue,
+          pageType: `home`,
           tagsFilter: postsFilter,
-          filter: tagPostsFilter,
-          limit: tagPostsPerPage,
-          skip: i * tagPostsPerPage,
-          total: tagTotal,
-          totalPages: tagTotalPages,
+          filter: postsFilter,
+          limit: postsPerPage,
+          skip: i * postsPerPage,
+          totalPages,
+          total: total,
           currentPage: i + 1,
           maxWidth: imageMaxWidth,
           maxHeight: imageMaxHeight,
           siteMetadata,
         },
+      }
+      if (i === 0) {
+        indexPages[basePath] = pageInfo
+        return
+      }
+      createPage(pageInfo)
+    })
+  }
+
+  if (!skipCreateTagPages) {
+    // Create tag Posts
+    const {
+      tagsGroup: { group },
+    } = result.data
+    // Make tag pages
+    group.forEach((tag) => {
+      const tagPosts = tag.nodes
+      const tagTotalPages = Math.ceil(tagPosts.length / tagPostsPerPage)
+      const tagTotal = tagPosts.length
+      const tagPostsFilter = Object.assign({}, postsFilter)
+      if (postsFilter && postsFilter.tags) {
+        tagPostsFilter.tags = {
+          ...postsFilter.tags,
+          eq: tag.fieldValue,
+        }
+      } else {
+        tagPostsFilter.tags = { eq: tag.fieldValue }
+      }
+      // create posts pages
+      Array.from({ length: tagTotalPages }).forEach((_, i) => {
+        createPage({
+          path:
+            i === 0
+              ? urlResolve(`${basePath}`, `tags/${kebabCase(tag.fieldValue)}/`)
+              : urlResolve(
+                  `${basePath}`,
+                  `tags/${kebabCase(tag.fieldValue)}/page/${i + 1}`
+                ),
+          component: ItemsTemplate,
+          context: {
+            basePath,
+            pageType: `tag`,
+            tag: tag.fieldValue,
+            tagsFilter: postsFilter,
+            filter: tagPostsFilter,
+            limit: tagPostsPerPage,
+            skip: i * tagPostsPerPage,
+            total: tagTotal,
+            totalPages: tagTotalPages,
+            currentPage: i + 1,
+            maxWidth: imageMaxWidth,
+            maxHeight: imageMaxHeight,
+            siteMetadata,
+          },
+        })
       })
     })
-  })
+  }
 }
 
 // Create fields for post slugs and source

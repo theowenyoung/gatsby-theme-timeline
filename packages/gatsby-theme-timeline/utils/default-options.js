@@ -35,6 +35,16 @@ module.exports = (themeOptions) => {
   if (themeOptions.skipCreateIndexPages) {
     skipCreateIndexPages = true
   }
+
+  let skipCreateTagPages = false
+
+  if (process.env.GATSBY_SKIP_CREATE_TAG_PAGES === `true`) {
+    skipCreateTagPages = true
+  }
+  if (themeOptions.skipCreateTagPages) {
+    skipCreateTagPages = true
+  }
+
   let skipCreateDetailPages = false
 
   if (process.env.GATSBY_SKIP_CREATE_DETAIL_PAGES === `true`) {
@@ -86,6 +96,7 @@ module.exports = (themeOptions) => {
     contentPath,
     skipCreateIndexPages,
     skipCreateDetailPages,
+    skipCreateTagPages,
     siteMetadata: siteMetadata,
     ...themeOptions,
     disqus: {
