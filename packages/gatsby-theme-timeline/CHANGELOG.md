@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.13](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-theme-timeline@2.0.12...gatsby-theme-timeline@2.0.13) (2021-06-25)
+
+### Features
+
+- add skip create detail pages ([81db75a](https://github.com/theowenyoung/gatsby-theme-timeline/commit/81db75a18516632499d2af47e93c171e414c39e1))
+
 ## [2.0.12](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-theme-timeline@2.0.11...gatsby-theme-timeline@2.0.12) (2021-06-25)
 
 ### Features
