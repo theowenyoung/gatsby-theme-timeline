@@ -8,7 +8,7 @@ const Footer = () => (
       pt: 3,
     })}
   >
-    © {new Date().getFullYear()}, Powered by
+    © {new Date().getUTCFullYear()}, Powered by
     {` `}
     <LinkUI data-test="powered-link" href="https://www.gatsbyjs.com">
       Gatsby

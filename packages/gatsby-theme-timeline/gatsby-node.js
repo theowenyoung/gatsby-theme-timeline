@@ -479,8 +479,8 @@ exports.onCreateNode = async (
     const allowTypes = [`SocialMediaPost`, `MdxBlogPost`]
     if (allowTypes.includes(type) && theNode.date) {
       const date = new Date(theNode.date)
-      const year = date.getFullYear()
-      const month = date.getMonth() + 1
+      const year = date.getUTCFullYear()
+      const month = date.getUTCMonth() + 1
       const yearMonth = `${year}-${month}`
       createNodeField({ node: getNode(theNode.id), name: `year`, value: year })
       createNodeField({
