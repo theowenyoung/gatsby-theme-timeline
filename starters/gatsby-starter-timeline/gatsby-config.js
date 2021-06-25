@@ -74,7 +74,7 @@ module.exports = {
         // archiveTime: "2021/06/17",
 
         siteMetadata,
-        // shouldTransformImage: false,
+        shouldTransformImage: false,
         // basePath: "/test",
         // postsFilter: {
         //   tags: {

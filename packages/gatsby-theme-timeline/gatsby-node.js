@@ -74,6 +74,9 @@ exports.createSchemaCustomization = ({ actions }) => {
   createTypes(`
     type Fields {
       basePath: String
+      year: Int
+      month: Int
+      yearMonth: String
     }
     type DisqusConfig {
       shortname: String
@@ -465,7 +468,33 @@ exports.onCreateNode = async (
   { node, actions, createNodeId, getNode, store, cache, reporter },
   themeOptions
 ) => {
-  const { createNode, createParentChildLink, createNodeField } = actions
+  const {
+    createNode: createNodeFn,
+    createParentChildLink,
+    createNodeField,
+  } = actions
+  const createNode = async (theNode) => {
+    await createNodeFn(theNode)
+    const type = theNode.internal.type
+    const allowTypes = [`SocialMediaPost`, `MdxBlogPost`]
+    if (allowTypes.includes(type) && theNode.date) {
+      const date = new Date(theNode.date)
+      const year = date.getFullYear()
+      const month = date.getMonth() + 1
+      const yearMonth = `${year}-${month}`
+      createNodeField({ node: getNode(theNode.id), name: `year`, value: year })
+      createNodeField({
+        node: getNode(theNode.id),
+        name: `month`,
+        value: month,
+      })
+      createNodeField({
+        node: getNode(theNode.id),
+        name: `yearMonth`,
+        value: yearMonth,
+      })
+    }
+  }
   const {
     tweetTypeName,
     redditTypeName,
@@ -667,7 +696,7 @@ exports.onCreateNode = async (
       internal: {
         type: `SocialMediaPost`,
         contentDigest: createContentDigest(fieldData),
-        content: JSON.stringify(fieldData),
+        content: ``,
         description: `${TWEET_TYPE_NAME} of the Item interface`,
       },
     })
@@ -801,7 +830,7 @@ exports.onCreateNode = async (
       internal: {
         type: `SocialMediaPost`,
         contentDigest: createContentDigest(fieldData),
-        content: JSON.stringify(fieldData),
+        content: ``,
         description: `${REDDIT_TYPE_NAME} of the Item interface`,
       },
     })
@@ -880,7 +909,7 @@ exports.onCreateNode = async (
       internal: {
         type: `SocialMediaPost`,
         contentDigest: createContentDigest(fieldData),
-        content: JSON.stringify(fieldData),
+        content: ``,
         description: `${HN_TYPE_NAME} of the Item interface`,
       },
     })
@@ -932,7 +961,7 @@ exports.onCreateNode = async (
       internal: {
         type: `SocialMediaPost`,
         contentDigest: createContentDigest(fieldData),
-        content: JSON.stringify(fieldData),
+        content: ``,
         description: `${REDIRECT_TYPE_NAME} of the Item interface`,
       },
     })
@@ -999,7 +1028,7 @@ exports.onCreateNode = async (
       internal: {
         type: `SocialMediaPost`,
         contentDigest: createContentDigest(fieldData),
-        content: JSON.stringify(fieldData),
+        content: ``,
         description: `${PH_TYPE_NAME} of the Item interface`,
       },
     })
@@ -1075,7 +1104,7 @@ exports.onCreateNode = async (
       internal: {
         type: `SocialMediaPost`,
         contentDigest: createContentDigest(fieldData),
-        content: JSON.stringify(fieldData),
+        content: ``,
         description: `${YOUTUBE_TYPE_NAME} of the Item interface`,
       },
     })
@@ -1149,7 +1178,7 @@ exports.onCreateNode = async (
       internal: {
         type: `SocialMediaPost`,
         contentDigest: createContentDigest(fieldData),
-        content: JSON.stringify(fieldData),
+        content: ``,
         description: `${INSTAGRAM_TYPE_NAME} of the Item interface`,
       },
     })
@@ -1217,7 +1246,7 @@ exports.onCreateNode = async (
         const remoteFileNode = await createRemoteFileNode({
           url: node.frontmatter.image,
           parentNodeId: node.id,
-          createNode,
+          createNode: createNodeFn,
           createNodeId,
           cache,
           store,
@@ -1233,7 +1262,7 @@ exports.onCreateNode = async (
         const remoteFileNode = await createRemoteFileNode({
           url: node.frontmatter.socialImage,
           parentNodeId: node.id,
-          createNode,
+          createNode: createNodeFn,
           createNodeId,
           cache,
           store,
@@ -1254,7 +1283,7 @@ exports.onCreateNode = async (
         internal: {
           type: `MdxBlogPost`,
           contentDigest: createContentDigest(fieldData),
-          content: JSON.stringify(fieldData),
+          content: ``,
           description: `Mdx implementation of the BlogPost interface`,
         },
       })
@@ -1274,7 +1303,7 @@ exports.onCreateNode = async (
         const remoteFileNode = await createRemoteFileNode({
           url: url,
           parentNodeId: node.id,
-          createNode,
+          createNode: createNodeFn,
           createNodeId,
           cache,
           store,
