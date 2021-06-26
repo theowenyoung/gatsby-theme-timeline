@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.15](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-theme-timeline@2.0.14...gatsby-theme-timeline@2.0.15) (2021-06-26)
+
+### Features
+
+- remove fields type ([ef86c12](https://github.com/theowenyoung/gatsby-theme-timeline/commit/ef86c128a3a9cb8397a05fc1d259e448f8ef518a))
+
 ## [2.0.14](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-theme-timeline@2.0.13...gatsby-theme-timeline@2.0.14) (2021-06-25)
 
 ### Features
