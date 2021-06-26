@@ -10,7 +10,6 @@ const DetailPage = ({
 }) => {
   const { basePath } = pageContext
   const { siteMetadata } = site
-  console.log(`siteMetadata`, siteMetadata)
 
   if (!siteMetadata || !basePath) {
     return null
