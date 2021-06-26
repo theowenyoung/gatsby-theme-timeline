@@ -314,6 +314,7 @@ exports.createPages = async ({ graphql, actions, reporter }, themeOptions) => {
         path: slug,
         component: PostTemplate,
         context: {
+          basePath: basePath,
           pageType: `detail`,
           id: post.id,
           previousId: previous ? previous.id : undefined,
