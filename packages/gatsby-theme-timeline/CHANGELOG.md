@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.18](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-theme-timeline@2.0.17...gatsby-theme-timeline@2.0.18) (2021-06-26)
+
+### Features
+
+- move site Metadata to query ([35086c1](https://github.com/theowenyoung/gatsby-theme-timeline/commit/35086c19ce82c202dc358b1506c25430b1646ff4))
+
 ## [2.0.17](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-theme-timeline@2.0.16...gatsby-theme-timeline@2.0.17) (2021-06-26)
 
 ### Bug Fixes
