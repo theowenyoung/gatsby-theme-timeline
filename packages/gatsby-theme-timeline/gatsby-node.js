@@ -63,6 +63,7 @@ exports.createSchemaCustomization = ({ actions }) => {
     author: String
     authorUrl: String
     authorImage: File
+    authorImageRemote: String
     authorSlug: String
     score: Int
     views: Int
@@ -72,12 +73,7 @@ exports.createSchemaCustomization = ({ actions }) => {
   }`)
 
   createTypes(`
-    type Fields {
-      basePath: String
-      year: Int
-      month: Int
-      yearMonth: String
-    }
+
     type DisqusConfig {
       shortname: String
     }
@@ -91,9 +87,7 @@ exports.createSchemaCustomization = ({ actions }) => {
       webfontURL: String
       disqus: DisqusConfig
       utterances: UtterancesConfig
-    }
-    type Site implements Node {
-      siteMetadata: SiteMetadata
+      basePath: String
     }
     type SiteMetadata {
       menuLinks: [MenuLinks]
@@ -134,13 +128,14 @@ exports.createSchemaCustomization = ({ actions }) => {
       author: String
       authorUrl: String
       authorImage: File
+      authorImageRemote: String
       authorSlug: String
       score: Int
       views: Int
       sharedCount: Int
       likeCount: Int
     }
-    type SocialMediaPost implements BlogPost & Node @dontInfer {
+    type SocialMediaPost implements TimelinePost & BlogPost & Node @dontInfer {
       provider: String
       id: ID!
       title: String!
@@ -165,6 +160,7 @@ exports.createSchemaCustomization = ({ actions }) => {
       authorSlug: String
       authorUrl: String
       authorImage: File
+      authorImageRemote: String
       score: Int
       views: Int
       sharedCount: Int
@@ -178,9 +174,6 @@ exports.createSchemaCustomization = ({ actions }) => {
 exports.createResolvers = ({ createResolvers }) => {
   const resolvers = {
     MdxBlogPost: {
-      fields: {
-        type: `Fields`,
-      },
       tags: {
         resolve: (source) => {
           if (source.tags.includes(`post`)) {
@@ -212,9 +205,6 @@ exports.createResolvers = ({ createResolvers }) => {
       },
     },
     SocialMediaPost: {
-      fields: {
-        type: `Fields`,
-      },
       image: {
         resolve: (source, _, context, __) => {
           if (source.image___NODE) {
@@ -324,6 +314,7 @@ exports.createPages = async ({ graphql, actions, reporter }, themeOptions) => {
         path: slug,
         component: PostTemplate,
         context: {
+          pageType: `detail`,
           id: post.id,
           previousId: previous ? previous.id : undefined,
           nextId: next ? next.id : undefined,
@@ -340,7 +331,6 @@ exports.createPages = async ({ graphql, actions, reporter }, themeOptions) => {
       ) {
         return
       }
-
       createPage(pageInfo)
     })
   }
@@ -476,33 +466,8 @@ exports.onCreateNode = async (
   { node, actions, createNodeId, getNode, store, cache, reporter },
   themeOptions
 ) => {
-  const {
-    createNode: createNodeFn,
-    createParentChildLink,
-    createNodeField,
-  } = actions
-  const createNode = async (theNode) => {
-    await createNodeFn(theNode)
-    const type = theNode.internal.type
-    const allowTypes = [`SocialMediaPost`, `MdxBlogPost`]
-    if (allowTypes.includes(type) && theNode.date) {
-      const date = new Date(theNode.date)
-      const year = date.getUTCFullYear()
-      const month = date.getUTCMonth() + 1
-      const yearMonth = `${year}-${month}`
-      createNodeField({ node: getNode(theNode.id), name: `year`, value: year })
-      createNodeField({
-        node: getNode(theNode.id),
-        name: `month`,
-        value: month,
-      })
-      createNodeField({
-        node: getNode(theNode.id),
-        name: `yearMonth`,
-        value: yearMonth,
-      })
-    }
-  }
+  const { createNode, createParentChildLink } = actions
+  const createNodeFn = createNode
   const {
     tweetTypeName,
     redditTypeName,
@@ -632,6 +597,7 @@ exports.onCreateNode = async (
       authorSlug,
       authorUrl,
       authorImage___NODE: await createLocalImage(authorAvatarUrl),
+      authorImageRemote: authorAvatarUrl,
       score,
       sharedCount,
       likeCount,
@@ -671,6 +637,7 @@ exports.onCreateNode = async (
         author: sharedStatus.user.name,
         authorUrl: `https://twitter.com/statuses/${sharedStatus.user.screen_name}`,
         authorImage___NODE: await createLocalImage(sharedAuthorImageRemote),
+        authorImageRemote: sharedAuthorImageRemote,
         authorSlug: sharedStatus.user.screen_name,
       }
 
@@ -709,12 +676,6 @@ exports.onCreateNode = async (
       },
     })
     createParentChildLink({ parent: node, child: getNode(tweetNodeId) })
-    // createNodeField
-    createNodeField({
-      node: getNode(tweetNodeId),
-      name: `basePath`,
-      value: basePath,
-    })
   }
   if (allRedditTypeName.includes(node.internal.type)) {
     const date = new Date(node.created_utc * 1000).toISOString()
@@ -843,12 +804,6 @@ exports.onCreateNode = async (
       },
     })
     createParentChildLink({ parent: node, child: getNode(redditNodeId) })
-    // createNodeField
-    createNodeField({
-      node: getNode(redditNodeId),
-      name: `basePath`,
-      value: basePath,
-    })
   }
 
   if (allHnTypeName.includes(node.internal.type)) {
@@ -922,12 +877,6 @@ exports.onCreateNode = async (
       },
     })
     createParentChildLink({ parent: node, child: getNode(nodeId) })
-    // createNodeField
-    createNodeField({
-      node: getNode(nodeId),
-      name: `basePath`,
-      value: basePath,
-    })
   }
   if (allRedirectTypeName.includes(node.internal.type)) {
     const date = new Date(node.created_at).toISOString()
@@ -974,12 +923,6 @@ exports.onCreateNode = async (
       },
     })
     createParentChildLink({ parent: node, child: getNode(nodeId) })
-    // createNodeField
-    createNodeField({
-      node: getNode(nodeId),
-      name: `basePath`,
-      value: basePath,
-    })
   }
   if (allPhTypeName.includes(node.internal.type)) {
     const date = node.createdAt
@@ -1041,12 +984,6 @@ exports.onCreateNode = async (
       },
     })
     createParentChildLink({ parent: node, child: getNode(nodeId) })
-    // createNodeField
-    createNodeField({
-      node: getNode(nodeId),
-      name: `basePath`,
-      value: basePath,
-    })
   }
   if (allYoutubeTypeName.includes(node.internal.type)) {
     const date = node.created_at || node.isoDate
@@ -1117,12 +1054,6 @@ exports.onCreateNode = async (
       },
     })
     createParentChildLink({ parent: node, child: getNode(nodeId) })
-    // createNodeField
-    createNodeField({
-      node: getNode(nodeId),
-      name: `basePath`,
-      value: basePath,
-    })
   }
   if (allInstagramTypeName.includes(node.internal.type)) {
     // TODO
@@ -1191,12 +1122,6 @@ exports.onCreateNode = async (
       },
     })
     createParentChildLink({ parent: node, child: getNode(nodeId) })
-    // createNodeField
-    createNodeField({
-      node: getNode(nodeId),
-      name: `basePath`,
-      value: basePath,
-    })
   }
 
   if (node.internal.type === `Mdx`) {
@@ -1296,11 +1221,6 @@ exports.onCreateNode = async (
         },
       })
       createParentChildLink({ parent: node, child: getNode(mdxBlogPostId) })
-      createNodeField({
-        node: getNode(mdxBlogPostId),
-        name: `basePath`,
-        value: basePath,
-      })
     }
   }
 
@@ -1342,7 +1262,7 @@ exports.onCreatePage = function ({ page, actions }, themeOptions) {
       createPage(indexPages[basePath])
     }
   } else if (
-    !page.context.siteMetadata &&
+    !page.context.pageType &&
     firstDetailPage &&
     page.path === firstDetailPage.path
   ) {

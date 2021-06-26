@@ -27,16 +27,7 @@ export const query = graphql`
         }
       }
       __typename
-      ... on MdxBlogPost {
-        id
-        fields {
-          basePath
-        }
-      }
       ... on SocialMediaPost {
-        fields {
-          basePath
-        }
         thirdPartyId
         provider
         url
@@ -52,6 +43,7 @@ export const query = graphql`
         channelUrl
         author
         authorUrl
+        authorImageRemote
         authorImage {
           childImageSharp {
             gatsbyImageData(width: 48, height: 48, layout: FIXED)
@@ -77,6 +69,7 @@ export const query = graphql`
             }
           }
           imageAlt
+          authorImageRemote
           authorImage {
             childImageSharp {
               gatsbyImageData(width: 24, height: 24, layout: FIXED)

@@ -68,7 +68,7 @@ module.exports = {
     {
       resolve: `gatsby-theme-timeline`,
       options: {
-        // postsPerPage: 2,
+        postsPerPage: 2,
         tweetTypeName: ["TweetsJson", "twitterStatusesUserTimelineMyTweet"],
         instagramTypeName: ["InstagramJson", "InstaNode"],
         // archiveTime: "2021/06/17",

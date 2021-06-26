@@ -57,6 +57,7 @@ export const query = graphql`
           channelUrl
           author
           authorUrl
+          authorImageRemote
           authorImage {
             childImageSharp {
               gatsbyImageData(width: 48, height: 48, layout: FIXED)
@@ -82,6 +83,7 @@ export const query = graphql`
               }
             }
             imageAlt
+            authorImageRemote
             authorImage {
               childImageSharp {
                 gatsbyImageData(width: 48, height: 48, layout: FIXED)

@@ -8,13 +8,12 @@ const DetailPage = ({
   location,
   pageContext,
 }) => {
-  const { siteMetadata } = pageContext
+  const { siteMetadata, basePath } = pageContext
   if (!siteMetadata) {
     return null
   }
   const { title, menuLinks } = siteMetadata
   const item = blogPost
-  const basePath = item?.fields?.basePath || `/`
   return (
     <Layout
       basePath={basePath}
