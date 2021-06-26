@@ -73,7 +73,7 @@ module.exports = {
         instagramTypeName: ["InstagramJson", "InstaNode"],
         // archiveTime: "2021/06/17",
 
-        siteMetadata,
+        // siteMetadata,
         shouldTransformImage: false,
         // basePath: "/test",
         // postsFilter: {

@@ -9,7 +9,7 @@ const DetailPage = ({
   pageContext,
 }) => {
   const { siteMetadata, basePath } = pageContext
-  if (!siteMetadata) {
+  if (!siteMetadata || !basePath) {
     return null
   }
   const { title, menuLinks } = siteMetadata
