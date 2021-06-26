@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.19](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-theme-timeline@2.0.18...gatsby-theme-timeline@2.0.19) (2021-06-26)
+
+### Bug Fixes
+
+- remove console ([c4bbf62](https://github.com/theowenyoung/gatsby-theme-timeline/commit/c4bbf628f7076ac284ad7827a3fc8028f229a71f))
+
 ## [2.0.18](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-theme-timeline@2.0.17...gatsby-theme-timeline@2.0.18) (2021-06-26)
 
 ### Features
