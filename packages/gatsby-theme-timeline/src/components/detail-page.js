@@ -4,11 +4,14 @@ import DetailFooter from "./detail-footer"
 import Detail from "./detail"
 import DetailSEO from "./detail-seo"
 const DetailPage = ({
-  data: { blogPost, previous, next },
+  data: { blogPost, previous, next, site },
   location,
   pageContext,
 }) => {
-  const { siteMetadata, basePath } = pageContext
+  const { basePath } = pageContext
+  const { siteMetadata } = site
+  console.log(`siteMetadata`, siteMetadata)
+
   if (!siteMetadata || !basePath) {
     return null
   }

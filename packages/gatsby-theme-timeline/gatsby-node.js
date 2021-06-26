@@ -89,9 +89,13 @@ exports.createSchemaCustomization = ({ actions }) => {
       utterances: UtterancesConfig
       basePath: String
     }
-    type SiteMetadata {
+    type SiteSiteMetadata {
       menuLinks: [MenuLinks]
       telegram: String
+      disqus: DisqusConfig
+      utterances: UtterancesConfig
+      iconUrl: String
+      defaultSocialImageUrl: String
     }
     type SiteSiteMetadataSocial {
       name: String

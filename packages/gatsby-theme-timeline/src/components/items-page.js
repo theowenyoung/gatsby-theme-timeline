@@ -11,7 +11,8 @@ import AsideBox from "./aside-box"
 import ItemsSEO from "./items-seo"
 import ItemsFooter from "./items-footer"
 const Items = ({ location, data, pageContext }) => {
-  const { basePath, pageType, siteMetadata } = pageContext
+  const { basePath, pageType } = pageContext
+  const siteMetadata = data.site.siteMetadata
   if (!siteMetadata || !basePath) {
     return null
   }
@@ -76,6 +77,7 @@ const Items = ({ location, data, pageContext }) => {
           location={location}
           data={data}
           pageContext={pageContext}
+          siteMetadata={siteMetadata}
         ></AsideBox>
       </Grid>
       <Footer />

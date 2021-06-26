@@ -5,8 +5,8 @@ import { jsx, Themed } from "theme-ui"
 import Bio from "./bio"
 import Tags from "./tags"
 import Links from "./links"
-const Aside = ({ data, pageContext }) => {
-  const { basePath, siteMetadata } = pageContext
+const Aside = ({ data, pageContext, siteMetadata }) => {
+  const { basePath } = pageContext
   const {
     tagsGroup: { group },
   } = data

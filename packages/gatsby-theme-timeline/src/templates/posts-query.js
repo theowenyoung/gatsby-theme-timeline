@@ -10,6 +10,35 @@ export const query = graphql`
     $filter: BlogPostFilterInput
     $tagsFilter: BlogPostFilterInput
   ) {
+    site {
+      siteMetadata {
+        title
+        author
+        description
+        keywords
+        siteUrl
+        telegram
+        iconUrl
+        defaultSocialImageUrl
+        social {
+          name
+          url
+          external
+        }
+        menuLinks {
+          name
+          url
+          external
+        }
+        disqus {
+          shortname
+        }
+        utterances {
+          repo
+          label
+        }
+      }
+    }
     tagsGroup: allBlogPost(
       sort: { fields: [date, title], order: DESC }
       filter: $tagsFilter

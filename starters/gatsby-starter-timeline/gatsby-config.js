@@ -5,25 +5,25 @@ const siteMetadata = {
   description: "Gatsby theme timeline",
   keywords: ["timeline", "gatsby"],
   siteUrl: `https://gatsby-theme-timeline.owenyoung.com`,
-  telegram: "test",
+  // telegram: "test",
   iconUrl: "https://i.imgur.com/jVsw5Oq.png",
-  defaultSocialImageUrl: "https://i.imgur.com/LI3xVu0.png",
-  social: [
-    {
-      name: "Github",
-      url: "https://github.com/theowenyoung/gatsby-theme-timeline",
-      external: true,
-    },
-    {
-      name: "Twitter",
-      url: "https://twitter.com/theowenyoung",
-    },
-  ],
-  menuLinks: [
-    { name: "Post", url: "/tags/post" },
-    { name: "Reddit", url: "/tags/reddit/", external: true },
-    { name: "Twitter", url: "/tags/tweet/", prefetch: false },
-  ],
+  // defaultSocialImageUrl: "https://i.imgur.com/LI3xVu0.png",
+  // social: [
+  //   {
+  //     name: "Github",
+  //     url: "https://github.com/theowenyoung/gatsby-theme-timeline",
+  //     external: true,
+  //   },
+  //   {
+  //     name: "Twitter",
+  //     url: "https://twitter.com/theowenyoung",
+  //   },
+  // ],
+  // menuLinks: [
+  //   { name: "Post", url: "/tags/post" },
+  //   { name: "Reddit", url: "/tags/reddit/", external: true },
+  //   { name: "Twitter", url: "/tags/tweet/", prefetch: false },
+  // ],
   // disqus: {
   //   shortname: "gatsby-theme-timeline",
   // },
