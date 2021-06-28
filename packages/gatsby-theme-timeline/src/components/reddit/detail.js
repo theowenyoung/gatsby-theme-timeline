@@ -7,6 +7,7 @@ const Detail = ({ item }) => {
   const urlObj = new URL(url)
   const pathname = urlObj.pathname
   const [isShowPlaceholder, setIsShowPlaceholder] = useState(true)
+
   const handleOnLoad = () => {
     setIsShowPlaceholder(false)
   }
@@ -24,7 +25,7 @@ const Detail = ({ item }) => {
       </div>
 
       <div>
-        <div sx={{ position: `relative`, pb: `70%` }}>
+        <div sx={{ position: `relative`, pb: `640px` }}>
           <iframe
             id="reddit-embed"
             title={title}
