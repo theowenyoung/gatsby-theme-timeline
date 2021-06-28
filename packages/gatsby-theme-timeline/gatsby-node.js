@@ -25,6 +25,8 @@ const {
 const { createContentDigest, urlResolve } = require(`gatsby-core-utils`)
 const indexPages = {}
 let firstDetailPage = null // temp for blog core create detail page
+let isIndexPageRemoved = false
+let isFirstDetailPageRemoved = false
 // Ensure that content directories exist at site-level
 exports.onPreBootstrap = ({ store }, themeOptions) => {
   const { program } = store.getState()
@@ -328,7 +330,9 @@ exports.createPages = async ({ graphql, actions, reporter }, themeOptions) => {
         },
       }
       if (index === 0) {
-        firstDetailPage = pageInfo
+        if (!isFirstDetailPageRemoved) {
+          firstDetailPage = pageInfo
+        }
       }
       if (
         post.__typename === `SocialMediaPost` &&
@@ -346,41 +350,30 @@ exports.createPages = async ({ graphql, actions, reporter }, themeOptions) => {
   // These templates are simply data-fetching wrappers that import components
   // const ItemTemplate = require.resolve(`./src/templates/post-query`)
   const ItemsTemplate = require.resolve(`./src/templates/posts-query`)
-  const result = await graphql(
-    `
-      query ItemsCreatePageQuery($filter: BlogPostFilterInput) {
-        allBlogPost(
-          sort: { fields: [date, title], order: DESC }
-          filter: $filter
-        ) {
-          nodes {
-            id
-            slug
-          }
-        }
-        tagsGroup: allBlogPost(
-          sort: { fields: [date, title], order: DESC }
-          filter: $filter
-        ) {
-          group(field: tags) {
-            fieldValue
+
+  if (!skipCreateIndexPages) {
+    const result = await graphql(
+      `
+        query ItemsCreatePageQuery($filter: BlogPostFilterInput) {
+          allBlogPost(
+            sort: { fields: [date, title], order: DESC }
+            filter: $filter
+          ) {
             nodes {
               id
               slug
             }
           }
         }
+      `,
+      {
+        filter: postsFilter,
       }
-    `,
-    {
-      filter: postsFilter,
-    }
-  )
+    )
 
-  if (result.errors) {
-    reporter.panic(result.errors)
-  }
-  if (!skipCreateIndexPages) {
+    if (result.errors) {
+      reporter.panic(result.errors)
+    }
     // Create Posts and Post pages.
     const { allBlogPost } = result.data
     const posts = allBlogPost.nodes
@@ -407,8 +400,10 @@ exports.createPages = async ({ graphql, actions, reporter }, themeOptions) => {
         },
       }
       if (i === 0) {
-        indexPages[basePath] = pageInfo
-        return
+        if (!isIndexPageRemoved) {
+          indexPages[basePath] = pageInfo
+          return
+        }
       }
       createPage(pageInfo)
     })
@@ -416,6 +411,31 @@ exports.createPages = async ({ graphql, actions, reporter }, themeOptions) => {
 
   if (!skipCreateTagPages) {
     // Create tag Posts
+    const result = await graphql(
+      `
+        query ItemsCreatePageQuery($filter: BlogPostFilterInput) {
+          tagsGroup: allBlogPost(
+            sort: { fields: [date, title], order: DESC }
+            filter: $filter
+          ) {
+            group(field: tags) {
+              fieldValue
+              nodes {
+                id
+                slug
+              }
+            }
+          }
+        }
+      `,
+      {
+        filter: postsFilter,
+      }
+    )
+
+    if (result.errors) {
+      reporter.panic(result.errors)
+    }
     const {
       tagsGroup: { group },
     } = result.data
@@ -1257,13 +1277,10 @@ exports.onCreatePage = function ({ page, actions }, themeOptions) {
     withDefaults(themeOptions)
   const { createPage, deletePage } = actions
 
-  if (
-    !page.context.pageType &&
-    page.path === basePath &&
-    indexPages[basePath]
-  ) {
+  if (!page.context.pageType && page.path === basePath) {
     deletePage(page)
-    if (!skipCreateIndexPages) {
+    isIndexPageRemoved = true
+    if (!skipCreateIndexPages && indexPages[basePath]) {
       createPage(indexPages[basePath])
     }
   } else if (
@@ -1272,7 +1289,8 @@ exports.onCreatePage = function ({ page, actions }, themeOptions) {
     page.path === firstDetailPage.path
   ) {
     deletePage(page)
-    if (!skipCreateDetailPages) {
+    isFirstDetailPageRemoved = true
+    if (!skipCreateDetailPages && firstDetailPage) {
       createPage(firstDetailPage)
     }
   }

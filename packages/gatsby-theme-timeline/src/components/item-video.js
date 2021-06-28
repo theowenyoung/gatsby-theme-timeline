@@ -3,7 +3,7 @@ import { jsx } from "theme-ui"
 import ReactPlayer from "react-player"
 import Video from "./video"
 import { getSrc } from "gatsby-plugin-image"
-
+import { useState, useEffect } from "react"
 function getDomain(url) {
   url = url.replace(/(https?:\/\/)?(www.)?/i, ``)
   if (url.indexOf(`/`) !== -1) {
@@ -20,7 +20,39 @@ function getImageUrl(item) {
 }
 const itemHero = ({ item }) => {
   const { video, provider } = item
+  const [paddingBottom, setPaddingBottom] = useState(0)
 
+  useEffect(() => {
+    if (
+      video &&
+      video.url &&
+      provider === `Reddit` &&
+      video.height &&
+      video.width
+    ) {
+      let screenWidth = window.innerWidth
+      if (screenWidth > 1024) {
+        screenWidth = 1024
+      }
+      let scale = 375 / screenWidth
+      if (screenWidth >= 768) {
+        scale = scale * 1.62
+      } else {
+        scale = scale * 1.1
+      }
+      const videoHeight = video.height + 248
+      const videoWidth = video.width
+      let thePaddingBottom = 56.25
+      if (videoHeight && videoWidth) {
+        if (videoHeight > videoWidth) {
+          thePaddingBottom = 180
+        } else {
+          thePaddingBottom = (videoHeight * 100 * 1.6) / videoWidth
+        }
+      }
+      setPaddingBottom(thePaddingBottom * scale + `%`)
+    }
+  }, null)
   if (!video || !video.url) {
     return null
   }
@@ -31,14 +63,6 @@ const itemHero = ({ item }) => {
     const embed = video.embed
     const videoHeight = video.height + 248
     const videoWidth = video.width
-    let paddingBottom = `56.25%`
-    if (videoHeight && videoWidth) {
-      if (videoHeight > videoWidth) {
-        paddingBottom = `105%`
-      } else {
-        paddingBottom = `${(videoHeight * 100) / videoWidth}%`
-      }
-    }
     return (
       <figure sx={{ pb: 0, m: 0 }}>
         {embed ? (
