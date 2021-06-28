@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.20](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-theme-timeline@2.0.19...gatsby-theme-timeline@2.0.20) (2021-06-28)
+
+### Bug Fixes
+
+- reddit detail iframe height ([0c09bd3](https://github.com/theowenyoung/gatsby-theme-timeline/commit/0c09bd347867807a0997da794c7c27df359e1a0f))
+- skip index page , reddit video viewport ([c4d0011](https://github.com/theowenyoung/gatsby-theme-timeline/commit/c4d001184896ec660cad93fc294c1238cd44fe93))
+
 ## [2.0.19](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-theme-timeline@2.0.18...gatsby-theme-timeline@2.0.19) (2021-06-26)
 
 ### Bug Fixes
