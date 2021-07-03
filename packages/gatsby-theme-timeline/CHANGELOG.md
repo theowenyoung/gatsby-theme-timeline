@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.21](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-theme-timeline@2.0.20...gatsby-theme-timeline@2.0.21) (2021-07-03)
+
+### Bug Fixes
+
+- core create 1 post ([86a2e24](https://github.com/theowenyoung/gatsby-theme-timeline/commit/86a2e24ed1b5eb7d978b1d54d8a099e8f5585b58))
+
 ## [2.0.20](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-theme-timeline@2.0.19...gatsby-theme-timeline@2.0.20) (2021-06-28)
 
 ### Bug Fixes
