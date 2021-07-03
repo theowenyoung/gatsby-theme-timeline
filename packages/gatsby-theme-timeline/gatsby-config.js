@@ -30,6 +30,11 @@ module.exports = (themeOptions) => {
         ...themeOptions,
         contentPath: `content/posts-placeholder`,
         limit: 1, // todo https://github.com/gatsbyjs/themes/pull/136 be merged
+        filter: {
+          slug: {
+            eq: `%?%$///$%`, // not match any records
+          },
+        },
       },
     },
     {
