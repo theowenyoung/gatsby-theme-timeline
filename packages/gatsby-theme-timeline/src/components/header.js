@@ -6,7 +6,7 @@ import HeaderRight from "./header-right"
 const Header = (props) => {
   const { title, pageType } = props
   return (
-    <header sx={{ px: [3, 4], mb: 4, maxWidth: `5xl`, mx: `auto` }}>
+    <header sx={{ px: [3, 4], mb: 4, maxWidth: `6xl`, mx: `auto` }}>
       <Themed.div
         sx={{
           pt: 3,

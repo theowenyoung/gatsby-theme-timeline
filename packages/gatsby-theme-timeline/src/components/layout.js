@@ -14,7 +14,7 @@ const Layout = ({ children, ...props }) => {
       <Header {...props} />
       <Box
         css={css({
-          maxWidth: [`full`, `5xl`],
+          maxWidth: [`full`, `6xl`],
           mx: `auto`,
           px: [3, 4],
           pb: 4,
