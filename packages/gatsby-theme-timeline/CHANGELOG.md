@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.22](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-theme-timeline@2.0.21...gatsby-theme-timeline@2.0.22) (2021-07-06)
+
+### Features
+
+- max width ([f411239](https://github.com/theowenyoung/gatsby-theme-timeline/commit/f411239ad4738a3ee220976a14593bf733122324))
+
 ## [2.0.21](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-theme-timeline@2.0.20...gatsby-theme-timeline@2.0.21) (2021-07-03)
 
 ### Bug Fixes
