@@ -12,16 +12,16 @@
     "build:cypress": "cross-env CYPRESS_SUPPORT=y npm run build"
   },
   "dependencies": {
-    "@theowenyoung/gatsby-source-instagram": "^0.10.0",
-    "gatsby": "^3.0.0",
-    "gatsby-plugin-robots-txt": "^1.5.3",
-    "gatsby-plugin-sitemap": "^2.4.17",
-    "gatsby-source-twitter": "^3.2.2",
+    "@theowenyoung/gatsby-source-instagram": "^1.0.0",
+    "gatsby": "^3.12.1",
+    "gatsby-plugin-robots-txt": "^1.6.9",
+    "gatsby-plugin-sitemap": "^4.8.0",
+    "gatsby-source-twitter": "^4.0.0",
     "gatsby-theme-timeline": "^2.0.22",
-    "react": "^17.0.0",
-    "react-dom": "^17.0.0"
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
   },
   "devDependencies": {
-    "cross-env": "^7.0.2"
+    "cross-env": "^7.0.3"
   }
 }
