@@ -804,6 +804,13 @@ exports.onCreateNode = async (
       } else {
         fieldData.imageRemote = node.preview.images[0].source.url
       }
+      if (fieldData.imageRemote.startsWith(`https://preview.`)) {
+        fieldData.imageRemote = fieldData.imageRemote.replace(
+          `https://preview.`,
+          `https://i.`
+        )
+      }
+
       if (fieldData.imageRemote) {
         fieldData.image___NODE = await createLocalImage(fieldData.imageRemote)
       }
