@@ -24,7 +24,7 @@ export default function Page({ prefix, pagePath }, props) {
       to={withPrefix(
         props.value === 1
           ? `${prefix}`
-          : urlJoin(`${prefix}`, `${pagePath}/${props.value}`)
+          : urlJoin(`${prefix}`, `${pagePath}/${props.value}/`)
       )}
       sx={{
         px: 2,

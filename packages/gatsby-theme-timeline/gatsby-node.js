@@ -382,7 +382,7 @@ exports.createPages = async ({ graphql, actions, reporter }, themeOptions) => {
     // create posts pages
     Array.from({ length: totalPages }).forEach((_, i) => {
       const pageInfo = {
-        path: i === 0 ? `${basePath}` : urlResolve(basePath, `page/${i + 1}`),
+        path: i === 0 ? `${basePath}` : urlResolve(basePath, `page/${i + 1}/`),
         component: ItemsTemplate,
         context: {
           basePath,
@@ -461,7 +461,7 @@ exports.createPages = async ({ graphql, actions, reporter }, themeOptions) => {
               ? urlResolve(`${basePath}`, `tags/${kebabCase(tag.fieldValue)}/`)
               : urlResolve(
                   `${basePath}`,
-                  `tags/${kebabCase(tag.fieldValue)}/page/${i + 1}`
+                  `tags/${kebabCase(tag.fieldValue)}/page/${i + 1}/`
                 ),
           component: ItemsTemplate,
           context: {
@@ -616,7 +616,7 @@ exports.onCreateNode = async (
       thirdPartyId: node.id_str,
       body: ``,
       tags: node.entities.hashtags.map((tag) => tag.text) || [],
-      slug: urlResolve(basePath, `tweet/${node.id_str}`),
+      slug: urlResolve(basePath, `tweet/${node.id_str}/`),
       date: date,
       author,
       authorSlug,
@@ -872,7 +872,7 @@ exports.onCreateNode = async (
       excerpt: excerpt,
       body: ``,
       tags: tags,
-      slug: urlResolve(basePath, `hn/${node.objectID}`),
+      slug: urlResolve(basePath, `hn/${node.objectID}/`),
       date: date,
       author,
       authorUrl: `https://news.ycombinator.com/user?id=${author}`,
@@ -978,7 +978,7 @@ exports.onCreateNode = async (
       thirdPartyId: node.id,
       body: excerpt,
       tags: tags,
-      slug: urlResolve(basePath, `ph/${node.slug}`),
+      slug: urlResolve(basePath, `ph/${node.slug}/`),
       date: date,
       author,
       authorUrl,
@@ -1050,7 +1050,7 @@ exports.onCreateNode = async (
       body: excerpt,
       thirdPartyId: node.videoId,
       tags: tags,
-      slug: urlResolve(basePath, `youtube/${node.videoId}`),
+      slug: urlResolve(basePath, `youtube/${node.videoId}/`),
       date: date,
       author,
       channelUrl,
@@ -1110,7 +1110,7 @@ exports.onCreateNode = async (
       body: ``,
       thirdPartyId: node.id,
       tags: tags,
-      slug: urlResolve(basePath, `instagram/${node.id}`),
+      slug: urlResolve(basePath, `instagram/${node.id}/`),
       date: date,
       author,
       channel: author,
