@@ -703,14 +703,15 @@ exports.onCreateNode = async (
     createParentChildLink({ parent: node, child: getNode(tweetNodeId) })
   }
   if (allRedditTypeName.includes(node.internal.type)) {
-    const date = new Date(node.created_utc * 1000).toISOString()
+    const date = new Date(parseInt(node.created_utc * 1000)).toISOString()
     if (!shouldCreate(date)) {
       return
     }
     const author = node.author
     let text = ``
     if (node.selftext_html) {
-      text = htmlToText(node.selftext_html, {
+      const finalHtml = decodeEntities(node.selftext_html)
+      text = htmlToText(finalHtml, {
         tags: {
           a: {
             options: {
@@ -1322,4 +1323,22 @@ function validURL(str) {
   } catch {
     return false
   }
+}
+function decodeEntities(encodedString) {
+  var translate_re = /&(nbsp|amp|quot|lt|gt);/g
+  var translate = {
+    nbsp: " ",
+    amp: "&",
+    quot: '"',
+    lt: "<",
+    gt: ">",
+  }
+  return encodedString
+    .replace(translate_re, function (match, entity) {
+      return translate[entity]
+    })
+    .replace(/&#(\d+);/gi, function (match, numStr) {
+      var num = parseInt(numStr, 10)
+      return String.fromCharCode(num)
+    })
 }
