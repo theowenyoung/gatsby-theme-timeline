@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.2](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-theme-timeline@3.0.1...gatsby-theme-timeline@3.0.2) (2021-12-31)
+
+
+### Features
+
+* slug tail ([8f796f8](https://github.com/theowenyoung/gatsby-theme-timeline/commit/8f796f886667d3cec5eee3b3d763e91d96b42219))
+
+
+
+
+
 ## [3.0.1](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-theme-timeline@2.0.24...gatsby-theme-timeline@3.0.1) (2021-12-31)
 
 
