@@ -41,7 +41,7 @@
     "gatsby-theme-blog-core": "^4.0.0",
     "gatsby-theme-i18n": "^3.0.0",
     "gatsby-theme-ui-preset": "^3.0.0",
-    "gatsby-theme-ui-timeline-preset": "^1.0.0",
+    "gatsby-theme-ui-timeline-preset": "^3.0.0",
     "gatsby-transformer-json": "^4.4.0",
     "html-to-text": "^8.1.0",
     "mdx-utils": "^0.2.0",
