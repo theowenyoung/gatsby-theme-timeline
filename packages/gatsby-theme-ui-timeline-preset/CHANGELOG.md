@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.1](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-theme-ui-timeline-preset@1.0.0...gatsby-theme-ui-timeline-preset@3.0.1) (2021-12-31)
+
+
+### Features
+
+* support gatsby v4 ([c60e735](https://github.com/theowenyoung/gatsby-theme-timeline/commit/c60e735bbceba755e2eaa58565a7a22199d2cdf8))
+
+
+
+
+
 # [1.0.0](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-theme-ui-timeline-preset@0.1.13...gatsby-theme-ui-timeline-preset@1.0.0) (2021-06-11)
 
 ### Features
