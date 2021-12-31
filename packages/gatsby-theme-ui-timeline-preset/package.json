@@ -1,6 +1,6 @@
 {
   "name": "gatsby-theme-ui-timeline-preset",
-  "version": "1.0.0",
+  "version": "3.0.0",
   "description": "A preset for theme-ui styles",
   "main": "src/index.js",
   "author": {
@@ -20,7 +20,7 @@
   },
   "homepage": "https://github.com/theowenyoung/gatsby-theme-timeline/tree/main/packages/gatsby-theme-ui-timeline-preset#readme",
   "dependencies": {
-    "@theme-ui/preset-tailwind": "^0.9.1"
+    "@theme-ui/preset-tailwind": "^0.13.0"
   },
   "engines": {
     "node": ">=12.13.0"
