@@ -1,5 +1,13 @@
 # Change Log
 
+## 3.0.2
+
+### Patch Changes
+
+- f3f3658: add maxTagPosts option
+- Updated dependencies [f3f3658]
+  - gatsby-theme-timeline@4.0.3
+
 ## 3.0.1
 
 ### Patch Changes

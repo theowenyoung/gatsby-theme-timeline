@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.0.3
+
+### Patch Changes
+
+- f3f3658: add maxTagPosts option
+
 ## 4.0.2
 
 ### Patch Changes
