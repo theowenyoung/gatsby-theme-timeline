@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.0.2
+
+### Patch Changes
+
+- e6dbc6c: fix max posts
+
 ## 4.0.1
 
 ### Patch Changes

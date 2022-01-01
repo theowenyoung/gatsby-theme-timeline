@@ -1,5 +1,13 @@
 # Change Log
 
+## 3.0.1
+
+### Patch Changes
+
+- e6dbc6c: fix max posts
+- Updated dependencies [e6dbc6c]
+  - gatsby-theme-timeline@4.0.2
+
 ## 3.0.0
 
 ### Major Changes
