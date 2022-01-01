@@ -27,7 +27,9 @@
     "e2e:dev": "concurrently --kill-others 'npm  run ssat:gatsby-starter-timeline:dev'",
     "e2e:ci": "npm run gatsby-starter-timeline:cy:build && npm run ssat:gatsby-starter-timeline:serve",
     "test": "npm run e2e:ci",
-    "release": "npm run lerna publish",
+    "release": "npx changeset",
+    "v": "npx changeset version",
+    "pub": "npx changeset publish",
     "prepare": "husky install"
   },
   "husky": {
@@ -52,7 +54,6 @@
     "starters/*"
   ],
   "devDependencies": {
-    "@release-it/conventional-changelog": "^3.3.0",
     "@testing-library/cypress": "^8.0.2",
     "babel-eslint": "^10.1.0",
     "concurrently": "^6.5.1",
@@ -70,7 +71,6 @@
     "lerna": "^4.0.0",
     "lint-staged": "^12.1.4",
     "prettier": "^2.5.1",
-    "release-it": "^14.11.8",
     "start-server-and-test": "^1.14.0",
     "surge": "^0.20.1"
   },

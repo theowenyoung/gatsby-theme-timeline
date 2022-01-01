@@ -1,7 +1,10 @@
-const withDefaults = require(`gatsby-theme-blog-core/utils/default-options`)
 const _ = require(`lodash`)
 module.exports = (themeOptions) => {
-  const baseOptions = withDefaults(themeOptions)
+  const basePath = themeOptions.basePath || `/`
+  const contentPath = themeOptions.contentPath || `content/posts`
+  const assetPath = themeOptions.assetPath || `content/assets`
+  const excerptLength = themeOptions.excerptLength || 140
+  const filter = themeOptions.filter || {}
   const siteMetadata = themeOptions.siteMetadata || null
   const tweetTypeName = themeOptions.tweetTypeName || [`TweetsJson`]
   const redditTypeName = themeOptions.redditTypeName || [`RedditJson`]
@@ -12,10 +15,8 @@ module.exports = (themeOptions) => {
   const instagramTypeName = themeOptions.instagramTypeName || [`InstagramJson`]
   const postsPerPage = themeOptions.postsPerPage || 25
   const tagPostsPerPage = themeOptions.tagPostsPerPage || 25
-  const excerptLength = themeOptions.excerptLength || 140
   const maxPosts =
     themeOptions.maxPosts !== undefined ? themeOptions.maxPosts : 1000
-  const contentPath = themeOptions.contentPath || `content/posts`
   const preset = themeOptions.preset || `gatsby-theme-ui-timeline-preset`
   const prismPreset = themeOptions.prismPreset || `github`
   const shouldTransformJson =
@@ -76,7 +77,10 @@ module.exports = (themeOptions) => {
       ? true
       : themeOptions.shouldTransformImage
   return {
-    ...baseOptions,
+    basePath,
+    contentPath,
+    assetPath,
+    filter,
     tweetTypeName,
     redditTypeName,
     hnTypeName,
@@ -97,7 +101,6 @@ module.exports = (themeOptions) => {
     imageMaxHeight,
     postStartTime,
     postEndTime,
-    contentPath,
     skipCreateIndexPages,
     skipCreateDetailPages,
     skipCreateTagPages,
