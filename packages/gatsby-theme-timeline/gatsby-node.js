@@ -364,6 +364,7 @@ exports.createPages = async ({ graphql, actions, reporter }, themeOptions) => {
     skipCreateTagPages,
     skipCreateDetailPages,
     maxPosts,
+    maxTagPosts,
   } = withDefaults(themeOptions)
   const PostTemplate = require.resolve(`./src/templates/post-query`)
 
@@ -404,6 +405,7 @@ exports.createPages = async ({ graphql, actions, reporter }, themeOptions) => {
       `,
       {
         filter: postsFilter,
+        maxPosts: maxPosts,
       }
     )
 
@@ -413,7 +415,8 @@ exports.createPages = async ({ graphql, actions, reporter }, themeOptions) => {
     // Create Posts and Post pages.
     const { allBlogPost } = result.data
     const posts = allBlogPost.nodes
-    const totalPages = Math.ceil(posts.length / postsPerPage)
+    const thePostPerPage = Math.min(postsPerPage, maxPosts)
+    const totalPages = Math.ceil(posts.length / thePostPerPage)
     const total = posts.length
     // create posts pages
     Array.from({ length: totalPages }).forEach((_, i) => {
@@ -425,8 +428,8 @@ exports.createPages = async ({ graphql, actions, reporter }, themeOptions) => {
           pageType: `home`,
           tagsFilter: postsFilter,
           filter: postsFilter,
-          limit: postsPerPage,
-          skip: i * postsPerPage,
+          limit: thePostPerPage,
+          skip: i * thePostPerPage,
           totalPages,
           total: total,
           currentPage: i + 1,
@@ -511,10 +514,11 @@ exports.createPages = async ({ graphql, actions, reporter }, themeOptions) => {
     } = result.data
     // Make tag pages
     group.forEach((tag) => {
-      const tagPosts = tag.nodes.slice(0, maxPosts)
+      const tagPosts = tag.nodes.slice(0, maxTagPosts)
+      const theTagPostPerPage = Math.min(tagPostsPerPage, maxTagPosts)
 
-      const tagTotalPages = Math.ceil(tagPosts.length / tagPostsPerPage)
-      const tagTotal = tagPosts.length
+      const tagTotalPages = Math.ceil(tagPosts.length / theTagPostPerPage)
+      const tagTotal = Math.min(tagPosts.length, maxTagPosts)
       const tagPostsFilter = Object.assign({}, postsFilter)
       if (postsFilter && postsFilter.tags) {
         tagPostsFilter.tags = {
@@ -541,8 +545,8 @@ exports.createPages = async ({ graphql, actions, reporter }, themeOptions) => {
             tag: tag.fieldValue,
             tagsFilter: postsFilter,
             filter: tagPostsFilter,
-            limit: tagPostsPerPage,
-            skip: i * tagPostsPerPage,
+            limit: theTagPostPerPage,
+            skip: i * theTagPostPerPage,
             total: tagTotal,
             totalPages: tagTotalPages,
             currentPage: i + 1,

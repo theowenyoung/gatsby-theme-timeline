@@ -17,6 +17,8 @@ module.exports = (themeOptions) => {
   const tagPostsPerPage = themeOptions.tagPostsPerPage || 25
   const maxPosts =
     themeOptions.maxPosts !== undefined ? themeOptions.maxPosts : 1000
+  const maxTagPosts =
+    themeOptions.maxTagPosts !== undefined ? themeOptions.maxTagPosts : 100
   const preset = themeOptions.preset || `gatsby-theme-ui-timeline-preset`
   const prismPreset = themeOptions.prismPreset || `github`
   const shouldTransformJson =
@@ -99,6 +101,7 @@ module.exports = (themeOptions) => {
     shouldTransformImage,
     imageMaxWidth,
     imageMaxHeight,
+    maxTagPosts,
     postStartTime,
     postEndTime,
     skipCreateIndexPages,

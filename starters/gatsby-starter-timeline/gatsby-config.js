@@ -72,7 +72,8 @@ module.exports = {
         tweetTypeName: ["TweetsJson", "twitterStatusesUserTimelineMyTweet"],
         instagramTypeName: ["InstagramJson", "InstaNode"],
         // archiveTime: "2021/06/17",
-
+        maxPosts: 2,
+        maxTagPosts: 1,
         // siteMetadata,
         shouldTransformImage: false,
         // basePath: "/test",
