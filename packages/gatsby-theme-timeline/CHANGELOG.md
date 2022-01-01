@@ -1,35 +1,30 @@
 # Change Log
 
+## 4.0.0
+
+### Major Changes
+
+- 0d2aced: remove blog-core
+
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
 ## [3.0.2](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-theme-timeline@3.0.1...gatsby-theme-timeline@3.0.2) (2021-12-31)
 
-
 ### Features
 
-* slug tail ([8f796f8](https://github.com/theowenyoung/gatsby-theme-timeline/commit/8f796f886667d3cec5eee3b3d763e91d96b42219))
-
-
-
-
+- slug tail ([8f796f8](https://github.com/theowenyoung/gatsby-theme-timeline/commit/8f796f886667d3cec5eee3b3d763e91d96b42219))
 
 ## [3.0.1](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-theme-timeline@2.0.24...gatsby-theme-timeline@3.0.1) (2021-12-31)
 
-
 ### Bug Fixes
 
-* dependence ([ef97935](https://github.com/theowenyoung/gatsby-theme-timeline/commit/ef97935a3e768ec3b83fa476a4d96693bf8d6467))
-* reddit html ([1175f8f](https://github.com/theowenyoung/gatsby-theme-timeline/commit/1175f8f330c6574346e0d8512bfda67cb72fc9c1))
-
+- dependence ([ef97935](https://github.com/theowenyoung/gatsby-theme-timeline/commit/ef97935a3e768ec3b83fa476a4d96693bf8d6467))
+- reddit html ([1175f8f](https://github.com/theowenyoung/gatsby-theme-timeline/commit/1175f8f330c6574346e0d8512bfda67cb72fc9c1))
 
 ### Features
 
-* support gatsby v4 ([c60e735](https://github.com/theowenyoung/gatsby-theme-timeline/commit/c60e735bbceba755e2eaa58565a7a22199d2cdf8))
-
-
-
-
+- support gatsby v4 ([c60e735](https://github.com/theowenyoung/gatsby-theme-timeline/commit/c60e735bbceba755e2eaa58565a7a22199d2cdf8))
 
 ## [2.0.24](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-theme-timeline@2.0.23...gatsby-theme-timeline@2.0.24) (2021-12-02)
 

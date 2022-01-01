@@ -1,18 +1,16 @@
 module.exports = {
-  parser: "babel-eslint",
+  parser: `babel-eslint`,
   extends: [
-    "google",
-    "eslint:recommended",
-    "plugin:flowtype/recommended",
-    "plugin:react/recommended",
-    "prettier",
-    "prettier/flowtype",
-    "prettier/react",
+    `google`,
+    `eslint:recommended`,
+    `plugin:flowtype/recommended`,
+    `plugin:react/recommended`,
+    `prettier`,
   ],
-  plugins: ["flowtype", "prettier", "react", "filenames"],
+  plugins: [`flowtype`, `prettier`, `react`, `filenames`],
   parserOptions: {
     ecmaVersion: 2016,
-    sourceType: "module",
+    sourceType: `module`,
     ecmaFeatures: {
       jsx: true,
     },
@@ -33,28 +31,28 @@ module.exports = {
   },
   rules: {
     "no-unused-expressions": [
-      "error",
+      `error`,
       {
         allowTaggedTemplates: true,
       },
     ],
-    "filenames/match-regex": ["error", "^[a-z-\\d\\.]+$", true],
-    "no-console": "off",
-    "no-inner-declarations": "off",
-    "prettier/prettier": "error",
-    quotes: ["error", "backtick"],
-    "react/display-name": "off",
-    "react/jsx-key": "warn",
-    "react/no-unescaped-entities": "off",
-    "react/prop-types": "off",
-    "require-jsdoc": "off",
-    "valid-jsdoc": "off",
+    "filenames/match-regex": [`error`, `^[a-z-\\d\\.]+$`, true],
+    "no-console": `off`,
+    "no-inner-declarations": `off`,
+    "prettier/prettier": `error`,
+    quotes: [`error`, `backtick`],
+    "react/display-name": `off`,
+    "react/jsx-key": `warn`,
+    "react/no-unescaped-entities": `off`,
+    "react/prop-types": `off`,
+    "require-jsdoc": `off`,
+    "valid-jsdoc": `off`,
   },
   overrides: [
     {
       files: [
-        "packages/**/gatsby-browser.js",
-        "packages/gatsby/cache-dir/**/*",
+        `packages/**/gatsby-browser.js`,
+        `packages/gatsby/cache-dir/**/*`,
       ],
       env: {
         browser: true,
@@ -65,7 +63,7 @@ module.exports = {
       },
     },
     {
-      files: ["cypress/e2e/**/*", "cypress/support/**/*"],
+      files: [`cypress/e2e/**/*`, `cypress/support/**/*`],
       globals: {
         cy: false,
         Cypress: false,
@@ -74,7 +72,7 @@ module.exports = {
   ],
   settings: {
     react: {
-      version: "16.4.2",
+      version: `16.4.2`,
     },
   },
 }

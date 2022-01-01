@@ -22,11 +22,20 @@ const {
   YOUTUBE_TYPE_NAME,
   INSTAGRAM_TYPE_NAME,
 } = require(`./utils/constans`)
-const { createContentDigest, urlResolve } = require(`gatsby-core-utils`)
-const indexPages = {}
-let firstDetailPage = null // temp for blog core create detail page
-let isIndexPageRemoved = false
-let isFirstDetailPageRemoved = false
+const { createContentDigest, urlResolve, slash } = require(`gatsby-core-utils`)
+
+const mdxResolverPassthrough =
+  (fieldName) => async (source, args, context, info) => {
+    const type = info.schema.getType(`Mdx`)
+    const mdxNode = context.nodeModel.getNodeById({
+      id: source.parent,
+    })
+    const resolver = type.getFields()[fieldName].resolve
+    const result = await resolver(mdxNode, args, context, {
+      fieldName,
+    })
+    return result
+  }
 // Ensure that content directories exist at site-level
 exports.onPreBootstrap = ({ store }, themeOptions) => {
   const { program } = store.getState()
@@ -44,8 +53,89 @@ exports.onPreBootstrap = ({ store }, themeOptions) => {
     }
   })
 }
-exports.createSchemaCustomization = ({ actions }) => {
+exports.createSchemaCustomization = ({ actions, schema }, themeOptions) => {
   const { createTypes } = actions
+  const { excerptLength } = withDefaults(themeOptions)
+  createTypes(`interface BlogPost implements Node {
+    id: ID!
+    title: String!
+    body: String!
+    slug: String!
+    date: Date! @dateformat
+    tags: [String]!
+    excerpt: String!
+    image: File
+    imageAlt: String
+    imageCaptionText: String
+    imageCaptionLink: String
+    socialImage: File
+}`)
+
+  createTypes(
+    schema.buildObjectType({
+      name: `MdxBlogPost`,
+      fields: {
+        id: { type: `ID!` },
+        title: {
+          type: `String!`,
+        },
+        slug: {
+          type: `String!`,
+        },
+        date: { type: `Date!`, extensions: { dateformat: {} } },
+        tags: { type: `[String]!` },
+        excerpt: {
+          type: `String!`,
+          args: {
+            pruneLength: {
+              type: `Int`,
+              defaultValue: excerptLength,
+            },
+          },
+          resolve: mdxResolverPassthrough(`excerpt`),
+        },
+        image: {
+          type: `File`,
+          resolve: async (source, args, context, info) => {
+            if (source.image___NODE) {
+              return context.nodeModel.getNodeById({ id: source.image___NODE })
+            } else if (source.image) {
+              return processRelativeImage(source, context, `image`)
+            }
+          },
+        },
+        imageAlt: {
+          type: `String`,
+        },
+        imageCaptionText: {
+          type: `String`,
+        },
+        imageCaptionLink: {
+          type: `String`,
+        },
+        socialImage: {
+          type: `File`,
+          resolve: async (source, args, context, info) => {
+            if (source.socialImage___NODE) {
+              return context.nodeModel.getNodeById({
+                id: source.socialImage___NODE,
+              })
+            } else if (source.socialImage) {
+              return processRelativeImage(source, context, `socialImage`)
+            }
+          },
+        },
+        body: {
+          type: `String!`,
+          resolve: mdxResolverPassthrough(`body`),
+        },
+      },
+      interfaces: [`Node`, `BlogPost`],
+      extensions: {
+        infer: false,
+      },
+    })
+  )
   createTypes(`
     type Video {
       url: String
@@ -54,7 +144,7 @@ exports.createSchemaCustomization = ({ actions }) => {
       height: Int
     }
   `)
-  createTypes(`interface TimelinePost @blogPostInterface {
+  createTypes(`interface TimelinePost  {
     provider: String
     url: String
     originalUrl: String
@@ -273,76 +363,9 @@ exports.createPages = async ({ graphql, actions, reporter }, themeOptions) => {
     skipCreateIndexPages,
     skipCreateTagPages,
     skipCreateDetailPages,
+    maxPosts,
   } = withDefaults(themeOptions)
-
-  // create limit >1000 detail page, cause blog-core limit 1000
-  // https://github.com/gatsbyjs/themes/pull/136 wait merged
-  if (!skipCreateDetailPages) {
-    const detailsPageResult = await graphql(`
-      {
-        allBlogPost(sort: { fields: [date, title], order: DESC }) {
-          nodes {
-            id
-            slug
-            date
-            __typename
-            ... on SocialMediaPost {
-              parent {
-                internal {
-                  type
-                }
-              }
-            }
-          }
-        }
-      }
-    `)
-
-    if (detailsPageResult.errors) {
-      reporter.panic(detailsPageResult.errors)
-    }
-
-    // Create Posts and Post pages.
-    const { allBlogPost: allDetailBlogPost } = detailsPageResult.data
-    const detailPosts = allDetailBlogPost.nodes
-    const PostTemplate = require.resolve(
-      `gatsby-theme-blog-core/src/templates/post-query`
-    )
-
-    // Create a page for each Post
-    detailPosts.forEach((post, index) => {
-      // not create redirect type post
-      const previous =
-        index === detailPosts.length - 1 ? null : detailPosts[index + 1]
-      const next = index === 0 ? null : detailPosts[index - 1]
-      const { slug } = post
-      const pageInfo = {
-        path: slug,
-        component: PostTemplate,
-        context: {
-          basePath: basePath,
-          pageType: `detail`,
-          id: post.id,
-          previousId: previous ? previous.id : undefined,
-          nextId: next ? next.id : undefined,
-          maxWidth: imageMaxWidth,
-          siteMetadata,
-        },
-      }
-      if (index === 0) {
-        if (!isFirstDetailPageRemoved) {
-          firstDetailPage = pageInfo
-        }
-      }
-      if (
-        post.__typename === `SocialMediaPost` &&
-        redirectTypeName.includes(post.parent.internal.type)
-      ) {
-        return
-      }
-      createPage(pageInfo)
-    })
-  }
+  const PostTemplate = require.resolve(`./src/templates/post-query`)
 
   if (skipCreateIndexPages && skipCreateTagPages) {
     return
@@ -350,18 +373,31 @@ exports.createPages = async ({ graphql, actions, reporter }, themeOptions) => {
   // These templates are simply data-fetching wrappers that import components
   // const ItemTemplate = require.resolve(`./src/templates/post-query`)
   const ItemsTemplate = require.resolve(`./src/templates/posts-query`)
-
+  const createdDetailPageMap = new Map()
   if (!skipCreateIndexPages) {
     const result = await graphql(
       `
-        query ItemsCreatePageQuery($filter: BlogPostFilterInput) {
+        query ItemsCreatePageQuery(
+          $filter: BlogPostFilterInput
+          $maxPosts: Int
+        ) {
           allBlogPost(
             sort: { fields: [date, title], order: DESC }
             filter: $filter
+            limit: $maxPosts
           ) {
             nodes {
               id
               slug
+              date
+              __typename
+              ... on SocialMediaPost {
+                parent {
+                  internal {
+                    type
+                  }
+                }
+              }
             }
           }
         }
@@ -399,14 +435,39 @@ exports.createPages = async ({ graphql, actions, reporter }, themeOptions) => {
           siteMetadata,
         },
       }
-      if (i === 0) {
-        if (!isIndexPageRemoved) {
-          indexPages[basePath] = pageInfo
-          return
-        }
-      }
+
       createPage(pageInfo)
     })
+    if (!skipCreateDetailPages) {
+      posts.forEach((post, index) => {
+        // not create redirect type post
+        const previous = index === posts.length - 1 ? null : posts[index + 1]
+        const next = index === 0 ? null : posts[index - 1]
+        const { slug } = post
+        const pageInfo = {
+          path: slug,
+          component: PostTemplate,
+          context: {
+            basePath: basePath,
+            pageType: `detail`,
+            id: post.id,
+            previousId: previous ? previous.id : undefined,
+            nextId: next ? next.id : undefined,
+            maxWidth: imageMaxWidth,
+            siteMetadata,
+          },
+        }
+        createdDetailPageMap.set(pageInfo.slug, true)
+        if (
+          post.__typename === `SocialMediaPost` &&
+          redirectTypeName.includes(post.parent.internal.type)
+        ) {
+          return
+        }
+        createPage(pageInfo)
+      })
+    }
+    // Create a page for each Post
   }
 
   if (!skipCreateTagPages) {
@@ -423,6 +484,15 @@ exports.createPages = async ({ graphql, actions, reporter }, themeOptions) => {
               nodes {
                 id
                 slug
+                date
+                __typename
+                ... on SocialMediaPost {
+                  parent {
+                    internal {
+                      type
+                    }
+                  }
+                }
               }
             }
           }
@@ -441,7 +511,8 @@ exports.createPages = async ({ graphql, actions, reporter }, themeOptions) => {
     } = result.data
     // Make tag pages
     group.forEach((tag) => {
-      const tagPosts = tag.nodes
+      const tagPosts = tag.nodes.slice(0, maxPosts)
+
       const tagTotalPages = Math.ceil(tagPosts.length / tagPostsPerPage)
       const tagTotal = tagPosts.length
       const tagPostsFilter = Object.assign({}, postsFilter)
@@ -481,6 +552,40 @@ exports.createPages = async ({ graphql, actions, reporter }, themeOptions) => {
           },
         })
       })
+      if (!skipCreateDetailPages) {
+        tagPosts.forEach((post, index) => {
+          // not create redirect type post
+          const { slug } = post
+          if (createdDetailPageMap.has(slug)) {
+            return
+          }
+          createdDetailPageMap.set(slug, true)
+
+          const previous =
+            index === tagPosts.length - 1 ? null : tagPosts[index + 1]
+          const next = index === 0 ? null : tagPosts[index - 1]
+          const pageInfo = {
+            path: slug,
+            component: PostTemplate,
+            context: {
+              basePath: basePath,
+              pageType: `detail`,
+              id: post.id,
+              previousId: previous ? previous.id : undefined,
+              nextId: next ? next.id : undefined,
+              maxWidth: imageMaxWidth,
+              siteMetadata,
+            },
+          }
+          if (
+            post.__typename === `SocialMediaPost` &&
+            redirectTypeName.includes(post.parent.internal.type)
+          ) {
+            return
+          }
+          createPage(pageInfo)
+        })
+      }
     })
   }
 }
@@ -1280,30 +1385,7 @@ exports.onCreateNode = async (
     return fileNodeId
   }
 }
-exports.onCreatePage = function ({ page, actions }, themeOptions) {
-  const { basePath, skipCreateDetailPages, skipCreateIndexPages } =
-    withDefaults(themeOptions)
-  const { createPage, deletePage } = actions
 
-  if (!page.context.pageType && page.path === basePath) {
-    deletePage(page)
-    isIndexPageRemoved = true
-    if (!skipCreateIndexPages && indexPages[basePath]) {
-      createPage(indexPages[basePath])
-    }
-  } else if (
-    !page.context.pageType &&
-    firstDetailPage &&
-    page.path === firstDetailPage.path
-  ) {
-    deletePage(page)
-    isFirstDetailPageRemoved = true
-    if (!skipCreateDetailPages && firstDetailPage) {
-      createPage(firstDetailPage)
-    }
-  }
-  // temp
-}
 function findHashtags(searchText) {
   searchText = searchText || ``
   const regexp = /\B#\w\w+\b/g
@@ -1325,20 +1407,41 @@ function validURL(str) {
   }
 }
 function decodeEntities(encodedString) {
-  var translate_re = /&(nbsp|amp|quot|lt|gt);/g
-  var translate = {
-    nbsp: " ",
-    amp: "&",
-    quot: '"',
-    lt: "<",
-    gt: ">",
+  const translateRe = /&(nbsp|amp|quot|lt|gt);/g
+  const translate = {
+    nbsp: ` `,
+    amp: `&`,
+    quot: `"`,
+    lt: `<`,
+    gt: `>`,
   }
   return encodedString
-    .replace(translate_re, function (match, entity) {
+    .replace(translateRe, function (match, entity) {
       return translate[entity]
     })
     .replace(/&#(\d+);/gi, function (match, numStr) {
-      var num = parseInt(numStr, 10)
+      const num = parseInt(numStr, 10)
       return String.fromCharCode(num)
     })
+}
+async function processRelativeImage(source, context, type) {
+  // Image is a relative path - find a corresponding file
+  const mdxFileNode = context.nodeModel.findRootNodeAncestor(
+    source,
+    (node) => node.internal && node.internal.type === `File`
+  )
+  if (!mdxFileNode) {
+    return
+  }
+  const imagePath = slash(path.join(mdxFileNode.dir, source[type]))
+
+  const { entries: fileNodes } = await context.nodeModel.findAll({
+    type: `File`,
+  })
+
+  for (const file of fileNodes) {
+    if (file.absolutePath === imagePath) {
+      return file
+    }
+  }
 }

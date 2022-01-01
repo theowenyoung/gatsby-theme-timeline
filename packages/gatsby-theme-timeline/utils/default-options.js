@@ -12,6 +12,9 @@ module.exports = (themeOptions) => {
   const instagramTypeName = themeOptions.instagramTypeName || [`InstagramJson`]
   const postsPerPage = themeOptions.postsPerPage || 25
   const tagPostsPerPage = themeOptions.tagPostsPerPage || 25
+  const excerptLength = themeOptions.excerptLength || 140
+  const maxPosts =
+    themeOptions.maxPosts !== undefined ? themeOptions.maxPosts : 1000
   const contentPath = themeOptions.contentPath || `content/posts`
   const preset = themeOptions.preset || `gatsby-theme-ui-timeline-preset`
   const prismPreset = themeOptions.prismPreset || `github`
@@ -82,6 +85,7 @@ module.exports = (themeOptions) => {
     instagramTypeName,
     redirectTypeName,
     postsPerPage,
+    excerptLength,
     tagPostsPerPage,
     preset,
     prismPreset,
@@ -97,6 +101,7 @@ module.exports = (themeOptions) => {
     skipCreateIndexPages,
     skipCreateDetailPages,
     skipCreateTagPages,
+    maxPosts,
     siteMetadata: siteMetadata,
     ...themeOptions,
     disqus: {

@@ -1,5 +1,16 @@
 # Change Log
 
+## 3.0.0
+
+### Major Changes
+
+- 0d2aced: remove blog-core
+
+### Patch Changes
+
+- Updated dependencies [0d2aced]
+  - gatsby-theme-timeline@4.0.0
+
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
@@ -7,25 +18,15 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 **Note:** Version bump only for package gatsby-starter-timeline
 
-
-
-
-
 ## [2.0.25](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-starter-timeline@2.0.24...gatsby-starter-timeline@2.0.25) (2021-12-31)
-
 
 ### Bug Fixes
 
-* reddit html ([1175f8f](https://github.com/theowenyoung/gatsby-theme-timeline/commit/1175f8f330c6574346e0d8512bfda67cb72fc9c1))
-
+- reddit html ([1175f8f](https://github.com/theowenyoung/gatsby-theme-timeline/commit/1175f8f330c6574346e0d8512bfda67cb72fc9c1))
 
 ### Features
 
-* support gatsby v4 ([c60e735](https://github.com/theowenyoung/gatsby-theme-timeline/commit/c60e735bbceba755e2eaa58565a7a22199d2cdf8))
-
-
-
-
+- support gatsby v4 ([c60e735](https://github.com/theowenyoung/gatsby-theme-timeline/commit/c60e735bbceba755e2eaa58565a7a22199d2cdf8))
 
 ## [2.0.24](https://github.com/theowenyoung/gatsby-theme-timeline/compare/gatsby-starter-timeline@2.0.23...gatsby-starter-timeline@2.0.24) (2021-12-02)
 

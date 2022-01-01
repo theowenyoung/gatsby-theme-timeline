@@ -73,5 +73,8 @@
     "release-it": "^14.11.8",
     "start-server-and-test": "^1.14.0",
     "surge": "^0.20.1"
+  },
+  "dependencies": {
+    "@changesets/cli": "^2.19.0"
   }
 }
