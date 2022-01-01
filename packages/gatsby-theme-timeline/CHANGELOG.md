@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.0.1
+
+### Patch Changes
+
+- 1df4943: fix core
+
 ## 4.0.0
 
 ### Major Changes
