@@ -1,5 +1,13 @@
 # Change Log
 
+## 3.0.3
+
+### Patch Changes
+
+- 4a581e5: add sensitive
+- Updated dependencies [4a581e5]
+  - gatsby-theme-timeline@4.0.5
+
 ## 3.0.2
 
 ### Patch Changes

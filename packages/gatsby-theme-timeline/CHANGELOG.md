@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.0.5
+
+### Patch Changes
+
+- 4a581e5: add sensitive
+
 ## 4.0.4
 
 ### Patch Changes
