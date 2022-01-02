@@ -919,6 +919,8 @@ exports.onCreateNode = async (
           `https://preview.`,
           `https://i.`
         )
+      } else {
+        delete fieldData.imageRemote
       }
 
       if (fieldData.imageRemote) {
