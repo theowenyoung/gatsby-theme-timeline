@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.0.4
+
+### Patch Changes
+
+- 31e3d03: fix reddit external image
+
 ## 4.0.3
 
 ### Patch Changes
