@@ -1,5 +1,13 @@
 # Change Log
 
+## 3.0.4
+
+### Patch Changes
+
+- e866b12: layout
+- Updated dependencies [e866b12]
+  - gatsby-theme-timeline@4.0.6
+
 ## 3.0.3
 
 ### Patch Changes
