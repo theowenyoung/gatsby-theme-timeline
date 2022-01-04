@@ -11,16 +11,18 @@ const Layout = ({ children, ...props }) => {
       <Helmet>
         <link rel="stylesheet" href={webfontURL} />
       </Helmet>
-      <Header {...props} />
-      <Box
-        css={css({
-          maxWidth: [`full`, `6xl`],
-          mx: `auto`,
-          px: [3, 4],
-          pb: 4,
-        })}
-      >
-        {children}
+      <Box>
+        <Header {...props} />
+        <Box
+          css={css({
+            maxWidth: [`full`, `6xl`],
+            mx: `auto`,
+            px: [3, 4],
+            pb: 4,
+          })}
+        >
+          {children}
+        </Box>
       </Box>
     </Themed.root>
   )

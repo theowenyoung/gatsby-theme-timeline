@@ -69,6 +69,7 @@ exports.createSchemaCustomization = ({ actions, schema }, themeOptions) => {
     imageCaptionText: String
     imageCaptionLink: String
     socialImage: File
+    sensitive: Boolean
 }`)
 
   createTypes(
@@ -81,6 +82,9 @@ exports.createSchemaCustomization = ({ actions, schema }, themeOptions) => {
         },
         slug: {
           type: `String!`,
+        },
+        sensitive: {
+          type: `Boolean`,
         },
         date: { type: `Date!`, extensions: { dateformat: {} } },
         tags: { type: `[String]!` },
@@ -202,6 +206,7 @@ exports.createSchemaCustomization = ({ actions, schema }, themeOptions) => {
       prefetch: Boolean
     }
     type SharedContent implements TimelinePost & BlogPost & Node @dontInfer {
+      sensitive: Boolean
       provider: String
       title: String!
       body: String!
@@ -232,6 +237,7 @@ exports.createSchemaCustomization = ({ actions, schema }, themeOptions) => {
       likeCount: Int
     }
     type SocialMediaPost implements TimelinePost & BlogPost & Node @dontInfer {
+      sensitive: Boolean
       provider: String
       id: ID!
       title: String!
@@ -736,6 +742,7 @@ exports.onCreateNode = async (
       sharedCount,
       likeCount,
       url: `https://twitter.com/${authorSlug}/statuses/${node.id_str}`,
+      sensitive: !!node.possibly_sensitive,
     }
     if (
       node.entities &&
@@ -773,6 +780,7 @@ exports.onCreateNode = async (
         authorImage___NODE: await createLocalImage(sharedAuthorImageRemote),
         authorImageRemote: sharedAuthorImageRemote,
         authorSlug: sharedStatus.user.screen_name,
+        sensitive: !!sharedStatus.possibly_sensitive,
       }
 
       if (
@@ -854,6 +862,7 @@ exports.onCreateNode = async (
           ? `https://www.reddit.com${node.permalink}`
           : redditUrl,
       score: node.score,
+      sensitive: !!node.sensitive,
     }
     // add tweet tag
     if (!fieldData.tags.includes(`reddit`)) {
@@ -991,6 +1000,7 @@ exports.onCreateNode = async (
       originalUrl:
         node.url || `https://news.ycombinator.com/item?id=${node.objectID}`,
       score: node.points,
+      sensitive: !!node.sensitive,
     }
     if (channel) {
       fieldData.channel = channel
@@ -1047,6 +1057,7 @@ exports.onCreateNode = async (
       url: fieldUrl,
       originalUrl: fieldUrl,
       channelUrl: node.author_url || ``,
+      sensitive: !!node.sensitive,
     }
     const nodeId = `${REDIRECT_TYPE_NAME}-${id}`
     if (node.image) {
@@ -1096,6 +1107,7 @@ exports.onCreateNode = async (
       originalUrl: node.website || node.url,
       url: node.url,
       score: node.votesCount,
+      sensitive: !!node.sensitive,
     }
     if (node.media && node.media.length > 0) {
       if (node.media[0].type === `video`) {
@@ -1171,6 +1183,7 @@ exports.onCreateNode = async (
       video: {
         url: node.link,
       },
+      sensitive: !!node.sensitive,
     }
 
     if (node.thumbnail && node.thumbnail.url) {
@@ -1229,6 +1242,7 @@ exports.onCreateNode = async (
       authorUrl: channelUrl,
       url: node.permalink,
       originalUrl: node.permalink,
+      sensitive: !!node.sensitive,
     }
 
     if (node.original || node.media_url) {
@@ -1316,6 +1330,7 @@ exports.onCreateNode = async (
         imageCaptionText: node.frontmatter.imageCaptionText,
         imageCaptionLink: node.frontmatter.imageCaptionLink,
         socialImage: node.frontmatter.socialImage,
+        sensitive: !!node.frontmatter.sensitive,
       }
 
       if (validURL(node.frontmatter.image)) {
